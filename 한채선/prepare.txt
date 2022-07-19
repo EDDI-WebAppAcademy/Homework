@@ -1,3 +1,4 @@
 prepare
 
 수업 숙제를 위한 github repositories
+commit 하는 법을 익혀봅시다
