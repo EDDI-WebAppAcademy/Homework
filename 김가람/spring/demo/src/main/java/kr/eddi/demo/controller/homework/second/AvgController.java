@@ -31,5 +31,4 @@ public class AvgController {
 
         return "평균 점수는 " + avg + "점 입니다.";
     }
-
 }
