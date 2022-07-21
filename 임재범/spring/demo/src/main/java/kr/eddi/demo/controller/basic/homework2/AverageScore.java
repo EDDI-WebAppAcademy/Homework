@@ -15,8 +15,8 @@ public class AverageScore {
 
     @ResponseBody
     @GetMapping("")
-    public String whatIsYourAverageScore(){
-        log.info("whatIsYourAverageScore() 메소드 작동!");
+    public String whatIsTheAverageScore(){
+        log.info("whatIsTheAverageScore() 메소드 작동!");
 
 
         int sum=0; //30명의 합산점수가 담길 공간 초기화.
