@@ -51,7 +51,7 @@ public class SecondController {
         return "/basic/second/board/delete";
     }
 
-    @GetMapping("/read-test/{boradNo}")
+    @GetMapping("/read-test/{boardNo}")
     public String readTest(@PathVariable("boardNo") long boardNo, Model model) {
        /* PathVriable: 가변 처리를 서포트
           가변 ? boradNo 가변적인 게시물 번호
@@ -60,7 +60,7 @@ public class SecondController {
        */
         log.info("읽기(read) 테스트 - 게시물 번호: " + boardNo);
 
-        model.addAttribute("boradNo", boardNo);
+        model.addAttribute("boardNo", boardNo);
         return "/basic/second/board/read";
     }
 
