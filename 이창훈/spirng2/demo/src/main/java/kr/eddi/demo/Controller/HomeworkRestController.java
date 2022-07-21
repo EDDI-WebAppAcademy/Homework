@@ -11,7 +11,10 @@ public class HomeworkRestController {
     @GetMapping("/")
 
     public int dice() {
-        int diceNum = new Random().nextInt(6) + 1;
+        int min = 1;
+        int max = 6;
+        //주사위의 최소값은 1, 주사위의 최대값은 6
+        int diceNum = new Random().nextInt(max - min + 1) + min;
         return diceNum;
     }
 }
