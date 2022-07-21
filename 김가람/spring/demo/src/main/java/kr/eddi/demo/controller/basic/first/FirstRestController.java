@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 // {key1 : {key2, value2}}
 // 데이터 처리를 json을 디폴트로 처리한다는 부분이 @RestController 라고 보면 됨.
 @RestController
-public class FirstRestController {
+public class FirstController {
 
     // GetMapping의 경우
     // 실제 웹상에서 정보를 요청하는 방식엔 GET, POST가 존재함
