@@ -16,7 +16,7 @@ public class ClsScoreView {
     }
 
     @ResponseBody
-    @GetMapping("/class-avg-view")
+    @GetMapping("/homework2")
     public String acquireScore() {
         String SumScore = clsCon.calClsScore();
         String avgScore = clsCon.calClsAvgScore();
