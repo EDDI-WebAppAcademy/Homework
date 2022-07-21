@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
@@ -50,10 +51,16 @@ public class SecondController {
         return "/basic/second/board/delete";
     }
 
-    @GetMapping("/read-test")
-    public String readTest() {
-        log.info("읽기(read) 테스트");
+    @GetMapping("/read-test/{boradNo}")
+    public String readTest(@PathVariable("boardNo") long boardNo, Model model) {
+       /* PathVriable: 가변 처리를 서포트
+          가변 ? boradNo 가변적인 게시물 번호
+          사용자가 어떤 게시물을 읽을지 아무도 알 수 없음
+          read-test/{boradNo}의 boradNo를 @PathVariable 처리하고 있음
+       */
+        log.info("읽기(read) 테스트 - 게시물 번호: " + boardNo);
 
+        model.addAttribute("boradNo", boardNo);
         return "/basic/second/board/read";
     }
 
