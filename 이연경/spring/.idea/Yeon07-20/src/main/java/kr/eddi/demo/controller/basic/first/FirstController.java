@@ -9,29 +9,19 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
 @Slf4j
 @Controller
 public class FirstController {
 
-    @GetMapping("/lecture1")
-    public String urlHomework1 (Locale locale, Model model) {
+    @GetMapping("/what-time-is-it")
+    public String whatTimeIsIt (Locale locale, Model model) {
+        log.info("지금 몇시냐 매서드가 동작합니다!");
 
-        //int ramdom=(int)(Math.random()*6)+1;
-        //int number= ramdom;
-        //System.out.println("주사위 번호:"+number);
-
-
-        //log.info("랜덤으로 주사위 값을 출력합니다." + number);
-
-       Date date = new Date();
+        Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
         String formattedDate = dateFormat.format(date);
         model.addAttribute("servTime", formattedDate);
-        return "/basic/first/Homework1";
-
-
-
+        return "/basic/first/whatTimeIsIt";
     }
 }

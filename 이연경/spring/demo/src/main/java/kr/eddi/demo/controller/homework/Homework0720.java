@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller.basic.first;
+package kr.eddi.demo.controller.homework;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import java.util.Random;
 @Slf4j
 @org.springframework.web.bind.annotation.RestController
 
-public class Homework {
+public class Homework0720 {
 
     @GetMapping("/Homework1")
 
