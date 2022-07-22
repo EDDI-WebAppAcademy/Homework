@@ -23,7 +23,7 @@ public class Average {
         int[] score = new int[30];
 
         for (int i = 0; i < 30; i++) {
-            score[i] = ((int) (Math.random() * 41) + 60);
+            score[i] = ((int) (Math.random() * 40) + 60);
         }
         int total = 0;
         for (int i = 0; i < 30; i++) {
