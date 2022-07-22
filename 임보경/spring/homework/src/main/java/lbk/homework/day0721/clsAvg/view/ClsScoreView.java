@@ -23,7 +23,5 @@ public class ClsScoreView {
         return SumScore + "  " + avgScore;
     }
 
-    /* 일단 결과값은 나오나 후에 확인해볼 것 */
-    // 1. 우선 클래스를 나눠봤지만 패키지 view에 들어갈 내용인지 판단이 안섬.
-    // 2. 새로고침하면 기존의 데이터가 dice와 달리 지워지지 않고 남은채로 새로운 결과값이 출력됨.
+
 }
