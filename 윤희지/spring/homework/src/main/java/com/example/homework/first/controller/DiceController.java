@@ -1,16 +1,14 @@
-package com.example.homework.Controller;
+package com.example.homework.first.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.function.IntSupplier;
-
 @RestController
-public class HW_RestController {
+public class DiceController {
 
     @GetMapping("/homework1")
-    public int dice() {
+    public int rollDice() {
             return (int) (Math.random()*6) + 1;
     }
 }
