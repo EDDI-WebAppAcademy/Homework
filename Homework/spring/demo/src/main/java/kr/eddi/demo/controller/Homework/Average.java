@@ -17,7 +17,7 @@ public class Average {
     @GetMapping("")
 
     public String Average() {
-        log.info("학생들의 평균점수() 동작");
+        log.info("학생들의 평균점수() 동작!");
 
         Random random = new Random();
         int[] score = new int[30];
