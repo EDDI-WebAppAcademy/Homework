@@ -23,7 +23,7 @@ public class AverageScore {
 
         int[] arr = new int[30]; //점수를 담을 30칸짜리 배열 생성
         for(int i=0; i<30; i++){
-            arr[i]= (int) (Math.random()*39)+61; //61점이상 100점이하의 점수할당. 총30번 실행.
+            arr[i]= (int) (Math.random()*40)+60; //61점이상 100점이하의 점수할당. 총30번 실행.
         }
 
         for(int j=0; j<30; j++){
