@@ -16,9 +16,7 @@ public class AverageController {
     @GetMapping("/homework2")
     public String Average() {
 
-        Random random = new Random();
         int[] score = new int[30];
-
         for (int i = 0; i<30; i++) {
             score[i] = (int)(Math.random()*41)+60;
         }
