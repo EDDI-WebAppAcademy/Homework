@@ -1,23 +1,23 @@
 package com.example.homework.second.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class ClassAverage {
-    private int score;
-    private double average;
+
+    private int studentNum;
+    private int minScore;
+    private int totalScore;
+    public ClassAverage(int studentNum, int minScore) {
+        this.studentNum = studentNum;
+        this.minScore = minScore;
+    }
 
     public int randomScore() {
-        for (int i = 0; i < 30; i++) {
-            score += (int)(Math.random()*41 + 60);
+        for (int i = 0; i < studentNum; i++) {
+            totalScore += (int)(Math.random()*(101 - minScore) + minScore);
         }
-        return score;
+        return totalScore;
     }
 
     public double calAvg() {
-        average = score/30;
-        return average;
+        return totalScore/studentNum;
     }
 }

@@ -15,11 +15,10 @@ public class AverageController {
     public String responseClassAverage() {
         log.info("responseClassAverage() 동작");
 
-        ClassAverage classAvg = new ClassAverage();
+        ClassAverage classAvg = new ClassAverage(30, 60);
         classAvg.randomScore();
-        classAvg.calAvg();
 
-        return "30명 반평균은 " + classAvg.getAverage() + "입니다.";
+        return "30명 반평균은 " + classAvg.calAvg() + "입니다.";
     }
 
 }
