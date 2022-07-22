@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller;
+package kr.eddi.demo.controller.first;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
