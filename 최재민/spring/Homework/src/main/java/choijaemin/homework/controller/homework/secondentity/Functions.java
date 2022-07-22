@@ -9,7 +9,7 @@ public class Functions {// 기능 클래스
     int studentCnt = member.getStudentCnt();
     int maxScore = member.getMaxScore();
     int minScore = member.getMinScore();
-    HashMap<String,Integer> studentInfo1 = new LinkedHashMap<>();
+    HashMap<String,Integer> studentInfom = new LinkedHashMap<>();
     /*
     각각의 학생의 고유 번호를 부여하고
     점수를 부여하는 메서드
@@ -19,10 +19,10 @@ public class Functions {// 기능 클래스
          int cnt = 0;
         while (true){
             int randmoScore = random.nextInt(minScore,maxScore);
-            studentInfo1.put((String)(cnt +"student"),randmoScore);
+            studentInfom.put((String)(cnt +"student"),randmoScore);
             cnt++;
 
-            if(studentInfo1.size() == studentCnt) break;
+            if(studentInfom.size() == studentCnt) break;
         }
     }
 
@@ -30,12 +30,12 @@ public class Functions {// 기능 클래스
     점수의 합계를 구하는 메서드
      */
     public int sumScore(){
-        Set<String> set = studentInfo1.keySet();
+        Set<String> set = studentInfom.keySet();
         Iterator<String> key_list = set.iterator();
         totalScore = 0;
         while (key_list.hasNext()){
             String key = key_list.next();
-            totalScore += studentInfo1.get(key);
+            totalScore += studentInfom.get(key);
         }
 
         return totalScore;

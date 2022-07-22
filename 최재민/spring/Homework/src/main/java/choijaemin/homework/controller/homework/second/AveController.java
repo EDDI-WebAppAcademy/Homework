@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AveController {
 
     @ResponseBody
-    @GetMapping("/homework2")
+    @GetMapping("/homework")
     public String CalculateAve(){
         log.info("학생들의 평균 구하기");
 
