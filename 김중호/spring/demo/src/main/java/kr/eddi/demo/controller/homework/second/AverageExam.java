@@ -15,24 +15,22 @@ public class AverageExam {
 
     @ResponseBody
     @GetMapping("/homework2")
-    public String pointAverage(){
+    public String pointAverage() {
 
 
+        int sum = 0;
 
-        int[] pointRan = new int[30];
-        for(int i=0; i<30; i++){
-            pointRan[i]= (int) (Math.random()*(100-60+1))+60;
+        int[] random = new int[30];
+        for (int i = 0; i < 30; i++) {
+            random[i] = (int) (Math.random() * (41)) + 60;
         }
 
-        int pointSum=0;
-
-        for(int j=0; j<30; j++){
-            pointSum=pointSum+pointRan[j];
+        for (int j = 0; j < 30; j++) {
+            sum = sum + random[j];
         }
 
-        int pointAverage = pointSum / pointRan.length;
+        int average = sum / 30;
 
-        return "평균 : pointAverage ";
+        return "평균 :" + average;
     }
 }
-
