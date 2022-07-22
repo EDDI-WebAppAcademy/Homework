@@ -12,8 +12,8 @@ public class AverageController {
 
     @ResponseBody
     @GetMapping("/homework2")
-    public String responseStudent() {
-        log.info("responseStudent() 동작");
+    public String responseClassAverage() {
+        log.info("responseClassAverage() 동작");
 
         ClassAverage classAvg = new ClassAverage();
         classAvg.randomScore();
