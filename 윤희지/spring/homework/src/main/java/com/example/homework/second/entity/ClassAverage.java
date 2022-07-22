@@ -1,5 +1,8 @@
 package com.example.homework.second.entity;
 
+import lombok.Getter;
+
+@Getter
 public class ClassAverage {
 
     private int studentNum;

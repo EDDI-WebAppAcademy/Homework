@@ -18,7 +18,7 @@ public class AverageController {
         ClassAverage classAvg = new ClassAverage(30, 60);
         classAvg.randomScore();
 
-        return "30명 반평균은 " + classAvg.calAvg() + "입니다.";
+        return classAvg.getStudentNum() + "명 반평균은 " + classAvg.calAvg() + "입니다.";
     }
 
 }
