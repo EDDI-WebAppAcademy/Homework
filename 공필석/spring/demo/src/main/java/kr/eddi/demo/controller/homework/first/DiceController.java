@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller.basic.first;
+package kr.eddi.demo.controller.homework.first;
 
 import java.util.Random;
 
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-public class homework1 {
+public class DiceController {
 
     @GetMapping("/homework1")
 
-    public String Dice(){
+    public String DiceRollingTest(){
 
         Random random = new Random();
         int num = random.nextInt(6)+1;
