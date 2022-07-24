@@ -22,6 +22,4 @@ public class ClsScoreView {
         String avgScore = clsCon.calClsAvgScore();
         return SumScore + "  " + avgScore;
     }
-
-
 }
