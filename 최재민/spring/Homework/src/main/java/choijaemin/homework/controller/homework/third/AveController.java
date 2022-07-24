@@ -1,7 +1,7 @@
-package choijaemin.homework.controller.homework.second;
+package choijaemin.homework.controller.homework.third;
 
-
-import choijaemin.homework.controller.homework.secondentity.Functions;
+import choijaemin.homework.entity.third.Student;
+import choijaemin.homework.entity.third.StudentInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,8 @@ public class AveController {
     @GetMapping("/homework")
     public String CalculateAve(){
         log.info("학생들의 평균 구하기");
+        Student student = new Student();
 
-        Functions functions = new Functions();
-        functions.studentInfo();
-        return functions.showSumAverage();
+        return student.showSumAverage();
     }
 }
