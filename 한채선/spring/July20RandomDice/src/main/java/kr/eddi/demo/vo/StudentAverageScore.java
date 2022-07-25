@@ -16,7 +16,13 @@ public class StudentAverageScore {
     public StudentAverageScore() {
         totalAverage = new TotalAverage();
         random = new Random();
-        scoreList = new ArrayList<>(30);
+        scoreList = new ArrayList<>();
+    }
+
+    public StudentAverageScore(int size) {
+        totalAverage = new TotalAverage();
+        random = new Random();
+        scoreList = new ArrayList<>(size);
     }
 
     /**
