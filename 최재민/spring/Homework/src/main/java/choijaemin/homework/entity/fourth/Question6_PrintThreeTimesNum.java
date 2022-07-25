@@ -1,18 +1,14 @@
 package choijaemin.homework.entity.fourth;
 
+import choijaemin.homework.utility.fourth.FindTimesNum;
+
 import java.util.ArrayList;
 
 public class Question6_PrintThreeTimesNum {
-    private ArrayList ThreeTimesNum = new ArrayList();
+    private final int CHOICENUM = 4;
+    private String ShowNum ="";
     
-    public ArrayList threeTimesNum(){
-
-        for (int i = 1; i < 101; i++) {
-            if (i % 3 == 0){
-                ThreeTimesNum.add(i);
-            }
-        }
-        
-        return ThreeTimesNum;
+    public String FindTimesNum(){
+        return FindTimesNum.TimesNums(CHOICENUM,ShowNum);
     }
 }

@@ -10,8 +10,6 @@ import java.util.Iterator;
 @Getter
 @Setter
 public class Question9_SumPrintNum {
-
-    private ArrayList RanNumMultiple = new ArrayList();
     private final int MAX = 10;
     private final int MIN = 2;
     private int totalSum= 0;

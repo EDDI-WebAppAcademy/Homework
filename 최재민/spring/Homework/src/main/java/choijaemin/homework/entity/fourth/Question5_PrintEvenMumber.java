@@ -1,18 +1,15 @@
 package choijaemin.homework.entity.fourth;
 
-import java.util.ArrayList;
+
+
+import choijaemin.homework.utility.fourth.FindTimesNum;
+
 
 public class Question5_PrintEvenMumber {
-    private ArrayList EvenNum = new ArrayList();
+    private final int CHOICENUM = 2;
+    private String ShowNum ="";
 
-    public ArrayList evenMumber(){
-        for (int i = 1; i < 101; i++) {
-            if (i % 2 == 0){
-                EvenNum.add(i);
-            }
-        }
-
-        return EvenNum;
+    public String EvenNum(){
+        return FindTimesNum.TimesNums(CHOICENUM,ShowNum);
     }
-
 }

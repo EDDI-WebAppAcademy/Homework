@@ -1,17 +1,19 @@
 package choijaemin.homework.entity.fourth;
 
+import choijaemin.homework.utility.fourth.CustomRandomNum;
+
 import java.util.Random;
 
 public class Question1_CreateRandomChar {
     private final int MAX = 122;
     private final int MIN = 65;
-    Random random = new Random();
+
 
     public char creatRanNum(){
 
 
         while (true){
-            char CreatRanNum = (char)(random.nextInt(MAX - MIN) +MIN);
+            char CreatRanNum = (char)(CustomRandomNum.makeRandomNum(MIN,MAX));
             if ( CreatRanNum >= 65 && CreatRanNum <= 90){
                 return CreatRanNum;
             } else if (CreatRanNum >= 97 && CreatRanNum <= 122) {
