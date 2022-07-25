@@ -1,4 +1,4 @@
-package choijaemin.homework.controller.homework.first;
+package choijaemin.homework.controller.homework.second;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
