@@ -1,6 +1,6 @@
-package javaBasic;
+package javaBasic.question;
 
-import java.util.Random;
+import javaBasic.utility.RandomUtil;
 
 /*
 1. 65 ~ 122 사이의 랜덤한 문자를 생성하도록 한다.
@@ -10,13 +10,13 @@ import java.util.Random;
 public class Q1RandomCode {
     private static final int MIN = 65;
     private static final int MAX = 122;
+    private static RandomUtil ru = new RandomUtil();
 
-    public static void main(String[] args) {
-
+    public void q1Solve() {
         while (true) {
-            int ranNum = randomUtil();
+            int ranNum = ru.randomNumber(MAX, MIN);
             String regExp = "^[a-zA-Z]*$";
-            String result = changeToString();
+            String result = changeToString(ranNum);
             if (result.matches(regExp)) {
                 System.out.println(result);
                 System.out.println("제대로 나왔습니다.");
@@ -27,14 +27,7 @@ public class Q1RandomCode {
             }
         }
     }
-
-    public static int randomUtil() {
-        Random ran = new Random();
-        return ran.nextInt(MAX - MIN) + MIN;
-    }
-
-    public static String changeToString() {
-        int ranNum = randomUtil();
+    public static String changeToString(int ranNum) {
         char ch = (char)ranNum;
         return String.valueOf(ch);
     }
