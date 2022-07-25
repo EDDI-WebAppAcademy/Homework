@@ -1,4 +1,4 @@
-package homework0722.fourth;
+package homework0722.Fourth;
 //    4. 구구단 7단을 출력해보자!
 
 import java.util.Scanner;
