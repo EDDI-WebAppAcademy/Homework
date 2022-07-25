@@ -45,6 +45,7 @@ public class MultipleOfRandom {
         return mpArr;
     }
 
+
     @ResponseBody
     @GetMapping("/eighth-test")
     public int[] multipleOfRandomView() {

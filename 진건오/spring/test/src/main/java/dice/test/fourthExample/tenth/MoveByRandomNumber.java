@@ -9,6 +9,7 @@ public class MoveByRandomNumber {
         int MAX_VALUE = 100;
         int endCntValue = 100;
         int referenceNum = 2;
+        int totalMoveNum = 0;
 
 
         while(true) {
@@ -16,11 +17,11 @@ public class MoveByRandomNumber {
             int multipleSum = 0;
             int moveMultipleNum = referenceNum + multipleNum;
 
-            System.out.println("기존의 배수 : " + referenceNum + "이고, "
+            System.out.println("기존의 값 : " + referenceNum + "이고, "
                     + multipleNum + "만큼 이동했습니다.");
-            System.out.println("현재 배수의 값은: " + moveMultipleNum + "입니다.");
+            System.out.println("현재 값은: " + moveMultipleNum + "입니다.");
 
-
+            totalMoveNum += moveMultipleNum;
 
             for (int i = 1; i <= MAX_VALUE ; i++) {
                 if (i % multipleNum == 0) {
@@ -36,6 +37,7 @@ public class MoveByRandomNumber {
             System.out.println();
 
             if (endCntValue <= 0) {
+                System.out.println("이동했을 때 나온 숫자들의 합: " + totalMoveNum);
                 break;
             }
         }
