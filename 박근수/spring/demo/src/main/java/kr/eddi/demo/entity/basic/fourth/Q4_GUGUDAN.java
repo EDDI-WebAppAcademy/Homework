@@ -3,7 +3,7 @@ package kr.eddi.demo.entity.basic.fourth;
 import java.util.Scanner;
 
 public class Q4_GUGUDAN {
-    public static void main(String[] args) {
+    public int gugudan() {
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
 

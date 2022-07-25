@@ -23,7 +23,7 @@ public class QuestionControl {
     }
 
     @ResponseBody
-    @GetMapping("/Q1")
+    @GetMapping("/Q2")
     public int fibonacci() {
         log.info("피보나치 수열 만들기");
         Q2_FIBONACCI fibonacci = new Q2_FIBONACCI();

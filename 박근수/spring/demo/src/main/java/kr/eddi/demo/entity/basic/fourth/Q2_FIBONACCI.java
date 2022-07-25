@@ -7,16 +7,15 @@ import lombok.Setter;
 @Setter
 
 public class Q2_FIBONACCI {
-    public static void main(String[] args) {
+    public int fibo() {
+        int count = 0;
         int num = 20;
         System.out.print("수열의" + num + "번째 항 : " + count(num));
-    }
 
-    public static int count(int num) {
         if (num <= 1) {
             return num;
         } else {
-            return count(num-1) + count(num-2);
+            return count(num - 1) + count(num - 2);
         }
     }
 }
