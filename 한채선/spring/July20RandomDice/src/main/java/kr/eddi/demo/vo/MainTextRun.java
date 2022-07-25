@@ -5,12 +5,12 @@ public class MainTextRun {
     private StudentAverageScore stuAveScore;
 
     public MainTextRun() {
-        stuAveScore = new StudentAverageScore();
+        stuAveScore = new StudentAverageScore(30);
     }
 
     /**
      * 메인 화면에 출력될 텍스트 메서드
-     * @return
+     * @return 메인 화면에 출력되는 String
      */
     public String showTotalAndAverage(){
         stuAveScore.addScoreList();
