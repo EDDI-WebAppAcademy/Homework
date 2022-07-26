@@ -1,4 +1,4 @@
-package kr.eddi.demo.entity;
+package kr.eddi.demo.entity.second;
 
 import lombok.Getter;
 import lombok.Setter;
