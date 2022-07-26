@@ -1,6 +1,6 @@
 package kr.eddi.demo.controller.homework.z_practice;
 
-import kr.eddi.demo.homeworkEntity.Student;
+import kr.eddi.demo.homeworkEntity.second.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

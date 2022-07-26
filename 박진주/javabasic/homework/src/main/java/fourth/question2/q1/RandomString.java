@@ -12,13 +12,23 @@ public class RandomString {
         Random random = new Random();
 
         //Random 클래스의 nextInt(숫자)는 0 이상 숫자 미만 랜덤정수 생성 메소드
-        int num = random.nextInt(2);
+        int num = random.nextInt(3);
+
+        StringBuilder str = new StringBuilder();
+
 
         // (0,1) 중 랜덤 숫자 생성하여 num에 할당 후, num이 0이면 대문자 랜덤문자 생성, num이 1이면 소문자 랜덤문자 생성
         if (num == 0) {
-            randomString = String.valueOf((char) ((int)(random.nextInt(26)) + 65)); // 대문자 생성
+            str.append(String.valueOf((char) ((int)(random.nextInt(26)) + 65)));
+            randomString = str.toString();
+            //randomString = String.valueOf((char) ((int)(random.nextInt(26)) + 65)); // 대문자 생성
+        } else if(num == 1){
+            str.append(String.valueOf((char) ((int)(random.nextInt(26)) + 97)));
+            randomString = str.toString();
+            //randomString = String.valueOf((char) ((int)(random.nextInt(26)) + 97)); // 소문자 생성
         } else {
-            randomString = String.valueOf((char) ((int)(random.nextInt(26)) + 97)); // 소문자 생성
+            str.append(String.valueOf((char) ((int)(random.nextInt()))));
+            randomString = str.toString();
         }
         System.out.println(randomString);
 
