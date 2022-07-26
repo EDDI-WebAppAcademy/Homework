@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller.homework;
+package kr.eddi.demo.controller.homework.third;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

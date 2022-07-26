@@ -1,17 +1,12 @@
-package kr.eddi.demo.entity.basic.fourth;
+package kr.eddi.demo.controller.homework.fourth;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-
-public class Q3_PROGRESSION {
-    public int multideep() {
-        int
+public class ThirdQuestion {
+    public static void main(String[] args) {
         int num = 25;
         System.out.print("수열의" + num + "번째 항 : " + count(num));
+    }
 
+    public static int count (int num) {
         if (num <= 3) {
             return 1;
         } else {

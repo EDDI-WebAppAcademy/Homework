@@ -1,6 +1,6 @@
-package kr.eddi.demo.entity.basic.fourth;
+package kr.eddi.demo.controller.homework.fourth;
 
-public class Q7_SABAESOO {
+public class SeventhQuestion {
     public static void main(String[] args) {
         int sum = 0;
 

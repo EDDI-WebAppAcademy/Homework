@@ -1,9 +1,9 @@
-package kr.eddi.demo.entity.basic.fourth;
+package kr.eddi.demo.controller.homework.fourth;
 
 import java.util.Scanner;
 
-public class Q4_GUGUDAN {
-    public int gugudan() {
+public class FourthQuestion {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
 

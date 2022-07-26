@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller.homework;
+package kr.eddi.demo.controller.homework.third;
 
 public class Average {
 

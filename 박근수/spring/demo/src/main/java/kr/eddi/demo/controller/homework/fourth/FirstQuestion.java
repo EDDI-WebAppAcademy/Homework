@@ -1,14 +1,8 @@
-package kr.eddi.demo.entity.basic.fourth;
-
-import lombok.Getter;
-import lombok.Setter;
+package kr.eddi.demo.controller.homework.fourth;
 
 import java.util.Random;
 
-@Getter
-@Setter
-
-public class Q1_ASCII {
+public class FirstQuestion {
     private final int MIN = 65;
     private final int MAX = 122;
     Random random = new Random();

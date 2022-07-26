@@ -1,6 +1,6 @@
-package kr.eddi.demo.entity.basic.fourth;
+package kr.eddi.demo.controller.homework.fourth;
 
-public class Q6_SAMBAESOO {
+public class SixthQuestion {
     public static void main(String[] args) {
         for (int i = 1; i < 101; i++) {
             if (i % 3 == 0) {

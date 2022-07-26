@@ -1,6 +1,6 @@
-package kr.eddi.demo.entity.basic.fourth;
+package kr.eddi.demo.controller.homework.fourth;
 
-public class Q5_EVENNUMBER {
+public class FifthQuestion {
     public static void main(String[] args) {
 
         for (int i = 1; i < 101; i++) {
@@ -11,4 +11,3 @@ public class Q5_EVENNUMBER {
         System.out.println("1부터 100까지의 숫자 중 짝수만 출력해보자!");
     }
 }
-

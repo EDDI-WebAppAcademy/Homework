@@ -1,8 +1,8 @@
-package kr.eddi.demo.entity.basic.fourth;
+package kr.eddi.demo.controller.homework.fourth;
 
 import java.util.Random;
 
-public class Q8_ROUNDMULTI {
+public class EighthQuestion {
     public static void main(String[] args) {
 
         Random random = new Random();
