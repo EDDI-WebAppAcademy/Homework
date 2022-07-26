@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @Slf4j
 @RestController
 @RequestMapping("/fourth")
 public class SequenceAndLoopController {
+
 
     @GetMapping("/find-random-alphabet")
     public String findRandomAlphabet() {

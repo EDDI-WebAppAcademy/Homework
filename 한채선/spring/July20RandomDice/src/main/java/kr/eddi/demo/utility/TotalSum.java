@@ -3,6 +3,7 @@ package kr.eddi.demo.utility;
 public class TotalSum extends DisplayNumbers {
 
 
+
     /**
      * 1~100 까지의 숫자 총합을 구하는 메서드
      * @return

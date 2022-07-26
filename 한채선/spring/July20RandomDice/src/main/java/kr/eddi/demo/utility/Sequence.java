@@ -7,6 +7,7 @@ public class Sequence {
     private ArrayList<Integer> sequenceList;
 
 
+
     /**
      * 1번의 경우 피보나치 수열을, 2번의 경우 커스텀된 수열을 출력하고 지정한 번호에 맞는 수를 가져옵니다.
      *

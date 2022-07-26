@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class RandomNumber {
 
+
     /**
      * 최대값을 받아 0 부터 최대값 이하의 랜덤한 정수를 출력한는 메서드
      * @param max 최대값

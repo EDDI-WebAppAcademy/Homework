@@ -5,6 +5,7 @@ public class AscciiAlphabet {
     // 65~90 까지 대문자
     // 97~122 까지 소문자
 
+
     private final int ASCII_ALP_MIN = 65;
     private final int ASCII_ALP_MAX = 122;
     private final int ASCII_CHAR_MIN = 33;

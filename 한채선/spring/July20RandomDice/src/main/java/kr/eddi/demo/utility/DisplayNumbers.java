@@ -66,6 +66,7 @@ public class DisplayNumbers {
      * @param multiple
      * @param end 단
      */
+
     public String multiTable(int multiple, int end) {
         numList = new ArrayList<>();
         ArrayList<String> multitableList = new ArrayList<>();
