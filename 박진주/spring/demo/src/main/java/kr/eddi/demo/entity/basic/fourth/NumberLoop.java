@@ -18,7 +18,8 @@ public class NumberLoop {
     private final int REFRESH_RANDOM_MOVEMENT = 32;
 
     //생성자
-    public NumberLoop(int start, int end) { // 생성자에서 인자(operationMode)를 생략해도 나중에 넣을 수 있는지?
+    public NumberLoop(int start, int end) { // 생성자에서 인자를 생략해도 나중에 넣을 수 있는지?
+
         this.start = start;
         this.end = end;
         this.operationMode = PRINT;        // 기본값은 출력
