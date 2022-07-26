@@ -15,7 +15,7 @@ import java.util.Locale;
 @Controller
 public class FirstController {
 
-    //locale은 다국어 언어팩이라고 보면됨.
+    // Locale은 다국어 언어팩이라고 보면됨.
     @GetMapping("/what-time-is-it")
     public String whatTimeIsIt (Locale locale, Model model) {
         log.info("지금 몇시냐 매서드가 동작합니다!");
@@ -24,11 +24,11 @@ public class FirstController {
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
         String formattedDate = dateFormat.format(date);
-        // model.addAttribute()는 HashMap처럼 특정 키값이 벨류값을 맵핑시키는 것이라 봐도 무방함.
-        // .. 즉 servTime에 formattedDate인 형식을 갖춘 날짜가 맵핑됨.
-        // model.addAttribute()를 하면 HTML에서 ThymeLeaf 등을 통해서 정보를 읽을 수 있음.
+        // model.addAttribute()는 HashMap처럼 특정 키값이 밸류값을 맵핑시키는 것이라 봐도 무방함.
+        // 즉 servTime에 formattedDate인 형식을 갖춘 날자가 맵핑됨.
+        // model.addAttribute()를 하면 HTML에서 Thymeleaf 등을 통해서 정보를 읽을 수 있음.
         model.addAttribute("servTime", formattedDate);
-        // resources/templates에 잇는 basic/first/whatTimeIsIt.html을 리턴시키게됨
+        // resources/templates에 있는 basic/first/whatTimeIsIt.html을 리턴시키게됨
         return "/basic/first/whatTimeIsIt";
     }
 }
