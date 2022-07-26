@@ -1,4 +1,4 @@
-package kr.eddi.demo.homeworkEntity;
+package kr.eddi.demo.homeworkEntity.second;
 
 import lombok.Getter;
 import lombok.Setter;
