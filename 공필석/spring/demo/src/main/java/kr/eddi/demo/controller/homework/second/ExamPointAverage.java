@@ -30,7 +30,7 @@ public class ExamPointAverage {
             pointSum=pointSum+pointRan[j];
         }
 
-        int pointAverage = pointSum / pointRan.length;
+        double pointAverage = pointSum / pointRan.length;
 
         return "▶▶▶ 평균점수는 : " + pointAverage + "점 입니다. ◀◀◀";
     }
