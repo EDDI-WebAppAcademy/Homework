@@ -1,6 +1,6 @@
 package com.example.demo.controller.basic.second;
 
-import com.example.demo.entity.StudentScoreAve;
+import com.example.demo.entity.basic.StudentScoreAve;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,5 +19,6 @@ public class StudentAveController {
 
         StudentScoreAve ave = new StudentScoreAve();
         return String.format(ave.studentScoreAve());
+
     }
 }
