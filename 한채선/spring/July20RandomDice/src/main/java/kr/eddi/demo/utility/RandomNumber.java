@@ -26,3 +26,6 @@ public class RandomNumber {
         return random.nextInt(min, max + 1);
     }
 }
+
+
+

@@ -94,5 +94,7 @@ public class SequenceAndLoopController {
         TotalSum totalSum = new TotalSum();
         return String.valueOf(totalSum.moveNumbersSum(1, 100, RandomNumber.randomNum(2, 10)));
     }
-
 }
+
+
+
