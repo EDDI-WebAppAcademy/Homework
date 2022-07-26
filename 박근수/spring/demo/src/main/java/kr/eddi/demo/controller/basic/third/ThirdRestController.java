@@ -6,16 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Random;
-
 @Slf4j
 @RestController
 @RequestMapping("/third")
-public class ThirdController {
+public class ThirdRestController {
 
-    @GetMapping("/homework2")
+    @GetMapping("/homework")
     public float calcClassRoomMeanScore() {
-        log.info("학급의 평균을 계산합니다 : calcClassRoomMeanScore()");
+        log.info("학급의 평균을 계산합니다: calcClassRoomMeanScore()");
 
         ClassRoom classRoom = new ClassRoom();
         classRoom.setRoomName("빅데이터 반");
