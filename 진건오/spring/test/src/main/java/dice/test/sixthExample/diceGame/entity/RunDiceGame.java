@@ -71,13 +71,6 @@ public class RunDiceGame {
             playerScoreAddDiceNum = (players[i] + playerDoRollDiceNum);
             str += "[" + (i+1) + "번 플레이어] : > 주사위 수 [" + playerDoRollDiceNum+"]<br>";
 
-            if (players[i] <= 0) {
-                players[i] = 0;
-                str += "[" + (i+1) + "번 플레이어] 가 모든 점수를 소진하여 0점입니다." +
-                        "-----------------------------------NEXT TURN--------------------------------------";
-            }
-
-
             if (playerDoRollDiceNum % 2 == 0) {
                 evenNumProcess(playerScoreAddDiceNum);
 
@@ -105,6 +98,12 @@ public class RunDiceGame {
             } else {
                 players[i] += playerDoRollDiceNum;
                 str += "["+(i+1)+"]번 플레이어] 총 점수: ["+playerScoreAddDiceNum+"]점<br>-----------------------------------NEXT TURN--------------------------------------<br>";
+            }
+
+            if (players[i] <= 0) {
+                players[i] = 0;
+                str += "[" + (i+1) + "번 플레이어] 가 모든 점수를 소진하여 0점입니다." +
+                        "-----------------------------------NEXT TURN--------------------------------------";
             }
         }
         str += "======================================================<br> " +
