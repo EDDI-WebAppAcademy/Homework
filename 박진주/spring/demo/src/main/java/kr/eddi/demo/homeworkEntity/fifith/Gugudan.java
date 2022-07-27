@@ -15,7 +15,7 @@ public class Gugudan {
 
         for (int i = 0; i < gugudan.length ; i++) {
             gugudan[i] = num *(i+1);
-            msg += num + "*" + (i+1)+ "=" +gugudan[i] + "\n";
+            msg += num + "*" + (i+1)+ "=" +gugudan[i] + "<br>";
 
         }
 
