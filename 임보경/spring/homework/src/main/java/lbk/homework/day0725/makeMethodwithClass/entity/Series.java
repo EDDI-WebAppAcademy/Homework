@@ -1,4 +1,4 @@
-package makeMethodwithClass.entity;
+package lbk.homework.day0725.makeMethodwithClass.entity;
 
 public class Series {
 

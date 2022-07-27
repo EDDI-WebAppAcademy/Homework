@@ -1,4 +1,4 @@
-package makeMethodwithClass.utility;
+package lbk.homework.day0725.makeMethodwithClass.utility;
 
 import java.util.Random;
 
