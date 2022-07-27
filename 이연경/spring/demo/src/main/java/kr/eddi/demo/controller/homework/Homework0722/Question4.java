@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class Question4 {
 
-    public void Question2() {
+    public void GuGuDan() {
 // [문제은행 2-4] 구구단 7단을 출력
 
             for (int i = 2; i <= 9; i++) {
@@ -22,9 +22,13 @@ public class Question4 {
 
                 for (int x = 1; x >= 9; x++) {
                     System.out.println(i + "X" + x);
+
+                    System.out.println(i + " X " + x);
+
                 }
 
             }
+
         }
 
 
