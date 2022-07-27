@@ -19,14 +19,14 @@ public class DiceGameController1 {
     public String findWinner() {
         log.info("주사위 게임을 진행중입니다.");
         DiceGame dg = new DiceGame(5); //생성자로 플레이어 인원수 제어
-        dg.firstRoll();
-        dg.secondRoll();
+        dg.firstRoll(dg.getSumArr());
+        dg.secondRoll(dg.getSumArr());
         /*MaxFinder mf = new MaxFinder();
         int score = mf.findMaxScore(dg.getSumArr());
         int playNum = mf.findMaxScorePlayer(dg.getSumArr()) + 1;*/
 
         /*score + "점으로 " + playNum + "번 플레이어 승리"*/
-        return dg.getSumArr().get(0)+" "+dg.getSumArr().get(1)+" "+dg.getSumArr().get(2)+" "+dg.getSumArr().get(3)+" "+
+        return dg.getSumArr().get(0) + " " + dg.getSumArr().get(1) + " " + dg.getSumArr().get(2) + " " + dg.getSumArr().get(3) + " " +
                 dg.getSumArr().get(4);
     }
 }

@@ -18,7 +18,7 @@ public class DiceGame {
         this.participants = participants;
     }
 
-    public List<Integer> firstRoll() {
+    public List<Integer> firstRoll(List<Integer> sumArr) {
 
         for (int i = 0; i < sumArr.size(); i++) {
             sumArr.add(CustomRandom.makeIntCustomRandom(MIN, MAX));
@@ -26,7 +26,7 @@ public class DiceGame {
         return sumArr;
     }
 
-    public List<Integer> secondRoll() {
+    public List<Integer> secondRoll(List<Integer> sumArr) {
 
         int throwSum = 0;
         for (int i = 0; i < sumArr.size(); i++) {
