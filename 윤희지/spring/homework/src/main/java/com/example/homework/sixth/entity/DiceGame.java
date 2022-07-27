@@ -1,6 +1,6 @@
-package com.example.homework.javapractice.Entity;
+package com.example.homework.sixth.entity;
 
-import com.example.homework.utility.CustomRandom;
+import java.util.Arrays;
 
 public class DiceGame {
     private Player[] players;
@@ -17,13 +17,12 @@ public class DiceGame {
     public void playGame() {
         for (int i = 0; i < players.length; i++) {
             dice.rollDice();
+            players[i].getScore().gainScore(dice.getDiceNum());
 
             if (dice.getDiceNum() % 2 != 0) {
-                players[i].getScore().gainScore(dice.getDiceNum());
-            } else {
                 dice.rollDice();
                 if (dice.getDiceNum() == 4) {
-                    break;
+                    continue;
                 } else {
                     switch (dice.getDiceNum()) {
                         // 모두 2점씩 감소
@@ -63,8 +62,17 @@ public class DiceGame {
         }
     }
 
-    public String theWinnerIs() {
+    public String findWinner() {
         String winner = "";
+        for(int i = 0; i < players.length - 1; i++) {
+             if(players[i].getScore().getScore() > players[i+1].getScore().getScore()) {
+                 Player temp = players[i];
+                 players[i] = players[i + 1];
+                 players[i+1] = temp;
+             }
+        }
+        winner = players[players.length - 1].getName();
+
 
         return "우승자는 " + winner + "입니다!";
     }

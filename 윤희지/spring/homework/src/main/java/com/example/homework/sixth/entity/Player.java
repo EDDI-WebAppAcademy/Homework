@@ -1,4 +1,4 @@
-package com.example.homework.javapractice.Entity;
+package com.example.homework.sixth.entity;
 
 
 import lombok.Getter;
