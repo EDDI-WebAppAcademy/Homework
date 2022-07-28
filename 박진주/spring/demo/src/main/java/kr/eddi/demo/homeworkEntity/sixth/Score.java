@@ -1,4 +1,4 @@
-package kr.eddi.demo.entity.basic.sixth;
+package kr.eddi.demo.homeworkEntity.sixth;
 
 //게임 점수 기록
 

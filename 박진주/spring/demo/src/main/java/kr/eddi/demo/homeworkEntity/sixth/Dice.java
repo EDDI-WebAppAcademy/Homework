@@ -1,4 +1,4 @@
-package kr.eddi.demo.entity.basic.sixth;
+package kr.eddi.demo.homeworkEntity.sixth;
 
 import lombok.AllArgsConstructor;
 
@@ -51,6 +51,7 @@ public class Dice {
     }
     public void rollDiceAgain(int diceResult1){
         System.out.println(dicePlayerNum+"번째 참가자 2번째 주사위게임");
+
         int diceResult2 = (int) (Math.random()* (max - min + 1) + min);
 
         switch (diceResult2) {

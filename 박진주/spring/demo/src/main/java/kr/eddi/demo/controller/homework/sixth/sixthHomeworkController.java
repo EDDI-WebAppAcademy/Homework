@@ -1,6 +1,6 @@
 package kr.eddi.demo.controller.homework.sixth;
 
-import kr.eddi.demo.entity.basic.sixth.GameResult;
+import kr.eddi.demo.homeworkEntity.sixth.GameResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
