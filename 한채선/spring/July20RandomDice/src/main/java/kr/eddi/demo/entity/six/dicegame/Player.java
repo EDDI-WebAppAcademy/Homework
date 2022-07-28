@@ -1,17 +1,20 @@
 package kr.eddi.demo.entity.six.dicegame;
 
-import kr.eddi.demo.utility.six.afterClassDiceGame.Dice;
+import kr.eddi.demo.utility.seven.dice.Dice;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
-public class Player {
+public class Player implements Comparable<Player> {
 
     private Score score;
 
     // 플레이어 닉네임은 아직까지는 사용되지 않았음
     private String nickName;
+
 
     private final String DEFAULT = "anonymous";
 
@@ -19,8 +22,8 @@ public class Player {
         nickName = DEFAULT;
         score = new Score();
     }
-    public void gameStart(Player[] players) {
-        for (int i = 0; i < players.length; i++) {
+    public void gameStart(ArrayList<Player> players) {
+        for (int i = 0; i < players.size(); i++) {
             int diceNum = Dice.rollDice();
             score.addScore(diceNum);
 
@@ -31,6 +34,20 @@ public class Player {
 
                 specialDice.checkSpecialDice(players, diceNum, i);
             }
+        }
+    }
+
+    @Override
+    public int compareTo(Player player) {
+        int srcScore = this.getScore().getTotalScore();
+        int dstScore = player.getScore().getTotalScore();
+        
+        if(srcScore > dstScore){
+            return 1;
+        } else if (srcScore < dstScore) {
+            return -1;
+        } else {
+            return 0;
         }
     }
 }
