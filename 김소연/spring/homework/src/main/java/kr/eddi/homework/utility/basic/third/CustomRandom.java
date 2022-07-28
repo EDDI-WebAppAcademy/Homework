@@ -1,4 +1,4 @@
-package kr.eddi.homework.entity.utility.basic.third;
+package kr.eddi.homework.utility.basic.third;
 
 import java.util.Random;
 
