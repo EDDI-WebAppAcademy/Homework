@@ -12,7 +12,7 @@ import java.util.Arrays;
 @AllArgsConstructor
 public class DiceGame {
     private final int MAX = 6;
-    private final int MIN = 2;
+    private final int MIN = 1;
     private int defaultPlayerCnt = 3;
     private int[] PlayerScore;
     private String[] showPlayerScore;
