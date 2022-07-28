@@ -1,6 +1,7 @@
 package questionBank.javaPractice1.run;
 
 import questionBank.javaPractice1.controller.DiceController;
+import questionBank.javaPractice1.entity.Players;
 
 public class Run {
     private static int PLAY_USER_NUM = 3;

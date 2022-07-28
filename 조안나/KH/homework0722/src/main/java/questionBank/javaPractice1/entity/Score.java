@@ -6,7 +6,7 @@ public class Score {
 
 
     /**
-     * 유저들의 점수가 담긴 ArrayList를 받았을 때 그 중 가장 큰 점수를 반환시켜주는 메서드
+     * 플레이어들의 점수가 담긴 ArrayList를 받았을 때 그 중 가장 큰 점수를 반환시켜주는 메서드
      * @param userNum 유저들의 점수가 담긴 int형 ArrayList
      * @return 가장 큰 점수 값을 반환
      */
