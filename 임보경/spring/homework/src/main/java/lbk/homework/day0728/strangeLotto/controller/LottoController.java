@@ -19,7 +19,7 @@ public class LottoController {
     private List<Integer> winnersList;
     private int lottoPlayerNum;
     private final int LIMIT_LOTTO_PLAYER_NUM = 100;
-    private int winnings = 100000000;
+    private long winnings = 10000000000L;
 
     @GetMapping("its-a-saturday")
     public String confirmWinning() {
@@ -59,7 +59,7 @@ public class LottoController {
         return "당첨자 : " + findPlayerName(checkWinner()) +
                 "<br> 당첨금 : " + winningsMoney(checkWinner());
     }
-    public int winningsMoney(List<Integer> list) {
+    public long winningsMoney(List<Integer> list) {
         int numberOfWinner = list.size();
         return winnings / numberOfWinner;
     }
