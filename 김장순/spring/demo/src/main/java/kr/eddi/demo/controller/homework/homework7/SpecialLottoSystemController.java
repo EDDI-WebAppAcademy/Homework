@@ -23,9 +23,13 @@ public class SpecialLottoSystemController {
     private final int MAX_PARTICIPANTS_NUM = 100;
     private Participant[] parti;
     private int partiNum;
+    private final int REWARD_AMOUNMT = 100;
 
     @GetMapping("/homework/lotto")
     public String showL() {
+
+        log.info("로또 게임을 시작합니다.");
+
         createParticipants();
         parti[0].runSystem(parti);
 
@@ -56,11 +60,11 @@ public class SpecialLottoSystemController {
         int unknown2 = parti[0].getLscore().getScoreList().get(1);
 
         if (unknown1 > unknown2) {
-            return "unknown1 " + unknown1 + "점으로 우승!";
+            return "unknown1 " + unknown1 + "점으로 우승!" +"상금"+REWARD_AMOUNMT+"억";
         } else if (unknown1 < unknown2) {
-            return "unknown2 "+unknown2+ "점으로 우승!";
+            return "unknown2 "+unknown2+ "점으로 우승!"+"상금"+REWARD_AMOUNMT+"억";
         } else {
-            return "무승부";
+            return "공동우승"+"상금"+REWARD_AMOUNMT/parti.length+"억";
         }
     }
 }
