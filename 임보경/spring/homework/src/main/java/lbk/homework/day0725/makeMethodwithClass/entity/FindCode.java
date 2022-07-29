@@ -1,6 +1,6 @@
-package makeMethodwithClass.entity;
+package lbk.homework.day0725.makeMethodwithClass.entity;
 
-import makeMethodwithClass.utility.RandomUtility;
+import lbk.homework.day0725.makeMethodwithClass.utility.RandomUtility;
 
 public class FindCode {
     private static final int MIN = 65;
