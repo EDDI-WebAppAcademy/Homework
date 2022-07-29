@@ -1,5 +1,5 @@
 package kr.eddi.demo.controller.homework.sixth;
 
-public class Dice {
+public class DiceTs {
     
 }
