@@ -1,6 +1,5 @@
 package kr.eddi.demo.controller.basic.sixth;
 
-
 import kr.eddi.demo.entity.basic.sixth.clean.Player;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +54,7 @@ public class SixthCleanDiceGameController {
             players[i].gameStart(players);
         }
     }
-
+    
     // 최종 승자 판정
     // 현재 이 부분은 일반화하지 않았고 2명이라 가정하고 진행함
     // 실제로는 Collection에 넣고 sort() 시키면 정렬이 됨
@@ -74,5 +73,3 @@ public class SixthCleanDiceGameController {
         }
     }
 }
-
-

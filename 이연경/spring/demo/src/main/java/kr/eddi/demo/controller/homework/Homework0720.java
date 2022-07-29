@@ -1,6 +1,6 @@
-package kr.eddi.demo.controller.homework;
 
 
+/*
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -26,6 +26,8 @@ public class Homework0720 {
     }
 
 }
+
+ */
 
 
 

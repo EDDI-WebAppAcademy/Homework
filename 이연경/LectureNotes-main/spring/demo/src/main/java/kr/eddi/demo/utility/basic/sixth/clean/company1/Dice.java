@@ -1,9 +1,8 @@
-package kr.eddi.demo.utilty.basic.sixth.clean.company1;
+package kr.eddi.demo.utility.basic.sixth.clean.company1;
 
 import kr.eddi.demo.entity.basic.sixth.clean.Player;
-import kr.eddi.demo.utilty.basic.sixth.clean.SpecialDiceOption;
-import kr.eddi.demo.utilty.basic.third.CustomRandom;
-
+import kr.eddi.demo.utility.basic.sixth.clean.SpecialDiceOption;
+import kr.eddi.demo.utility.basic.third.CustomRandom;
 
 // 인터페이스는 상속하지 않고 구현한다고 한다.
 // 왜냐하면 매서드가 작성되어 있지 않기 때문에

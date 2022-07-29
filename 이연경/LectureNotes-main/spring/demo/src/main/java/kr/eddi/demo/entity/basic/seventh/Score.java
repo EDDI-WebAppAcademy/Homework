@@ -1,11 +1,12 @@
-package kr.eddi.demo.entity.basic.sixth.clean;
-
+package kr.eddi.demo.entity.basic.seventh;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Score {
     private int totalScore;
 

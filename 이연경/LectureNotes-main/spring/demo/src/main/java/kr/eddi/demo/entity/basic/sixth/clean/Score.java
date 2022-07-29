@@ -1,6 +1,5 @@
 package kr.eddi.demo.entity.basic.sixth.clean;
 
-
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,6 @@
 package kr.eddi.demo.utilty.basic.sixth.clean.company2;
+
+
 import kr.eddi.demo.entity.basic.sixth.clean.Player;
 import kr.eddi.demo.utilty.basic.sixth.clean.SpecialDiceOption;
 import kr.eddi.demo.utilty.basic.third.CustomRandom;

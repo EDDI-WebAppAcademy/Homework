@@ -1,9 +1,9 @@
-package kr.eddi.demo.utilty.basic.sixth.clean.company1;
+package kr.eddi.demo.utility.basic.seventh;
 
-import kr.eddi.demo.entity.basic.sixth.clean.Player;
-import kr.eddi.demo.utilty.basic.sixth.clean.SpecialDiceOption;
-import kr.eddi.demo.utilty.basic.third.CustomRandom;
+import kr.eddi.demo.entity.basic.seventh.Player;
+import kr.eddi.demo.utility.basic.third.CustomRandom;
 
+import java.util.List;
 
 // 인터페이스는 상속하지 않고 구현한다고 한다.
 // 왜냐하면 매서드가 작성되어 있지 않기 때문에
@@ -16,27 +16,27 @@ public class Dice implements SpecialDiceOption {
         return CustomRandom.makeIntCustomRandom(MIN, MAX);
     }
 
-    public static void steelPlayerScore(Player players[], int playerIdx, int steelScore) {
-        for (int i = 0; i < players.length; i++) {
+    public static void steelPlayerScore(List<Player> players, int playerIdx, int steelScore) {
+        for (int i = 0; i < players.size(); i++) {
             if (i == playerIdx) { continue; }
 
-            players[i].getScore().addScore(-steelScore);
-            players[playerIdx].getScore().addScore(steelScore);
+            players.get(i).getScore().addScore(-steelScore);
+            players.get(playerIdx).getScore().addScore(steelScore);
         }
     }
 
-    public static void donatePlayerScore(Player players[], int playerIdx, int donateScore) {
-        for (int i = 0; i < players.length; i++) {
+    public static void donatePlayerScore(List<Player> players, int playerIdx, int donateScore) {
+        for (int i = 0; i < players.size(); i++) {
             if (i == playerIdx) { continue; }
 
-            players[playerIdx].getScore().addScore(-donateScore);
-            players[i].getScore().addScore(donateScore);
+            players.get(playerIdx).getScore().addScore(-donateScore);
+            players.get(i).getScore().addScore(donateScore);
         }
     }
     // rollSpecialDice는 플레이어 객체 정보가 필요함
     // 나를 제외하고 적용하는 경우도 존재하니까
     @Override
-    public void checkSpecialDice(Player players[], int diceNum, int playerIdx) {
+    public void checkSpecialDice(List<Player> players, int diceNum, int playerIdx) {
         final int SOB = 1;
         final int LUCKY = 3;
         final int DEATH = 4;
@@ -47,10 +47,10 @@ public class Dice implements SpecialDiceOption {
         final int DEATH_SCORE = -4444;
         final int BULLSHIT_SCORE = 2;
 
-        for (int i = 0; i < players.length; i++) {
+        for (int i = 0; i < players.size(); i++) {
             switch (diceNum) {
                 case SOB:
-                    players[i].getScore().addScore(-SOB_SCORE);
+                    players.get(i).getScore().addScore(-SOB_SCORE);
                     break;
 
                 case LUCKY:
@@ -61,7 +61,7 @@ public class Dice implements SpecialDiceOption {
                     break;
 
                 case DEATH:
-                    players[i].getScore().setTotalScore(DEATH_SCORE);
+                    players.get(i).getScore().setTotalScore(DEATH_SCORE);
                     break;
 
                 case BULLSHIT:

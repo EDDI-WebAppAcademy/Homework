@@ -1,7 +1,6 @@
 package kr.eddi.demo.entity.basic.sixth.clean;
 
-
-import kr.eddi.demo.utilty.basic.sixth.clean.company1.Dice;
+import kr.eddi.demo.utility.basic.sixth.clean.company1.Dice;
 import lombok.Getter;
 
 @Getter
