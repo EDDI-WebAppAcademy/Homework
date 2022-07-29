@@ -2,7 +2,7 @@ package kr.eddi.demo.controller.homework.seventh;
 
 import java.util.Random;
 
-public class SpecialLotto {
+public class ExceptionalLotto {
     public static void main(String[] args) {
 
         Random ran = new Random();
