@@ -18,20 +18,6 @@ public class LottoController {
         return totalView();
     }
 
-//    public static void main(String[] args) {
-//        user = new User();
-//        int[] usersTotalLottoNum = new int[participant];
-//        String str = "";
-//        for (int i = 0; i < participant; i++) {
-//            str += ("사용자 닉네임 [" + createNickName() + "] 로또 번호: " + takeLottoNums() + ": 총 합:[" + totalUserLottoNums() + "]<br>");
-//            System.out.print(takeLottoNums());
-//            System.out.println(": 총 합:[" + totalUserLottoNums() + "]");
-//
-//            usersTotalLottoNum[i] = totalUserLottoNums();
-//            System.out.println(usersTotalLottoNum[i]);
-//        }
-//    }
-
     public static String createNickName() {
         return user.getUserNickName();
     }
@@ -66,10 +52,10 @@ public class LottoController {
 
         int[] usersTotalLottoNum = new int[participant];
         for (int i = 0; i < participant; i++) {
-            usersTotalLottoNum[i] = totalUserLottoScore();
-            findWinner(usersTotalLottoNum);
             msg += ("사용자 닉네임 : [" + createNickName() + "] <br>로또 번호: " + takeLottoNums() + ": 총 합:[" + totalUserLottoScore() + "]<br>" +
                     "=====================================<br>");
+            usersTotalLottoNum[i] = user.getUserScore().getTotalScore();
+
         }
         return msg + winnerUser(usersTotalLottoNum);
     }
