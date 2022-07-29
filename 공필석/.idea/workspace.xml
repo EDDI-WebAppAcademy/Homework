@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c5f7a2-f0e0-45bb-8586-a766fa10dcd6" name="변경" comment="[공필석] 2022/7/29 7번째 과제(1)">
-      <change beforePath="$PROJECT_DIR$/.idea/공필석.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/공필석.iml" afterDir="false" />
+    <list default="true" id="f5c5f7a2-f0e0-45bb-8586-a766fa10dcd6" name="변경" comment="초기화">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659067656712</updated>
-      <workItem from="1659067660193" duration="300000" />
+      <workItem from="1659067660193" duration="349000" />
     </task>
     <task id="LOCAL-00001" summary="[공필석] 2022/7/29 7번째 과제(1)">
       <created>1659067772414</created>
@@ -107,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659067905709</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="초기화">
+      <created>1659067981693</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659067981693</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +133,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[공필석] 2022/7/29 7번째 과제(1)" />
-    <option name="LAST_COMMIT_MESSAGE" value="[공필석] 2022/7/29 7번째 과제(1)" />
+    <MESSAGE value="초기화" />
+    <option name="LAST_COMMIT_MESSAGE" value="초기화" />
   </component>
 </project>
