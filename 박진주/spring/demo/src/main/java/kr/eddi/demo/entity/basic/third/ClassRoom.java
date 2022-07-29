@@ -3,10 +3,7 @@ package kr.eddi.demo.entity.basic.third;
 import kr.eddi.demo.entity.basic.utility.basic.third.CustomRandom;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
-import java.util.Random;
 
 @Getter
 @Setter
