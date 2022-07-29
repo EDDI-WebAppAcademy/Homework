@@ -1,4 +1,4 @@
-package kr.eddi.demo.entity.fourth;
+package kr.eddi.demo.entity.basic.fourth;
 
 import lombok.Getter;
 

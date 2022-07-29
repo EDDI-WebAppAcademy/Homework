@@ -1,6 +1,6 @@
 package kr.eddi.demo.controller.basic.third;
 
-import kr.eddi.demo.entity.third.ClassRoom;
+import kr.eddi.demo.entity.basic.third.ClassRoom;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

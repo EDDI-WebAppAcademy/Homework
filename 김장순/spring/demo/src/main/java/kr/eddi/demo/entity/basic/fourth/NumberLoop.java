@@ -1,4 +1,4 @@
-package kr.eddi.demo.entity.fourth;
+package kr.eddi.demo.entity.basic.fourth;
 
 import kr.eddi.demo.utility.basic.third.CustomRandom;
 import lombok.AllArgsConstructor;
