@@ -1,4 +1,4 @@
-package kr.eddi.demo.entity.sixth;
+package kr.eddi.demo.entity.basic.sixth;
 
 import java.util.Collection;
 import java.util.Collections;

@@ -1,14 +1,10 @@
 package kr.eddi.demo.controller.basic.sixth;
 
-import kr.eddi.demo.entity.sixth.DiceGame;
-import kr.eddi.demo.entity.sixth.MaxFinder;
+import kr.eddi.demo.entity.basic.sixth.DiceGame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @RestController
