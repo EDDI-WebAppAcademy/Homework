@@ -27,13 +27,10 @@ public class Lotto {
             Integer ranNum = CustomRandom.makeIntCustomRandom(LOTTONUM,LOTTOLIMIT);
 
 
-
         }
 
 
-
     }
-
 
 
 

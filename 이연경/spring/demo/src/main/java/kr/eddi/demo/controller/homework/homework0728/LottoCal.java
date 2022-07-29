@@ -15,8 +15,6 @@ public class LottoCal {
         int num6 = lootonum.get(5);
 
         return ((num1 + num2 + num3 + num4 )* num5) / num6;
-
     }
-
 
 }
