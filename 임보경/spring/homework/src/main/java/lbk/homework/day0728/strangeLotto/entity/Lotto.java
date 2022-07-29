@@ -1,18 +1,18 @@
-package lbk.homework.day0728.uniqueLotte.entity;
+package lbk.homework.day0728.strangeLotto.entity;
 
 import lombok.Getter;
 
 import java.util.ArrayList;
-import static lbk.homework.day0728.uniqueLotte.utility.CustomRandom.makeCustomRandom;
+import static lbk.homework.day0728.strangeLotto.utility.CustomRandom.makeCustomRandom;
 
 @Getter
-public class Lotte {
+public class Lotto {
     private final int MIN = 0;
     private final int MAX = 99;
-    private final int LIMIT_LOTTE_NUMBER = 6;
+    private final int LIMIT_LOTTO_NUMBER = 6;
     private ArrayList<Integer> sixNumber;
 
-    public Lotte() {
+    public Lotto() {
         sixNumber = new ArrayList<Integer>();
     }
     public int calFinalNumber() {

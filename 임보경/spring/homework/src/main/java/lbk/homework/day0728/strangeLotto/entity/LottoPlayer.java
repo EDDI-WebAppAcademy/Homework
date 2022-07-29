@@ -1,21 +1,21 @@
-package lbk.homework.day0728.uniqueLotte.entity;
+package lbk.homework.day0728.strangeLotto.entity;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-import static lbk.homework.day0728.uniqueLotte.utility.CustomRandom.makeCustomRandom;
+import static lbk.homework.day0728.strangeLotto.utility.CustomRandom.makeCustomRandom;
 
 @Slf4j
 @Getter
-public class LottePlayer {
+public class LottoPlayer {
 
     private String name;
     private String[] namesExample = {"도박사", "운명을개척하려는자", "갬블러", "규칙적인구매자", "플레이어"};
-    private Lotte lotte;
+    private Lotto lotto;
 
-    public LottePlayer(int idx) {
+    public LottoPlayer(int idx) {
         this.name = makeRandomPlayerName(idx);
-        lotte = new Lotte();
+        lotto = new Lotto();
     }
     public String makeRandomPlayerName(int idx) {
         return namesExample[

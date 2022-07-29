@@ -1,4 +1,4 @@
-package lbk.homework.day0728.uniqueLotte.utility;
+package lbk.homework.day0728.strangeLotto.utility;
 
 import java.util.Random;
 
