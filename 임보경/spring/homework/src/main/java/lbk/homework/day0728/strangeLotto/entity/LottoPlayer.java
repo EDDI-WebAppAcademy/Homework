@@ -10,7 +10,7 @@ import static lbk.homework.day0728.strangeLotto.utility.CustomRandom.makeCustomR
 public class LottoPlayer {
 
     private String name;
-    private String[] namesExample = {"도박사", "운명을개척하려는자", "갬블러", "규칙적인구매자", "플레이어"};
+    private String[] namesExample = {"도박사", "운명개척자", "갬블러", "규칙적인구매자", "플레이어"};
     private Lotto lotto;
 
     public LottoPlayer(int idx) {

@@ -11,22 +11,22 @@ import java.util.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/strange-lotte")
+@RequestMapping("/strange-lotto")
 public class LottoController {
 
     private List<LottoPlayer> lottoPlayers;
-    private Map<Integer, Integer> winner;
+    private Map<Integer, Integer> playersScoreList;
+    private List<Integer> winnersList;
     private int lottoPlayerNum;
     private final int LIMIT_LOTTO_PLAYER_NUM = 100;
+    private int winnings = 100000000;
 
     @GetMapping("its-a-saturday")
     public String confirmWinning() {
         gatherPlayer();
         selectLotteNum();
-        findPlayerName(checkWinner());
 
-        return findPlayerName(checkWinner()) + "가 100억에 당첨됬습니다." ;
-
+        return presentWinners() + "<br> 축하드립니다.";
     }
 
     public void gatherPlayer() {
@@ -52,25 +52,42 @@ public class LottoController {
             log.info(lottoPlayers.get(i).getLotto().getSixNumber().toString());
         }
     }
-    public int checkWinner() {
-        winner = new HashMap<Integer, Integer>();
+
+
+
+    public String presentWinners() {
+        return "당첨자 : " + findPlayerName(checkWinner()) +
+                "<br> 당첨금 : " + winningsMoney(checkWinner());
+    }
+    public int winningsMoney(List<Integer> list) {
+        int numberOfWinner = list.size();
+        return winnings / numberOfWinner;
+    }
+    public String findPlayerName(List<Integer> list) {
+        String winnersNickname ="" ;
+        for (int i = 0; i < list.size(); i++) {
+            winnersNickname += lottoPlayers.get(list.get(i)).getName() + " ";
+        }
+        return winnersNickname;
+    }
+    public List<Integer> checkWinner() {
+        playersScoreList = new HashMap<Integer, Integer>();
+        winnersList = new ArrayList<>();
 
         for (int i = 0; i < lottoPlayerNum; i++) {
-            winner.put(i, lottoPlayers.get(i).getLotto().calFinalNumber());
+            playersScoreList.put(i, lottoPlayers.get(i).getLotto().calFinalNumber());
         }
 
-        Integer maxValue = Collections.max(winner.values());
-        int winnerPlayer = 0;
-        for (int key : winner.keySet()) {
-            int value = winner.get(key);
+        Integer maxValue = Collections.max(playersScoreList.values());
+
+        for (int key : playersScoreList.keySet()) {
+            int value = playersScoreList.get(key);
 
             if (value == maxValue) {
-                winnerPlayer = key;
+                winnersList.add(key);
             }
         }
-        return winnerPlayer;
+        return winnersList;
     }
-    public String findPlayerName(int playerIdx) {
-        return lottoPlayers.get(playerIdx).getName();
-    }
+
 }
