@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/sixth-clean")
-public class SixthCleanDiceGameController {
+public class SixthCleanDiceGameController { // 7월 27일 수업
     private final int DEFAULT_PLAYER_NUM = 2;
     private Player[] players;
     private int playerNum; //게임 참여자 수

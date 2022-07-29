@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/sixth")
-public class SixthDiceGameController {
+public class SixthDiceGameController { // 7월 27일 수업
     private final int DEFAULT_PLAYER_NUM = 2;
     private Player[] player;
 
