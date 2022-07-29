@@ -25,6 +25,10 @@ public class SeventhLottoSystemController {
 
     private int playerNum;
 
+    private final int reward = 100;
+
+    private int finalReward;
+
     @GetMapping("/lotto-system")
     public String lottoSystemStarter() {
 
@@ -71,25 +75,29 @@ public class SeventhLottoSystemController {
         for (int i = playerNum - 2; i >= 0; i--) {          // i 시작값이 playerNum-2 인 이유는 본인 제외하고 비교해야 해서
             int tmpScore = acquirePlayerTotalScore(i);
 
-            if (maxPlayerScore != tmpScore) {
+            if (maxPlayerScore != tmpScore) {               // 동일 최종 점수가 있는 지 비교
+                finalReward = reward;
                 break;
             }
-
             sameScoreIdxList.add(i);
         }
 
         if (sameScoreIdxList.size() > 0) {
-            return "무승부입니다!";
+            finalReward = reward/(sameScoreIdxList.size()+1);     // 동일한 최종점수 있으면 그만큼 상금 나누기 sameScoreIdxList.size()= 동일한 점수 있으면 1개 추가되기 때문에 사람명수를 구하려고 +1 함
+            return "무승부입니다." +(sameScoreIdxList.size()+1)+"의 참가자가 상금을" + finalReward +"억원씩 나눠갖습니다.";
         }
 
-        return "플레이어: " + players.get(playerNum - 1).getNickName() + " 님이 "+ players.get(playerNum - 1).getScore().getTotalScore()+"점으로 승리했습니다!";
+        return "플레이어: " + players.get(playerNum - 1).getNickName() + " 님이 "+ players.get(playerNum - 1).getScore().getTotalScore()+"점으로 승리했습니다! 상금은" +finalReward+"억입니다.";
 
     }
+
 
     public int acquirePlayerTotalScore(int idx) {
         return players.get(idx).getScore().getTotalScore();
     }
+
 }
+
 
 
 //굉장히 특수한 규칙을 가진 로또 시스템을 만들어봅시다.

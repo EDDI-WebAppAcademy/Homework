@@ -16,16 +16,4 @@ public class LottoNum { //implements PreventLottoSameNumOption
     }
 
 
-    // checkLottoSameNum는 플레이어 객체 정보가 필요함
-    //  List<LottoPlayer> players, int lottoNum, int lottoSequence
-//    @Override
-//    public void checkLottoSameNum(List<LottoPlayer> players, int lottoNum, int lottoSequence) {
-//
-//        for (int i = 0; i < players.size(); i++) {   // 플레이어 돌린 사람 만큼 로또 번호 가 다른 사람 번호랑 중복인지 비교
-//                                                       //닉네임 동일하면 건너뛰기
-//            if(players.get(i).getLottoNums(i) ==  ) {
-//
-//            }
-//        }
-//    }
 }

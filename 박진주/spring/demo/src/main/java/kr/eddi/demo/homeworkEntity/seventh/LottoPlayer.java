@@ -13,7 +13,7 @@ import java.util.List;
 public class LottoPlayer implements Comparable<LottoPlayer> { // Comparable 인터페이스 기능 찾아보기
     private LottoScore score;
 
-   // private List<LottoNum> lottoNums;
+  //  private List<LottoNum> lottoNums;
 
     private String nickName;
 
@@ -35,19 +35,29 @@ public class LottoPlayer implements Comparable<LottoPlayer> { // Comparable 인�
 
         for (int i = 0; i <lottolength; i++) {
             lottoSequence = i + 1;
+            int playerN = i;
             lottoNum = new ArrayList<Integer>();
             int lottoNumber = LottoNum.runLotto();
             lottoNum.add(lottoNumber);    //플레이어 1명의 6개 숫자 번호 lottoNum 배열에 저장됨
+
+
+            score.ScoreCalculation(lottoNumber, lottoSequence); // 플레이어 1명의 점수 계산
 
             //점수 계산 전에 동일 숫자 판독해야함
             // 만약 동일 숫자 있으면 checkLottoSameNum()로 계산
             // checkLottoSameNum(List<LottoPlayer> players, int lottoNum, int lottoSequence)
 
-            score.ScoreCalculation(lottoNumber, lottoSequence); // 플레이어 1명의 점수 계산
+
+//            LottoNum sameNum = new LottoNum();
+//            if(sameNum.checkLottoSameNum(players, lottoNumber, lottoSequence, playerN) == ){
+//                score.ScoreCalculation(lottoNumber, lottoSequence); // 플레이어 1명의 점수 계산
+//            }
+
 
 
         }
     }
+
 
 
     @Override

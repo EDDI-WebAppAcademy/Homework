@@ -20,7 +20,12 @@ public class LottoScore {
         } else if (lottoSequence == 5) {
             totalScore *= lottoNum;
         } else {
-            totalScore /= lottoNum;
+            if(lottoNum == 0){                       //마지막 6번째 숫자가 0일 경우 그냥 totalScore = 0 만들기
+                totalScore = 0;
+            } else{
+                totalScore /= lottoNum;
+            }
+
         }
     }
 }
