@@ -1,13 +1,17 @@
 package kr.eddi.demo.entity.basic.practice7_28;
 
 import kr.eddi.demo.utility.basic.third.CustomRandom;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+@Getter
+@Setter
 public class LottoTicket {
     final int NUMOFLOTTO = 6;
-    int[] LottoNum = new int[NUMOFLOTTO]; //6칸짜리 배열생성.
+    int[] LottoNum = new int[NUMOFLOTTO]; //6개의 로또번호
     private int finalScore; //최종점수
 
     public void finalScoreCal(int[] LottoNum){
