@@ -11,7 +11,7 @@ import java.util.List;
 public class Player implements Comparable<Player>{
     private Score score;
     private String nickName;
-    private final int DRAWCNT = DrawLottoNum.setDrawCnt();
+    private final int DRAWCNT= DrawLottoNum.setDrawCnt();
     private final String DEFAULT_NICKNAME = "anonymous";
 
     public Player(){
@@ -23,14 +23,12 @@ public class Player implements Comparable<Player>{
         this.nickName = NickName;
     }
 
-    public void drawLottoNum(List<Player> players){
-        int drawNum;
-        for (int i = 0; i < DRAWCNT; i++) {
-            drawNum = DrawLottoNum.makeLottoNum();
-            score.addlotteryNum(drawNum);
-        }
+    public void drawLottoNum(){
+            for (int i = 0; i < DRAWCNT ;i++) {
+                int drawNum = DrawLottoNum.makeLottoNum();
+                score.addlotteryNum(drawNum);
+            }
     }
-
 
     @Override
     public int compareTo(Player player) {

@@ -26,7 +26,7 @@ public class LottoController {
     @GetMapping("/Lotto")
     public String LottoStarter(){
         log.info("로또 추첨을 시작합니다.");
-        createPlayer();
+        createPlayer(50);
 
         drawLottoNum();
 
@@ -44,14 +44,20 @@ public class LottoController {
         createPlayerObj(players, DEFAULT_PLAYER_NUM);
     }
 
+    public void createPlayer(int playerNum){
+        players = new ArrayList<>();
+        this.playerNum = playerNum;
+        createPlayerObj(players, playerNum);
+    }
+
     public void createPlayerObj(List<Player> players, int playerObjNum) {
         for (int i = 0; i < playerObjNum; i++) {
-            players.add(new Player());
+            players.add(new Player(i+"번째 플레이어"));
         }
     }
     public void drawLottoNum() {
-        for (int i = 0; i < playerNum; i++) {
-            players.get(i).drawLottoNum(players);
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).drawLottoNum();
         }
     }
 
@@ -60,11 +66,15 @@ public class LottoController {
         boolean checkOverLap = true;
         for (int k = 0; k < DRAWCNT; k++) {
 
-            for (int i = 0; i < players.size(); i++) { // 비교 하는 애
-                int compareTarget = players.get(i).getScore().getLotteryNum().get(k);
+            for (int i = 0; i < players.size();) {
+                checkOverLap = true;
+                int compareTarget = players.get(i).getScore().getLotteryNum().get(k);// 비교 하는 애
 
-                for (int j = i+1; j <players.size()-1; j++) { // 비교 당하는 애들
-                    int comparedTarget = players.get(j).getScore().getLotteryNum().get(k);
+                for (int j = i+1; j <players.size(); j++) {
+                    if (j > players.size() ){
+                        break;
+                    }
+                    int comparedTarget = players.get(j).getScore().getLotteryNum().get(k); // 비교 당하는 애들
                     if (compareTarget == comparedTarget) {
                         reDrawNum = DrawLottoNum.makeLottoNum();
                         players.get(j).getScore().getLotteryNum().set(k,reDrawNum);
@@ -76,16 +86,21 @@ public class LottoController {
                     i = 0;
                     continue;
                 }
+                i++;
             }
         }
 
     }
+
+
     public void calLottoNum() {
-        int[] calNum = new int[DRAWCNT];
+        int[] calNum;
         int totalScore;
 
         for (int i = 0; i < players.size(); i++) {
+            calNum = new int[DRAWCNT];
             totalScore = 0;
+
             for (int j = 0; j < DRAWCNT; j++) {
                 calNum[j] = players.get(i).getScore().getLotteryNum().get(j);
             }
@@ -93,11 +108,14 @@ public class LottoController {
             for (int k = 0; k < calNum.length - 2; k++) {
                 totalScore += calNum[k];
             }
-
+            if (calNum[DRAWCNT-1] <= 0) {
+                totalScore = -DEATH_SCORE;
+                players.get(i).getScore().setTotalScore(totalScore);
+                continue;
+            }
             totalScore *= calNum[calNum.length - 2];
             totalScore /= calNum[calNum.length - 1];
 
-            if (calNum[DRAWCNT] <= 0) {totalScore = -DEATH_SCORE;}
 
             players.get(i).getScore().setTotalScore(totalScore);
 
