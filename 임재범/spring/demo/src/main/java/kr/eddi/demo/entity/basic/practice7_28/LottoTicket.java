@@ -7,27 +7,21 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Random;
 
+//이렇게 하면 로또번호가 6개인 상황에서만 사용할 수 있는 재사용성 낮은 코드가 됨.
 @Getter
 @Setter
 public class LottoTicket {
+
     final int NUMOFLOTTO = 6;
-    int[] LottoNum = new int[NUMOFLOTTO]; //6개의 로또번호
-    private int finalScore; //최종점수
+    int[] lottoNum = new int[NUMOFLOTTO]; //로또번호가 담길 공간.
 
-    public void finalScoreCal(int[] LottoNum){
-        int sum=0;
-        int multiplier = LottoNum[LottoNum.length-2];//곱하는 수는 마지막에서 두번째
-        int divisor = LottoNum[LottoNum.length-1]; //나누는 수는 마지막 친구
+    //로또번호 n개가 담긴 인트형 배열 하나를 뱉음.
+    public int[] makeLottoTicket(){
 
-        for(int i=0; i<LottoNum.length-2; i++){
-            sum+=LottoNum[i];
-        }
 
-        this.finalScore = sum*multiplier/divisor; //최종결과를 finalScore에 저장.
 
+        return new int[]{0};
     }
-
-
 
 
 
