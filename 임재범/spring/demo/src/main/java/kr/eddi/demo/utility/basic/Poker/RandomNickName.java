@@ -1,4 +1,4 @@
-package kr.eddi.demo.utility.basic.practice7_28;
+package kr.eddi.demo.utility.basic.Poker;
 
 import kr.eddi.demo.utility.basic.third.CustomRandom;
 
