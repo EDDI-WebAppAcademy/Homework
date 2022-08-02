@@ -1,4 +1,4 @@
-package dice.test.fourthExample.third.entity;
+package dice.test.fifthExample.third.entity;
 
 import java.util.Random;
 
