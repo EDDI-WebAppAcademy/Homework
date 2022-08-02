@@ -10,7 +10,6 @@ import java.util.Random;
 @Setter
 public class Score {
     private int score;
-    private Random random;
     private final int MIN = 0;
     private final int MAX = 100;
     public void makeRandomScore() {

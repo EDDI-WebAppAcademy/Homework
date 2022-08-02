@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller.homework.third.questionBank2;
+package kr.eddi.demo.controller.homework.third;
 
 import kr.eddi.demo.entity.homework.third.NumberToLetter;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/homework3")
-public class QuestionBankRestController {
+public class QuestionBank2RestController {
     private int start = 65;
     private int end = 122;
 
