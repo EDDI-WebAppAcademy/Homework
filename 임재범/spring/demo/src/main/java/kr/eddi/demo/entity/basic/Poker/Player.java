@@ -3,6 +3,8 @@ package kr.eddi.demo.entity.basic.Poker;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Setter
 @Getter
 public class Player {
@@ -12,6 +14,8 @@ public class Player {
 
     private String name;
     private int money;
-    PlayingCards[] Hands = new PlayingCards[SEVEN_POKER];
+    ArrayList<PlayingCards> Hands = new ArrayList<>();
+
+    //PlayingCards[] Hands = new PlayingCards[SEVEN_POKER];
 
 }
