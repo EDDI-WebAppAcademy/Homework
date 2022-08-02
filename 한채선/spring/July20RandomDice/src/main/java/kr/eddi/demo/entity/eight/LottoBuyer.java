@@ -1,21 +1,20 @@
 package kr.eddi.demo.entity.eight;
 
-import kr.eddi.demo.utility.eight.lotto.MakeLotto;
+import kr.eddi.demo.entity.Buyer;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-public class LottoBuyer {
+public class LottoBuyer implements Buyer {
 
     private String name;
-    private int total;
     List<Integer> lottoNums;
 
     public LottoBuyer() {
-        lottoNums = MakeLotto.makeLottoNumsList();
+        lottoNums = new ArrayList<>();
     }
-
 }
