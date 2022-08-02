@@ -1,4 +1,4 @@
-package kr.eddi.demo.utility;
+package kr.eddi.demo.utility.fourth;
 
 import java.util.Random;
 
