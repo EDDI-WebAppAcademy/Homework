@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5c5f7a2-f0e0-45bb-8586-a766fa10dcd6" name="변경" comment="[공필석] 2022/07/29 7번째 과제">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring/demo/src/main/java/kr/eddi/demo/controller/homework/seventh/ExceptionalLotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring/demo/src/main/java/kr/eddi/demo/controller/homework/seventh/ExceptionalLotto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,19 +48,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "spring.configuration.checksum": "9de0862494cc3aa211be7c76dc6b547b"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;9de0862494cc3aa211be7c76dc6b547b&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="애플리케이션.ExceptionalLottoSystem">
     <configuration name="ExceptionalLotto" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.eddi.demo.controller.homework.seventh.ExceptionalLotto" />
@@ -134,7 +132,9 @@
       <option name="presentableId" value="Default" />
       <updated>1659067656712</updated>
       <workItem from="1659067660193" duration="599000" />
-      <workItem from="1659069547250" duration="57000" />
+      <workItem from="1659069547250" duration="670000" />
+      <workItem from="1659077539872" duration="17000" />
+      <workItem from="1659250595633" duration="649000" />
     </task>
     <task id="LOCAL-00001" summary="[공필석] 2022/7/29 7번째 과제(1)">
       <created>1659067772414</created>
@@ -178,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659068185063</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="[공필석] 2022/07/29 7번째 과제">
+      <created>1659069617354</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1659069617354</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
