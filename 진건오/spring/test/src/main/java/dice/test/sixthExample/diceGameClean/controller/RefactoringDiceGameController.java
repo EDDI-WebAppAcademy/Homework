@@ -53,7 +53,7 @@ public class RefactoringDiceGameController {
         if (playerScore > baseScore) {
             baseScore = playerScore;
         } else if (playerScore > baseScore) {
-            str += "플레이어 점수:["+playerScore+"]";
+            str += "플레이어 점수:["+baseScore+"]";
         } else {
             str += "무승부";
         }
