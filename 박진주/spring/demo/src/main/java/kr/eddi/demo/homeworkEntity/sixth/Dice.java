@@ -13,15 +13,15 @@ public class Dice {
 
     private int myNumber; //본인 몇번째 인지 본인 점수 구분용
 
-   //private int numOddEvenCheck;  // 홀수 짝수 구분 , odd, even
     private int max = 6;
     private int min = 1;
 
-    Player player = new Player();
-    Score score = new Score();
+    public Player player;
+    public Score score;
 
     public Dice() {
-
+        player = new Player();
+        score = new Score();
     }
 
     public void rollDice() {

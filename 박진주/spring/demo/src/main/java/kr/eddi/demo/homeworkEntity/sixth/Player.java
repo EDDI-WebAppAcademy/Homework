@@ -14,7 +14,6 @@ public class Player {
 
     public int[] join = {0,0,0,0,0};  // 참가여부 0으로 디폴트
     public Player() {
-
     }
 }
 
