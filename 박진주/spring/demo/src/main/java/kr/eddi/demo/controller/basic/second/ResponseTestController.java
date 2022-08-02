@@ -1,0 +1,31 @@
+package kr.eddi.demo.controller.basic.second;
+
+import kr.eddi.demo.entity.basic.second.Member;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Slf4j
+@Controller
+@RequestMapping("/second/response")
+
+public class ResponseTestController {
+
+    // @ResponseBody는 리턴 결과를 자동으로 json 형태로 처리함
+    // 그러므로 Controller에서도 json 데이터를 전송할 수 있다.
+    // -> 원래는 Controller는 json 형태로 전송하기 어려운데  @ResponseBody를 이용하면 가능 (RestController는 없어도 가능~)
+
+    @ResponseBody
+    @GetMapping("/member")
+    public Member responseMember() {
+        log.info("responseMember() 동작");
+
+        Member member = new Member();
+        member.setUserName("내맘대로 바꿀거야");
+        member.setPassWord("싧어");
+        return member;
+    }
+
+}
