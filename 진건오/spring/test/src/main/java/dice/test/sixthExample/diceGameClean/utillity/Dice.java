@@ -2,7 +2,6 @@ package dice.test.sixthExample.diceGameClean.utillity;
 
 import dice.test.fifthExample.third.entity.CreateRandom;
 import dice.test.sixthExample.diceGameClean.entity.Player;
-import dice.test.sixthExample.diceGameClean.entity.Score;
 
 public class Dice implements EffectDiceNum{
 

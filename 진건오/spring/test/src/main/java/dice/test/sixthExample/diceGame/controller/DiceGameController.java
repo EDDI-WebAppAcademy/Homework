@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DiceGameController {
-    private int numberOfPlayers = 2;
+
+    // 플레이어 수
+    private int numberOfPlayers = 4;
+
+    //플레이어 시작 점수
     private int startPlayersScore = 10;
 
     @ResponseBody

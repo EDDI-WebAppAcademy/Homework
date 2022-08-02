@@ -1,5 +1,8 @@
 package dice.test.sixthExample.diceGame.entity;
 
+import lombok.Getter;
+
+@Getter
 public class PlayerSetting {
 
     public static int[] playerScoreSetting(int numberOfPlayers, int startPlayersScore) {

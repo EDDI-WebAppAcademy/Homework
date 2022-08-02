@@ -59,9 +59,4 @@ public class LottoController {
         }
         return msg + winnerUser(usersTotalLottoNum);
     }
-
-//    public static int calcLottoNums() {
-//
-//    }
-
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Score {
     private static List<Integer> score = new ArrayList<>();
-    private static int currentAlloc = 0;
 
     public static void calcPlayersScore(List<Player> players) {
         for (int i = 0; i < players.size(); i++) {
@@ -20,7 +19,6 @@ public class Score {
             } else {
                 score.add((numbers[0] + numbers[1] + numbers[2] + numbers[3]) * numbers[4] / numbers[5]);
             }
-            currentAlloc++;
         }
     }
 

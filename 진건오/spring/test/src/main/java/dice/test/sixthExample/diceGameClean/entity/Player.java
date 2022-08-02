@@ -20,15 +20,18 @@ public class Player {
     }
 
     public void startDiceGame(Player[] player) {
-        for (int i = 0; i < player.length; i++) {
-            int diceNum = Dice.rollDice();
-            score.calcScore(diceNum);
 
-            if (diceNum % 2 == 0) {
-                diceNum = Dice.rollDice();
-                Dice effectDice = new Dice();
-                effectDice.effectDiceNumApply(player,playerName, diceNum, i);
-            }
+        int diceNum = Dice.rollDice();
+        score.calcScore(diceNum);
+
+        if (diceNum % 2 == 0) {
+            diceNum = Dice.rollDice();
+        }
+
+        for (int i = 0; i < player.length; i++) {
+            Dice effectDice = new Dice();
+            effectDice.effectDiceNumApply(player, playerName, diceNum, i);
         }
     }
 }
+
