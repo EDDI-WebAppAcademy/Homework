@@ -1,49 +1,62 @@
 package kr.eddi.demo.entity.homework.seventh;
 
-import kr.eddi.demo.entity.basic.seventh.Player;
-import kr.eddi.demo.utility.basic.seventh.Dice;
 import kr.eddi.demo.utility.basic.third.CustomRandom;
 import lombok.Getter;
+import lombok.ToString;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Getter
-public class Participant {
-
+@ToString
+public class Participant implements Comparable<Participant> {
+    private final int MIN = 0;
+    private final int MAX = 99;
     private final int pax = 100;
-    private String nickname;
+    private String nickName;
     private LottoScore lottoScore;
 
-    private List<LottoNumber> lottoNumber;
+    private LottoNumber lottoNumber;
 
     public Participant() {
-        this.nickname = "DEFAULT";
+        this.nickName = "DEFAULT";
+        lottoNumber = new LottoNumber();
         lottoScore = new LottoScore();
     }
 
-//    public void gameStart(List<Player> players, int playerIdx) {
-//        int diceNum = Dice.rollDice();
-//        score.addScore(diceNum);
-//
-//        if (diceNum % 2 == 0) {
-//            diceNum = Dice.rollDice();
-//            Dice specialDice = new Dice();
-//            score.addScore(diceNum);
-//
-//            specialDice.checkSpecialDice(players, diceNum, playerIdx);
-//            // 왜 인스턴스화 시키는지 이해안감. Dice.rollDice()처럼 사용이 안되나?
-//        }
-
     // 시스템 작동할 메서드 필요
     public void runSystem(List<Participant> participants, int ppIdx) {
-        //로또 번호를 돌려
-        int lottoNum = CustomRandom.makeIntCustomRandom(0, 99);
-        // 번호를 ArrayList나 HashMap에 담아.
+        lottoNumber.addLottoNumber(MIN, MAX);
+        int lottoResult = calScore();
+        lottoScore.addLottoScore(lottoResult);
 
-        // 번호를 중복 체크하여 부여해
+    }
 
-        // 점수 계산해서 totalscore에 넣어
+    public int calScore() {
+        int num1 = lottoNumber.getLottoNumber(0);
+        int num2 = lottoNumber.getLottoNumber(1);
+        int num3 = lottoNumber.getLottoNumber(2);
+        int num4 = lottoNumber.getLottoNumber(3);
+        int num5 = lottoNumber.getLottoNumber(4);
+        int num6 = lottoNumber.getLottoNumber(5);
+
+        int lottoResult = ((num1 + num2 + num3
+                + num4) * num5) / num6;
+        return lottoResult;
+    }
+    @Override
+    public int compareTo(Participant participant) {
+        int srcLottoScore = this.getLottoScore().getTotalLottoScore();
+        int dstLottoScore = participant.getLottoScore().getTotalLottoScore();
+
+        if (srcLottoScore > dstLottoScore) {
+            return 1;
+        } else if (srcLottoScore < dstLottoScore) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
 }
+
+
