@@ -1,7 +1,7 @@
 package kr.eddi.demo.controller.basic.fourth;
 
-import kr.eddi.demo.entity.fourth.NumberLoop;
-import kr.eddi.demo.entity.fourth.Series;
+import kr.eddi.demo.entity.basic.fourth.NumberLoop;
+import kr.eddi.demo.entity.basic.fourth.Series;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
