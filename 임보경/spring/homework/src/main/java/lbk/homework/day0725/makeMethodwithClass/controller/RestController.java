@@ -1,8 +1,8 @@
-package makeMethodwithClass.controller;
+package lbk.homework.day0725.makeMethodwithClass.controller;
 
-import makeMethodwithClass.entity.FindCode;
-import makeMethodwithClass.entity.Loop;
-import makeMethodwithClass.entity.Series;
+import lbk.homework.day0725.makeMethodwithClass.entity.FindCode;
+import lbk.homework.day0725.makeMethodwithClass.entity.Loop;
+import lbk.homework.day0725.makeMethodwithClass.entity.Series;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
