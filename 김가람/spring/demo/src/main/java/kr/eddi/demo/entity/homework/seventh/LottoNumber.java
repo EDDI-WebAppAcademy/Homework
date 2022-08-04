@@ -25,5 +25,4 @@ public class LottoNumber {
         int lottoNum = lottoNumArr[idx];
         return lottoNum;
     }
-
 }
