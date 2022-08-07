@@ -13,7 +13,7 @@ import java.util.List;
 public class LottoPlayer implements Comparable<LottoPlayer> { // Comparable 인터페이스 기능 찾아보기
     private LottoScore score;
 
-  //  private List<LottoNum> lottoNums;
+    //  private List<LottoNum> lottoNums;
 
     private String nickName;
 
