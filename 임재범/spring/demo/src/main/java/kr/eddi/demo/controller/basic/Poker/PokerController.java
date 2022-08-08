@@ -1,5 +1,6 @@
 package kr.eddi.demo.controller.basic.Poker;
 
+import kr.eddi.demo.entity.basic.Poker.BetManager;
 import kr.eddi.demo.entity.basic.Poker.Player;
 import kr.eddi.demo.entity.basic.Poker.PlayingCards;
 import lombok.extern.slf4j.Slf4j;
@@ -15,23 +16,20 @@ import java.util.List;
 @RequestMapping("/Poker")
 public class PokerController {
     Player player = new Player();
-    Player[] players = new Player[player.getNUM_OF_PLAYER()]; //players선언.
-    Integer[] shuffledDeck; //섞여진 덱.
+    Player[] players = new Player[player.getNUM_OF_PLAYER()]; //players선언. 플레이어들은 여기에 담겨있다.
+
+    ArrayList<Integer> shuffledDeck2;
+
+    //Integer[] shuffledDeck; ->초기에 배열로하려다가 너무 어려움이 많아 결국 어레이리스트로 전부 바꾸는중, 이곳저곳 많이 손봐야하는 이슈발생.
+
     ArrayList<String> RanksOfHands = new ArrayList<>(player.getNUM_OF_PLAYER());//각 플레이어의 족보를 여기에 기록함. -> 족보관리 시스템이 필요함...
 
+    private int curidx=0; //덱 맨위를 의미.
 
     final int THREE = 3;
 
-    //세장씩 나누어가짐.
-    public void firstThreeCardsDeal(){
-        for(int i=0; i<players.length; i++){
-            for(int j=0; j<3*players.length; j++){
-                players[i].getHands().add(shuffledDeck[j]);
-                        if(j%3==2){
-                            break;
-                        }
-            }
-        }
+
+
         /*players[0].getHands().add(shuffledDeck[0]);
         players[0].getHands().add(shuffledDeck[1]);
         players[0].getHands().add(shuffledDeck[2]);*/
@@ -39,7 +37,7 @@ public class PokerController {
        /* players[1].getHands().add(shuffledDeck[3]);
         players[1].getHands().add(shuffledDeck[4]);
         players[1].getHands().add(shuffledDeck[5]); *///이게 뭐냐...
-    }
+
 
     public void highCardOpen(){
         int temp;
@@ -71,21 +69,34 @@ public class PokerController {
     }
 
     //deQueue비슷하게 짜보자. 셔플된 덱 맨앞의 카드를 꺼내는 메서드 꺼낸자리는 -1로 바꿈.
-    //문제점 : shuffledDeck이 어레이리스트가 아닌 Integer형 배열이라서 맨 앞에 있는 카드를 꺼내기가 쉽지 않음. 어레이리스트로 바꾸고 싶은데, 여기저기 엮여있어서, 수정이 어려움.
+    //문제점1 : shuffledDeck이 어레이리스트가 아닌 Integer형 배열이라서 맨 앞에 있는 카드를 꺼내기가 쉽지 않음. 어레이리스트로 바꾸고 싶은데, 여기저기 엮여있어서, 수정이 어려움.
     //수정에 견고한 코드의 필요성 느낌...
-    public int dealing(){
-        int len;
+    //dealing()을 잘 구현한다면, 처음 3장의 카드를 나누어주는 메소드도 필요가 없어짐. 얘로 다 커버가능.(진행중)
+    //문제점2 : 누가 보스인지 판정한 후에 사용가능함. 누가 먼저 카드를 받느냐도 보스를 결정해야 할 수 있는 일.
+    //몇 번째 플레이어에게 나누어주는지 구분하기 위해 playeridx 사용
+    public void dealing(int playeridx){
 
-        return 50;
+        players[playeridx].getHands().add(shuffledDeck2.get(0)); //덱 맨위에 카드를 플레이어에게 주는 행위.
+        shuffledDeck2.remove(0); //덱 맨위에 카드는 나눠줬으니 제거.
+
     }
 
+
+    //보스를 알려면 현재시점의 각 플레이어 정보(Hands)가 필요하다.
+    //보스를 판정하려면 그 시점까지 받은 오픈카드로 족보를 판정해야 한다.(족보판정 메소드가 재사용되어야함)
+    public void whoIsTheBoss(Player[] players){
+        //미구현
+    }
+
+
+    /*
     public void openYourHands(){
         //미구현
-    }
+    }*/
 
-    public void betting(){
+   /* public void betting(){
         //미구현
-    }
+    }*/
 
     public void sweepTheStake(){
         //미구현
@@ -94,35 +105,54 @@ public class PokerController {
 
     @GetMapping("/play")
     public String PlayPoker(){
+        BetManager betManager = new BetManager();
+
 
         PlayingCards deck = new PlayingCards();
 
         deck.deckShuffle(); //덱 섞음.
-        shuffledDeck = deck.getPlayingCards(); //섞은 덱 받아옴.
 
-        firstThreeCardsDeal();//첫 세장의 카드를 양 플레이어에게 나누어줍니다.
+        shuffledDeck2 = deck.getPlayingCards2(); //섞은 덱 받아옴.
 
-        highCardOpen(); //첫 핸드3장을 정렬합니다. 가장 높은카드가 가장 뒤에 있음. 이걸 오픈한 카드라고 생각하자...
+        betManager.betting(players, 0, 1000000); //플레이어1 100만원 기본배팅
+        betManager.betting(players, 1, 1000000); //플레이어2 100만원 기본배팅
 
-        dealing(); //1장을 카드를 추가로 받습니다.
+        dealing(0);
+        dealing(1);
+        dealing(0);
+        dealing(1);
+        dealing(0);
+        dealing(1); // 각 플레이어에게 첫 핸드 3장을 나누어주는 행위
 
-        betting(); //양플레이어는 일정금액을 배팅합니다. -> 보통 4번의 배팅이 이루어짐
+        highCardOpen(); //첫 핸드3장을 정렬합니다. 가장 높은카드가 정렬의 과정을 거쳐 가장 뒤에 있음. 이걸 오픈한 카드라고 생각하자.
 
-        dealing(); //2번째 카드를 받습니다.
+        dealing(0); //4구 째의 카드를 받습니다. -- 보스판정시스템이 필요해짐.(누구에게 먼저 줄지 결정하고 인자로 playeridx 전달.)
+        dealing(1);
 
-        betting(); //또다시 배팅
+        betManager.betting(players, 0, 2000000);
+        betManager.betting(players, 1, 2000000); //첫 번째 배팅
 
-        dealing(); //3번째 카드를 받습니다.
+        dealing(0);
+        dealing(1); //5구째의 카드를 받습니다.
 
-        betting(); //배팅
+        betManager.betting(players, 0, 4000000);
+        betManager.betting(players, 1, 4000000); //두 번쨰 배팅
 
-        dealing(); //4번째카드(히든)을 받습니다.
+        dealing(0);
+        dealing(1); //6구째의 카드를 받습니다.
 
-        betting(); //마지막 배팅.
+        betManager.betting(players, 0, 8000000);
+        betManager.betting(players, 1, 8000000); //세 번째 배팅
+
+        dealing(0);
+        dealing(1); //7구(히든)를 받습니다.
+
+        betManager.betting(players, 0, 16000000);
+        betManager.betting(players, 1, 16000000); //세 번째 배팅
 
         openYourHands(); //서로의 족보를 출력합니다.
 
-        sweepTheStake(); //족보가 높은 쪽이 판돈을 쓸어갑니다.
+        sweepTheStake(); //족보가 높은 쪽이 판돈을 쓸어갑니다.(승자판정을 해야함)
 
 
 
