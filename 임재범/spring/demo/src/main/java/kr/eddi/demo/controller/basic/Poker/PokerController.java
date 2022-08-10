@@ -39,6 +39,7 @@ public class PokerController {
         players[1].getHands().add(shuffledDeck[5]); *///이게 뭐냐...
 
 
+    //다시 구현해야함.
     public void highCardOpen(){
         int temp;
         ArrayList<Integer> player1Hands = this.players[0].getHands(); //첫번째플레이어의 핸드를 받았다. 이것을 정렬하고싶다.
@@ -52,7 +53,9 @@ public class PokerController {
             temp = player1Hands.get(2);
             player1Hands.set(2, player1Hands.get(1));
             player1Hands.set(1, temp);
-        } //정렬을 하긴했는데, 너무 지저분함. 유틸리티로 빼면 좋을듯.
+        } //ACE(1)이 가장 큰 카드로 취급되지 않는 이슈발생.
+        this.players[0].setHands(player1Hands); //정렬한 핸드를 player의 Hands로 대입.
+
 
         ArrayList<Integer> player2Hands = this.players[1].getHands(); //두 번째 플레이어의 핸드를 받았다. 역시 정렬하고싶다.
 
@@ -66,6 +69,7 @@ public class PokerController {
             player2Hands.set(2, player2Hands.get(1));
             player2Hands.set(1, temp);
         } //정렬을 하긴했는데, 너무 지저분함. 유틸리티로 빼면 좋을듯.
+        this.players[1].setHands(player2Hands); //정렬한 핸드를 player의 Hands로 대입.
     }
 
     //deQueue비슷하게 짜보자. 셔플된 덱 맨앞의 카드를 꺼내는 메서드 꺼낸자리는 -1로 바꿈.
@@ -106,7 +110,6 @@ public class PokerController {
     @GetMapping("/play")
     public String PlayPoker(){
         BetManager betManager = new BetManager();
-
 
         PlayingCards deck = new PlayingCards();
 
@@ -150,7 +153,7 @@ public class PokerController {
         betManager.betting(players, 0, 16000000);
         betManager.betting(players, 1, 16000000); //세 번째 배팅
 
-        openYourHands(); //서로의 족보를 출력합니다.
+        //openHands(); //서로의 족보를 출력합니다.
 
         sweepTheStake(); //족보가 높은 쪽이 판돈을 쓸어갑니다.(승자판정을 해야함)
 
