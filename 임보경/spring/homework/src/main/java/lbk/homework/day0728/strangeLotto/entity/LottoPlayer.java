@@ -17,6 +17,7 @@ public class LottoPlayer {
         this.name = makeRandomPlayerName(idx);
         lotto = new Lotto();
     }
+
     public String makeRandomPlayerName(int idx) {
         return namesExample[
                 makeCustomRandom(namesExample.length - 1, 0)]
