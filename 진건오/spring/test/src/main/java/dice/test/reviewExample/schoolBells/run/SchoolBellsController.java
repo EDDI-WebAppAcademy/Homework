@@ -1,5 +1,6 @@
 package dice.test.reviewExample.schoolBells.run;
 
+import dice.test.reviewExample.schoolBells.entity.SelectSyllableNames;
 import dice.test.reviewExample.schoolBells.entity.SyllableNames;
 
 import java.io.BufferedReader;
@@ -9,45 +10,30 @@ import java.io.InputStreamReader;
 public class SchoolBellsController {
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static String syllableNames = "";
+    private static SelectSyllableNames ssn;
+    private static int selectSyllableNames;
 
     public static void main(String[] args) throws IOException {
+        ssn = new SelectSyllableNames();
+        System.out.println("계이름: 도(1), 레(2), 미(3), 파(4), 솔(5), 라(6), 시(7)");
+        System.out.println("종료하려면 숫자 0을 입력하세요");
+        System.out.println();
+
         while (true) {
-            System.out.println("종료하려면 숫자 0을 입력하세요");
             System.out.print("계이름의 숫자를 입력하세요>");
 
-            int selectSyllableNames = Integer.parseInt(br.readLine());
+            selectSyllableNames = Integer.parseInt(br.readLine());
 
-            startSchoolBellsSong(selectSyllableNames);
-
-            System.out.println("계이름 : ("+syllableNames+")");
+            syllableNames = ssn.startSchoolBellsSong(selectSyllableNames);
 
             if (selectSyllableNames == 0) {
                 break;
+            } else if (selectSyllableNames < 0 || selectSyllableNames > 7){
+                System.out.println("잘 못 입력하셨습니다. 다시 입력해주세요");
+                System.out.print("계이름의 숫자를 입력하세요>");
+                selectSyllableNames = Integer.parseInt(br.readLine());
             }
         }
-    }
-
-    public static void startSchoolBellsSong(int selectSyllableNames) {
-        if (selectSyllableNames == SyllableNames.DO.getValue()) {
-            syllableNames += SyllableNames.DO.getName();
-
-        } else if (selectSyllableNames == SyllableNames.RE.getValue()) {
-            syllableNames += SyllableNames.RE.getName();
-
-        } else if (selectSyllableNames == SyllableNames.MI.getValue()) {
-            syllableNames += SyllableNames.MI.getName();
-
-        } else if (selectSyllableNames == SyllableNames.FA.getValue()) {
-            syllableNames += SyllableNames.FA.getName();
-
-        } else if (selectSyllableNames == SyllableNames.SOL.getValue()) {
-            syllableNames += SyllableNames.SOL.getName();
-
-        } else if (selectSyllableNames == SyllableNames.RA.getValue()) {
-            syllableNames += SyllableNames.RA.getName();
-
-        } else if (selectSyllableNames == SyllableNames.SI.getValue()) {
-            syllableNames += SyllableNames.SI.getName();
-        }
+        System.out.println("계이름 : (" + syllableNames + ")");
     }
 }
