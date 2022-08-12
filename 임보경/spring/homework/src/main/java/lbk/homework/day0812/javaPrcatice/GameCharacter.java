@@ -11,12 +11,20 @@ public class GameCharacter {
     private Food food;
     private int hp = 130;
     private int max_hp = 200;
-    private int mp = 50;
-    private int max_mp = 80;
+
 
     public GameCharacter() {
         food = new Food();
+    }
 
-
+    public void recovery(int point) {
+        int currentHp = getHp();
+        if (currentHp + point < max_hp) {
+            setHp(currentHp + point);
+            System.out.println(point + "포인트 회복되었습니다.");
+        } else if (currentHp + point >= max_hp) {
+            setHp(max_hp);
+            System.out.println("hp가 모두 회복되었습니다.");
+        }
     }
 }
