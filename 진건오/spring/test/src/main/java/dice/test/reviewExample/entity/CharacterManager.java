@@ -51,9 +51,13 @@ public class CharacterManager {
         takeFoodList.remove(foodName);
     }
 
-    public void eatAllFood() {
-        for (FoodAbility foodAbility : FoodAbility.values()) {
+    public void goodFoodEatAll() {
+        takeFoodList = inventory.get("음식");
 
-        }
+        this.charHp += FoodAbility.PLUS_HP.getFOOD_ABILITY_VALUE();
+        this.charPow += FoodAbility.PLUS_POWER.getFOOD_ABILITY_VALUE();
+
+        takeFoodList.clear();
+        inventory.clear();
     }
 }

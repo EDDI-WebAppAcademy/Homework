@@ -29,8 +29,8 @@ public class SchoolBellsController {
             if (selectSyllableNames == 0) {
                 break;
             } else if (selectSyllableNames < 0 || selectSyllableNames > 7){
-                System.out.println("잘 못 입력하셨습니다. 다시 입력해주세요");
-                System.out.print("계이름의 숫자를 입력하세요>");
+                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요");
+                System.out.print("계이름의 해당하는 숫자를 입력하세요>");
                 selectSyllableNames = Integer.parseInt(br.readLine());
             }
         }
