@@ -34,6 +34,4 @@ public class SchoolBells {
         System.out.println(SyllableNames.MI.getName());
     }
 
-
-
 }
