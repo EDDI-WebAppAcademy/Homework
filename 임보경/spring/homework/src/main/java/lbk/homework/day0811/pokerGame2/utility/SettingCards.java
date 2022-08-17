@@ -24,7 +24,6 @@ public class SettingCards {
         }
 
         Collections.shuffle(cards);
-        //System.out.println(Arrays.asList(cards));
     }
 
 }

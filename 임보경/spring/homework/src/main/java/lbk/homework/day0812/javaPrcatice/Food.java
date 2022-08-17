@@ -8,29 +8,47 @@ import java.util.*;
 public class Food implements GameItem {
 
     private Map<String, Integer> foods;
+    private List<Map<String, Integer>> inventory;
 
     public Food(){
+        inventory = new LinkedList<>();
         foods = new HashMap<>();
 
         foods.put("사과", 20);
+        inventory.add(foods);
+        foods.put("사과", 20);
+        inventory.add(foods);
+        foods.put("사과", 20);
+        inventory.add(foods);
+
         foods.put("귤", 10);
+        inventory.add(foods);
+
         foods.put("포도", 30);
+        inventory.add(foods);
+
         foods.put("빵", 100);
+        inventory.add(foods);
+        foods.put("빵", 100);
+        inventory.add(foods);
 
     }
+
+
 
 
 
     public void viewMyItem() {
         int cnt = 0;
         System.out.print("현재 보유중인 아이템들 : ");
+
         for(String key : getFoods().keySet()){
+
             if (foods.containsKey(key)) {
                 System.out.println( key + " " + (cnt + 1) + "ea");
             } else {
-                System.out.print( key + " ");
+                System.out.println( key + " ");
             }
-
         }
     }
     @Override

@@ -10,7 +10,7 @@ import java.util.List;
 public class Hand {
 
     private List allMyHand;
-    private List theRevealedHand;
+    private List<Card> theRevealedHand;
 
     public Hand() {
         allMyHand = new LinkedList();

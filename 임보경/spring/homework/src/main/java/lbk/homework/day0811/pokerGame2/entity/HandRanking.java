@@ -1,5 +1,8 @@
 package lbk.homework.day0811.pokerGame2.entity;
 
+import lombok.Getter;
+
+@Getter
 public enum HandRanking {
 
     HIGH_CARD("하이카드", 1),

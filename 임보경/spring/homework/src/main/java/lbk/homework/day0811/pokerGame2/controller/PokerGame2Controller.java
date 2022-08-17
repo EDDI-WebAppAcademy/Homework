@@ -11,13 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/retry")
 public class PokerGame2Controller {
 
-    private PokerGame2Manager prepareGameStart;
+    private PokerGame2Manager gameManagement;
 
 
     @GetMapping("start")
     public String startGame() {
-        prepareGameStart = new PokerGame2Manager();
-        prepareGameStart.managementDividing();
+        gameManagement = new PokerGame2Manager();
+        gameManagement.managementDividing(); // 첫 라운드
+        gameManagement.pass();
+        gameManagement.managementDividing();
+        gameManagement.pass();
+        gameManagement.managementDividing();
+        gameManagement.pass();
+        gameManagement.managementDividing();
+        gameManagement.pass();
+        gameManagement.managementDividing();
+        gameManagement.findSameCardNumber();
 
         return "card";
     }
