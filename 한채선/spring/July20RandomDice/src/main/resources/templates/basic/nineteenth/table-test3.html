@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Test</title>
+    <style>
+        table, th, td{
+            border: 1px solid #ccc;
+            border-color: olivedrab;
+        }
+        td {
+            padding: 15px;
+        }
+        tr > td:nth-child(odd){
+            width: 120px; /* 홀수번째 열의 너비 */
+        }
+        tr > td:nth-child(even) {
+            width: 300px; /* 짝수번째 열의 너비 */
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>
+            <b>테이블 테스트</b>
+            <p>예제를 통해 활용법 확인하기</p>
+        </caption>
+        <tr>
+            <th>Name</th>
+            <td></td>
+            <th>Contact</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>Adress</th>
+            <!-- colspan 을 통해 3라인을 합친다 -->
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <th>Self Introduction</th>
+            <td colspan="3"></td>
+        </tr>
+    </table>
+
+</body>
+</html>
