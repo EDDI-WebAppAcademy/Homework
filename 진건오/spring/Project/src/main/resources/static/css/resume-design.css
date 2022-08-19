@@ -1,0 +1,24 @@
+table {
+    border: 5px solid #ccc;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+.listItem{
+    padding: 5px;
+}
+th{
+    width: 150px;
+    height: 100px;
+}
+img{
+    height: 200px;
+    width: 80px;
+    padding: 0px;
+}
+.solidDesign{
+    border: 1px solid #ccc;
+}
+body{
+    background-color: beige;
+}
