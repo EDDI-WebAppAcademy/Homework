@@ -1,0 +1,88 @@
+
+body, h1, h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    min-width: fit-content;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: normal;
+    color: #998fea;
+    border-bottom: 1px solid #bab9b9;
+    margin-bottom: 16px;
+    padding-bottom: 5px;
+
+}
+
+.name-text {
+    font-size: 17px;
+    color: #696868;
+    font-weight: bold;
+    font-style: italic
+}
+
+.mainbox {
+
+    width: 610px;
+    margin: 34px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ebebeb;
+    padding: 30px;
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 34px;
+    margin: 30px;
+}
+
+/*.skills-list {
+    text-align: left;
+    font-size: 11px;
+    line-height: 16px;
+}*/
+
+.contact-text {
+    font-size: 11px;
+    font-weight: bold;
+    color: #282828;
+    float: left;
+}
+
+.channel-text {
+    font-size: 11px;
+    font-weight: bold;
+    color: #282828;
+    float: right;
+}
+
+.float-wrap {
+    overflow: scroll;
+}
+
+.title-box {
+    text-align: left;
+    margin: 30px;
+}
+
+.sns-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.sns-wrap {
+    text-align: right;
+}
+
+
