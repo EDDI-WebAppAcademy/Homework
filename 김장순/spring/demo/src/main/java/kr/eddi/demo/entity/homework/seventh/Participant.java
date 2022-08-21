@@ -1,6 +1,7 @@
 package kr.eddi.demo.entity.homework.seventh;
 
 import kr.eddi.demo.utility.homework.seventh.CustomLotto;
+import kr.eddi.demo.utility.homework.seventh.calculation.CompareLotto;
 import lombok.Getter;
 
 import java.util.List;
@@ -13,16 +14,17 @@ public class Participant {
 
     private String nickName;
     private final String DEFAULT = "unknown";
-    private  LottoScore lscore;
+    private LottoScore lscore;
+
     public Participant() {
         nickName = DEFAULT;
         lscore = new LottoScore();
     }
+
     private List<List<Integer>> lottoAndLotto;
 
-    public void runSystem(Participant parti[]){
-        lottoAndLotto =
-               compareLotto(CustomLotto.makeLotto(),CustomLotto.makeLotto());
+    public void runSystem(Participant parti[]) {
+        CompareLotto.compareLotto(CustomLotto.makeLotto(), CustomLotto.makeLotto());
 
         List<Integer> finalLottoList1 = lottoAndLotto.get(0);
         List<Integer> finalLottoList2 = lottoAndLotto.get(1);

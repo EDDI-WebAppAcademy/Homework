@@ -21,6 +21,7 @@ public class Dice implements SpecialDiceOption {
 
             players[i].getScore().addScore(-steelScore);
             players[playerIdx].getScore().addScore(steelScore);
+            
         }
     }
 
