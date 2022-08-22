@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c5f7a2-f0e0-45bb-8586-a766fa10dcd6" name="변경" comment="[공필석] 2022/07/29 7번째 과제">
+    <list default="true" id="f5c5f7a2-f0e0-45bb-8586-a766fa10dcd6" name="변경" comment="[공필석] 2022/07/29 7번째 과제 (복습)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring/demo/src/main/java/kr/eddi/demo/controller/homework/sixth/DoubleDice.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring/demo/src/main/java/kr/eddi/demo/controller/homework/sixth/DoubleDice.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,6 +136,9 @@
       <workItem from="1659069547250" duration="670000" />
       <workItem from="1659077539872" duration="17000" />
       <workItem from="1659250595633" duration="649000" />
+      <workItem from="1659422953510" duration="803000" />
+      <workItem from="1659739117254" duration="1440000" />
+      <workItem from="1661136125836" duration="76000" />
     </task>
     <task id="LOCAL-00001" summary="[공필석] 2022/7/29 7번째 과제(1)">
       <created>1659067772414</created>
@@ -185,7 +189,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659069617354</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[공필석] 2022/07/29 7번째 과제 (복습)">
+      <created>1659423126971</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1659423126971</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[공필석] 2022/07/29 7번째 과제 (복습)">
+      <created>1659423139111</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1659423139111</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +224,7 @@
     <MESSAGE value="[공필석] 2022/7/29 7번째 과제(1)" />
     <MESSAGE value="초기화" />
     <MESSAGE value="[공필석] 2022/07/29 7번째 과제" />
-    <option name="LAST_COMMIT_MESSAGE" value="[공필석] 2022/07/29 7번째 과제" />
+    <MESSAGE value="[공필석] 2022/07/29 7번째 과제 (복습)" />
+    <option name="LAST_COMMIT_MESSAGE" value="[공필석] 2022/07/29 7번째 과제 (복습)" />
   </component>
 </project>

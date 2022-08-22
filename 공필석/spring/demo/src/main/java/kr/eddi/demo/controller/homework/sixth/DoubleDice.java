@@ -17,9 +17,5 @@ public class DoubleDice {
             System.out.println( "첫번 째 주사위의 수 : "+ firstDice + "두번째 주사위의 수 :"+ secondDice + "주사위의 숫자 5가 떳기 점수를 2점씩 나눠줍니다." );
         } else
             System.out.println("게임을 종료 합니다.");
-
-
     }
-
-
 }
