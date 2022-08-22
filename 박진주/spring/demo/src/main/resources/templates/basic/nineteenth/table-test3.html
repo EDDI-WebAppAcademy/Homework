@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, th, td{
+            border: 1px solid #ccc;
+        }
+        td {
+            padding: 15px;
+        }
+        tr > td:nth-child(odd){
+            width: 120px;          /* tr(행) 안에 있는 td(열)의 n번째가 홀수번째 열의 너비: 120px */
+        }
+        tr > td:nth-child(even){
+            width: 300px;          /* tr(행) 안에 있는 td(열)의 n번째가 짝수번째 열의 너비: 300px */
+        }
+
+    </style>
+</head>
+<body>
+
+<!--
+table: 표, tr: table row(행), td(열), th(열- 제목 및 헤더 역할)
+<th> 는 글씨가 진하게/가운데 정렬, <td>는 글씨 일반 굵기/ 정렬안되어 있음 로 출력됨
+ -->
+    <table>
+        <tr>
+            <th> Name </th>
+            <td> </td>
+            <th> Contact </th>
+            <td> </td>
+        </tr>
+
+        <tr>
+            <th> Adress</th>
+            <td colspan="3">  </td>     <!-- colspan을 통해 3라인을 합침 -->
+        </tr>
+        <tr>
+            <th>Self Introduction</th>
+            <td colspan="3"></td>
+        </tr>
+
+
+    </table>
+</body>
+</html>
