@@ -1,0 +1,21 @@
+caption {
+    display: table-caption;
+    text-align: center;
+    padding: 20px;
+}
+b {
+    font-size: 25px;
+}
+table, tr, th, td {
+    border: 1px solid #000;
+}
+th {
+    padding: 10px;
+    font-size: 20px;
+}
+td {
+    padding: 10px;
+    font-size: 15px;
+    line-height: 2;
+    text-align: center;
+}
