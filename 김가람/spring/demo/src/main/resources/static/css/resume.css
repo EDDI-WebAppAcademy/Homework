@@ -1,0 +1,11 @@
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+caption {
+    padding: 15px;
+}
+
+th, td {
+    padding: 15px;
+}
