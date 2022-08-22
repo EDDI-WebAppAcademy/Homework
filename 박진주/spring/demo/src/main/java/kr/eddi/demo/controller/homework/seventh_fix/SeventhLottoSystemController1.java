@@ -1,10 +1,11 @@
 package kr.eddi.demo.controller.homework.seventh_fix;
 
 import kr.eddi.demo.entity.basic.utility.basic.third.CustomRandom;
-import kr.eddi.demo.homeworkEntity.seventh_fix.LottoNumManager1;
-import kr.eddi.demo.homeworkEntity.seventh_fix.LottoPlayer1;
-import kr.eddi.demo.homeworkEntity.seventh_fix.LottoScore1;
-import kr.eddi.demo.homeworkEntity.utility.basic.seventh_fix.LottoNum1;
+import kr.eddi.demo.homework.entity.seventh_fix.LottoNumManager1;
+import kr.eddi.demo.homework.entity.seventh_fix.LottoPlayer1;
+import kr.eddi.demo.homework.entity.seventh_fix.LottoScore1;
+
+import kr.eddi.demo.homework.utility.seventh_fix.LottoNum1;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
