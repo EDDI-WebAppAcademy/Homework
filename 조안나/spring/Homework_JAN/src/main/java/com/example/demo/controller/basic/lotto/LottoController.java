@@ -79,10 +79,10 @@ public class LottoController {
 
         if (sameScoreIdxList.size() > 1){
             int SameScoreCnt = sameScoreIdxList.size();
-            return String.format("%d 명 당첨!!! 축하합니다. %n 각 상금 %d 원",
+            return String.format("%d 명 당첨!!! 축하합니다. <br> 각 상금 %d 원",
                     SameScoreCnt, distributionPrize(SameScoreCnt, PRIZE_MONEY));
        }
-        return String.format("당첨자: %s 님 축하합니다.%n 당첨금 : %d 원",
+        return String.format("당첨자 : %s 님 축하합니다. <br> 당첨금 : %d 원",
                 buyer.get(buyerNum - 1).getNickName(), PRIZE_MONEY);
 
     }

@@ -1,6 +1,6 @@
 package com.example.demo.controller.basic.poker;
 
-import com.example.demo.entity.basic.poker.PokerGameManager;
+import com.example.demo.entity.basic.lotto.poker.PokerGameManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
