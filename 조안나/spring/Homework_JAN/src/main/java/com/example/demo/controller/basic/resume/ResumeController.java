@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/resume")
 public class ResumeController {
 
-    @GetMapping("/joanna")
+    @GetMapping("/anna")
     public String resume(){
         log.info("resume()");
 
