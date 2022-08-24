@@ -1,10 +1,10 @@
 caption {
-    font-size: 24px;
+    font-size: 20px;
     font-style: italic;
 }
 
 table, th, td {
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     font-style: normal;
 }
 th, td {
