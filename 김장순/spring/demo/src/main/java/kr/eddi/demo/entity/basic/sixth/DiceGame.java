@@ -20,7 +20,7 @@ public class DiceGame {
 
     public List<Integer> firstRoll(List<Integer> sumArr) {
 
-        for (int i = 0; i < sumArr.size(); i++) {
+        for (int i = 0; i < participants; i++) {
             sumArr.add(CustomRandom.makeIntCustomRandom(MIN, MAX));
         }
         return sumArr;
