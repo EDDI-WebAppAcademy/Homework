@@ -22,11 +22,9 @@ public class Buyer implements Comparable<Buyer>{
     }
 
     public void lottoSystemStart(List<Buyer> buyer){
-        for (int i = 0; i < buyer.size(); i++) {
             List<Integer> lottoNumbers =new ArrayList<>();
             lottoNumbers = Lotto.saveLottoNum(Lotto.pickingNum(buyer));
             lottoScore.lottoNumScore(lottoNumbers);
-        }
     }
 
     @Override
