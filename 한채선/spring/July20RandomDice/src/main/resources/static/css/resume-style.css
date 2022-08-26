@@ -1,0 +1,17 @@
+table {
+    margin: auto;
+}
+table, th, td{
+    border: 1px solid #ccc;
+}
+td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    padding: 10px;
+}
+img {
+    width: 50px;
+    height: 50px;
+}
