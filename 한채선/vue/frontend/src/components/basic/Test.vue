@@ -49,22 +49,46 @@
       </tr>
     </table>
 
+
     <p>캐릭터 상태 창</p>
+    <button v-on:click="overPower">광역기</button>
     <p>HP: {{characterStatus.hp}} MP: {{characterStatus.mp}} ATK: {{ characterStatus.atk }} LV: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob}}</p>
     <p>STR: {{ characterStatus.str }} INT: {{ characterStatus.intelligence}} DEX: {{ characterStatus.dex }} VIT: {{ characterStatus.vit }} DEF: {{ characterStatus.def }} MEN: {{ characterStatus.men }}</p>
     <p>경험치: {{ characterStatus.currentLevelBar }} | {{ characterStatus.totalLevelBar }}</p>
     <p>소지금: {{ characterStatus.money }}</p>
+    <label>
+      <input type="checkbox" v-model="inventoryView">
+      인벤토리
+    </label>
+    <table border="1" v-if="inventoryView">
+      <tr>
+        <th align="center" width="40">번호</th>
+        <th align="center" width="120">아이템 명</th>
+        <th align="center" width="320">아이템 설명</th>
+        <th align="center" width="40">사용</th>
+      </tr>
+      <tr v-for="(items, index) in characterInventory" :key="index">
+        <th align="center" width="40"> {{ index }}</th>
+        <th align="center" width="120"> {{ items.name }}</th>
+        <th align="center" width="40"> {{ items.effect.description }}</th>
+        <th align="center" width="40">
+          <label>
+            <input type="checkbox" v-model="usingInventoryItemList" :value="index">
+          </label>
+        </th>
+      </tr>
+    </table>
+    <br>
+    <br>
     <br>
 
-    (고정)몬스터 이름: <input v-model="this.name">
+    (고정)몬스터 이름: <input v-model="name">
     <button v-on:click="addFixedMonster">몬스터 추가하기</button><br>
 
-    <button v-on:click="addRandomMonster">랜덤 몬스터 추가</button><br>
-    <button v-on:click="addManyMonsters">몬스터 뭉치 추가</button><br>
-
-    <br>
-
-    <button v-on:click="overPower">광역기</button>
+    <p>
+      <button v-on:click="addRandomMonster">랜덤 몬스터 추가</button><br>
+      <button v-on:click="addManyMonsters">몬스터 뭉치 추가</button><br>
+    </p> <br>
 
     <ul>
       <li v-for="(monster, index) in monsterLists" :key="index">
@@ -86,6 +110,7 @@ export default {
       shopView: true,
       shopList: [],
       shopListValue: [],
+      checkedItem: [],
       itemBooks: [
         { name: 'HP 포션', price: 50, effect: { description: 'hp 200 회복', amount: 200 }},
         { name: 'HP 포션2', price: 200, effect: { description: 'hp 600 회복', amount: 600 }},
@@ -148,8 +173,12 @@ export default {
         totalLevelBar: 10,
         currentLevelBar: 0,
         money: 0,
-        currentJob: '모험가'
+        currentJob: '모험가',
       },
+
+      characterInventory: [],
+      inventoryView: true,
+      usingInventoryItemList: []
 
     }
   },
@@ -172,22 +201,33 @@ export default {
     calcBuyList() {
       let tmpSum = 0
 
+
       for (let i = 0; i < this.shopListValue.length; i++) {
         for (let j = 0; j < this.shopList.length; j++) {
           if(this.shopListValue[i] === j) {
             tmpSum += this.shopList[j].price
+            this.checkedItem.push(this.shopList[j])
             break
           }
         }
       }
 
+      // 인벤토리에서 바로 집어넣으면 소지금 부족으로 구매하지 못한 아이템까지 인벤토리에 들어감
+      // 저장 리스트를 만들고 구매가 확정 되면 그때 넣도록 하는 방식 사용해야함
+
       if((this.characterStatus.money - tmpSum) >= 0) {
         this.characterStatus.money -= tmpSum
-
+        for (let i = 0; i < this.checkedItem.length; i++) {
+          this.characterInventory.push(this.checkedItem[i])
+        }
         alert("물품 구매 완료!")
       } else {
         alert("소지금이 부족합니다.")
       }
+    },
+
+    useItemInInventory(){
+
     },
 
     clickHandler(event) {
