@@ -30,7 +30,7 @@
         <th align="center" width="120">아이템명</th>
         <th align="center" width="160">가격</th>
         <th align="center" width="160">아이템 설명</th>
-        <th align="center" width="40">구매</th>
+        <th align="center" width="50">구매</th>
       </tr>
       <tr v-for="(item, index) in shopList" :key="index">
         <th align="center" width="40">{{ index }}</th>
@@ -40,6 +40,7 @@
         <th align="center" width="40">
           <label>
             <input type="checkbox" v-model="shopListValue" :value="index">
+<!--            <button v-on:click="calcBuyList(index)">구매</button>-->
           </label>
         </th>
       </tr>
@@ -53,14 +54,12 @@
         <th align="center" width="40">번호</th>
         <th align="center" width="120">아이템명</th>
         <th align="center" width="160">아이템 설명</th>
-        <th align="center" width="40">개수</th>
         <th align="center" width="50">사용</th>
       </tr>
       <tr v-for="(item, index) in characterInventory" :key="index">
         <th align="center" width="40">{{ index }}</th>
         <th align="center" width="120">{{ item.name }}</th>
         <th align="center" width="160">{{ item.effect.description }}</th>
-        <th align="center" width="40">{{ countItem }}</th>
         <th align="center" width="40">
           <button v-on:click="applyCharacterStatus(index)">사용</button>
         </th>
@@ -120,7 +119,6 @@ export default {
       showCharacterStatus: true,
       inventoryView: false,
       showCharacterEquipment: false,
-      countItem: 0,
       shopList: [],
       shopListValue: [],
       itemBooks: [
@@ -225,12 +223,7 @@ export default {
       for (let i = 0; i < this.shopListValue.length; i++) {
         for (let j = 0; j < this.shopList.length; j++) {
           if (this.shopListValue[i] === j) {
-            console.log(this.shopListValue[i])
-            console.log(j)
             this.characterInventory.push(this.shopList[j])
-              // if (this.characterInventory[0].name === this.shopList[j].name) {
-              //   this.countItem++
-              // }
           }
         }
       }
