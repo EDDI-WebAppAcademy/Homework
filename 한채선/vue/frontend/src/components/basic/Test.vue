@@ -65,16 +65,14 @@
         <th align="center" width="40">번호</th>
         <th align="center" width="120">아이템 명</th>
         <th align="center" width="320">아이템 설명</th>
-        <th align="center" width="40">사용</th>
+        <th align="center" width="80">사용</th>
       </tr>
-      <tr v-for="(items, index) in characterInventory" :key="index">
+      <tr v-for="(items, index) in characterStatus.inventory" :key="index">
         <th align="center" width="40"> {{ index }}</th>
         <th align="center" width="120"> {{ items.name }}</th>
         <th align="center" width="40"> {{ items.effect.description }}</th>
         <th align="center" width="40">
-          <label>
-            <input type="checkbox" v-model="usingInventoryItemList" :value="index">
-          </label>
+          <button v-on:click="useItemInInventory(index)">아이템 사용</button>
         </th>
       </tr>
     </table>
@@ -112,11 +110,11 @@ export default {
       shopListValue: [],
       checkedItem: [],
       itemBooks: [
-        { name: 'HP 포션', price: 50, effect: { description: 'hp 200 회복', amount: 200 }},
-        { name: 'HP 포션2', price: 200, effect: { description: 'hp 600 회복', amount: 600 }},
-        { name: '낡은 검', price: 5000000, effect: { description: '무기 공격력 100', atk: 100 }},
-        { name: '검', price: 50000000, effect: { description: '무기 공격력 200', atk: 200 }},
-        { name: '낡은 검', price: 100000000, effect: { description: '무기 공격력 300', atk: 300 }},
+        { name: 'HP 포션', price: 50, effect: { description: 'hp 200 회복', status: 'hp', amount: 200 }},
+        { name: 'HP 포션2', price: 200, effect: { description: 'hp 600 회복', status: 'hp', amount: 600 }},
+        { name: '낡은 검', price: 5000000, effect: { description: '무기 공격력 100', status: 'atk', amount: 100 }},
+        { name: '검', price: 50000000, effect: { description: '무기 공격력 200', status: 'atk', amount: 200 }},
+        { name: '낡은 검', price: 100000000, effect: { description: '무기 공격력 300', status: 'atk', amount: 300 }},
       ],
 
       name: "키메라",
@@ -174,11 +172,10 @@ export default {
         currentLevelBar: 0,
         money: 0,
         currentJob: '모험가',
+        inventory: [],
+        usingInventoryItemList: []
       },
-
-      characterInventory: [],
       inventoryView: true,
-      usingInventoryItemList: []
 
     }
   },
@@ -218,16 +215,36 @@ export default {
       if((this.characterStatus.money - tmpSum) >= 0) {
         this.characterStatus.money -= tmpSum
         for (let i = 0; i < this.checkedItem.length; i++) {
-          this.characterInventory.push(this.checkedItem[i])
+          this.characterStatus.inventory.push(this.checkedItem[i])
         }
         alert("물품 구매 완료!")
+        this.checkedItem = []
       } else {
         alert("소지금이 부족합니다.")
+        this.checkedItem = []
       }
     },
 
-    useItemInInventory(){
+    useItemInInventory(index){
 
+      // switch문으로 바꾸는게 더 조을것같음 -> 잘됨~
+      // 공통 코드는 메소드로 빼기(애매하네...)
+
+
+      switch (this.characterStatus.inventory[index].effect.status) {
+        case 'atk':
+          this.characterStatus.itemAtk += this.characterStatus.inventory[index].effect.amount
+          this.characterStatus.inventory.splice(index, 1)
+          alert('적용 완료!')
+          break
+        case 'hp':
+          this.characterStatus.hp += this.characterStatus.inventory[index].effect.amount
+          this.characterStatus.inventory.splice(index, 1)
+          alert('적용 완료!')
+          break
+        default:
+          alert('해당사항 없음')
+      }
     },
 
     clickHandler(event) {
