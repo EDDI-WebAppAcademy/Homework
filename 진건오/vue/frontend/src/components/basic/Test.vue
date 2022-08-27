@@ -43,30 +43,45 @@
           </label>
         </th>
       </tr>
-    </table>
-
-    <p>캐릭터 상태 창 <button v-on:click="show=!show">상태창 보기</button></p>
+    </table><br/>
       <label>
         <input type="checkbox" v-model="inventoryView">
         인벤토리
-      </label>
+      </label><br/>
     <table border="1" v-if="inventoryView">
       <tr>
         <th align="center" width="40">번호</th>
         <th align="center" width="120">아이템명</th>
         <th align="center" width="160">아이템 설명</th>
+        <th align="center" width="40">개수</th>
         <th align="center" width="50">사용</th>
       </tr>
       <tr v-for="(item, index) in characterInventory" :key="index">
         <th align="center" width="40">{{ index }}</th>
         <th align="center" width="120">{{ item.name }}</th>
         <th align="center" width="160">{{ item.effect.description }}</th>
+        <th align="center" width="40">{{ countItem }}</th>
         <th align="center" width="40">
-          <button v-on:click="applyCharacterStatus()">사용</button>
+          <button v-on:click="applyCharacterStatus(index)">사용</button>
         </th>
       </tr>
     </table>
-    <div v-if="show">
+    <label>
+      <input type="checkbox" v-model="showCharacterEquipment">
+      장비창
+    </label><br/>
+    <table border="1" v-if="showCharacterEquipment">
+      <tr>
+        <th align="center" width="120">아이템명</th>
+        <th align="center" width="50">공격력</th>
+      </tr>
+      <tr v-for="(item, index) in characterEquipment" :key="index">
+        <th align="center" width="120">{{ item.name }}</th>
+        <th align="center" width="50">{{ item.effect.atk }}</th>
+      </tr>
+    </table>
+    <p>캐릭터 상태 창 <button v-on:click="showCharacterStatus=!showCharacterStatus">상태창 보기</button></p>
+    <div v-if="showCharacterStatus">
       <p>HP : {{ characterStatus.hp }} | MP: {{ characterStatus.mp }} | ATK: {{characterStatus.atk }} | Lv: {{ characterStatus.level }} | 직업: {{ characterStatus.currentJob }}</p>
       <p>STR: {{ characterStatus.str }} | INT: {{ characterStatus.intelligence }} | DEX: {{characterStatus.dex }} | VIT: {{ characterStatus.vit }} | DEF: {{ characterStatus.def }} | MEN: {{ characterStatus.men }}</p>
       <p>경험치: {{ characterStatus.currentLevelBar }} / {{characterStatus.totalLevelBar }}</p>
@@ -102,18 +117,21 @@ export default {
   data() {
     return {
       shopView: false,
+      showCharacterStatus: true,
       inventoryView: false,
+      showCharacterEquipment: false,
+      countItem: 0,
       shopList: [],
       shopListValue: [],
       itemBooks: [
-        {name: 'HP 포션 I',price: 50, effect:{ description: 'hp 200 회복', amount: 200}, kind: 'potion'},
-        {name: 'HP 포션 II',price: 200, effect:{ description: 'hp 600 회복', amount: 600,}, kind: 'potion'},
-        {name: '낡은 검',price: 5000000, effect:{ description: '무기 공격력 100', atk: 100}, kind: 'weapon'},
-        {name: '검',price: 50000000, effect:{ description: '무기 공격력 200', atk: 200}, kind: 'weapon'},
-        {name: '강철 검',price: 150000000, effect:{ description: '무기 공격력 300', atk: 300}, kind: 'weapon'},
+        {name: 'HP 포션 I',price: 50, effect:{ description: 'hp 200 회복', amount: 200}, itemType: 'potion'},
+        {name: 'HP 포션 II',price: 200, effect:{ description: 'hp 600 회복', amount: 600,}, itemType: 'potion'},
+        {name: '낡은 검',price: 5000000, effect:{ description: '무기 공격력 100', atk: 100}, itemType: 'weapon'},
+        {name: '검',price: 50000000, effect:{ description: '무기 공격력 200', atk: 200}, itemType: 'weapon'},
+        {name: '강철 검',price: 150000000, effect:{ description: '무기 공격력 300', atk: 300}, itemType: 'weapon'},
       ],
       characterInventory: [],
-      characterInventoryValue:[],
+      characterEquipment: [],
       name: "키메라",
       testMsg: "My Message",
       lists: ['apple', 'banana', 'grape'],
@@ -164,7 +182,7 @@ export default {
         men: 0,
         totalLevelBar: 10,
         currentLevelBar : 0,
-        money: 1000000000,
+        money: 1000000000, // 잡는거 귀찮아서 10억으로 변경
         currentJob: '모험가'
       },
     }
@@ -203,36 +221,61 @@ export default {
     },
     // 상점에서 선택한 아이템이 인벤토리로 이동하는 로직
     addInventoryItem () {
+      //구매목록에서 선택된 값을 캐릭터 인벤토리로 넣는 작업
       for (let i = 0; i < this.shopListValue.length; i++) {
         for (let j = 0; j < this.shopList.length; j++) {
           if (this.shopListValue[i] === j) {
+            console.log(this.shopListValue[i])
+            console.log(j)
             this.characterInventory.push(this.shopList[j])
+              // if (this.characterInventory[0].name === this.shopList[j].name) {
+              //   this.countItem++
+              // }
           }
         }
       }
     },
     // 아이템 효과가 캐릭터에 적용되는 로직
-    applyCharacterStatus () {
+    applyCharacterStatus (index) {
+      console.log("아이템 사용")
+      if (this.characterInventory[index].itemType === 'potion') {
+        this.applyCharacterHp(index)
 
-      for (let i = 0; i < this.characterInventory.length; i++) {
-        if (this.characterInventory[i].kind === 'potion') {
-          console.log(i)
-          this.applyCharacterHp(i)
-        }else if (this.characterInventory[i].kind === 'weapon') {
-          this.applyCharacterStr(i)
-        }
+      } else if (this.characterInventory[index].itemType === 'weapon'){
+        this.applyCharacterStr(index)
       }
+    },
+    // 캐릭터 hp 회복 로직
+    applyCharacterHp (index) {
+      console.log("hp 회복");
+      this.characterStatus.hp += this.characterInventory[index].effect.amount
+      this.characterInventory.splice(index, 1)
+    },
+    // 캐릭터 str 증가 로직
+    applyCharacterStr (index) {
+      console.log("무기 장착")
+      this.addCharacterEquipment(index)
+
+      this.characterInventory.splice(index, 1)
 
     },
-    applyCharacterHp (i) {
-      this.characterStatus.hp += this.characterInventory[i].effect.amount
-      alert("사용된 아이템은 사라집니다.")
-      this.characterInventory.splice(i,1)
-    },
-    applyCharacterStr (i) {
-      this.characterStatus.str += this.characterInventory[i].effect.atk
-      alert("사용된 아이템은 사라집니다.")
-      this.characterInventory.splice(i,1)
+    addCharacterEquipment(index){
+      console.log("캐릭터 장비 추가")
+      // 장비창에 무기가 없을 경우 선택된 아이템을 적용시키고
+      // 착용한 무기가 있을 경우 선택된 아이템의 공격력과 비교하여
+      // 공격력이 더 높으면 이전 아이템을 삭제 후 추가
+      if (this.characterEquipment.length === 0) {
+        this.characterEquipment.push(this.characterInventory[index]);
+        this.characterStatus.str += this.characterInventory[index].effect.atk
+
+      } else if (this.characterEquipment[0].effect.atk < this.characterInventory[index].effect.atk) {
+        this.characterEquipment.push(this.characterInventory[index]);
+        this.characterStatus.str -= this.characterEquipment[0].effect.atk
+        this.characterStatus.str += this.characterInventory[index].effect.atk
+        this.characterEquipment.splice(0, 1);
+      } else {
+        alert("해당 장비은 착용한 장비보다 공격력이 낮아 착용되지 않습니다.")
+      }
     },
     // clickHandler (event) {
     clickHandler: function (event) {
@@ -248,8 +291,8 @@ export default {
           0)
     },
     addFixedMonster () {
-      // let은 javascript에서 사용하는 변수 개념입니다.
-      // java에서 Object와 유사
+      // let 은 javascript 에서 사용하는 변수 개념입니다.
+      // java 에서 Object 와 유사
       let max = this.findCurrentMonsterListMax()
 
       this.monsterLists.push({
