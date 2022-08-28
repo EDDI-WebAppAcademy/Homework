@@ -1,19 +1,15 @@
 <template>
   <div>
     <h1>{{ testMsg }}</h1>
-    <li v-for="(item, index) in lists" :key=index>        <!--   li v-for  반복문으로 lists 배열의 원소 꺼내서 출력
-                                                                 기본 형태:  v-for="item in 리스트명" 이며,
-                                                                 배열처럼 인덱스를 사용하고 싶은 경우 "(item, index) in 리스트명" :key=index 라고 써준다
-                                                            <li><p> 태그 등에서 for문은 v-for, if문은 v-if로 사용 됨  -->
+    <li v-for="(item, index) in lists" :key=index>            <!-- li v-for  반복문으로 lists 배열의 원소 꺼내서 출력 -->
       {{ item }}
     </li>
-    <button v-on:click="clickHandler"> 클릭해봐! </button>      <!-- <button v-on:click="메소드명 또는 메소드명(인자)"> 버튼에 표시되는 텍스트 </button> 형식으로 사용 -->
-    <input v-model ="initMsg">                                <!-- v-model은 양방향으로 반영되는 기능 구현에 사용, html 문법 input태그, checkbox태그, select태그에서 사용 가능
-                                                                 여기서는 v-model="들어갈 데이터" (data()에 저장되어 있는 데이터) 형식으로 사용                -->
+    <button v-on:click="clickHandler"> 클릭해봐! </button>
+    <input v-model ="initMsg">
     <p>{{initMsg}}</p>
 
     <button v-on:click="show=!show"> 쇼타임! </button>    <!-- 버튼 클릭했을 때 show를 !show에 대입하므로 false가 됨 -->
-    <p v-if="show">보였다 안보였다</p><br>                 <!-- v-if는 if문과 동일  -> 즉, 만약 show가 true인 경우 <p>태그가 감싸고있는 텍스트(보였다 안보였다)를 출력함-->
+    <p v-if="show">보였다 안보였다</p><br>                     <!-- v-if는 if문과 동일-->
     <p>{{lists[1]}}</p><br/>
     <p>{{lists[0]}}</p><br/>
     <p>{{lists[2]}}</p><br/>
@@ -22,9 +18,9 @@
     <p>{{count}}번 클릭했습니다.</p><br/>
     <button v-on:click="increment">카운트 버튼</button><br/>
 
-    <h3>상점</h3>                                                                     <!-- 상점 -->
+    <h3>상점</h3>
     <label>
-      <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">           <!-- input type의 v-model="" ,  v-on:click ="인풋 타입인 체크박스 클릭시 실행될 메소드"  -->
+      <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
       판매 목록
     </label>
     <button v-on:click="calcBuyList()">구매 확정</button>
@@ -43,8 +39,7 @@
         <th align="center" width="320">{{ item.effect.description }}</th>
         <th align="center" width="40">
           <label>
-            <input type="checkbox" v-model="shopListValue" :value="index">       <!--  input type의 v-model="화면에서 실시간으로 양방향 데이터받을 데이터 ", :value="index"
-                                                                      -> 여기서 shopListValue[]는 data()에 저장되어 있는 배열로, checkbox 형태에서 체크된 인덱스들을 value로 저장함       -->
+            <input type="checkbox" v-model="shopListValue" :value="index">
           </label>
         </th>
       </tr>
@@ -76,7 +71,7 @@
         </button>
 
         <button v-on:click="removeMonster(index)"> 맵에 끼어 있는 몬스터 삭제하기</button>
-
+      <!--  <button v-on:click="attackMonster(index)"> 몬스터 공격하기</button> -->
       </li>
     </ul>
   </div>
@@ -226,7 +221,12 @@ export default {
         this.addRandomMonster()
       }
     },
-
+    // attackMonster(index){
+    //   //해당 인덱스 몬스터 hp 깎기 this.monsterLists.
+    // },
+    // addManyRandomMonster(){
+    //   //여러마리 몬스터 hp 깎기
+    // },
     darknessDeathDestinyTypoonBlade(index) {
       console.log("어둠의 다크에서 죽음의 데스를 느끼며 서쪽에서 불어오는 태풍을 맞으니 " +
           "간닷! 다크니스 데스 데스티니 타이푼 블레이드!!!!!!!!!!!")
@@ -253,7 +253,6 @@ export default {
   //
   beforeUpdate() {
     console.log("나는 vdom의 변화를 감지하면 무조건 동작해!")
-    console.log(this.shopListValue)               // --> 상점 리스트에서 구매한다고 체크한 아이템들의 인덱스가 들어간 배열임 [0, 1, 6,,,]
     let i
     for (i = 0; i < this.monsterLists.length; i++) {
       if (this.monsterLists[i].hp <= 0) {                                        // 공격해서 몬스터 hp가 0이하되면
