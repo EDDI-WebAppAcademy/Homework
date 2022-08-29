@@ -113,6 +113,8 @@ export default {
         { name: '낡은 검', price: 500000, effect: { description: '무기 공격력 100', atk: 100 }},
         { name: '검', price: 50000000, effect: { description: '무기 공격력 200', atk: 200 }},
         { name: '강철 검', price: 150000000, effect: { description: '무기 공격력 300', atk: 300 }},
+        { name: '산해진미', price: 100000000, effect: { description: '최대체력200 증가', pumping: 200 }}, //최대체력을 늘려줌 이하 펌핑템이라 칭함.
+
       ],
       name: "키메라",
       testMsg: "My Message",
@@ -205,7 +207,7 @@ export default {
     },
 
 
-    //이벤트몹 10마리 생성
+    //이벤트몹 10마리 생성, 렙99찍고 실험하기가 쉽지 않아서 추가
     addEventMonster () {
       for(let i=0; i<10; i++ ) {
         let max = this.findCurrentMonsterListMax()
@@ -230,21 +232,27 @@ export default {
       }
     },
 
+    //여기서 산해진미의 사용 고려해야함.
     equipItem () {
       let tmpSum = 0
+      let tmpSum1 = 0
+
       //myInventoryValue 배열에는 내가 인벤토리내에서 체크를 한 아이템들이 들어있다.
       for (let i = 0; i < this.myInventoryValue.length; i++) {
         for (let j = 0; j < this.myInventory.length; j++) {
           if (this.myInventoryValue[i] === j) {
             //내가 체크를 한 인벤토리내의 아이템에 한해서, 공격력이 오름. 두 개 이상 장착할 수 있기 때문에 muInventoryValue를 돌며 무기 총 공격력 만큼 올림.
             tmpSum += this.myInventory[j].effect.atk
+            tmpSum1 += this.myInventory[j].effect.pumping
             break
           }
         }
       }
       this.characterStatus.itemAtk = tmpSum //템공격력 수치
       this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum //스텟공 + 템공을 더한게 캐릭터의 총공격력 수치.
-    },
+      this.characterStatus.hp += tmpSum1 //최대체력이 먹은 산해진미의 개수만큼 증가.
+
+            },
 
 
 
