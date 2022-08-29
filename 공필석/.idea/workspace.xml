@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5c5f7a2-f0e0-45bb-8586-a766fa10dcd6" name="변경" comment="[공필석] 2022/07/29 7번째 과제">
+    <list default="true" id="f5c5f7a2-f0e0-45bb-8586-a766fa10dcd6" name="변경" comment="[공필석] 2022/08/22 수업내용 복기">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,6 +33,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -48,19 +50,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;9de0862494cc3aa211be7c76dc6b547b&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "list.type.of.created.stylesheet": "CSS",
+    "spring.configuration.checksum": "9de0862494cc3aa211be7c76dc6b547b"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="애플리케이션.ExceptionalLottoSystem">
     <configuration name="ExceptionalLotto" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.eddi.demo.controller.homework.seventh.ExceptionalLotto" />
@@ -135,6 +139,10 @@
       <workItem from="1659069547250" duration="670000" />
       <workItem from="1659077539872" duration="17000" />
       <workItem from="1659250595633" duration="649000" />
+      <workItem from="1659422953510" duration="803000" />
+      <workItem from="1659739117254" duration="1440000" />
+      <workItem from="1661136125836" duration="76000" />
+      <workItem from="1661136211449" duration="5211000" />
     </task>
     <task id="LOCAL-00001" summary="[공필석] 2022/7/29 7번째 과제(1)">
       <created>1659067772414</created>
@@ -185,7 +193,28 @@
       <option name="project" value="LOCAL" />
       <updated>1659069617354</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[공필석] 2022/07/29 7번째 과제 (복습)">
+      <created>1659423126971</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1659423126971</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[공필석] 2022/07/29 7번째 과제 (복습)">
+      <created>1659423139111</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1659423139111</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[공필석] 2022/08/22 수업내용 복기">
+      <created>1661136416729</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1661136416729</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +235,8 @@
     <MESSAGE value="[공필석] 2022/7/29 7번째 과제(1)" />
     <MESSAGE value="초기화" />
     <MESSAGE value="[공필석] 2022/07/29 7번째 과제" />
-    <option name="LAST_COMMIT_MESSAGE" value="[공필석] 2022/07/29 7번째 과제" />
+    <MESSAGE value="[공필석] 2022/07/29 7번째 과제 (복습)" />
+    <MESSAGE value="[공필석] 2022/08/22 수업내용 복기" />
+    <option name="LAST_COMMIT_MESSAGE" value="[공필석] 2022/08/22 수업내용 복기" />
   </component>
 </project>
