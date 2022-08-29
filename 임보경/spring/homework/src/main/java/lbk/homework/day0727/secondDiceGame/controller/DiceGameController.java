@@ -73,8 +73,8 @@ public class DiceGameController {
         }
     }
 
-   public void calScoreAfterRollDice(int diceNum, int playerIdx) { // 애자일 보드 main 2.2내용
-      players[playerIdx].getScore().calScore(diceNum);
+    public void calScoreAfterRollDice(int diceNum, int playerIdx) { // 애자일 보드 main 2.2내용
+        players[playerIdx].getScore().calScore(diceNum);
     }
 
     public void castPlayer(int playerNumber) { // 플레이어 수만큼의 플레이어 객체 배열 생성.
@@ -100,7 +100,7 @@ public class DiceGameController {
         String winner = "";
 
         for (int i = 0 ; i < players.length; i++) {
-           playersScore = players[i].getScore().getTotalScore();
+            playersScore = players[i].getScore().getTotalScore();
 
             if (heightScore < playersScore) {
                 heightScore = playersScore;
@@ -110,5 +110,3 @@ public class DiceGameController {
         return scoreResult + "\n" + winner;
     }
 }
-
-
