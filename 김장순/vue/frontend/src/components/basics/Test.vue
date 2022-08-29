@@ -319,6 +319,11 @@ export default {
         this.monsterLists[i].hp -= 30 * this.characterStatus.atk
       }
       this.characterStatus.currentHp -= 5
+      if (this.characterStatus.currentHp < 1){
+        alert("HP가 0이 되어 Game Over")
+        location.replace(location.href)
+
+      }
     }
   },
   beforeUpdate() { //메소드아님, 메소드 내에 입력하지 않도록 주의
@@ -364,6 +369,7 @@ export default {
         this.characterStatus.totalLeverBar = parseInt((this.characterStatus.totalLeverBar * 1.7))
       } else if (this.characterStatus.level < 100) {
         this.characterStatus.totalLeverBar = parseInt((this.characterStatus.totalLeverBar * 1.9))
+
       }
     }
   }
