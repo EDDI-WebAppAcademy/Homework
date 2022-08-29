@@ -33,7 +33,6 @@
         <th align="center" width="320">아이템 설명</th>
         <th align="center" width="40">구매</th>
       </tr>
-      <tr>
       <tr v-for="(item, index) in shopList" :key="index">
         <th align="center" width="40">{{ index }}</th>
         <th align="center" width="120">{{ item.name }}</th>
@@ -42,6 +41,31 @@
         <th align="center" width="40">
           <label>
             <input type="checkbox" v-model="shopListValue" :value="index">
+          </label>
+        </th>
+      </tr>
+    </table><br/>
+    <label>
+      <input type="checkbox" v-model="inventoryView" v-on:click="inventoryList()">
+      인벤토리
+    </label>
+    <button v-on:click="calcUseList">아이템 사용(착용)</button>
+    <table border="1" v-if="inventoryView">
+      <tr>
+        <th align="center" width="40">번호</th>
+        <th align="center" width="120">아이템명</th>
+        <th align="center" width="160">가격</th>
+        <th align="center" width="320">아이템 설명</th>
+        <th align="center" width="120">사용(착용)</th>
+      </tr>
+      <tr v-for="(item, index) in inventoryList" :key="index">
+        <th align="center" width="40">{{ index }}</th>
+        <th align="center" width="120">{{ item.name }}</th>
+        <th align="center" width="160">{{ item.price }}</th>
+        <th align="center" width="320">{{ item.effect.description }}</th>
+        <th align="center" width="40">
+          <label>
+            <input type="checkbox" v-model="inventoryListValue" :value="index">
           </label>
         </th>
       </tr>
@@ -83,6 +107,9 @@ export default {
   name: "Test",
   data() {
     return {
+      inventoryView: false,
+      inventoryList: [],
+      inventoryListValue: [],
       shopView: false,
       shopList: [],
       shopListValue: [],
@@ -161,9 +188,12 @@ export default {
     },
     calcBuyList(){
       let tmpSum = 0
+      let i
+      let j
 
-      for (let i = 0; i < this.shopListValue.length; i++) {
-        for (let j = 0; j < this.shopList.length; j++) {
+
+      for (i = 0; i < this.shopListValue.length; i++) {   // shopListValue: 내가 구매 체크한 아이템들의 인덱스 배열
+        for (j = 0; j < this.shopList.length; j++) {  //shopList: 구매 가능 목록
           if (this.shopListValue[i] === j){
             tmpSum += this.shopList[j].price
             break
@@ -174,9 +204,39 @@ export default {
         this.characterStatus.money -= tmpSum
 
         alert("물품 구매 완료!")
+        this.inventoryList.push(this.shopList[j])
+        this.shopList.splice(j,1)
       } else{
         alert("소지 금액 부족!")
       }
+    },
+    calcUseList(){
+      let j
+      for (let i = 0; i < this.inventoryListValue.length; i++) {   // shopListValue: 내가 구매 체크한 아이템들의 인덱스 배열
+        for (j = 0; j < this.inventoryList.length; j++) {  //shopList: 구매 가능 목록
+          if (this.inventoryListValue[i] === j){
+            break
+          }
+        }
+      }
+      alert("사용(착용)했습니다")
+      this.itemEffect(j)
+      this.inventoryList.splice(j,1)
+
+    },
+    itemEffect(idx){
+      for (let i = 0; i < this.itemBooks.length; i++) {
+        if (this.inventoryList[idx]==this.itemBooks[i]){
+          if (this.itemBooks[i].effect.atk > 0){
+            this.characterStatus.atk += this.itemBooks[i].effect.atk
+            alert("공격력이 "+this.itemBooks[i].effect.atk+"만큼 증가합니다.")
+          } else {
+            this.characterStatus.hp += this.itemBooks[i].effect.amount
+            alert("HP가 "+this.itemBooks[i].effect.amount+"만큼 회복되었습니다.")
+          }
+        }
+      }
+
     },
     // clickHandler (event) { function을 이런식으로 생략가능
     clickHandler: function (event) {
