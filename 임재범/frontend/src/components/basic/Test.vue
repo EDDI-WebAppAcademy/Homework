@@ -48,13 +48,14 @@
       <input type="checkbox" v-model="inventoryView">
       인벤토리 열기
     </label>
-    <button v-on:click="equipItem()">아이템 장착 또는 사용</button>
+    <button v-on:click="equipItem()">아이템 장착</button>
+    <button v-on:click="takePumpingItem()">펌핑아이템 복용</button>
     <table border="1" v-if="inventoryView">
       <tr>
         <th align="center" width="40">번호</th>
         <th align="center" width="120">아이템명</th>
         <th align="center" width="320">아이템 설명</th>
-        <th align="center" width="40">장착</th>
+        <th align="center" width="40">사용</th>
       </tr>
       <tr v-for="(itemList, idx) in myInventory" :key="idx">
         <th align="center" width="40">{{ idx + 1 }}</th>
@@ -232,28 +233,39 @@ export default {
       }
     },
 
-    //여기서 산해진미의 사용 고려해야함.
+    //여기서 산해진미의 사용 고려해야함. (NaN이슈로 인해, 펌핑아이템 사용 버튼을 따로 만들기로 결정함.)
     equipItem () {
       let tmpSum = 0
-      let tmpSum1 = 0
-
       //myInventoryValue 배열에는 내가 인벤토리내에서 체크를 한 아이템들이 들어있다.
       for (let i = 0; i < this.myInventoryValue.length; i++) {
         for (let j = 0; j < this.myInventory.length; j++) {
           if (this.myInventoryValue[i] === j) {
             //내가 체크를 한 인벤토리내의 아이템에 한해서, 공격력이 오름. 두 개 이상 장착할 수 있기 때문에 muInventoryValue를 돌며 무기 총 공격력 만큼 올림.
             tmpSum += this.myInventory[j].effect.atk
-            tmpSum1 += this.myInventory[j].effect.pumping
             break
           }
         }
       }
       this.characterStatus.itemAtk = tmpSum //템공격력 수치
       this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum //스텟공 + 템공을 더한게 캐릭터의 총공격력 수치.
-      this.characterStatus.hp += tmpSum1 //최대체력이 먹은 산해진미의 개수만큼 증가.
+      },
 
-            },
+    //산해진미 복용만을 위한 메서드, 무한복용되는 버그 발생.
+    takePumpingItem () {
+      let tmpSum = 0
 
+      for (let i = 0; i < this.myInventoryValue.length; i++) {
+        for (let j = 0; j < this.myInventory.length; j++) {
+          if (this.myInventoryValue[i] === j) {
+            //
+            tmpSum += this.myInventory[j].effect.pumping //지워야하는 j번째 를 기록해둬야함. 그래야 사용후 산해진미 제거 가능.
+            break
+          }
+        }
+      }
+      this.characterStatus.hp += tmpSum
+      alert("최대체력이 200만큼 증가했습니다!")
+    },
 
 
     calcBuyList () {
