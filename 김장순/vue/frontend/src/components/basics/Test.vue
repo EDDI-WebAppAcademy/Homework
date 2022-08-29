@@ -44,7 +44,8 @@
           </label>
         </th>
       </tr>
-    </table><br/>
+    </table>
+    <br/>
     <label>
       <input type="checkbox" v-model="inventoryView" v-on:click="inventoryList()">
       인벤토리
@@ -72,7 +73,8 @@
     </table>
 
     <p>캐릭터 상태 창</p>
-    <p>HP: {{ characterStatus.hp }} MP: {{ characterStatus.mp }} ATK: {{ characterStatus.atk }} Lv:
+    <p>HP:{{ characterStatus.currentHp }}/{{ characterStatus.hp }} MP: {{ characterStatus.mp }} ATK:
+      {{ characterStatus.atk }} Lv:
       {{ characterStatus.level }} 직업: {{ characterStatus.currentJob }}</p>
     <p>STR: {{ characterStatus.str }} INT:{{ characterStatus.intelligence }} DEX:{{ characterStatus.dex }}
       VIT:{{ characterStatus.vit }} DEF: {{ characterStatus.def }} MEN: {{ characterStatus.men }}</p>
@@ -157,6 +159,7 @@ export default {
       ],
       characterStatus: {
         level: 1,
+        currentHp: 50,
         hp: 50,
         mp: 30,
         itemAtk: 0,
@@ -186,7 +189,7 @@ export default {
         this.shopList[i] = this.itemBooks[ranIdx]
       }
     },
-    calcBuyList(){
+    calcBuyList() {
       let tmpSum = 0
       let i
       let j
@@ -194,49 +197,56 @@ export default {
 
       for (i = 0; i < this.shopListValue.length; i++) {   // shopListValue: 내가 구매 체크한 아이템들의 인덱스 배열
         for (j = 0; j < this.shopList.length; j++) {  //shopList: 구매 가능 목록
-          if (this.shopListValue[i] === j){
+          if (this.shopListValue[i] === j) {
             tmpSum += this.shopList[j].price
             break
           }
         }
       }
-      if (this.characterStatus.money - tmpSum >= 0){
+      if (this.characterStatus.money - tmpSum >= 0) {
         this.characterStatus.money -= tmpSum
 
         alert("물품 구매 완료!")
         this.inventoryList.push(this.shopList[j])
-        this.shopList.splice(j,1)
-      } else{
+        this.shopList.splice(j, 1)
+      } else {
         alert("소지 금액 부족!")
       }
     },
-    calcUseList(){
+    calcUseList() {
       let j
       for (let i = 0; i < this.inventoryListValue.length; i++) {   // shopListValue: 내가 구매 체크한 아이템들의 인덱스 배열
         for (j = 0; j < this.inventoryList.length; j++) {  //shopList: 구매 가능 목록
-          if (this.inventoryListValue[i] === j){
+          if (this.inventoryListValue[i] === j) {
             break
           }
         }
       }
       alert("사용(착용)했습니다")
       this.itemEffect(j)
-      this.inventoryList.splice(j,1)
+      this.inventoryList.splice(j, 1)
 
     },
-    itemEffect(idx){
+    itemEffect(idx) {
       for (let i = 0; i < this.itemBooks.length; i++) {
-        if (this.inventoryList[idx]==this.itemBooks[i]){
-          if (this.itemBooks[i].effect.atk > 0){
+        if (this.inventoryList[idx] == this.itemBooks[i]) {
+          if (this.itemBooks[i].effect.atk > 0) {
             this.characterStatus.atk += this.itemBooks[i].effect.atk
-            alert("공격력이 "+this.itemBooks[i].effect.atk+"만큼 증가합니다.")
+            alert("공격력이 " + this.itemBooks[i].effect.atk + "만큼 증가합니다.")
           } else {
-            this.characterStatus.hp += this.itemBooks[i].effect.amount
-            alert("HP가 "+this.itemBooks[i].effect.amount+"만큼 회복되었습니다.")
+            this.characterStatus.currentHp += this.itemBooks[i].effect.amount
+            if (this.characterStatus.currentHp > this.characterStatus.hp) {
+              this.characterStatus.currentHp = this.characterStatus.hp
+              alert("HP가 최대입니다.")
+            } else {
+              alert("HP가 " + this.itemBooks[i].effect.amount + "만큼 회복되었습니다.")
+              if (this.characterStatus.currentHp > this.characterStatus.hp) {
+                this.characterStatus.currentHp = this.characterStatus.hp
+              }
+            }
           }
         }
       }
-
     },
     // clickHandler (event) { function을 이런식으로 생략가능
     clickHandler: function (event) {
@@ -308,6 +318,7 @@ export default {
       for (let i = 0; i < this.monsterLists.length; i++) {
         this.monsterLists[i].hp -= 30 * this.characterStatus.atk
       }
+      this.characterStatus.currentHp -= 5
     }
   },
   beforeUpdate() { //메소드아님, 메소드 내에 입력하지 않도록 주의
@@ -332,7 +343,8 @@ export default {
 
       this.characterStatus.level += 1
       this.characterStatus.hp = parseInt(this.characterStatus.hp * 1.05)
-      this.characterStatus.hp = parseInt(this.characterStatus.mp * 1.05)
+      this.characterStatus.currentHp = this.characterStatus.hp
+      this.characterStatus.mp = parseInt(this.characterStatus.mp * 1.05)
       this.characterStatus.defalutAtk += 4
       this.characterStatus.atk += 4
       this.characterStatus.def += 1
