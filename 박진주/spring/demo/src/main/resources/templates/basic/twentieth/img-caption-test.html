@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            border: 1px solid #ccc;               <!-- solid는 실선 #ccc는 검은색 RGB 색상 -->
+        }
+        figure{
+            /* 두개가 적당히 합쳐짐-inline-block */
+            display: inline-block;                      <!-- 웹 사이즈 줄어도 반응해서 그림과 글자 움직이는 옵션 inline-block -->
+
+            /* 자기 혼자 한줄 전체 자리 차지 - block */
+            /* display: block; */
+
+            /* 다른 녀석들과 혼성되어 나란히 배치됨 -inline*/
+            /* display: inline; */
+
+        }
+    </style>
+</head>
+<body>
+
+<h2>img 사이즈 테스트</h2>
+
+<img src = "/img/지브리.png">
+<img src = "/img/지브리.png" width="150" height="100">
+
+<figcation>지브리 예쁘다 몽글몽글</figcation>
+
+</body>
+</html>
