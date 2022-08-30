@@ -202,7 +202,7 @@ export default {
         }
       }
       else{
-        alert("레벨 99달성 이후 사용할 수 있는 메뉴입니다.")
+        alert("레벨 99달성 이후 사용할 수 있는 메뉴입니다.")  //나름의 리뷰를 해보자면, 이런식으로 상수가 많아지면 게임이 장수할수록 쓰레기 코드가 되어버릴 가능성이 높아보임.
       }
 
     },
@@ -250,7 +250,7 @@ export default {
       this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum //스텟공 + 템공을 더한게 캐릭터의 총공격력 수치.
       },
 
-    //산해진미 복용만을 위한 메서드, 무한복용되는 버그 발생.
+    //산해진미 복용만을 위한 메서드, 무한복용되는 버그 발생. 사용하고 삭제해줘야함.
     takePumpingItem () {
       let tmpSum = 0
 
@@ -259,6 +259,7 @@ export default {
           if (this.myInventoryValue[i] === j) {
             //
             tmpSum += this.myInventory[j].effect.pumping //지워야하는 j번째 를 기록해둬야함. 그래야 사용후 산해진미 제거 가능.
+            this.myInventory.splice(j, 1) //이렇게 하면되나 오 미띤 성공
             break
           }
         }
@@ -267,14 +268,13 @@ export default {
       alert("최대체력이 200만큼 증가했습니다!")
     },
 
-
+    //구매목록의 가격 정산. 구매 가능한지 계산해줌.
     calcBuyList () {
       let tmpSum = 0
       for (let i = 0; i < this.shopListValue.length; i++) {
         for (let j = 0; j < this.shopList.length; j++) {
           if (this.shopListValue[i] === j) {
             tmpSum += this.shopList[j].price
-            this.inventoryList += this.shopList[j]
             break
           }
         }
