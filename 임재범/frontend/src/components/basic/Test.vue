@@ -233,7 +233,7 @@ export default {
       }
     },
 
-    //여기서 산해진미의 사용 고려해야함. (NaN이슈로 인해, 펌핑아이템 사용 버튼을 따로 만들기로 결정함.)
+    //산해진미를 클릭 후 아이템 장착 버튼을 눌렀을 때 ATK가 NAN이 되는 이슈를 해결해야함.
     equipItem () {
       let tmpSum = 0
       //myInventoryValue 배열에는 내가 인벤토리내에서 체크를 한 아이템들이 들어있다.
@@ -250,9 +250,10 @@ export default {
       this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum //스텟공 + 템공을 더한게 캐릭터의 총공격력 수치.
       },
 
-    //산해진미 복용만을 위한 메서드, 무한복용되는 버그 발생. 사용하고 삭제해줘야함.
+    //산해진미를 세개이상 복용할 때, 한 번에 세개가 먹어지지 않고, 두개가 복용되고 하나가 복용되는 이슈.
     takePumpingItem () {
       let tmpSum = 0
+      let cnt = 0
 
       for (let i = 0; i < this.myInventoryValue.length; i++) {
         for (let j = 0; j < this.myInventory.length; j++) {
@@ -260,12 +261,15 @@ export default {
             //
             tmpSum += this.myInventory[j].effect.pumping //지워야하는 j번째 를 기록해둬야함. 그래야 사용후 산해진미 제거 가능.
             this.myInventory.splice(j, 1) //이렇게 하면되나 오 미띤 성공
+            cnt++
             break
           }
         }
       }
-      this.characterStatus.hp += tmpSum
-      alert("최대체력이 200만큼 증가했습니다!")
+      if(cnt>=1) {
+        this.characterStatus.hp += tmpSum
+        alert("최대체력이 200만큼 증가했습니다!")
+      }//체력 추가와 출력메시지는 최소 하나 이상의 산해진미가 인벤토리에서 클릭되었을때만 작동하도록 함.
     },
 
     //구매목록의 가격 정산. 구매 가능한지 계산해줌.
