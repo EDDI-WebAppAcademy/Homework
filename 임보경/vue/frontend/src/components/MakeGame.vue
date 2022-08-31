@@ -84,7 +84,7 @@
       <ul class="exchangeExpShop">
         <li v-for="(item, index) in testLists" :key="item">
           <p>{{ item.statusName }} {{ item.amount }}증가</p>
-          <div>
+          <div >
             <button v-on:click="exchangeExpForStatus(index)" >교환하기</button>
             <button v-on:click="exchangeAllExpForStatus(index)" >모두 교환하기</button>
           </div>
@@ -195,43 +195,26 @@ export default {
     exchangeAllExpForStatus(index) {
       let numOfexchange = this.surPlusExp.amount
 
-      if (this.surPlusExp.amount > 0) {
-          for(let i = 0; i < this.characterStatus.length; i++) {
-
-            if (this.testLists[index].statusName === this.characterStatus[i].statusName) {
-              this.characterStatus[i].stat += this.testLists[index].amount * numOfexchange
-              this.surPlusExp.surplusExpPoint -= 10000000* numOfexchange
-              this.surPlusExp.amount -= 1* numOfexchange
-              this.characterStatus[currentLevelBar].stat -= 10000000* numOfexchange
-            }
-
-          }
-          alert(numOfexchange + "회 올랐습니다.")
-
-      } else {
-      alert("필요한 경험치가 부족합니다.")
+        for (let j = 0; j < numOfexchange; j++) {
+          this.exchangeExpForStatus(index)
+        }
+    },
+    calExchangeExpforStatusMethod (index) {
+      for(let i = 0; i < this.characterStatus.length; i++) {
+        if (this.testLists[index].statusName === this.characterStatus[i].statusName) {
+          this.characterStatus[i].stat += this.testLists[index].amount
+          this.surPlusExp.surplusExpPoint -= 10000000
+          this.surPlusExp.amount -= 1
+          this.characterStatus[currentLevelBar].stat -= 10000000
+        }
       }
     },
     exchangeExpForStatus(index) {
-
       if (this.surPlusExp.amount > 0) {
-
-        for(let i = 0; i < this.characterStatus.length; i++) {
-
-          if (this.testLists[index].statusName === this.characterStatus[i].statusName) {
-             this.characterStatus[i].stat += this.testLists[index].amount
-             this.surPlusExp.surplusExpPoint -= 10000000
-             this.surPlusExp.amount -= 1
-             this.characterStatus[currentLevelBar].stat -= 10000000
-             alert(this.testLists[index].statusName + " " + this.testLists[index].amount + "증가!")
-           }
-
-        }
-
+        this.calExchangeExpforStatusMethod(index)
       } else {
         alert("필요한 경험치가 부족합니다.")
       }
-
     },
     calExpPoint() {
       let tmpSurplusExp =
