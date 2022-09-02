@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import Test from '@/components/basic/Test.vue'
 import ComponentTestView from "@/views/basic/ComponentTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
+import VueToSpringView from "@/views/axoisTest/VueToSpringView";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/concave-board-view',
     name: 'ConcaveBoardView',
     component: ConcaveBoardView
+  },
+  {
+    path: '/vue2spring',
+    name: 'Vue To Spring',
+    component: VueToSpringView
   }
 ]
 

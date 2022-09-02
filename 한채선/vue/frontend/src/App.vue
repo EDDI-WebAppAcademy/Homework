@@ -5,6 +5,7 @@
       <router-link to="/test"> Test </router-link>
       <router-link to="/component-test"> Component Test View </router-link>
       <router-link to="/concave-board-view"> 오목 게임</router-link>
+      <router-link to="/vue2spring"> Vue To Spring</router-link>
     </nav>
     <router-view/>
   </div>
