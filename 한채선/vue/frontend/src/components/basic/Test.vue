@@ -52,6 +52,7 @@
       </table>
     </fieldset>
 
+    <market-manager/>
     <br>
 
     <!--99레벨 이하일 경우에 교환소가 오픈되도록 하였으나 테스트를 위해 우선 10레벨로 설정-->
@@ -77,45 +78,50 @@
       </table>
     </fieldset>
 
+    <exp-manager/>
+
     <br>
 
 
+    <!-- 캐릭터 상태창 -->
     <fieldset>
-      <legend><h3>캐릭터 상태 창</h3></legend>
-      <p>HP: {{characterStatus.hp + characterStatus.addedStatus.hp}} MP: {{characterStatus.mp + characterStatus.addedStatus.mp}} ATK: {{ characterStatus.atk + characterStatus.addedStatus.atk }} LV: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob}}</p>
-      <p>STR: {{ characterStatus.str + characterStatus.addedStatus.str }} INT: {{ characterStatus.intelligence + characterStatus.addedStatus.intelligence }} DEX: {{ characterStatus.dex + characterStatus.addedStatus.dex }} VIT: {{ characterStatus.vit + characterStatus.addedStatus.vit}} DEF: {{ characterStatus.def + characterStatus.addedStatus.def }} MEN: {{ characterStatus.men + characterStatus.addedStatus.men }}</p>
-      <p>경험치: {{ characterStatus.currentLevelBar }} | {{ characterStatus.totalLevelBar }}</p>
-      <p>소지금: {{ characterStatus.money }}</p>
-      <fieldset>
-        <legend><h3>인벤토리 </h3></legend>
-        <label>
-          <input type="checkbox" v-model="inventoryView">
-          아이템 목록
-          <button v-on:click="equipItem()">아이템 장착!</button>
-        </label>
-        <table border="1" v-if="inventoryView">
-          <tr>
-            <th align="center" width="40">번호</th>
-            <th align="center" width="120">아이템 명</th>
-            <th align="center" width="320">아이템 설명</th>
-            <th align="center" width="80">사용</th>
-            <th align="center" width="40">장착</th>
-          </tr>
-          <tr v-for="(inventoryItems, index) in characterStatus.inventory" :key="index">
-            <th align="center" width="40"> {{ index + 1 }}</th>
-            <th align="center" width="120"> {{ inventoryItems.name }}</th>
-            <th align="center" width="320"> {{ inventoryItems.effect.description }}</th>
-            <th align="center" width="80">
-              <button v-on:click="useItemInInventory(index)">아이템 사용</button>
-            </th>
-            <th align="center" width="40">
-              <label>
-                <input type="checkbox" v-model="characterStatus.inventoryValue" :value="index">
-              </label>
-            </th>
-          </tr>
-        </table>
-      </fieldset>
+      <character-manager/>
+<!--      <legend><h3>캐릭터 상태 창</h3></legend>-->
+<!--      <p>HP: {{characterStatus.hp + characterStatus.addedStatus.hp}} MP: {{characterStatus.mp + characterStatus.addedStatus.mp}} ATK: {{ characterStatus.atk + characterStatus.addedStatus.atk }} LV: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob}}</p>-->
+<!--      <p>STR: {{ characterStatus.str + characterStatus.addedStatus.str }} INT: {{ characterStatus.intelligence + characterStatus.addedStatus.intelligence }} DEX: {{ characterStatus.dex + characterStatus.addedStatus.dex }} VIT: {{ characterStatus.vit + characterStatus.addedStatus.vit}} DEF: {{ characterStatus.def + characterStatus.addedStatus.def }} MEN: {{ characterStatus.men + characterStatus.addedStatus.men }}</p>-->
+<!--      <p>경험치: {{ characterStatus.currentLevelBar }} | {{ characterStatus.totalLevelBar }}</p>-->
+<!--      <p>소지금: {{ characterStatus.money }}</p>-->
+<!--      <character-manager/>-->
+<!--      <fieldset>-->
+<!--        <legend><h3>인벤토리 </h3></legend>-->
+<!--        <label>-->
+<!--          <input type="checkbox" v-model="inventoryView">-->
+<!--          아이템 목록-->
+<!--          <button v-on:click="equipItem()">아이템 장착!</button>-->
+<!--        </label>-->
+<!--        <table border="1" v-if="inventoryView">-->
+<!--          <tr>-->
+<!--            <th align="center" width="40">번호</th>-->
+<!--            <th align="center" width="120">아이템 명</th>-->
+<!--            <th align="center" width="320">아이템 설명</th>-->
+<!--            <th align="center" width="80">사용</th>-->
+<!--            <th align="center" width="40">장착</th>-->
+<!--          </tr>-->
+<!--          <tr v-for="(inventoryItems, index) in characterStatus.inventory" :key="index">-->
+<!--            <th align="center" width="40"> {{ index + 1 }}</th>-->
+<!--            <th align="center" width="120"> {{ inventoryItems.name }}</th>-->
+<!--            <th align="center" width="320"> {{ inventoryItems.effect.description }}</th>-->
+<!--            <th align="center" width="80">-->
+<!--              <button v-on:click="useItemInInventory(index)">아이템 사용</button>-->
+<!--            </th>-->
+<!--            <th align="center" width="40">-->
+<!--              <label>-->
+<!--                <input type="checkbox" v-model="characterStatus.inventoryValue" :value="index">-->
+<!--              </label>-->
+<!--            </th>-->
+<!--          </tr>-->
+<!--        </table>-->
+<!--      </fieldset>-->
     </fieldset>
 
 
@@ -129,6 +135,9 @@
       <p>
         <button v-on:click="addRandomMonster">랜덤 몬스터 추가</button> | <button v-on:click="addManyMonsters">몬스터 뭉치 추가</button>
       </p>
+
+      <monster-manager/>
+
       <button v-on:click="overPower">광역기</button>
       <fieldset>
         <ul>
@@ -144,9 +153,20 @@
 </template>
 
 <script>
+import MonsterManager from "@/components/basic/MonsterManager";
+import CharacterManager from "@/components/basic/CharacterManager";
+import MarketManager from "@/components/basic/MarketManager";
+import ExpManager from "@/components/basic/ExpManager";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Test",
+  components: {
+    'monster-manager': MonsterManager,
+    'character-manager': CharacterManager,
+    'market-manager': MarketManager,
+    'exp-manager': ExpManager
+  },
   data() {
     return {
       shopView: true,
@@ -364,16 +384,16 @@ export default {
       switch (statusName) {
         case 'HP':
           this.characterStatus.addedStatus.hp += 50
-              break
+          break
         case 'MP':
           this.characterStatus.addedStatus.mp += 50
-              break
+          break
         case 'ATK':
           this.characterStatus.addedStatus.atk += 5
-              break
+          break
         case 'DEF':
           this.characterStatus.addedStatus.def += 5
-              break
+          break
         case 'STR':
           this.characterStatus.addedStatus.str += 5
           break
