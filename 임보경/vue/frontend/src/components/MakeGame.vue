@@ -294,26 +294,7 @@ export default {
       } else { alert("돈읎다 - 돈벌어와!!!") }
 
     },
-    findCurrentMonsterListMax() {
-      return this.monsterLists.reduce(
-          (a, b) => { console.log("a: " + a + ", b.id: " + b.id); return a > b.id ? a : b.id },
-          0)
-    },
-    addRandomMonster () {
-      let max = this.findCurrentMonsterListMax()
-      // ex) 20개라면 0 ~ 19.xxx 까지인데 floor 버림이니까 0 ~ 19까지
-      let randomMonsterBookIdx = Math.floor(Math.random() * this.monsterBooks.length)
-      this.monsterLists.push({
-        id: max + 1,
-        name: this.monsterBooks[randomMonsterBookIdx].name,
-        hp: this.monsterBooks[randomMonsterBookIdx].hp
-      })
-    },
-    addManyRandomMonster () {
-      for (let i = 0; i < 100; i++) {
-        this.addRandomMonster()
-      }
-    },
+
     darknessTwilightBrightnessDawnRagnaBlade () {
       console.log("여명은 빛나고 구름은 흐른다. 나 여기 주문을 외우니 망자를 구원하라! " +
           "황혼보다 어두운, 새벽보다 찬란한 라그나 블레이드!!!!!!!!!")
