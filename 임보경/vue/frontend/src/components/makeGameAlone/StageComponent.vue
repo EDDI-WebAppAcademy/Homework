@@ -10,8 +10,8 @@
 
       <ul class="monstersOnStage">
         <li v-for="(monster, index) in monsters" :key="index">
-          <button>스킬</button>
-          {{ monster.name }} ----------- HP : {{ monster.hp }}
+          <span>{{ monster.name }} ----------- HP : {{ monster.hp }}</span>
+          <button>나중에 스킬 구현</button>
         </li>
       </ul>
     </div>
@@ -54,7 +54,7 @@ ul button {
 }
 ul {
   padding: 0 20px;
-  text-align: left;
+
 }
 ul, li {
   list-style: none;
@@ -63,5 +63,14 @@ ul, li {
 
 ul.monstersOnStage {
   margin-top: 30px;
+}
+
+ul.monstersOnStage > li {
+  display:flex;
+  justify-content: space-between;
+  text-align: left;
+}
+ul.monstersOnStage > li > span {
+  margin-left: 15px;
 }
 </style>
