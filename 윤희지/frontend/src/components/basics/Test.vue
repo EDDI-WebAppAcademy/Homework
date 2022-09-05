@@ -22,6 +22,8 @@
     <button v-on:click="increment">카운트 버튼</button>
     <br/>
 
+    <market-manager/>
+
     <h3>상점</h3>
     <label>
       <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
@@ -125,6 +127,7 @@
       </tr>
     </table><br/><br/>
     -->
+    <character-manager/>
 
     <p>캐릭터 상태 창</p>
     <p>HP: {{ characterStatus.currentHp }} / {{ characterStatus.hp }} MP: {{ characterStatus.currentMp }} / {{ characterStatus.mp }} </p>
@@ -166,14 +169,16 @@
     (고정)몬스터 이름: <input v-model="name">
     <button v-on:click="addFixedMonster">(고정)몬스터 추가하기</button>
     <br/>
-
     <button v-on:click="addRandomMonster">랜덤 몬스터 추가하기</button>
     <br/>
 
     <button v-on:click="addManyRandomMonster">랜덤 몬스터 100마리 추가하기</button>
 
+    <skill-manager/>
     <button v-on:click="brightnessDawnRagnaBlade">새벽보다 찬란한 라그나 블레이드...</button>
     <br/>
+
+    <monster-manager/>
 
     <ul>
       <li v-for="(monster, index) in monsterLists" :key="index">
@@ -186,6 +191,11 @@
 </template>
 
 <script>
+
+import CharacterManager from "@/components/basics/CharacterManager";
+import MonsterManager from "@/components/basics/MonsterManager";
+import MarketManager from "@/components/basics/MarketManager";
+
 
 const HP = 0
 const MP = 1
@@ -201,6 +211,11 @@ const OTHER_STATS_INCREMENT = 5
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Test",
+  components: {
+    'market-manager' : MarketManager,
+    'character-manager' : CharacterManager,
+    'monster-manager': MonsterManager
+  },
   data() {
     return {
       exchangeAmount: 0,
@@ -242,6 +257,7 @@ export default {
       //inventoryList: [],
       //useItemValue: [],
       //usingItemList: [],
+
       name: "키메라",
       testMsg: "My Message",
       lists: ['apple', 'banana', 'grape'],
@@ -596,7 +612,6 @@ export default {
       this.characterStatus.atk += this.usingItemList[j].atk
     }
      */
-
   }
 }
 </script>
