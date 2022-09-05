@@ -7,4 +7,8 @@ import lombok.Setter;
 @Setter
 public class SpecialScore {
     private float score;
+
+    public SpecialScore() {
+        this.score = 0;
+    }
 }

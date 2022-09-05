@@ -14,7 +14,7 @@ public class Gugudan {
         final int MIN = 1;
         final int MAX = 9;
 
-        msg += "=== " + danNum + "단 ===" + "<br>";
+        msg += "<h4>" + "=== " + danNum + "단 ===" + "</h4>";
         for (int i = MIN; i <= MAX; i++) {
             msg += danNum + " * " + i + " = " + (danNum * i) + "<br>";
         }
