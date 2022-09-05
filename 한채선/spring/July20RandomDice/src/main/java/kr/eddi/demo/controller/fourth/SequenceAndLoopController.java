@@ -1,7 +1,7 @@
 package kr.eddi.demo.controller.fourth;
 
 
-import kr.eddi.demo.utility.*;
+import kr.eddi.demo.utility.fourth.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +19,7 @@ public class SequenceAndLoopController {
 
         log.info("1번 문제");
         AscciiAlphabet ascciiAlphabet = new AscciiAlphabet();
-        String randomAsciiText = "랜덤한 아스키 코드의 알파벳: " + ascciiAlphabet.randomAlphabet();
-        return randomAsciiText;
+        return "랜덤한 아스키 코드의 알파벳: " + ascciiAlphabet.randomAlphabet();
     }
 
 
@@ -31,7 +30,7 @@ public class SequenceAndLoopController {
         */
 
     @GetMapping("/find-fibonacci-series")
-    public String findFibonacciseries() {
+    public String findFibonacciSeries() {
         log.info("2번 문제 : 피보나치 수열");
         Sequence sequence = new Sequence();
         return String.valueOf(sequence.sequence(1,20));
@@ -46,11 +45,10 @@ public class SequenceAndLoopController {
 
 
     @GetMapping("/multiple-table-seven")
-    public String multipleTableSeveon() {
+    public String multipleTableSeven() {
         log.info("4번 문제: 구구단 7단");
         DisplayNumbers displayNumbers = new DisplayNumbers();
-        String multiTableSeven = displayNumbers.multiTable(7, 9);
-        return multiTableSeven;
+        return displayNumbers.multiTable(7, 9);
     }
 
 
@@ -68,8 +66,7 @@ public class SequenceAndLoopController {
     public String findMultipleThird(){
         log.info("6번 문제: 3의 배수만 출력");
         DisplayNumbers displayNumbers = new DisplayNumbers();
-        String findMultipleThirdNumbers = displayNumbers.displayNums(1, 100, 3);
-        return findMultipleThirdNumbers;
+        return displayNumbers.displayNums(1, 100, 3);
     }
 
     @GetMapping("/find-multiple-fourth")
@@ -83,16 +80,15 @@ public class SequenceAndLoopController {
     public String findMultipleRandom() {
         log.info("8번 문제: 랜덤한 숫자의 배수");
         DisplayNumbers displayNumbers = new DisplayNumbers();
-        String findMultipleRandomNumbers =  displayNumbers.displayNums(1, 100, RandomNumber.randomNum(2, 10));
-        return findMultipleRandomNumbers;
+        return displayNumbers.displayNums(1, 100, CustomRandomNumber.randomNum(2, 10));
     }
 
 
     @GetMapping("/find-random-number-movement")
-    public String findRamdomNumberMovement() {
+    public String findRandomNumberMovement() {
         log.info("10번 문제: 랜덤한 수만큼 이동한 숫자들의 총합");
         TotalSum totalSum = new TotalSum();
-        return String.valueOf(totalSum.moveNumbersSum(1, 100, RandomNumber.randomNum(2, 10)));
+        return String.valueOf(totalSum.moveNumbersSum(1, 100, CustomRandomNumber.randomNum(2, 10)));
     }
 }
 

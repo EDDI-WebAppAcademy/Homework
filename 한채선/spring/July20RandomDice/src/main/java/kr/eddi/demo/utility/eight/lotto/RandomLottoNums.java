@@ -1,6 +1,6 @@
 package kr.eddi.demo.utility.eight.lotto;
 
-import kr.eddi.demo.utility.fourth.RandomNumber;
+import kr.eddi.demo.utility.fourth.CustomRandomNumber;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +25,7 @@ public class RandomLottoNums {
      * @return
      */
     public static int lottoNumMaker(int min, int max) {
-        return RandomNumber.randomNum(min, max);
+        return CustomRandomNumber.randomNum(min, max);
     }
 
     /**
