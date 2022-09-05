@@ -32,10 +32,8 @@ export default {
   },
   methods : {
       ...mapActions(['requestMonsterData']),
-      //actions에 있는 메소드를 가져옴. actions는 유틸리티 메서드
+
       async callRequestMonsterData() {
-        // await 된 녀석이 일을 끝날 때까지 async 하지마
-        // 쓰레드를 쓰는 이유 : 동시에 여러 일을 처리한다. > 빠르다.
         await this.requestMonsterData()
         this.monsters.push(this.$store.state.monstersData)
         alert( this.monsters.length )

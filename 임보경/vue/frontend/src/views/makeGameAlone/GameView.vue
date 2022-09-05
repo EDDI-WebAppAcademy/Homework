@@ -39,4 +39,6 @@ export default {
     margin: 0 5px;
     border:1px solid #222;
   }
+
+
 </style>

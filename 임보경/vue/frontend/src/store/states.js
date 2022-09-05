@@ -1,6 +1,6 @@
 export default {
     springFromVueTestValue: null,
-    monstersData : null
-
+    monstersData : null,
+    stockData : null
 }
 

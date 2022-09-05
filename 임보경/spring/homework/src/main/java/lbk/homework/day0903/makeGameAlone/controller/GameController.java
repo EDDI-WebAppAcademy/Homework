@@ -1,6 +1,7 @@
 package lbk.homework.day0903.makeGameAlone.controller;
 
 
+import lbk.homework.day0903.makeGameAlone.controller.manager.ItemManager;
 import lbk.homework.day0903.makeGameAlone.controller.manager.MonsterManager;
 import lbk.homework.day0903.makeGameAlone.entity.player.Player;
 import lombok.extern.slf4j.Slf4j;
@@ -18,17 +19,25 @@ import java.util.List;
 public class GameController {
 
     private Player player;
-    private MonsterManager monsterManager= new MonsterManager();
+    private MonsterManager monsterManager;
+    private ItemManager itemManager ;
+
+    @GetMapping("/start/stock-up")
+    public List stockUpItems() {
+        itemManager = new ItemManager();
+        log.info("제대로 되나요?");
+        return itemManager.stockController();
+    }
 
     @GetMapping("/start/playing")
     public List summonsMonster() {
+        monsterManager = new MonsterManager();
         return monsterManager.createNewMonster();
     }
 
     @GetMapping("/start/player")
     public Player returnPlayerInformation() {
         player = new Player();
-        log.info("제대로 되나요?");
         return player;
     }
 

@@ -1,6 +1,7 @@
 import {
     REQUEST_PLAYER_DATA_FROM_SPRING,
     REQUEST_MONSTER_DATA,
+    REQUEST_STOCK_DATA,
 } from './mutation-types'
 
 
@@ -21,8 +22,15 @@ export default {
     requestMonsterData ({ commit }) {
         return axios.get('http://localhost:7777/make-game-alone/start/playing')
             .then((res) => {
-                console.log("왜 커밋일 안될까???")
                 commit(REQUEST_MONSTER_DATA, res.data)
+            })
+    },
+
+    requestStockData ({ commit }) {
+        return axios.get('http://localhost:7777/make-game-alone/start/stock-up')
+            .then((res) => {
+                console.log("데이터가 들어가나요?")
+                commit(REQUEST_STOCK_DATA, res.data)
             })
     },
 }
