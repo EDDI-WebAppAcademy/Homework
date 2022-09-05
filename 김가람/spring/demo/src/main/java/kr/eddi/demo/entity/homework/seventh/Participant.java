@@ -43,6 +43,7 @@ public class Participant implements Comparable<Participant> {
                 + num4) * num5) / num6;
         return lottoResult;
     }
+
     @Override
     public int compareTo(Participant participant) {
         int srcLottoScore = this.getLottoScore().getTotalLottoScore();

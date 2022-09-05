@@ -16,6 +16,9 @@
     <p>{{ count }} 번 클릭했습니다.</p>
     <button v-on:click="increment">카운트 버튼</button><br/>
 
+    <!-- Local 컴포넌트 분리 -->
+    <market-manager/>
+
     <h3>상점</h3>
     <label>
       <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
@@ -43,6 +46,9 @@
       </tr>
     </table><br/><br/>
 
+    <!-- local 컴포넌트 분리 -->
+    <inventory-manager/>
+
     <h3>인벤토리</h3>
     <label>
       <input type="checkbox" v-model="inventoryView">
@@ -68,6 +74,9 @@
       </tr>
     </table><br/><br/>
 
+    <!-- Local 컴포넌트 -->
+    <experience-manager/>
+
     <!-- 경험치 교환 시스템
      공격력을 증가시킬 수 있는 수단이 필요
      대략 경험치 1000만당 공격력 5 증가 정도로 구현하면 적합하다 판단됨
@@ -75,7 +84,6 @@
     <h3>경험치 교환 시스템</h3>
     <p>
       경험치 1000만당 스탯 교환이 가능합니다.(hp, mp는 50씩, 나머지는 5씩)<br>
-      !!! 중복 선택 불가 !!!
     </p>
     <button v-on:click="doExpExchange">교환</button>
     <table border="1">
@@ -93,6 +101,9 @@
       </tr>
     </table><br><br>
 
+    <!-- Local 컴포넌트 분리-->
+    <character-manager/>
+
     <h3>캐릭터 상태 창</h3>
     <p>HP: {{ characterStatus.hp }} MP: {{ characterStatus.mp }} ATK: {{ characterStatus.atk }}
       Lv: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob }}</p>
@@ -101,12 +112,22 @@
     <p>경험치: {{ characterStatus.currentLevelBar }} / {{ characterStatus.totalLevelBar }}</p>
     <p>소지금: {{ characterStatus.money }}</p>
 
+
     <!-- 현재 컨텐츠 측면에서 몬스터가 매번 같은것이 추가되서 재미 요소가 반감됨(그러므로 랜덤 요소를 넣어야함) -->
+
+    <!-- Local 컴포넌트 분리 -->
+    <!-- <monster-manager :monster-books="monsterBooks" :monster-lists="monsterLists"/> -->
+    <monster-manager/>
+    <skill-manager/>
+
+
+
     (고정)몬스터 이름: <input v-model="name">
     <button v-on:click="addFixedMonster()">고정 몬스터 추가하기</button><br/>
     <button v-on:click="addRandomMonster()">랜덤 몬스터 추가하기</button><br/>
     <button v-on:click="addManyRandomMonster()">랜덤 몬스터 100마리 추가하기</button><br/>
     <button v-on:click="darknessTwilightBrightnessDawnRagnaBlade()">황혼보다 어두운, 새벽보다 찬란한 라그나 블레이드</button><br/>
+
     <ul>
       <li v-for="(monster, index) in monsterLists" :key="index">
         몬스터 이름: {{ monster.name }}, HP: {{ monster.hp }}
@@ -117,10 +138,17 @@
         <button v-on:click="removeMonster(index)">맵에 끼어 있는 몬스터 삭제하기</button>
       </li>
     </ul>
+
   </div>
 </template>
 
 <script>
+import MonsterManager from "@/components/basics/MonsterManager";
+import CharacterManager from "@/components/basics/CharacterManager";
+import ExperienceManager from "@/components/basics/ExperienceManager";
+import MarketManager from "@/components/basics/MarketManager";
+import InventoryManager from "@/components/basics/InventoryManager";
+
 // const 상수
 const HP = 0
 const MP = 1
@@ -135,6 +163,13 @@ const OTHER_STATS_INCREMENT = 5
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Test",
+  components: {
+    InventoryManager,
+    MarketManager,
+    ExperienceManager,
+    CharacterManager,
+    MonsterManager,
+  },
   data() {
     return {
       expExchangeLists: ["hp", "mp", "atk", "str", "dex", "int", "def"],
@@ -372,6 +407,8 @@ export default {
         this.monsterLists.splice(i, 1)
       }
     }
+
+
     if (this.characterStatus.level == 99) { return }
     while (this.characterStatus.currentLevelBar >= this.characterStatus.totalLevelBar) {
       if (this.characterStatus.level == 99) { return }

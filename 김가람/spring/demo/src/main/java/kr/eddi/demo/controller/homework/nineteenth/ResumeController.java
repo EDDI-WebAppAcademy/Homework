@@ -17,4 +17,9 @@ public class ResumeController {
 
         return "/homework/resume";
     }
+
+    @GetMapping("/exam")
+    public String exam() {
+        return "/homework/exam";
+    }
 }
