@@ -6,6 +6,7 @@ span.intest {
     border: 1px solid blue;
     background-color: cadetblue;
 }
+
 span.inblock {
     display: inline-block;
     width: 300px;
@@ -14,6 +15,7 @@ span.inblock {
     border: 1px solid blue;
     background-color: aquamarine;
 }
+
 span.b {
     display: block;
     width: 300px;
