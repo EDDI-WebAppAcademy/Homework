@@ -19,7 +19,9 @@ public class MonsterManager {
     }
 
     public List createNewMonster() {
-        monsterList.add(acquireRandomMonster());
+        for (int i = 0; i < 100; i++) {
+            monsterList.add(acquireRandomMonster());
+        }
         return monsterList;
     }
 

@@ -3,11 +3,11 @@
     <h2> 상점 </h2>
 
     <div class="buttons">
-      <button @click="callRequestStocksData">상점 열기</button>
+      <button class="btn_shop" @click="callRequestStocksData">상점 열기</button>
       <button>구매하기</button>
     </div>
 
-    <ul class="shop">
+    <ul id="shop" class="shop">
       <li v-for="(item,idx) in shopList" :key="idx">
         <input type="checkbox" name="checkedItem" id="checkedItem">
         {{ idx + 1 }} | {{ item.name }} | {{ item.description }}
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       shopList : [],
+      show : false,
     }
   },
   methods: {
@@ -34,6 +35,14 @@ export default {
     async callRequestStocksData() {
       await this.requestStockData()
       this.shopList = this.$store.state.stockData
+
+      if (!this.show) {
+        document.querySelector('#shop').style.display = "block"
+        this.show = true
+      } else {
+        document.querySelector('#shop').style.display = "none"
+        this.show = false
+      }
     },
   }
 }
@@ -47,9 +56,10 @@ export default {
 .shop {
   margin-top: 30px;
   text-align: left;
+
 }
 .shop > li > input {
-  margin: 0 16px 0 20px;
+  margin: 0 16px 0 10px;
 }
 ul {
   padding: 0 20px;

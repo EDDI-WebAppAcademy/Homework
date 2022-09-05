@@ -15,7 +15,7 @@ public class Swords extends CommonItemsProperty{
         this.itemTypeNumber = 2;
         this.name = name;
         this.price = price;
-        this.itemAtk = atk;
+        itemAtk = atk;
         this.description = description;
     }
 }

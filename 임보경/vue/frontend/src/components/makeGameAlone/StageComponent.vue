@@ -7,9 +7,11 @@
       <div class="buttons">
         <button @click="callRequestMonsterData">몬스터 소환</button>
       </div>
+
       <ul class="monstersOnStage">
         <li v-for="(monster, index) in monsters" :key="index">
-          {{ monster[index].name }} ----------- HP : {{ monster[index].hp }}
+          <button>스킬</button>
+          {{ monster.name }} ----------- HP : {{ monster.hp }}
         </li>
       </ul>
     </div>
@@ -35,8 +37,7 @@ export default {
 
       async callRequestMonsterData() {
         await this.requestMonsterData()
-        this.monsters.push(this.$store.state.monstersData)
-        alert( this.monsters.length )
+        this.monsters = this.$store.state.monstersData
       },
 
   }
@@ -48,8 +49,12 @@ export default {
   display:flex;
   justify-content: space-evenly;
 }
+ul button {
+  margin: 0 20px 0 15px;
+}
 ul {
   padding: 0 20px;
+  text-align: left;
 }
 ul, li {
   list-style: none;
