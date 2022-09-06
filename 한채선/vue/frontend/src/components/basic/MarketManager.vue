@@ -19,7 +19,7 @@
           <th align="center" width="40"> {{ index }}</th>
           <th align="center" width="120"> {{ item.name }}</th>
           <th align="center" width="40"> {{ item.price }}</th>
-          <th align="center" width="40"> {{ item.effect.description }}</th>
+          <th align="center" width="40"> {{ item.description }}</th>
           <th align="center" width="40">
             <label>
               <input type="checkbox" v-model="shopListValue" :value="index">
@@ -33,6 +33,9 @@
 </template>
 
 <script>
+
+import {mapActions} from "vuex";
+
 export default {
   name: "MarketManager",
   data() {
@@ -53,16 +56,25 @@ export default {
   },
   methods: {
 
-    shuffleShopList() {
-      if(!this.shopView) {
-        this.shopListValue = []
-      }
-
-      for (let i = 0; i < 10; i++) {
-        let randIdx = Math.floor(Math.random() * this.itemBooks.length)
-        this.shopList[i] = this.itemBooks[randIdx]
-      }
+    ...mapActions(['requestShopItemData']),
+    async shuffleShopList() {
+      await this.requestShopItemData()
+      this.shopList = this.$store.state.randomShopItem
     },
+
+
+    /*
+        shuffleShopList() {
+          if(!this.shopView) {
+            this.shopListValue = []
+          }
+
+          for (let i = 0; i < 10; i++) {
+            let randIdx = Math.floor(Math.random() * this.itemBooks.length)
+            this.shopList[i] = this.itemBooks[randIdx]
+          }
+        },
+     */
 
     calcBuyList() {
       let tmpSum = 0

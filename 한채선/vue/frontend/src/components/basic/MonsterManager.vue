@@ -1,9 +1,18 @@
 <template>
+<!--  <fieldset>-->
+<!--    <button @click="addRandomMonster()">컴포넌트 분리 랜덤 몬스터</button>-->
+<!--    <button @click="addManyMonsters()"> 컴포넌트 분리 랜덤 몬스터 뭉치</button>-->
+<!--    <ul>-->
+<!--      <li v-for="(monster, index) in monsterLists" :key="index">-->
+<!--        몬스터 이름: {{monster.name}}   |   HP: {{monster.hp}}-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </fieldset>-->
+
   <fieldset>
-    <button @click="addRandomMonster()">컴포넌트 분리 랜덤 몬스터</button>
-    <button @click="addManyMonsters()"> 컴포넌트 분리 랜덤 몬스터 뭉치</button>
+    <button @click="addMonsterFromSpring">몬스터 부르기(10명)</button>
     <ul>
-      <li v-for="(monster, index) in monsterLists" :key="index">
+      <li v-for="(monster, index) in monsterListFromSpring" :key="index">
         몬스터 이름: {{monster.name}}   |   HP: {{monster.hp}}
       </li>
     </ul>
@@ -11,6 +20,9 @@
 </template>
 
 <script>
+
+import { mapActions } from "vuex";
+
 export default {
   name: "MonsterComponent",
   data() {
@@ -39,40 +51,28 @@ export default {
         { monsterId: 21, name: '죽음의 군주', hp: 1000000, exp: 20000, dropMoney: 100000},
         { monsterId: 9999, name: '하이퍼 메탈 슬라임', hp: 1000, exp: 5000000, dropMoney: 10000000 }
       ],
-      monsterLists: [
-        {id: 1, name: '슬라임', hp: 50},
-        {id: 2, name: '고블린', hp: 100},
-        {id: 3, name: '오크', hp: 150 },
-      ],
+      monsterListFromSpring : [],
+
 
     }
 
   },
   methods: {
-    findCurrentMonsterListMax() {
+
+    ...mapActions(['requestRandomMonsterData']),
+    async addMonsterFromSpring() {
+      console.log('addMonsterFromSpring')
+      await this.requestRandomMonsterData()
+      this.monsterListFromSpring = this.$store.state.randomMonster
+    },
+
+ /*   findCurrentMonsterListMax() {
       return this.monsterLists.reduce(
           (a, b) => {
             console.log("a: " + a + ", b: " + b.id);
             return a > b.id ? a : b.id
           }, 0)
-    },
-
-    addRandomMonster() {
-      let max = this.findCurrentMonsterListMax()
-      let randomMonsterBookIdx = Math.floor(Math.random() * this.monsterBooks.length)
-
-      this.monsterLists.push({
-        id: max + 1,
-        name: this.monsterBooks[randomMonsterBookIdx].name,
-        hp: this.monsterBooks[randomMonsterBookIdx].hp
-      })
-    },
-
-    addManyMonsters(){
-      for (let i = 0; i < 100; i++) {
-        this.addRandomMonster()
-      }
-    },
+    },*/
 
   }
 }

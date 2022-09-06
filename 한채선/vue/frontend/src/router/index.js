@@ -5,6 +5,7 @@ import Test from '@/components/basic/Test.vue'
 import ComponentTestView from "@/views/basic/ComponentTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
 import VueToSpringView from "@/views/axoisTest/VueToSpringView";
+import RpgGameView from "@/views/rpg/RpgGameView";
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/vue2spring',
     name: 'Vue To Spring',
     component: VueToSpringView
+  },
+  {
+    path: '/rpg-game',
+    name: 'RPG Game',
+    component: RpgGameView
   }
 ]
 

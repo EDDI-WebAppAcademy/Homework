@@ -6,7 +6,6 @@
       <p>STR: {{ characterStatus.str + characterStatus.addedStatus.str }} INT: {{ characterStatus.intelligence + characterStatus.addedStatus.intelligence }} DEX: {{ characterStatus.dex + characterStatus.addedStatus.dex }} VIT: {{ characterStatus.vit + characterStatus.addedStatus.vit}} DEF: {{ characterStatus.def + characterStatus.addedStatus.def }} MEN: {{ characterStatus.men + characterStatus.addedStatus.men }}</p>
       <p>경험치: {{ characterStatus.currentLevelBar }} | {{ characterStatus.totalLevelBar }}</p>
       <p>소지금: {{ characterStatus.money }}</p>
-      <character-manager/>
       <fieldset>
         <legend><h3>인벤토리 </h3></legend>
         <label>
@@ -42,8 +41,14 @@
 </template>
 
 <script>
+
+import { mapActions } from "vuex";
+
 export default {
   name: "CharacterStatusManager",
+  mounted() {
+    this.viewCharacterStatus()
+  },
   data() {
     return {
       inventoryView: true,
@@ -82,6 +87,12 @@ export default {
   },
 
   methods: {
+    ...mapActions(['requestCharacterStatus']),
+    viewCharacterStatus() {
+      console.log('viewCharacterStatus')
+      this.requestCharacterStatus()
+    },
+
     equipItem() {
       let tmpSum = 0
       this.characterStatus.itemAtk = 0
