@@ -1,7 +1,7 @@
 import {
-    REQUEST_CHARACTER_STATUS,
     REQUEST_DATA_FROM_SPRING,
     REQUEST_RANDOM_SHOP_ITEM,
+    REQUEST_RANDOM_MONSTER,
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -37,12 +37,12 @@ export default {
                 commit(REQUEST_RANDOM_SHOP_ITEM, res.data)
             })
     },
-    requestCharacterStatus ({ commit }) {
-        console.log("requestCharacterStatus")
+    requestRandomMonster ({commit}) {
+        console.log("requestRandomMonster")
 
-        return axios.get('http://localhost:7777/31st/rpg-game/character-status')
+        return axios.get('http://localhost:7777/31st/rpg-game/random-monster')
             .then((res) => {
-                commit(REQUEST_CHARACTER_STATUS, res.data)
+                commit(REQUEST_RANDOM_MONSTER, res.data)
             })
-    }
+    },
 }

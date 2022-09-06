@@ -1,5 +1,5 @@
 export default {
     springFromVueTestValue: null,
     randomShopItem: [],
-    characterStatus: []
+    randomManyMonster: [],
 }

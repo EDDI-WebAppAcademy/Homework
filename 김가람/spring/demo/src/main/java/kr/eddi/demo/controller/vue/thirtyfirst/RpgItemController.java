@@ -30,7 +30,6 @@ public class RpgItemController {
 
     public void buildRandomShopList (List<ShopItems> randomShopLists) {
         int everyItemSize = allShopList.size();
-        System.out.println(everyItemSize);
 
         for (int i = 0; i < 10; i++) {
             ShopItems oneThing = allShopList.get(CustomRandom.makeIntCustomRandom(0, everyItemSize - 1));

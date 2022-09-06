@@ -1,7 +1,7 @@
 import {
     REQUEST_DATA_FROM_SPRING,
     REQUEST_RANDOM_SHOP_ITEM,
-    REQUEST_CHARACTER_STATUS
+    REQUEST_RANDOM_MONSTER,
 } from './mutation-types'
 export default {
     // vue에서 [] 라는 연산자는 멤버 접근 연산자라는 특성을 가집니다.
@@ -14,8 +14,8 @@ export default {
     [REQUEST_RANDOM_SHOP_ITEM] (state, passingData) {
         state.randomShopItem = passingData
     },
-    [REQUEST_CHARACTER_STATUS] (state, passingData) {
-        state.characterStatus = passingData
-    }
+    [REQUEST_RANDOM_MONSTER] (state, passingData) {
+        state.randomMonster = passingData
+    },
 
 }

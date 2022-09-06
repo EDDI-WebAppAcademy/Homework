@@ -1,6 +1,7 @@
 <template>
   <div>
     <button @click="addRandomMonster">(Local)랜덤 몬스터 추가하기</button>
+    <button @click="addManyRandomMonster">(Local)랜덤 몬스터 100마리 추가하기</button>
 
     <ul>
       <li v-for="(monster, index) in monsterLists" :key="index">
@@ -15,6 +16,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "MonsterManager",
   /*
@@ -58,12 +61,17 @@ export default {
     }
   },
   methods: {
-    findCurrentMonsterListMax() {
+    ...mapActions(['requestRandomMonster']),
+/*    findCurrentMonsterListMax() {
       return this.monsterLists.reduce(
           (a, b) => { console.log("a: " + a + ", b.id: " + b.id); return a > b.id ? a : b.id },
           0)
+    },*/
+    async addRandomMonster () {
+      await this.requestRandomMonster()
+      this.monsterLists = this.$store.state.randomMonster
     },
-    addRandomMonster () {
+    /*addRandomMonster () {
       let max = this.findCurrentMonsterListMax()
       // ex) 20개라면 0 ~ 19.xxx 까지인데 floor 버림이니까 0 ~ 19까지
       let randomMonsterBookIdx = Math.floor(Math.random() * this.monsterBooks.length)
@@ -73,19 +81,19 @@ export default {
         name: this.monsterBooks[randomMonsterBookIdx].name,
         hp: this.monsterBooks[randomMonsterBookIdx].hp
       })
-    },
+    },*/
     addManyRandomMonster () {
       for (let i = 0; i < 100; i++) {
         this.addRandomMonster()
       }
     },
-    removeMonster (index) {
-      // 새로운 개념: splice는 ?
-      // 리스트에서 index 파트를 특정 개수만큼 잘라낸다.
-      // splice(index, 1)이므로 index에 해당하는 정보 1개를 삭제한다라는 뜻입니다.
-      // 해당 index 1개, (0, 1)이면 0번째 인덱스 1개 삭제, (0, 3)이면 0, 1, 2번째 인덱스 총 3개 삭제
-      this.monsterLists.splice(index, 1)
-    },
+        removeMonster (index) {
+          // 새로운 개념: splice는 ?
+          // 리스트에서 index 파트를 특정 개수만큼 잘라낸다.
+          // splice(index, 1)이므로 index에 해당하는 정보 1개를 삭제한다라는 뜻입니다.
+          // 해당 index 1개, (0, 1)이면 0번째 인덱스 1개 삭제, (0, 3)이면 0, 1, 2번째 인덱스 총 3개 삭제
+          this.monsterLists.splice(index, 1)
+        },
   }
 }
 </script>
