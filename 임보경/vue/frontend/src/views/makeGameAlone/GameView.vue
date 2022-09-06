@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1> Make Game Alone ~ 시도중 ~ </h1>
+    <h1> Make RPG Game </h1>
     <div class="wrapper">
       <player-component />
       <stage-component />

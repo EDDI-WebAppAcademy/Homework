@@ -11,11 +11,11 @@ public class Swords extends CommonItemsProperty{
      * @param description : String : 아이템 설명
      * itemTypeNumber [포션류 1, 무기류 2, 방어구류 3 ...]
      * */
-    Swords(String name, int price, int atk, String description) {
+    Swords(String name, Integer price, int atk, String description) {
         this.itemTypeNumber = 2;
         this.name = name;
         this.price = price;
-        itemAtk = atk;
+        this.itemAtk = atk;
         this.description = description;
     }
 }

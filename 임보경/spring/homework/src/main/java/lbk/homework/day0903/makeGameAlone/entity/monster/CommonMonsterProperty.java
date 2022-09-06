@@ -5,7 +5,7 @@ public class CommonMonsterProperty {
     public int id;
     public int hp;
     public int atk;
-    public int expPoint;
+    public int exp;
     public int dropMoney;
     public String name;
 

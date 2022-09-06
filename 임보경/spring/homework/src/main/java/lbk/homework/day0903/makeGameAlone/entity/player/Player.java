@@ -8,12 +8,21 @@ import lombok.Setter;
 public class Player {
 
     private int level = 1;
-    private int hp = 50;
-    private int mp = 30;
-    private int defaultAtk = 0;
+    private Integer hp = 50;
+    private Integer mp = 30;
+    private int defaultAtk = 10;
     private int atkAdded = 0;
-    private int atk = defaultAtk + atkAdded;
-    private int money = 0;
-    private int currentExpBar = 0;
-    private int totalExpBar = 0;
+    private Integer atk = defaultAtk + atkAdded;
+    private Integer money = 0;
+    private Integer currentExpBar = 0;
+    private Integer totalExpBar = 0;
+
+    private int str = 10;
+    private int intelligence = 10;
+    private int dex = 10;
+    private int def = 10;
+    private int vit = 10;
+
+
+
 }

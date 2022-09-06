@@ -4,7 +4,7 @@ public class CommonItemsProperty {
 
     public int itemTypeNumber;
     public String name ;
-    public int price ;
+    public Integer price ;
     public String description ;
 
 }
