@@ -16,19 +16,19 @@ public class MonsterManager {
     private List<Monster> monstersDataBase;
     private List<Monster> randomMonstersList;
 
-    private int totalMonsterListSize;
+    private int totalMonsterDBSize;
 
 
     public MonsterManager() {
         monstersDataBase = new ArrayList<>();
         randomMonstersList = new ArrayList<>();
-        buildBasicMonsterDataBase();
+        buildMonsterDataBase();
     }
 
     /**
      * 기본적인 몬스터 데이터베이스 작성
      */
-    public void buildBasicMonsterDataBase() {
+    public void buildMonsterDataBase() {
         // 1
         monstersDataBase.add(new Monster(MonsterBook.SLIME.getName(), MonsterBook.SLIME.getHp(), MonsterBook.SLIME.getExp(), MonsterBook.SLIME.getDropMoney()));
         // 2
@@ -73,7 +73,7 @@ public class MonsterManager {
         monstersDataBase.add(new Monster(MonsterBook.LORD_OF_DEATH.getName(),MonsterBook.LORD_OF_DEATH.getHp(), MonsterBook.LORD_OF_DEATH.getExp(), MonsterBook.LORD_OF_DEATH.getDropMoney()));
         // 9999
         monstersDataBase.add(new Monster(MonsterBook.HYPER_METAL_SLIME.getName(),MonsterBook.HYPER_METAL_SLIME.getHp(), MonsterBook.HYPER_METAL_SLIME.getExp(), MonsterBook.HYPER_METAL_SLIME.getDropMoney()));
-        totalMonsterListSize = monstersDataBase.size();
+        totalMonsterDBSize = monstersDataBase.size();
     }
 
 
@@ -81,7 +81,7 @@ public class MonsterManager {
      * 랜덤한 몬스터 정보를 가져와 리스트에 추가
      */
     public void buildRandomMonster() {
-        int randomMonsterNumber = CustomRandomNumber.randomNum(0, totalMonsterListSize-1);
+        int randomMonsterNumber = CustomRandomNumber.randomNum(0, totalMonsterDBSize -1);
         Monster oneMonster = monstersDataBase.get(randomMonsterNumber);
         randomMonstersList.add(oneMonster);
     }

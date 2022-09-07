@@ -4,7 +4,7 @@ package kr.eddi.demo.entity.vue.thirthyoneth;
 import lombok.Getter;
 
 @Getter
-public class ShopItems {
+public class ShopItem {
 
     private String name;
     private Integer price;
@@ -12,14 +12,14 @@ public class ShopItems {
     private Integer atk;
     private String recover;
 
-    public ShopItems(String name, Integer price, String description, Integer atk){
+    public ShopItem(String name, Integer price, String description, Integer atk){
         this.name = name;
         this.price = price;
         this.description = description;
         this.atk = atk;
     }
 
-    public ShopItems(String name, Integer price, String description, String recover) {
+    public ShopItem(String name, Integer price, String description, String recover) {
         this.name = name;
         this.price = price;
         this.description = description;
