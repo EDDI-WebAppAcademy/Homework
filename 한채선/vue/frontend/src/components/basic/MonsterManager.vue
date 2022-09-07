@@ -63,7 +63,9 @@ export default {
     async addMonsterFromSpring() {
       console.log('addMonsterFromSpring')
       await this.requestRandomMonsterData()
-      this.monsterListFromSpring = this.$store.state.randomMonster
+      for (let i = 0; i < this.$store.state.randomMonster.length; i++) {
+        this.monsterListFromSpring.push(this.$store.state.randomMonster[i])
+      }
     },
 
  /*   findCurrentMonsterListMax() {

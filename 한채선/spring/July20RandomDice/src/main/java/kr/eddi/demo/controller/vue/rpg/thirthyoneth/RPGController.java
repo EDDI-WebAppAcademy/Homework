@@ -2,6 +2,8 @@ package kr.eddi.demo.controller.vue.rpg.thirthyoneth;
 
 
 
+import kr.eddi.demo.entity.vue.thirthyoneth.Character;
+import kr.eddi.demo.entity.vue.thirthyoneth.CharacterManager;
 import kr.eddi.demo.entity.vue.thirthyoneth.Monster.MonsterManager;
 import kr.eddi.demo.entity.vue.thirthyoneth.Monster.Monster;
 import kr.eddi.demo.entity.vue.thirthyoneth.ShopItems;
@@ -66,9 +68,12 @@ public class RPGController {
 
 
      @GetMapping("/character-info")
-    public String characterInfo() {
+    public Character characterInfo() {
         log.info("characterInfo()");
-        return "hello";
+
+        CharacterManager characterManager = new CharacterManager();
+        characterManager.makeCharacter("모험가 1", "기사");
+        return characterManager.getCharacter();
     }
 
 

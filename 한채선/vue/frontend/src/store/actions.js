@@ -36,7 +36,7 @@ export default {
             })
     },
     requestCharacterStatus({ commit }) {
-        console.log("requestShopItemData()")
+        console.log("requestCharacterStatus()")
 
         return axios.get('http://localhost:7776/31th/rpg-game-controller/character-info')
             .then((res) => {

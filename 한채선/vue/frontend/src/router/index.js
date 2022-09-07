@@ -6,6 +6,7 @@ import ComponentTestView from "@/views/basic/ComponentTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
 import VueToSpringView from "@/views/axoisTest/VueToSpringView";
 import RpgGameView from "@/views/rpg/RpgGameView";
+import DataSendTestView from "@/views/basic/DataSendTestView";
 
 Vue.use(VueRouter)
 
@@ -32,13 +33,18 @@ const routes = [
   },
   {
     path: '/vue2spring',
-    name: 'Vue To Spring',
+    name: 'VueToSpring',
     component: VueToSpringView
   },
   {
     path: '/rpg-game',
-    name: 'RPG Game',
+    name: 'RPGGame',
     component: RpgGameView
+  },
+  {
+    path: '/data-send-test-view',
+    name: 'DataSendTestView',
+    component: DataSendTestView
   }
 ]
 

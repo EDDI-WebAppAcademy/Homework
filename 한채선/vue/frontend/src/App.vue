@@ -6,7 +6,8 @@
       <router-link to="/component-test"> Component Test View </router-link> |
       <router-link to="/concave-board-view"> 오목 게임</router-link> |
       <router-link to="/vue2spring"> Vue To Spring</router-link> |
-      <router-link to="/rpg-game"> RPG Game</router-link>
+      <router-link to="/rpg-game"> RPG Game</router-link> |
+      <router-link to="/data-send-test-view">Data Send Test View</router-link>
     </nav>
     <router-view/>
   </div>

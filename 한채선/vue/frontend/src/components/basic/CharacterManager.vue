@@ -2,10 +2,11 @@
   <div>
     <fieldset>
       <legend><h3>캐릭터 상태 창</h3></legend>
-      <p>HP: {{characterStatus.hp + characterStatus.addedStatus.hp}} MP: {{characterStatus.mp + characterStatus.addedStatus.mp}} ATK: {{ characterStatus.atk + characterStatus.addedStatus.atk }} LV: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob}}</p>
-      <p>STR: {{ characterStatus.str + characterStatus.addedStatus.str }} INT: {{ characterStatus.intelligence + characterStatus.addedStatus.intelligence }} DEX: {{ characterStatus.dex + characterStatus.addedStatus.dex }} VIT: {{ characterStatus.vit + characterStatus.addedStatus.vit}} DEF: {{ characterStatus.def + characterStatus.addedStatus.def }} MEN: {{ characterStatus.men + characterStatus.addedStatus.men }}</p>
-      <p>경험치: {{ characterStatus.currentLevelBar }} | {{ characterStatus.totalLevelBar }}</p>
-      <p>소지금: {{ characterStatus.money }}</p>
+      <p>이름: {{characterStatusFromSpring.name}}</p>
+      <p>HP: {{characterStatusFromSpring.hp}} MP: {{characterStatusFromSpring.mp }} ATK: {{ characterStatusFromSpring.atk }} LV: {{ characterStatus.level }} 직업: {{ characterStatusFromSpring.currentJob }}</p>
+      <p>STR: {{ characterStatusFromSpring.str }} INT: {{ characterStatusFromSpring.intelligence }} DEX: {{ characterStatusFromSpring.dex }} VIT: {{ characterStatusFromSpring.vit }} DEF: {{ characterStatusFromSpring.def }} MEN: {{ characterStatusFromSpring.men }}</p>
+      <p>경험치: {{ characterStatusFromSpring.currentLeverBar }} | {{ characterStatusFromSpring.totalLevelBar }}</p>
+      <p>소지금: {{ characterStatusFromSpring.money }}</p>
       <fieldset>
         <legend><h3>인벤토리 </h3></legend>
         <label>
@@ -52,6 +53,7 @@ export default {
   data() {
     return {
       inventoryView: true,
+      characterStatusFromSpring: null,
       characterStatus: {
         level: 1,
         hp: 50,
@@ -88,9 +90,11 @@ export default {
 
   methods: {
     ...mapActions(['requestCharacterStatus']),
-    viewCharacterStatus() {
+    async viewCharacterStatus() {
       console.log('viewCharacterStatus')
-      this.requestCharacterStatus()
+      await this.requestCharacterStatus()
+      this.characterStatusFromSpring = this.$store.state.characterStatus
+      this.characterStatusFromSpring.currentLevelBar = this.$store.state.characterStatus.currentLevelBar
     },
 
     equipItem() {
