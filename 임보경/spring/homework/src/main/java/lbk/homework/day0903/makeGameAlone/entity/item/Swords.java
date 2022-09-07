@@ -1,5 +1,7 @@
 package lbk.homework.day0903.makeGameAlone.entity.item;
 
+import java.math.BigInteger;
+
 public class Swords extends CommonItemsProperty{
 
     private int itemAtk ;

@@ -10,12 +10,12 @@ import static lbk.homework.day0727.secondDiceGame.utility.CustomRandom.makeCusto
 
 
 @Getter
-public class ItemManager {
+public class ShopManager {
     private List<Object> shopList;
     private Items items;
     private int stockNumber = 10;
 
-    public ItemManager() {
+    public ShopManager() {
         shopList = new LinkedList<>();
         items = new Items();
     }

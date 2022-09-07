@@ -1,12 +1,12 @@
 import {
-    REQUEST_PLAYER_DATA_FROM_SPRING,
+    REQUEST_CHARACTER_STATUS_DATA,
     REQUEST_MONSTER_DATA,
     REQUEST_STOCK_DATA,
 } from './mutation-types'
 
 export default {
-    [REQUEST_PLAYER_DATA_FROM_SPRING] (state, passingData) {
-        state.springFromVueTestValue = passingData
+    [REQUEST_CHARACTER_STATUS_DATA] (state, passingData) {
+        state.characterStatusData = passingData
     },
     [REQUEST_MONSTER_DATA] (state, passingData) {
         state.monstersData = passingData

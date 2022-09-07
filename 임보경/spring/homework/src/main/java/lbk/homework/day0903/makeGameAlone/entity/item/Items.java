@@ -35,19 +35,19 @@ public class Items {
 
         Swords sword1 = new Swords(
                 "낡은 검",
-                50000,
+                5000,
                 100,
                 "낡은 검 : 무기 공격력 100"
         );
         Swords sword2 = new Swords(
                 "강철 검",
-                5000000,
+                50000,
                 500,
                 "강철로 만든 검 : 무기 공격력 300"
         );
         Swords sword3 = new Swords(
                 "군주의 검",
-                500000000,
+                5000000,
                 1000,
                 "군주가 사용하는 검 : 무기 공격력 1000"
         );
