@@ -7,6 +7,7 @@ import ComponentsTestView from "@/views/basics/ComponentsTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
 import VueToSpringView from "@/views/axiosTest/VueToSpringView";
 import MakeGameAloneView from "@/views/makeGameAlone/GameView";
+import DataSendTestView from "@/views/axiosTest/DataSendTestView";
 
 Vue.use(VueRouter)
 
@@ -46,7 +47,11 @@ const routes = [
     name: 'MakeGameAloneView',
     component: MakeGameAloneView
   },
-
+  {
+    path: '/data-send-test',
+    name: 'DataSendTestView',
+    component: DataSendTestView
+  },
 ]
 
 const router = new VueRouter({

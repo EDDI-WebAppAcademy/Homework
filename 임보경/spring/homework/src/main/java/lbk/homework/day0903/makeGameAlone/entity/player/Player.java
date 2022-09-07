@@ -23,6 +23,14 @@ public class Player {
     private int def = 10;
     private int vit = 10;
 
+    private Inventory inventory;
+    private Equipment equipment;
 
+    public Player(){
+        inventory = new Inventory();
+        equipment = new Equipment();
+
+
+    }
 
 }
