@@ -6,7 +6,7 @@
         <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
         판매 목록
       </label>
-      <button type="submit" v-on:click="requestBuyList">구매확정</button>
+      <button type="submit" v-on:click="buyItems">구매확정</button>
       <table border="1" v-if="shopView">
         <tr>
           <th align="center" width="40">번호</th>
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-
 import {mapActions} from "vuex";
 
 export default {
@@ -43,35 +42,44 @@ export default {
       shopView: true,
       shopList: [],
       shopListValue: [],
-      shopCheckedItem: [],
       totalPrice: 0,
     }
   },
   methods: {
 
-    ...mapActions(['requestShopItemData']),
+    ...mapActions([
+        'requestShopItemData',
+    'requestBuyItem']),
+
     async shuffleShopList() {
-      await this.requestShopItemData()
-      this.shopList = this.$store.state.randomShopItem
+      if(!this.shopView) {
+        this.shopListValue = []
+        await this.requestShopItemData()
+        this.shopList = this.$store.state.randomShopItem
+      }
     },
 
-    requestBuyList() {
-      let tmpSum = 0
+    async buyItems() {
+      let buyItemsList = this.requestBuyList()
+      let payload = buyItemsList
+      await this.requestBuyItem(payload)
+      console.log('buyItems()')
+    },
 
+
+    requestBuyList() {
+      let checkedItems = []
       for (let i = 0; i < this.shopListValue.length; i++) {
         for (let j = 0; j < this.shopList.length; j++) {
           if(this.shopListValue[i] === j) {
-            tmpSum += this.shopList[j].price
-            this.shopCheckedItem.push(this.shopList[j])
+            checkedItems.push(this.shopList[j])
             break
           }
         }
       }
 
-      this.totalPrice = tmpSum
-
-      const { totalPrice, shopCheckedItem } = this
-      this.$emit('submit', {totalPrice, shopCheckedItem})
+      console.log("requestBuyList()")
+      return checkedItems
     },
 
 

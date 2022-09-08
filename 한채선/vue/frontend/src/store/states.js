@@ -3,4 +3,5 @@ export default {
     randomMonster: [],
     randomShopItem: [],
     characterStatus: null,
+    characterInventory: [],
 }

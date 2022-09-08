@@ -3,17 +3,19 @@ package kr.eddi.demo.entity.vue.thirthyoneth;
 import kr.eddi.demo.entity.vue.thirthyoneth.Monster.Monster;
 import kr.eddi.demo.utility.fourth.CustomRandomNumber;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ToString
 @Getter
 public class MarketManager {
 
     private List<ShopItem> shopItemsDataBase;
     private List<ShopItem> randomShopList;
-
-    int totalShopItemDBSize;
+    private int totalShopItemDBSize;
 
     public MarketManager() {
         shopItemsDataBase = new ArrayList<>();
@@ -46,4 +48,5 @@ public class MarketManager {
             buildRandomShopItem();
         }
     }
+
 }

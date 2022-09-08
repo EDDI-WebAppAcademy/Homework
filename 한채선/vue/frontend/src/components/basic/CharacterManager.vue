@@ -2,15 +2,16 @@
   <div>
     <fieldset>
       <legend><h3>캐릭터 상태 창</h3></legend>
+      <button @click="viewCharacterStatus">정보 갱신</button>
       <p>이름: {{characterStatusFromSpring.name}}</p>
-      <p>HP: {{characterStatusFromSpring.hp}} MP: {{characterStatusFromSpring.mp }} ATK: {{ characterStatusFromSpring.atk }} LV: {{ characterStatus.level }} 직업: {{ characterStatusFromSpring.currentJob }}</p>
+      <p>HP: {{characterStatusFromSpring.hp}} MP: {{characterStatusFromSpring.mp }} ATK: {{ characterStatusFromSpring.atk }} LV: {{ characterStatusFromSpring.level }} 직업: {{ characterStatusFromSpring.currentJob }}</p>
       <p>STR: {{ characterStatusFromSpring.str }} INT: {{ characterStatusFromSpring.intelligence }} DEX: {{ characterStatusFromSpring.dex }} VIT: {{ characterStatusFromSpring.vit }} DEF: {{ characterStatusFromSpring.def }} MEN: {{ characterStatusFromSpring.men }}</p>
       <p>경험치: {{ characterStatusFromSpring.currentLeverBar }} | {{ characterStatusFromSpring.totalLevelBar }}</p>
       <p>소지금: {{ characterStatusFromSpring.money }}</p>
       <fieldset>
         <legend><h3>인벤토리 </h3></legend>
         <label>
-          <input type="checkbox" v-model="inventoryView">
+          <input type="checkbox" v-model="inventoryView" @click="viewCharacterInventory">
           아이템 목록
           <button v-on:click="equipItem()">아이템 장착!</button>
         </label>
@@ -22,16 +23,16 @@
             <th align="center" width="80">사용</th>
             <th align="center" width="40">장착</th>
           </tr>
-          <tr v-for="(inventoryItems, index) in characterStatus.inventory" :key="index">
+          <tr v-for="(inventoryItems, index) in characterInventory" :key="index">
             <th align="center" width="40"> {{ index + 1 }}</th>
             <th align="center" width="120"> {{ inventoryItems.name }}</th>
-            <th align="center" width="320"> {{ inventoryItems.effect.description }}</th>
+            <th align="center" width="320"> {{ inventoryItems.description }}</th>
             <th align="center" width="80">
               <button v-on:click="useItemInInventory(index)">아이템 사용</button>
             </th>
             <th align="center" width="40">
               <label>
-                <input type="checkbox" v-model="characterStatus.inventoryValue" :value="index">
+                <input type="checkbox" v-model="inventoryUsingItemValue" :value="index">
               </label>
             </th>
           </tr>
@@ -46,55 +47,33 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "CharacterStatusManager",
+  name: "CharacterManager",
   mounted() {
     this.viewCharacterStatus()
   },
+
   data() {
     return {
       inventoryView: true,
       characterStatusFromSpring: null,
-      characterStatus: {
-        level: 1,
-        hp: 50,
-        mp: 30,
-        itemAtk: 0,
-        defaultAtk: 10,
-        atk: 10,
-        str: 10,
-        intelligence: 10,
-        dex: 10,
-        vit: 10,
-        def: 10,
-        men: 0,
-        totalLevelBar: 10,
-        currentLevelBar: 0,
-        money: 0,
-        currentJob: '모험가',
-        inventory: [],
-        inventoryValue: [],
-        addedStatus: {
-          hp: 0,
-          mp: 0,
-          atk: 0,
-          str: 0,
-          intelligence: 0,
-          dex: 0,
-          vit: 0,
-          def: 0,
-          men: 0
-        }
-      }
+      characterInventory: [],
+      inventoryUsingItemValue: [],
     }
   },
 
   methods: {
-    ...mapActions(['requestCharacterStatus']),
+
+    ...mapActions(['requestCharacterStatus', 'requestCharacterInventory']),
     async viewCharacterStatus() {
       console.log('viewCharacterStatus')
       await this.requestCharacterStatus()
       this.characterStatusFromSpring = this.$store.state.characterStatus
-      this.characterStatusFromSpring.currentLevelBar = this.$store.state.characterStatus.currentLevelBar
+    },
+
+    async viewCharacterInventory() {
+      console.log('viewCharacterInventory')
+      await this.requestCharacterInventory()
+      this.characterInventory = this.$store.state.characterInventory
     },
 
     equipItem() {
@@ -142,37 +121,7 @@ export default {
   },
 
   beforeUpdate() {
-    if(this.characterStatus.level == 99) { return }
 
-    while (this.characterStatus.currentLevelBar >= this.characterStatus.totalLevelBar) {
-      this.characterStatus.currentLevelBar =
-          parseInt(this.characterStatus.currentLevelBar - this.characterStatus.totalLevelBar)
-
-      this.characterStatus.level += 1
-      this.characterStatus.hp = parseInt(this.characterStatus.hp * 1.05)
-      this.characterStatus.mp = parseInt(this.characterStatus.mp * 1.05)
-      this.characterStatus.defaultAtk += 4
-      this.characterStatus.atk += 4
-      this.characterStatus.def += 1
-      this.characterStatus.str += 3
-      this.characterStatus.intelligence += 1
-      this.characterStatus.dex += 2
-      this.characterStatus.vit += 3
-      this.characterStatus.men += 1
-
-      if(this.characterStatus.level < 10){
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.2)
-      } else if(this.characterStatus.level < 30) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.3)
-      } else if(this.characterStatus < 50) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.1)
-      } else if(this.characterStatus.level < 100) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.3)
-      }
-
-    }
-
-    /* before update end */
   }
 
 }

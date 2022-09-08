@@ -2,15 +2,18 @@ package kr.eddi.demo.entity.vue.thirthyoneth;
 
 
 import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigInteger;
 
 @Getter
+@Setter
 public class Character {
 
     private final String KNIGHT = "기사";
 
-
     private String name;
-    private String level;
+    private int level = 1;
     private int hp;
     private int mp;
     private int atk;
@@ -25,11 +28,14 @@ public class Character {
 
     private int totalLevelBar = 10;
     private int currentLeverBar = 0 ;
-    private int money = 0;
+    private Integer money = 1000000000;
     private String currentJob;
+
+    private Inventory characterInventory;
 
     public Character(String name) {
         this.name = name;
+        this.characterInventory = new Inventory(this.name);
     }
 
     public void setJob(String job) {

@@ -2,15 +2,14 @@ package kr.eddi.demo.controller.vue.rpg.thirthyoneth;
 
 
 
+import kr.eddi.demo.controller.vue.rpg.thirthyoneth.requested.RequestedBuyItem;
 import kr.eddi.demo.entity.vue.thirthyoneth.*;
 import kr.eddi.demo.entity.vue.thirthyoneth.Character;
 import kr.eddi.demo.entity.vue.thirthyoneth.Monster.MonsterManager;
 import kr.eddi.demo.entity.vue.thirthyoneth.Monster.Monster;
-import kr.eddi.demo.utility.fourth.CustomRandomNumber;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -19,6 +18,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class RPGController {
 
+
+    private CharacterManager characterManager = new CharacterManager();
+    public RPGController() {
+        characterManager.makeCharacter("모험가 1", "기사");
+    }
 
     @GetMapping("/random-shop-item-lists")
     public List<ShopItem> randomShopItemLists() {
@@ -41,22 +45,33 @@ public class RPGController {
 
 
 
-     @GetMapping("/character-info")
-    public Character characterInfo() {
+    @GetMapping("/character-status")
+    public Character characterStatus() {
         log.info("characterInfo()");
-
-        CharacterManager characterManager = new CharacterManager();
-        characterManager.makeCharacter("모험가 1", "기사");
         return characterManager.getCharacter();
     }
 
 
 
-    /* 아무리 해도 인벤토리 확인: null | 총금액: 0 로 나온다... */
-    @PostMapping("/buy-items")
-    public void BuyItems(@RequestBody Inventory inventory) {
-        log.info("인벤토리 확인: " + inventory.getCheckedItem() + " | 총금액: " + inventory.getTotalPrice());
+    @PostMapping("/buy_item")
+    public String BuyItems(@RequestBody RequestedBuyItem requestedBuyItem) {
+
+        requestedBuyItem.calcBuyList(); // 총금액 계산
+        log.info("BuyItems() - 구매 요청 아이템 확인: " + requestedBuyItem.getItemList() + " | " + requestedBuyItem.getTotalPrice());
+
+        if(characterManager.getCharacter().getMoney() >= requestedBuyItem.getTotalPrice()) {
+            characterManager.addItemToInventory(requestedBuyItem); // 캐릭터 인벤토리에 아이템 추가
+            characterManager.calcMoney(requestedBuyItem.getTotalPrice()); // 캐릭터 소지금 차감
+            log.info("캐릭터 소지금: " + characterManager.getCharacter().getMoney());
+            return "구매 완료";
+        } else {
+            return "소지금이 부족합니다.";
+        }
     }
 
-
+    @GetMapping("/character-inventory")
+    public List<ShopItem> characterInventory() {
+        log.info("characterInventory()");
+        return characterManager.getCharacter().getCharacterInventory().getInventoryItems();
+    }
 }
