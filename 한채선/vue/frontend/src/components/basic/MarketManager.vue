@@ -6,7 +6,7 @@
         <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
         판매 목록
       </label>
-      <button type="submit" v-on:click="calcBuyList">구매확정</button>
+      <button type="submit" v-on:click="requestBuyList">구매확정</button>
       <table border="1" v-if="shopView">
         <tr>
           <th align="center" width="40">번호</th>
@@ -35,7 +35,6 @@
 <script>
 
 import {mapActions} from "vuex";
-import axios from "axios";
 
 export default {
   name: "MarketManager",
@@ -44,7 +43,7 @@ export default {
       shopView: true,
       shopList: [],
       shopListValue: [],
-      checkedItem: [],
+      shopCheckedItem: [],
       totalPrice: 0,
     }
   },
@@ -56,14 +55,14 @@ export default {
       this.shopList = this.$store.state.randomShopItem
     },
 
-    calcBuyList(payload) {
+    requestBuyList() {
       let tmpSum = 0
 
       for (let i = 0; i < this.shopListValue.length; i++) {
         for (let j = 0; j < this.shopList.length; j++) {
           if(this.shopListValue[i] === j) {
             tmpSum += this.shopList[j].price
-            this.checkedItem.push(this.shopList[j])
+            this.shopCheckedItem.push(this.shopList[j])
             break
           }
         }
@@ -71,16 +70,8 @@ export default {
 
       this.totalPrice = tmpSum
 
-      const { totalPrice, checkedItem } = payload
-      axios.post('http://localhost:7776/31th/rpg-game-controller/buy-items',
-          { totalPrice, checkedItem })
-          .then(() => {
-            alert('구매 요청 완료')
-          })
-          .catch(() => {
-            alert('오류 발생!')
-          })
-      console.log("calcBuyList")
+      const { totalPrice, shopCheckedItem } = this
+      this.$emit('submit', {totalPrice, shopCheckedItem})
     },
 
 
