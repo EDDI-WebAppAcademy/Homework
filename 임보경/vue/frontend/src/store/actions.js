@@ -1,5 +1,7 @@
 import {
     REQUEST_CHARACTER_STATUS_DATA,
+    REQUEST_EQUIPMENT_DATA,
+    REQUEST_INVENTORY_DATA,
     REQUEST_MONSTER_DATA,
     REQUEST_STOCK_DATA,
 } from './mutation-types'
@@ -29,8 +31,40 @@ export default {
     requestStockData ({ commit }) {
         return axios.get('http://localhost:7777/make-game-alone/start/stock-up')
             .then((res) => {
-                console.log("데이터가 들어가나요?")
                 commit(REQUEST_STOCK_DATA, res.data)
             })
     },
+
+    requestInventoryData ({ commit }) {
+        return axios.get('http://localhost:7777/make-game-alone/start/show-my-inven')
+            .then((res) => {
+                commit(REQUEST_INVENTORY_DATA, res.data)
+            })
+    },
+
+    requestEquipmentData ({ commit }) {
+        return axios.get('http://localhost:7777/make-game-alone/start/current-equip')
+            .then((res) => {
+                commit(REQUEST_EQUIPMENT_DATA, res.data)
+            })
+    },
+
+    //데이터 보내기
+    requestBuyItem ({ commit }, payload) {
+        return axios.post('http://localhost:7777/make-game-alone/start/buy-items',
+            { shoppingCart: payload })
+            .then((res) => {
+                alert(res.data)
+                commit()
+            })
+    },
+
+    requestEquipItem({ commit }, payload) {
+        return axios.post('http://localhost:7777/make-game-alone/start/equipment',
+            { receiveEquipItem : payload })
+            .then((res) => {
+                alert(res.data + "전송 완료")
+                commit()
+            })
+    }
 }

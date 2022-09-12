@@ -3,8 +3,8 @@
     <h2> 플레이어 정보 </h2>
 
     <div class="buttons">
-    <button @click="callRequestData" >로그인</button>
-    <button disabled>정보갱신</button>
+<!--    <button @click="callRequestData" >로그인</button>-->
+    <button @click="update">정보갱신</button>
     </div>
 
     <h3>스테이터스</h3>
@@ -17,7 +17,31 @@
       <li> EXP : {{ status.currentExpBar }} / {{ status.totalExpBar }}</li>
     </ul>
 
+
+    <h3>인벤토리</h3>
+    <ul>
+      <li v-for="(item, index) in inventory" :key="index">
+        <span>
+          {{ item.name }} | {{ item.description }}
+        </span>
+
+        <span v-if="item.itemType === '포션'">
+          <button>사용하기</button>
+        </span>
+        <span v-if="item.itemType === '무기'">
+          <button @click="equipItem(index)" :key="index">장비하기</button>
+        </span>
+      </li>
+    </ul>
+
     <h3>장비</h3>
+    <ul>
+      <li v-for="(item, index) in equipments" :key="index">
+        <span>
+          {{ item.name }} | {{ item.description }}
+        </span>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -28,20 +52,51 @@ export default {
   name: "PlayerComponent",
   data() {
     return {
-      status: ''
-      // mapState > states안의 값을 위의 player 저장
+      status: '',
+      inventory: '',
+      equipments:'',
     }
-  },
+ },
+
+
   methods : {
-    ...mapActions(['requestCharacterStatusData']),
-    //actions에 있는 메소드를 가져옴. actions는 유틸리티 메서드
+    ...mapActions([
+        'requestCharacterStatusData',
+        'requestInventoryData',
+        'requestEquipmentData',
+        'requestEquipItem',
+    ]),
+
+    update () {
+      this.callRequestData()
+      this.callMyInventory()
+      this.callMyEquipment()
+    },
+
     async callRequestData() {
-      // await 된 녀석이 일을 끝날 때까지 async 하지마
-      // 쓰레드를 쓰는 이유 : 동시에 여러 일을 처리한다. > 빠르다.
       await this.requestCharacterStatusData()
       this.status = this.$store.state.characterStatusData
     },
-  }
+
+    async callMyInventory() {
+      await this.requestInventoryData()
+      this.inventory = this.$store.state.inventoryData
+    },
+
+    async callMyEquipment() {
+      await this.requestEquipmentData()
+      this.equipments = this.$store.state.equipmentData
+    },
+
+    async equipItem(index) {
+      let payload = []
+      payload.push(this.inventory[index])
+
+      alert(payload)
+      await this.requestEquipItem(payload)
+    },
+  },
+
 }
 </script>
 
@@ -51,10 +106,16 @@ export default {
   justify-content: space-evenly;
 }
 ul {
-  padding: 0 20px;
+  padding: 0 40px;
 }
 ul, li {
   list-style: none;
   margin: 2px 0;
+
+}
+ul li {
+  display:flex;
+  justify-content: space-between;
+  margin: 4px 0;
 }
 </style>
