@@ -24,7 +24,9 @@ export default {
     this.setCharacterStatus()
   },
   methods:{
-    ...mapActions(['requestCharacterStatus']),
+    ...mapActions([
+        'requestCharacterStatus'
+    ]),
     async setCharacterStatus () {
       await this.requestCharacterStatus()
       this.characterStatus = this.$store.state.characterStatus

@@ -1,7 +1,11 @@
 import {
     REQUEST_DATA_FROM_SPRING,
     REQUEST_RANDOM_SHOP_ITEM,
-    REQUEST_MY_INVENTORY, REQUEST_MANY_MONSTERS, REQUEST_DEFAULT_MONSTERS, REQUEST_CHARACTER_STATUS
+    REQUEST_MY_INVENTORY,
+    REQUEST_MANY_MONSTERS,
+    REQUEST_DEFAULT_MONSTERS,
+    REQUEST_CHARACTER_STATUS,
+    REQUEST_EXP_TRADE_SYSTEM
 } from './mutation-types'
 
 export default {
@@ -22,6 +26,9 @@ export default {
     },
     [REQUEST_CHARACTER_STATUS] (state, passingData) {
         state.characterStatus = passingData
+    },
+    [REQUEST_EXP_TRADE_SYSTEM] (state, passingData) {
+        state.expTradeSystem = passingData
     },
 
 }

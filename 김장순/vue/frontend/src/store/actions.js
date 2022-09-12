@@ -1,6 +1,10 @@
 import {
     REQUEST_CHARACTER_STATUS,
-    REQUEST_DATA_FROM_SPRING, REQUEST_DEFAULT_MONSTERS, REQUEST_MANY_MONSTERS, REQUEST_MY_INVENTORY,
+    REQUEST_DATA_FROM_SPRING,
+    REQUEST_DEFAULT_MONSTERS,
+    REQUEST_EXP_TRADE_SYSTEM,
+    REQUEST_MANY_MONSTERS,
+    REQUEST_MY_INVENTORY,
     REQUEST_RANDOM_SHOP_ITEM,
 } from './mutation-types'
 
@@ -69,6 +73,14 @@ export default {
         return axios.post('http://localhost:7777/31th/rpg-game3/character-status')
             .then((res) => {
                 commit(REQUEST_CHARACTER_STATUS, res.data)
+            })
+    },
+    requestExpTradeSystem ({commit}) {
+        console.log("requestExpTradeSystem")
+
+        return axios.get('http://localhost:7777/31th/rpg-game3/exp-trade-system')
+            .then((res) => {
+                commit(REQUEST_EXP_TRADE_SYSTEM, res.data)
             })
     },
 }
