@@ -1,4 +1,5 @@
 import {
+    REQUEST_CHARACTER_STATUS,
     REQUEST_DATA_FROM_SPRING, REQUEST_DEFAULT_MONSTERS, REQUEST_MANY_MONSTERS, REQUEST_MY_INVENTORY,
     REQUEST_RANDOM_SHOP_ITEM,
 } from './mutation-types'
@@ -49,7 +50,7 @@ export default {
     requestManyMonsters ({ commit }) {
         console.log("requestManyMonsters()")
 
-        return axios.post('http://localhost:7777/31th/rpg-game/many-monsters')
+        return axios.post('http://localhost:7777/31th/rpg-game2/many-monsters')
             .then((res) => {
                 commit(REQUEST_MANY_MONSTERS, res.data)
             })
@@ -57,9 +58,17 @@ export default {
     requestDefaultMonsters ({ commit }) {
         console.log("requestDefaultMonsters()")
 
-        return axios.post('http://localhost:7777/31th/rpg-game/default-monsters')
+        return axios.post('http://localhost:7777/31th/rpg-game2/default-monsters')
             .then((res) => {
                 commit(REQUEST_DEFAULT_MONSTERS, res.data)
             })
-    }
+    },
+    requestCharacterStatus ({commit}) {
+        console.log("requestCharacterStatus")
+
+        return axios.post('http://localhost:7777/31th/rpg-game3/character-status')
+            .then((res) => {
+                commit(REQUEST_CHARACTER_STATUS, res.data)
+            })
+    },
 }

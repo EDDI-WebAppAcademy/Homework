@@ -3,5 +3,6 @@ export default {
     randomShopItem: [],
     myInventory: [],
     manyMonsters: [],
-    defaultMonsters:[]
+    defaultMonsters:[],
+    characterStatus: {}
 }
