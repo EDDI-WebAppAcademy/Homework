@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <p class="content" id="content1">문단1</p>
+
+    <p class="content" id="content2">문단2</p>
+
+    <p class="content" id="content3">문단3</p>
+
+    <button id="btn" >클릭 전</button>
+
+</div>
+
+
+<button onclick="changeContent1();">내용변경</button>
+
+<button onclick="changeContent2();">색상변경</button>
+
+<button id="jquerybtn">이벤트처리</button>
+
+
+
+<script>
+    function changeContent1() {
+        var text1 = document.getElementById('content1')
+        text1.innerHTML = "문단1이 변경되었습니다"
+    }
+    function changeContent2() {
+        var text2 = document.getElementById('content2')
+        text2.style.color = 'red'
+    }
+
+    let button = document.getElementById('btn');
+        button.addEventListener('click', function () {
+
+                button.innerHTML = '클릭 후';
+
+                button.style.color = 'red';
+
+            }
+        )
+
+</script>
+
+
+</body>
+</html>
