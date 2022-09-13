@@ -19,17 +19,20 @@ export default {
     }
   },
   methods:{
-    ...mapActions(['requestCharacterDefaultStatus'])
+    ...mapActions([
+        'requestCharacterDefaultStatus',
+        'requestEquipItemsSize'
+    ])
     },
   async mounted() {
     await this.requestCharacterDefaultStatus()
     this.characterStatus = this.$store.state.CharacterStatus
   },
-  // async beforeUpdate() {
-  //   await this.requestCharacterDefaultStatus()
-  //   this.characterStatus = this.$store.state.CharacterStatus
-  // }
-}
+  Update() {
+    this.requestCharacterDefaultStatus()
+    this.characterStatus = this.$store.state.CharacterStatus
+    }
+  }
 </script>
 
 <style scoped>

@@ -4,7 +4,7 @@ import {
     REQUEST_INVENTORY_ITEMS,
     REQUEST_DEFAULT_CHARACTER_STATUS,
     REQUEST_DEFAULT_MONSTER_LIST,
-    REQUEST_HUNDRED_MONSTER_LIST
+    REQUEST_HUNDRED_MONSTER_LIST,
 } from './mutation-types'
 
 
@@ -26,5 +26,6 @@ export default {
     },
     [REQUEST_HUNDRED_MONSTER_LIST] (state, passingData) {
         state.hundredMonsterLIst = passingData
-    }
+    },
+
 }

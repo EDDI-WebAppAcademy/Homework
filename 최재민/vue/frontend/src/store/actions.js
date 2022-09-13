@@ -4,7 +4,8 @@ import {
     REQUEST_INVENTORY_ITEMS,
     REQUEST_DEFAULT_CHARACTER_STATUS,
     REQUEST_DEFAULT_MONSTER_LIST,
-    REQUEST_HUNDRED_MONSTER_LIST
+    REQUEST_HUNDRED_MONSTER_LIST,
+    REQUEST_EQUIP_ITEMS_SIZE
 } from './mutation-types'
 
 import axios from "axios";
@@ -40,7 +41,7 @@ export default {
         console.log("requestEquipItem()")
 
         return axios.post('http://localhost:7777/31th/rpg-game/equip-item',
-            {itemLists: payload.selectedItems})
+            {itemLists: payload})
             .then((res) => {
                 alert(res.data)
                 commit()

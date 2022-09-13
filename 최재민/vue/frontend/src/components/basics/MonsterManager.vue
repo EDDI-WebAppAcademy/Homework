@@ -26,7 +26,9 @@ export default {
     ]),
     async addHundredRandomMonster () {
       await this.requestHundredMonsterLists()
-      this.monsterLists = this.$store.state.hundredMonsterLIst
+      for (let i = 0; i < this.$store.state.hundredMonsterLIst.length; i++) {
+        this.monsterLists.push(this.$store.state.hundredMonsterLIst[i])
+      }
     },
   },
   async mounted() {
