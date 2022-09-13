@@ -18,6 +18,8 @@
     <p>{{ count }} 번 클릭했습니다.</p>
     <button v-on:click="increment">카운트 버튼</button><br/>
 
+    <market-manager/>
+
     <h3>상점</h3>
     <label>
       <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
@@ -45,6 +47,7 @@
       </tr>
     </table><br/><br/>
 
+    <inventory-manager/>
     <h3>인벤토리</h3>
     <label>
       <input type="checkbox" v-model="inventoryView">
@@ -70,6 +73,7 @@
       </tr>
     </table><br/><br/>
 
+    <experience-manager/>
     <!-- 경험치 교환 시스템
          공격력을 증가시킬 수 있는 수단이 필요
          대략 경험치 1000만당 공격력 5 증가 정도로 구현하면 적합하다 판단됨
@@ -98,6 +102,8 @@
     <p>경험치: {{ characterStatus.currentLevelBar }} / {{ characterStatus.totalLevelBar }}</p>
     <p>소지금: {{ characterStatus.money }}</p>
 
+    <character-manager/>
+
     <!-- 현재 컨텐츠 측면에서 몬스터가 매번 같은것이 추가되서 재미 요소가 반감됨(그러므로 랜덤 요소를 넣어야함) -->
     (고정)몬스터 이름: <input v-model="name">
     <button v-on:click="addFixedMonster">고정 몬스터 추가하기</button><br/>
@@ -107,6 +113,8 @@
     <button v-on:click="addManyRandomMonster">랜덤 몬스터 100마리 추가하기</button><br/>
 
     <button v-on:click="darknessTwilightBrightnessDawnRagnaBlade">황혼보다 어두운, 새벽보다 찬란한 라그나 블레이드</button><br/>
+
+    <monster-manager/>
 
     <ul>
       <li v-for="(monster, index) in monsterLists" :key="index">
@@ -134,9 +142,23 @@ const DEF = 6
 const HP_MP_INCREMENT = 50
 const OTHER_STATS_INCREMENT = 5
 
+import MonsterManager from "@/components/basics/MonsterManager";
+import CharacterManager from "@/components/basics/CharacterManager";
+import MarketManager from "@/components/basics/MarketManager";
+import InventoryManager from "@/components/basics/InventoryManager";
+import ExperienceManager from "@/components/basics/ExperienceManager";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Test",
+  components: {
+    CharacterManager,
+    'monster-manager': MonsterManager,
+    'character-manager': CharacterManager,
+    'market-manager': MarketManager,
+    'inventory-manager': InventoryManager,
+    'experience-manager': ExperienceManager,
+  },
   data() {
     return {
       expExchangeLists: ["hp", "mp", "atk", "str", "dex", "int", "def"],
@@ -261,7 +283,9 @@ export default {
           }
         }
       }
+
       this.characterStatus.itemAtk = tmpSum
+      // this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum
       this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum + this.exchangeStatus.atk
     },
     shuffleShopList () {
@@ -297,7 +321,7 @@ export default {
         }
 
         alert("물품 구매 완료!")
-      } else { alert("돈읎다 - 돈벌어와!!!") }
+      } else { alert("소지 금액 부족!") }
     },
     // clickHandler (event) {
     clickHandler: function (event) {
@@ -370,6 +394,7 @@ export default {
   },
   beforeUpdate() {
     console.log("나는 VDOM의 변화를 감지하면 무조건 동작해!")
+
     let i
 
     for (i = 0; i < this.monsterLists.length; i++) {
@@ -391,10 +416,12 @@ export default {
 
       this.characterStatus.currentLevelBar =
           parseInt(this.characterStatus.currentLevelBar - this.characterStatus.totalLevelBar)
+
       this.characterStatus.level += 1
       this.characterStatus.hp = parseInt(this.characterStatus.hp * 1.05)
       this.characterStatus.mp = parseInt(this.characterStatus.mp * 1.05)
       this.characterStatus.defaultAtk += 4
+      // this.characterStatus.atk += 4
       this.characterStatus.atk = this.characterStatus.defaultAtk + this.exchangeStatus.atk
       this.characterStatus.def += 1
       this.characterStatus.str += 3
