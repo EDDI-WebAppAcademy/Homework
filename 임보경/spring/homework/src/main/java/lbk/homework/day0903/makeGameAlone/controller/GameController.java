@@ -31,6 +31,7 @@ public class GameController {
 
         Item removeItem = requestData.getReceiveRemoveEquipItem().get(0);
         int searchCode = removeItem.getItemCode();
+        int itemAtk = requestData.getReceiveRemoveEquipItem().get(0).getAmount();
 
         //장비창에서 삭제
         for (int i = 0; i < player.getEquipment().getEquipList().size(); i++) {
@@ -41,11 +42,8 @@ public class GameController {
         //인벤으로 다시 추가
         player.getInventory().getInven().add(removeItem);
 
-        // 추가되었던 능력치 빼기
-        int itemAtk = requestData.getReceiveRemoveEquipItem().get(0).amount;
-        int defaultAtk = player.getCharacterStatus().getDefaultAtk();
-        player.getCharacterStatus().setAtk(defaultAtk);
-        player.getCharacterStatus().setAtkAdded(-itemAtk);
+        int currentAtk = player.getCharacterStatus().getAtk();
+        player.getCharacterStatus().setAtk(currentAtk - itemAtk);
     }
     @PostMapping("/start/equipment")
     public void receiveEquipItemData(@RequestBody RequestData requestData) {
@@ -66,9 +64,10 @@ public class GameController {
         // 무기라면 공격력 추가
         if (acquireItemType.equals("무기")) {
             int itemAtk = requestData.getReceiveEquipItem().get(0).amount;
+            player.getCharacterStatus().setAtkAdded(itemAtk);
+
             int defaultAtk = player.getCharacterStatus().getDefaultAtk();
             int atkAdded = player.getCharacterStatus().getAtkAdded();
-            player.getCharacterStatus().setAtkAdded(itemAtk);
             player.getCharacterStatus().setAtk(atkAdded + defaultAtk);
 
         }
