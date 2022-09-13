@@ -4,21 +4,21 @@ import lombok.Getter;
 
 @Getter
 public class CharacterStatus {
-    private Integer level = 1;
-    private Integer hp = 50;
-    private Integer mp = 30;
-    private Integer itemAtk = 0;
-    private Integer defaultAtk = 10;
-    private Integer atk = 10;
-    private Integer str = 10;
-    private Integer intelligence = 10;
-    private Integer dex = 10;
-    private Integer vit = 10;
-    private Integer def = 10;
-    private Integer men = 0;
-    private Integer totalLevelBar = 10;
-    private Integer currentLevelBar = 0;
-    private Integer money = 0;
-    private String currentJob = "모험가";
+    final Integer LEVEL = 1;
+    final Integer HP = 50;
+    final Integer MP = 30;
+    final Integer ITEMATK = 0;
+    final Integer DEFAULTATK = 10;
+    final Integer ATK = 10;
+    final Integer STR = 10;
+    final Integer INTELLIGENCE = 10;
+    final Integer DEX = 10;
+    final Integer VIT = 10;
+    final Integer DEF = 10;
+    final Integer MEN = 0;
+    final Integer TOTALLEVELBAR = 10;
+    final Integer CURRENTLEVELBAR = 0;
+    final Integer MONEY = 0;
+    final String CURRENTJOB = "모험가";
 
 }
