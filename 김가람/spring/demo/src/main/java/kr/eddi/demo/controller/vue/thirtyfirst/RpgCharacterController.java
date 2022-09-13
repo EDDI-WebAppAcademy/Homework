@@ -17,8 +17,7 @@ public class RpgCharacterController {
     public CharacterStatus characterStatus () {
         log.info("characterStatus ()");
 
-        CharacterStatus characterStatus = new CharacterStatus(1, 50, 30, 0, 10, 10, 10, 10,
-                10, 10, 10, 0, 10, 0, 0,  "모험가");
+        CharacterStatus characterStatus = new CharacterStatus();
 
         return characterStatus;
     }

@@ -4,42 +4,21 @@ import lombok.Getter;
 
 @Getter
 public class CharacterStatus {
-    private Integer level;
-    private Integer hp;
-    private Integer mp;
-    private Integer itemAtk;
-    private Integer defaultAtk;
-    private Integer atk;
-    private Integer str;
-    private Integer intelligence;
-    private Integer dex;
-    private Integer vit;
-    private Integer def;
-    private Integer men;
-    private Integer totalLevelBar;
-    private Integer currentLevelBar;
-    private Integer money;
-    private String currentJob;
+    private Integer level = 1;
+    private Integer hp = 50;
+    private Integer mp = 30;
+    private Integer itemAtk = 0;
+    private Integer defaultAtk = 10;
+    private Integer atk = 10;
+    private Integer str = 10;
+    private Integer intelligence = 10;
+    private Integer dex = 10;
+    private Integer vit = 10;
+    private Integer def = 10;
+    private Integer men = 0;
+    private Integer totalLevelBar = 10;
+    private Integer currentLevelBar = 0;
+    private Integer money = 0;
+    private String currentJob = "모험가";
 
-    public CharacterStatus (Integer level, Integer hp, Integer mp, Integer itemAtk, Integer defaultAtk, Integer atk,
-                            Integer str, Integer intelligence, Integer dex, Integer vit, Integer def, Integer men,
-                            Integer totalLevelBar, Integer currentLevelBar, Integer money, String currentJob) {
-        this.level = level;
-        this.hp = hp;
-        this.mp = mp;
-        this.itemAtk = itemAtk;
-        this.defaultAtk = defaultAtk;
-        this.atk = atk;
-        this.str = str;
-        this.intelligence = intelligence;
-        this.dex = dex;
-        this.vit = vit;
-        this.def = def;
-        this.men = men;
-        this.totalLevelBar = totalLevelBar;
-        this.currentLevelBar = currentLevelBar;
-        this.money = money;
-        this.currentJob = currentJob;
-
-    }
 }
