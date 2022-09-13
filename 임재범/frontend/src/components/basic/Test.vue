@@ -43,40 +43,44 @@
       </tr>
     </table>
     <p>캐릭터 상태 창</p>
+    <h3>인벤토리</h3>
     <label>
-      <input type="checkbox" v-model="inventoryView" v-on:click="openInventory()">
+      <input type="checkbox" v-model="inventoryView">
       인벤토리 열기
     </label>
-    <button v-on:click="calcBuyList()">선택한 아이템 사용하기</button>
+    <button v-on:click="equipItem()">아이템 장착</button>
+    <button v-on:click="takePumpingItem()">펌핑아이템 복용</button>
     <table border="1" v-if="inventoryView">
       <tr>
         <th align="center" width="40">번호</th>
         <th align="center" width="120">아이템명</th>
-        <th align="center" width="160">가격</th>
         <th align="center" width="320">아이템 설명</th>
-        <th align="center" width="120">사용하기</th>
+        <th align="center" width="40">사용</th>
       </tr>
-      <tr v-for="(item, index) in inventoryList" :key="index">
-        <th align="center" width="40">{{ index }}</th>
-        <th align="center" width="120">{{ inventoryList.name }}</th>
-        <th align="center" width="160">{{ inventoryList.price }}</th>
-        <th align="center" width="320">{{inventoryList.effect.description }}</th>
+      <tr v-for="(itemList, idx) in myInventory" :key="idx">
+        <th align="center" width="40">{{ idx + 1 }}</th>
+        <th align="center" width="120">{{ itemList.name }}</th>
+        <th align="center" width="320">{{ itemList.effect.description }}</th>
         <th align="center" width="40">
           <label>
-            <input type="checkbox" v-model="shopListValue" :value="index">
+            <input type="checkbox" v-model="myInventoryValue" :value="idx">
           </label>
         </th>
       </tr>
-    </table>
+    </table><br/><br/>
     <p>HP: {{ characterStatus.hp }} MP: {{ characterStatus.mp }} ATK: {{ characterStatus.atk }} Lv: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob }}</p>
     <p>STR: {{ characterStatus.str }} INT: {{ characterStatus.intelligence }} DEX: {{ characterStatus.dex }} VIT: {{ characterStatus.vit }} DEF: {{ characterStatus.def }} MEN: {{ characterStatus.men }}</p>
     <p>경험치: {{ characterStatus.currentLevelBar }} / {{ characterStatus.totalLevelBar }}</p>
+    <button v-on:click="exp10MillionToAtk">경험치 1000만을 공격력 1로 교환</button><br/>
+    <button v-on:click="exp100MillionToAtk">경험치 1억을 공격력 10으로 교환</button><br/>
+
     <p>소지금: {{ characterStatus.money }}</p>
 
     (고정)몬스터 이름: <input v-model="name">
     <button v-on:click="addFixedMonster">고정 몬스터 추가하기</button><br/>
     <button v-on:click="addRandomMonster">랜덤 몬스터 추가하기</button><br/>
     <button v-on:click="addManyRandomMonster">랜덤 몬스터 100마리 추가하기</button><br/>
+    <button v-on:click="addEventMonster">이벤트 몹 생성!</button><br/>
     <button v-on:click="darknessTwilightBrightnessDawnRagnaBlade">황혼보다 어두운, 새벽보다 찬란한 라그나 블레이드</button><br/>
 
     <ul>
@@ -99,16 +103,19 @@ export default {
   data() {
     return { shopView: false,
       inventoryView: false,
-      inventoryList: [],
+      myInventory: [],
+      myInventoryValue: [],
 
       shopList: [],
       shopListValue: [],
       itemBooks: [
         { name: 'HP 포션 I', price: 50, effect: { description: 'hp 200 회복', amount: 200 }},
         { name: 'HP 포션 II', price: 200, effect: { description: 'hp 600 회복', amount: 600 }},
-        { name: '낡은 검', price: 5000000, effect: { description: '무기 공격력 100', atk: 100 }},
+        { name: '낡은 검', price: 500000, effect: { description: '무기 공격력 100', atk: 100 }},
         { name: '검', price: 50000000, effect: { description: '무기 공격력 200', atk: 200 }},
         { name: '강철 검', price: 150000000, effect: { description: '무기 공격력 300', atk: 300 }},
+        { name: '산해진미', price: 100000000, effect: { description: '최대체력200 증가', pumping: 200 }}, //최대체력을 늘려줌 이하 펌핑템이라 칭함.
+
       ],
       name: "키메라",
       testMsg: "My Message",
@@ -139,6 +146,7 @@ export default {
           { monsterId: 19, name: '미노타우루스', hp: 10000, exp: 1500, dropMoney: 1000 },
           { monsterId: 20, name: '드레이크', hp: 20000, exp: 5000, dropMoney: 50000 },
           { monsterId: 21, name: '죽음의 군주', hp: 1000000, exp: 200000, dropMoney: 1000000 },
+          { monsterId: 9999, name: '하이퍼 메탈 슬라임', hp: 1000, exp: 5000000, dropMoney: 10000000 }
             ],
       monsterLists: [
         { id: 1, name: '슬라임', hp: 50 },
@@ -165,7 +173,57 @@ export default {
       },
     }
   },
-  methods: { shuffleShopList () {
+  methods: {
+
+    //마이너스가 되어도 경험치가 팔아지는 버그 발생함.
+    exp10MillionToAtk () {
+      if(this.characterStatus.level === 99) {
+        if(this.characterStatus.currentLevelBar>=10000000) {
+          this.characterStatus.currentLevelBar -= 10000000 //경험치 천만 깎이고
+          this.characterStatus.atk += 1 //공격력 1 오름.
+        }
+        else{
+          alert("경험을 더 쌓고 오세요.")
+        }
+      }
+      else{
+        alert("레벨 99달성 이후 사용할 수 있는 메뉴입니다.")
+      }
+    },
+
+    exp100MillionToAtk () {
+      if(this.characterStatus.level === 99) {
+        if(this.characterStatus.currentLevelBar>=100000000) {
+          this.characterStatus.currentLevelBar -= 100000000 //경험치 1억 깎이고
+          this.characterStatus.atk += 10 //공격력 10 오름.
+        }
+        else{
+          alert("경험을 더 쌓고 오세요.")
+        }
+      }
+      else{
+        alert("레벨 99달성 이후 사용할 수 있는 메뉴입니다.")  //나름의 리뷰를 해보자면, 이런식으로 상수가 많아지면 게임이 장수할수록 쓰레기 코드가 되어버릴 가능성이 높아보임.
+      }
+
+    },
+
+
+    //이벤트몹 10마리 생성, 렙99찍고 실험하기가 쉽지 않아서 추가
+    addEventMonster () {
+      for(let i=0; i<10; i++ ) {
+        let max = this.findCurrentMonsterListMax()
+
+        let eventMonsterBookIdx = 21
+        this.monsterLists.push({
+          id: max + 1,
+          name: this.monsterBooks[eventMonsterBookIdx].name,
+          hp: this.monsterBooks[eventMonsterBookIdx].hp,
+
+        })
+      }
+    },
+
+    shuffleShopList () {
       if (!this.shopView) {
         this.shopListValue = []
       }
@@ -175,25 +233,65 @@ export default {
       }
     },
 
-    openInventory() {
-      if (!this.inventoryView) {
-        this.inventoryList = []
+    //산해진미를 클릭 후 아이템 장착 버튼을 눌렀을 때 ATK가 NAN이 되는 이슈를 해결해야함.
+    equipItem () {
+      let tmpSum = 0
+      //myInventoryValue 배열에는 내가 인벤토리내에서 체크를 한 아이템들이 들어있다.
+      for (let i = 0; i < this.myInventoryValue.length; i++) {
+        for (let j = 0; j < this.myInventory.length; j++) {
+          if (this.myInventoryValue[i] === j) {
+            //내가 체크를 한 인벤토리내의 아이템에 한해서, 공격력이 오름. 두 개 이상 장착할 수 있기 때문에 muInventoryValue를 돌며 무기 총 공격력 만큼 올림.
+            tmpSum += this.myInventory[j].effect.atk
+            break
+          }
+        }
       }
+      this.characterStatus.itemAtk = tmpSum //템공격력 수치
+      this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum //스텟공 + 템공을 더한게 캐릭터의 총공격력 수치.
+      },
+
+    //산해진미를 세개이상 복용할 때, 한 번에 세개가 먹어지지 않고, 두개가 복용되고 하나가 복용되는 이슈.
+    takePumpingItem () {
+      let tmpSum = 0
+      let cnt = 0
+
+      for (let i = 0; i < this.myInventoryValue.length; i++) {
+        for (let j = 0; j < this.myInventory.length; j++) {
+          if (this.myInventoryValue[i] === j) {
+            //
+            tmpSum += this.myInventory[j].effect.pumping //지워야하는 j번째 를 기록해둬야함. 그래야 사용후 산해진미 제거 가능.
+            this.myInventory.splice(j, 1) //이렇게 하면되나 오 미띤 성공
+            cnt++
+            break
+          }
+        }
+      }
+      if(cnt>=1) {
+        this.characterStatus.hp += tmpSum
+        alert("최대체력이 200만큼 증가했습니다!")
+      }//체력 추가와 출력메시지는 최소 하나 이상의 산해진미가 인벤토리에서 클릭되었을때만 작동하도록 함.
     },
 
+    //구매목록의 가격 정산. 구매 가능한지 계산해줌.
     calcBuyList () {
       let tmpSum = 0
       for (let i = 0; i < this.shopListValue.length; i++) {
         for (let j = 0; j < this.shopList.length; j++) {
           if (this.shopListValue[i] === j) {
             tmpSum += this.shopList[j].price
-            this.inventoryList += this.shopList[j]
             break
           }
         }
       }
       if (this.characterStatus.money - tmpSum >= 0) {
         this.characterStatus.money -= tmpSum
+
+        for (let i = 0; i < this.shopListValue.length; i++) {
+          this.myInventory.push({
+            name: this.shopList[this.shopListValue[i]].name,
+            effect: this.shopList[this.shopListValue[i]].effect
+          })
+        }
 
         alert("물품 구매 완료!")
 
@@ -213,6 +311,7 @@ export default {
     },addFixedMonster () {
       // let은 javascript에서 사용하는 변수 개념입니다.
       // java에서 Object와 유사
+      //이것을 응용하여 이벤트몹 생성하는 버튼을 만들어보려 했으나, 잘 안됨.
       let max = this.findCurrentMonsterListMax()
       this.monsterLists.push({
         id: max + 1,
@@ -226,6 +325,7 @@ export default {
       // splice(index, 1)이므로 index에 해당하는 정보 1개를 삭제한다라는 뜻입니다.
       this.monsterLists.splice(index, 1)
     },
+    //이번엔 얘를 이용해서 이벤트몹 확정생성하는 버튼을 만들어 봅세.
     addRandomMonster () {
       let max = this.findCurrentMonsterListMax()
       // ex) 20개라면 0 ~ 19.xxx 까지인데 floor 버림이니까 0 ~ 19까지
@@ -265,6 +365,7 @@ export default {
     console.log("나는 VDOM의 변화를 감지하면 무조건 동작해!")
 
     let i
+
     for (i = 0; i < this.monsterLists.length; i++) {
       if (this.monsterLists[i].hp <= 0) {
         for (let j = 0; j < this.monsterBooks.length; j++) {
@@ -276,6 +377,8 @@ export default {
         this.monsterLists.splice(i, 1)
       }
     }
+    if (this.characterStatus.level == 99) { return; }
+
     while (this.characterStatus.currentLevelBar >= this.characterStatus.totalLevelBar) {
       this.characterStatus.currentLevelBar =
           parseInt(this.characterStatus.currentLevelBar - this.characterStatus.totalLevelBar)
@@ -293,17 +396,15 @@ export default {
       this.characterStatus.men += 1
 
       if (this.characterStatus.level < 10) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.1)
+        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.2)
       } else if (this.characterStatus.level < 30) {
         this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.3)
       } else if (this.characterStatus.level < 50) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.5)
+        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.1)
       } else if (this.characterStatus.level < 70) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.6)
-      } else if (this.characterStatus.level < 80) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.7)
+        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.3)
       } else if (this.characterStatus.level < 100) {
-        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.8)
+        this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.1)
       }
     }
   }
