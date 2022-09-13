@@ -3,16 +3,22 @@
   <fieldset>
     <legend><h3>경험치 교환소 (lv99~ Open) </h3></legend>
     <p>누적된 경험치를 추가 스테이터스 수치로 교환 가능합니다.</p>
-    <p>1회당 소모 경험치: 100000000 <button v-on:click="exchangingStatus()" v-if="characterStatus.level >= 10">교환</button> </p>
-    <table border="1" v-if="characterStatus.level >= 10">
+    <p>1회당 소모 경험치: 100000000 <!--<button v-on:click="viewExpExchangeStatusList()">교환</button>--></p>
+    <label>
+      <input type="checkbox" v-model="exchangeStatusListView">
+      경험치 목록
+    </label>
+    <table border="1" v-if="exchangeStatusListView">
       <tr>
         <th align="center" width="40">번호</th>
         <th align="center" width="120">스테이터스</th>
+        <th align="center" width="60">수치</th>
         <th align="center" width="40">교환</th>
       </tr>
-      <tr v-for="(exchangingStatus, idx) in exchangeStatusList" :key="idx">
+      <tr v-for="(exchangeStatus, idx) in exchangeStatusList" :key="idx">
         <th align="center" width="40">{{ idx + 1 }}</th>
-        <th align="center" width="120">{{ exchangingStatus.status}}</th>
+        <th align="center" width="120">{{ exchangeStatus.statusName }}</th>
+        <th align="center" width="120">{{ exchangeStatus.value }}</th>
         <th align="center" width="40">
           <label>
             <input type="checkbox" v-model="exchangeStatusValue" :value="idx">
@@ -25,46 +31,51 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
 export default {
   name: "ExpManager",
   data() {
     return {
+      exchangeStatusListView: true,
       exchangeStatusValue: [],
-
-      exchangeStatusList: [
-        { status: 'HP', plus: 50 },
-        { status: 'MP', plus: 50 },
-        { status: 'ATK', plus: 5 },
-        { status: 'DEF', plus: 5 },
-        { status: 'STR', plus: 5 },
-        { status: 'INT', plus: 5 },
-        { status: 'DEX', plus: 5 },
-        { status: 'VIT', plus: 5 },
-        { status: 'MEN', plus: 5 },
-      ],
+      exchangeStatusList: [],
     }
   },
+  mounted() {
+    this.viewExpExchangeStatusList();
+  },
   methods: {
-    exchangingStatus(){
-      let tmpExp = 0;
 
-      for (let i = 0; i < this.exchangeStatusValue.length; i++) {
-        for (let j = 0; j < this.exchangeStatusList.length; j++) {
-          if(this.exchangeStatusValue[i] == j){
-            tmpExp += 10000
-            // 테스트를 위해 필요한 경험치 수치를 조정하였음
-            break
-          }
-        }
-      }
-
-      if (this.characterStatus.currentLevelBar - tmpExp >= 0) {
-        this.characterStatus.currentLevelBar -= tmpExp
-        for (let i = 0; i < this.exchangeStatusValue.length; i++) {
-          this.addExchangedStatus(this.exchangeStatusList[this.exchangeStatusValue[i]].status)
-        }
-      }
+    ...mapActions(['requestExpExchangeStatusList']),
+    async viewExpExchangeStatusList() {
+      console.log('viewExpExchangeStatusList()')
+      await this.requestExpExchangeStatusList()
+      this.exchangeStatusList = this.$store.state.expChangeStatusList
     },
+
+
+
+
+    /*   exchangingStatus(){
+         let tmpExp = 0;
+
+         for (let i = 0; i < this.exchangeStatusValue.length; i++) {
+           for (let j = 0; j < this.exchangeStatusList.length; j++) {
+             if(this.exchangeStatusValue[i] == j){
+               tmpExp += 10000
+               // 테스트를 위해 필요한 경험치 수치를 조정하였음
+               break
+             }
+           }
+         }
+
+         if (this.characterStatus.currentLevelBar - tmpExp >= 0) {
+           this.characterStatus.currentLevelBar -= tmpExp
+           for (let i = 0; i < this.exchangeStatusValue.length; i++) {
+             this.addExchangedStatus(this.exchangeStatusList[this.exchangeStatusValue[i]].status)
+           }
+         }
+       },*/
 
     addExchangedStatus(statusName) {
       switch (statusName) {

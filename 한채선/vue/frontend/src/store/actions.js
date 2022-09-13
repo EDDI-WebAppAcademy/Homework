@@ -2,7 +2,9 @@ import {
     REQUEST_DATA_FROM_SPRING,
     REQUEST_RANDOM_MONSTER,
     REQUEST_RANDOM_SHOP_ITEM,
-    REQUEST_CHARACTER_STATUS, REQUEST_CHARACTER_INVENTORY
+    REQUEST_CHARACTER_STATUS,
+    REQUEST_CHARACTER_INVENTORY,
+    REQUEST_EXP_EXCHANGE_STATUS_LIST
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -62,6 +64,15 @@ export default {
         return axios.get('http://localhost:7776/31th/rpg-game-controller/character-inventory')
             .then((res) => {
                 commit(REQUEST_CHARACTER_INVENTORY, res.data)
+            })
+    },
+
+    requestExpExchangeStatusList({ commit }) {
+        console.log("requestExpExchangeStatusList()")
+
+        return axios.get('http://localhost:7776/31th/rpg-game-controller/exp-change-to-status')
+            .then((res) => {
+                commit(REQUEST_EXP_EXCHANGE_STATUS_LIST, res.data)
             })
     },
 
