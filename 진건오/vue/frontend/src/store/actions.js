@@ -18,51 +18,51 @@ export default {
                 commit(REQUEST_DATA_FROM_SPRING, res.data.randomNumber)
             })
     },
-    requestShopItemLists({ commit }){
-        return axios.get('http://localhost:7777/rpg/game/shop-item')
+    requestShopItemListsFromSpring({ commit }){
+        return axios.get('http://localhost:7777/shop/shop-item')
             .then((res) => {
                 commit(SHOP_ITEM_LIST, res.data)
             });
     },
-    requestAddMonsterLists({commit}) {
-        return axios.get('http://localhost:7777/rpg/game/create-monster')
+    requestAddMonsterListsFromSpring({commit}) {
+        return axios.get('http://localhost:7777/monster/create-monster')
             .then((res) => {
                 commit(MONSTER_LIST, res.data)
             });
     },
-    requestCharacterStatus({commit}) {
-        return axios.get('http://localhost:7777/32th/vue2spring/setting-character-status')
+    requestCharacterStatusFromSpring({commit}) {
+        return axios.get('http://localhost:7777/character/setting-character-status')
             .then((res) =>{
                 commit(CHARACTER_STATUS, res.data)
             });
     },
-    requestInventoryList({commit}) {
-        return axios.get('http://localhost:7777/32th/vue2spring/setting-inventory')
+    requestInventoryListFromSpring({commit}) {
+        return axios.get('http://localhost:7777/shop/setting-inventory')
             .then((res) => {
                 commit(INVENTORY_LIST, res.data)
             });
     },
-    requestBuyItem ({ commit }, payload) {
+    requestBuyItemToSpring ({ commit }, payload) {
         console.log("requestBuyItem()")
 
-        return axios.post('http://localhost:7777/32th/vue2spring/buy-item',
+        return axios.post('http://localhost:7777/shop/buy-item',
             { totalPrice: payload.calculatedPrice, itemLists: payload.selectedItems })
             .then((res) => {
                 alert("구매완료")
                 commit(BUY_ITEM_ADD_INVENTORY,res.data)
             })
     },
-    requestExperienceKind({commit}) {
-        return axios.get('http://localhost:7777/32th/vue2spring/experience-change')
+    requestExperienceKindFromSpring({commit}) {
+        return axios.get('http://localhost:7777/changeExp/experience-change')
             .then((res) => {
                 commit(EXPERIENCE_KIND, res.data)
             });
 
     },
-    requestSelectedExpType({commit}, payload) {
+    requestSelectedExpTypeToSpring({commit}, payload) {
         console.log('requestSelectedExpType')
 
-        return axios.post('http://localhost:7777/32th/vue2spring/receive-change-Exp-Types',
+        return axios.post('http://localhost:7777/changeExp/receive-change-Exp-Types',
             {experienceType: payload.selectedExpTypes})
             .then((res) => {
                 alert("선택완료")

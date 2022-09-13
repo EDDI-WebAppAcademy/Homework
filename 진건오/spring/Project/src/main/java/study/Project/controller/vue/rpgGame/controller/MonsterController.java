@@ -1,11 +1,12 @@
-package study.Project.controller.vue.rpgGame;
+package study.Project.controller.vue.rpgGame.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import study.Project.entity.vue.rpgGame.*;
+import study.Project.entity.vue.rpgGame.MonsterBooks;
+import study.Project.entity.vue.rpgGame.MonsterManager;
 import study.Project.utility.basic.third.CustomRandom;
 
 import java.util.ArrayList;
@@ -13,42 +14,11 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/rpg/game")
+@RequestMapping("/monster")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
-public class RpgGameController {
+public class MonsterController {
 
-    private List<ShopManager> shopItemLists = new ArrayList<>();
     private List<MonsterManager> monsterLists = new ArrayList<>();
-
-    public void settingShopItemList() {
-        if (shopItemLists.size() == 0) {
-
-            shopItemLists.add(new ShopManager(ItemBooks.SWORD.getITEM_OBJECT_NAME(),
-                    ItemBooks.SWORD.getITEM_OBJECT_MONEY(),
-                    ItemBooks.SWORD.getITEM_OBJECT_DESCRIPTION(),
-                    ItemBooks.SWORD.getITEM_OBJECT_ABILITY_VALUE()));
-
-            shopItemLists.add(new ShopManager(ItemBooks.OLD_SWORD.getITEM_OBJECT_NAME(),
-                    ItemBooks.OLD_SWORD.getITEM_OBJECT_MONEY(),
-                    ItemBooks.OLD_SWORD.getITEM_OBJECT_DESCRIPTION(),
-                    ItemBooks.OLD_SWORD.getITEM_OBJECT_ABILITY_VALUE()));
-
-            shopItemLists.add(new ShopManager(ItemBooks.STEEL_SWORD.getITEM_OBJECT_NAME(),
-                    ItemBooks.STEEL_SWORD.getITEM_OBJECT_MONEY(),
-                    ItemBooks.STEEL_SWORD.getITEM_OBJECT_DESCRIPTION(),
-                    ItemBooks.STEEL_SWORD.getITEM_OBJECT_ABILITY_VALUE()));
-        }
-
-    }
-
-    public void randomSettingShopItemList(List<ShopManager> randomShopItemList) {
-        int shopItemListSize = shopItemLists.size();
-
-        for (int i = 0; i < 10; i++) {
-            ShopManager shopItemAnything = shopItemLists.get(CustomRandom.makIntCustomRandom(0,shopItemListSize-1));
-            randomShopItemList.add(shopItemAnything);
-        }
-    }
 
     public void createMonsterList() {
         if (monsterLists.size() == 0) {
@@ -84,17 +54,6 @@ public class RpgGameController {
             MonsterManager getMonsterListAnything = monsterLists.get(CustomRandom.makIntCustomRandom(0, currentMonsterListSize - 1));
             randomCreateManyMonster.add(getMonsterListAnything);
         }
-    }
-
-    @GetMapping("/shop-item")
-    public List rpgGameShopITemController() {
-        log.info("rpgGameController()");
-
-        settingShopItemList();
-        List<ShopManager> randomShopItemList = new ArrayList<>();
-        randomSettingShopItemList(randomShopItemList);
-
-        return randomShopItemList;
     }
 
     @GetMapping("/create-monster")
