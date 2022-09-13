@@ -1,56 +1,38 @@
 <template>
   <div>
-    <p>(컴포넌트)캐릭터 상태 창</p>
-    <p>HP: {{ characterStatus.currentHp }} / {{ characterStatus.hp }} MP: {{ characterStatus.currentMp }} / {{ characterStatus.mp }} </p>
-    <p>ATK: {{ characterStatus.atk }} Lv: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob }}</p>
-    <p>STR: {{ characterStatus.str }} INT: {{ characterStatus.intelligence }} DEX: {{ characterStatus.dex }}
+    <button @click="showCharacterStatus">캐릭터 상태 창</button>
+    <p v-if="characterStatusShow">HP: {{ characterStatus.currentHp }} / {{ characterStatus.hp }} MP: {{ characterStatus.currentMp }} / {{ characterStatus.mp }} </p>
+    <p v-if="characterStatusShow">ATK: {{ characterStatus.atk + characterStatus.defaultAtk + characterStatus.itemAtk }} Lv: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob }}</p>
+    <p v-if="characterStatusShow">STR: {{ characterStatus.str }} INT: {{ characterStatus.intelligence }} DEX: {{ characterStatus.dex }}
       VIT: {{ characterStatus.vit }} DEF: {{ characterStatus.def }} MEN: {{ characterStatus.men }}</p>
-    <p>경험치: {{ characterStatus.currentLevelBar }} / {{ characterStatus.totalLevelBar }}</p>
-    <p>소지금: {{ characterStatus.money }}</p>
+    <p v-if="characterStatusShow">경험치: {{ characterStatus.currentLevelBar }} / {{ characterStatus.totalLevelBar }}</p>
+    <p v-if="characterStatusShow">소지금: {{ characterStatus.money }}</p>
   </div>
 
 </template>
 
 <script>
 
+import {mapActions} from "vuex";
+
 export default {
   name: "CharacterManager",
   data () {
     return {
-      myInventory: [],
-      myInventoryValue: [],
-      exchangeStatus: {
-        hp: 0,
-        mp: 0,
-        atk: 0,
-        str: 0,
-        dex: 0,
-        int: 0,
-        def: 0,
-      },
-      characterStatus: {
-        level: 1,
-        currentHp: 50,
-        hp: 50,
-        currentMp: 30,
-        mp: 30,
-        itemAtk: 0,
-        defaultAtk: 10,
-        atk: 10,
-        str: 10,
-        intelligence: 10,
-        dex: 10,
-        vit: 10,
-        def: 10,
-        men: 0,
-        totalLevelBar: 10,
-        currentLevelBar: 0,
-        money: 0,
-        currentJob: '모험가'
-      }
+      characterStatusShow: false,
+      characterStatus: {}
     }
   },
   methods: {
+    ...mapActions(['requestCharacterStatusData']),
+    async showCharacterStatus () {
+      await this.requestCharacterStatusData()
+      this.characterStatus = this.$store.state.characterStatusData
+      this.characterStatusOnOff()
+    },
+    characterStatusOnOff () {
+      this.characterStatusShow = !this.characterStatusShow
+    }
 
   },
   beforeUpdate() {

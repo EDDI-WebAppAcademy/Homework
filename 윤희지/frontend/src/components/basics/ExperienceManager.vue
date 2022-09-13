@@ -37,7 +37,6 @@ const DEF = 6
 const HP_MP_INCREMENT = 50
 const OTHER_STATS_INCREMENT = 5
 
-
 export default {
   name: "ExperienceManager",
   data() {
@@ -54,7 +53,6 @@ export default {
         int: 0,
         def: 0,
       },
-
     }
   },
   methods: {
