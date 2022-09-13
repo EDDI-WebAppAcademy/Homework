@@ -17,7 +17,6 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class RpgMonsterController {
     private List<MonsterBooks> allMonsterBooks = new ArrayList<>();
-    private List<MonsterBooks> monsterLists = new ArrayList<>();
     private List<MonsterBooks> randomMonsterList = new ArrayList<>();
 
     public void buildDefaultMonsterBooks () {
@@ -62,6 +61,6 @@ public class RpgMonsterController {
         return randomMonsterList;
     }
 
-    // 몬스터 삭제하려면 삭제하는 몬스터 리스트를 가져와서 (post) 서버에서 몬스터를 지운 후 다시 몬스터 리스트를 vue로 전달해야함.
+
 
 }

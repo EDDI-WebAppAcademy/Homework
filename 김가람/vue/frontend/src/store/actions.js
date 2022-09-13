@@ -4,6 +4,7 @@ import {
     REQUEST_RANDOM_MONSTER,
     REQUEST_CHARACTER_STATUS,
     REQUEST_INVENTORY_ITEM,
+
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -62,16 +63,25 @@ export default {
             { totalPrice: payload.calculatedPrice, itemLists: payload.selectedItems})
             .then((res) => {
                 alert(res.data)
-                commit(REQUEST_INVENTORY_ITEM)
+                commit()
             })
     },
-    requestInventoryItems ({commit}) {
+    requestInventoryItems ({ commit }) {
         console.log("requestInventoryItems")
 
-        return axios.get('http://localhost:7777/31st/rpg-game/inventory-items')
+        return axios.get('http://localhost:7777/31st/rpg-game/my-inventory')
             .then((res) => {
                 commit(REQUEST_INVENTORY_ITEM, res.data)
             })
+    },
+    requestEquippedItems (payload) {
+        console.log("requestEquippedItems")
 
+        return axios.post('http://localhost:7777/31st/rpg-game/equip-inventory-item',
+            { EquippedInventoryItem: payload.selectedInventoryItem})
+            .then(() => {
+                alert('전송 요청 완료')
+            })
     }
+
 }

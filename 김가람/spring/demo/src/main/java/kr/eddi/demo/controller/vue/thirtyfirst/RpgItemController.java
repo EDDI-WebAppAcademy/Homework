@@ -1,6 +1,9 @@
 package kr.eddi.demo.controller.vue.thirtyfirst;
 
+import kr.eddi.demo.controller.vue.thirtysecond.request.Items;
 import kr.eddi.demo.controller.vue.thirtysecond.request.RequestBuyItem;
+import kr.eddi.demo.controller.vue.thirtysecond.request.RequestInventoryItem;
+import kr.eddi.demo.entity.vue.thirtiyfirst.CharacterStatus;
 import kr.eddi.demo.entity.vue.thirtiyfirst.ShopItems;
 import kr.eddi.demo.utility.basic.third.CustomRandom;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +18,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class RpgItemController {
     private List<ShopItems> allShopList = new ArrayList<>();
+    private List<ShopItems> userInventoryList = new ArrayList<>();
 
     public void buildDefaultItemList () {
         if (allShopList.size() == 0) {
@@ -54,6 +58,28 @@ public class RpgItemController {
     public String buyItems (@RequestBody RequestBuyItem requestBuyItem) {
         log.info("buyItems() - requestBuyItem: " + requestBuyItem);
 
+        List<Items> tmpItemList = requestBuyItem.getItemLists();
+
+        for (int i = 0; i < requestBuyItem.getItemLists().size(); i++) {
+            ShopItems tmpItem = new ShopItems(tmpItemList.get(i).getName(), tmpItemList.get(i).getPrice(),
+                    tmpItemList.get(i).getDescription(), tmpItemList.get(i).getAtk());
+            userInventoryList.add(tmpItem);
+        }
         return "아이템 구매 성공!";
+    }
+
+    @GetMapping("/my-inventory")
+    public List<ShopItems> viewInventory () {
+        log.info("viewInventory()");
+
+        return userInventoryList;
+    }
+
+    @PostMapping("/equip-inventory-item")
+    public String equipInventoryItem (@RequestBody RequestInventoryItem requestInventoryItem) {
+        log.info("equipInventoryItem() - inventoryList " +  requestInventoryItem);
+
+        return "아이템 장착 완료";
+
     }
 }

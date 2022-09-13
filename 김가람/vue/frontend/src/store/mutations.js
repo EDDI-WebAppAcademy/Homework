@@ -4,6 +4,7 @@ import {
     REQUEST_RANDOM_MONSTER,
     REQUEST_CHARACTER_STATUS,
     REQUEST_INVENTORY_ITEM,
+
 } from './mutation-types'
 export default {
     // vue에서 [] 라는 연산자는 멤버 접근 연산자라는 특성을 가집니다.
@@ -23,7 +24,8 @@ export default {
         state.characterStatus = passingData
     },
     [REQUEST_INVENTORY_ITEM] (state, passingData) {
-        state.inventoryItem = passingData
-    }
+        state.myInventory = passingData
+    },
+
 
 }
