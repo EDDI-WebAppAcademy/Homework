@@ -8,4 +8,5 @@ public enum MonsterType {
     스켈레톤,
     오크,
     홉고블린;
+
 }

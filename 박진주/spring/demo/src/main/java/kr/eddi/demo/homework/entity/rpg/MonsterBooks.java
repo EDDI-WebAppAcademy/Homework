@@ -10,7 +10,6 @@ public enum MonsterBooks {
     오크(6,"오크", 550, 150, 40),
     홉고블린(7,"홉고블린",650, 280, 50);
 
-
     public final int ID;
     public final String NAME;
     public final int HP;

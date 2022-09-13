@@ -25,11 +25,6 @@ public class MonsterDataController {
 
         defaultMonster();
 
-        //monster.method명 -> 랜덤 100마리 추가
-//        log.info("monster 리스트: "+ monsterList.get(1).getName());
-//        log.info("monster도감 사이즈: "+ MonsterBooks.values().length);
-//        log.info("monster도감에서 index 1번째 객체 선택: "+ MonsterBooks.values()[1]);
-
 
         return monsterList;
     }
@@ -60,11 +55,6 @@ public class MonsterDataController {
         }
     }
 
-//    public void findCurrenMonsterListMax(List<Monster> monsterList){
-//        for (int i = 0; i < monsterList.size(); i++) {
-//
-//        }
-//    }
 
     public void addRandomMonster(){
         int maxIdx = monsterList.size()+ 1;
@@ -80,27 +70,5 @@ public class MonsterDataController {
        addRandomMonster();
       }
     }
-
-
-//findCurrentMonsterListMax () {
-//      return this.monsterLists.reduce(
-//          (a, b) => { console.log("a: " + a + ", b.id: " + b.id); return a > b.id ? a : b.id },
-//          0)
-//    },
-//    addRandomMonster () {
-//      let max = this.findCurrentMonsterListMax()
-//      // ex) 20개라면 0 ~ 19.xxx 까지인데 floor 버림이니까 0 ~ 19까지
-//      let randomMonsterBookIdx = Math.floor(Math.random() * this.monsterBooks.length)
-//      this.monsterLists.push({
-//        id: max + 1,
-//        name: this.monsterBooks[randomMonsterBookIdx].name,
-//        hp: this.monsterBooks[randomMonsterBookIdx].hp
-//      })
-//    },
-//    addManyRandomMonster () {
-//      for (let i = 0; i < 100; i++) {
-//        this.addRandomMonster()
-//      }
-//    },
 
 }
