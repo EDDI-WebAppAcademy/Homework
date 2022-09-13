@@ -12,17 +12,20 @@ import lombok.ToString;
 public class LottoNumber {
     private int[] lottoNumArr;
 
-
     public void addLottoNumber(int min, int max) {
         int lottoIdx = 6;
         lottoNumArr = new int[lottoIdx];
         for (int i = 0; i < lottoIdx; i++) {
-            int ranNum = CustomRandom.makeIntCustomRandom(min,max);
+            int ranNum = CustomRandom.makeIntCustomRandom(min, max);
             lottoNumArr[i] = ranNum;
         }
     }
+
     public int getLottoNumber(int idx) {
         int lottoNum = lottoNumArr[idx];
         return lottoNum;
     }
+    
+
+
 }
