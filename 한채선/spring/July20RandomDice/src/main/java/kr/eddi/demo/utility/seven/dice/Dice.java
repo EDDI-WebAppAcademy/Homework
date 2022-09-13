@@ -1,7 +1,7 @@
 package kr.eddi.demo.utility.seven.dice;
 
 import kr.eddi.demo.entity.six.dicegame.Player;
-import kr.eddi.demo.utility.fourth.RandomNumber;
+import kr.eddi.demo.utility.fourth.CustomRandomNumber;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public class Dice implements SpecialDiceOption {
     private static final int MAX = 6;
 
     public static int rollDice() {
-        return RandomNumber.randomNum(MIN, MAX);
+        return CustomRandomNumber.randomNum(MIN, MAX);
     }
 
     public static void steelPlayerScore(ArrayList<Player> players, int playerIdx, int steelScore) {
