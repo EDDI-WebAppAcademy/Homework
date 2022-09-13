@@ -16,7 +16,13 @@
     <nav>           <!--  html <nav> 태그는 다른 페이지 또는 현재 페이지의 다른 부분과 연결되는 네비게이션 링크(navigation links)들의 집합을 정의할 때 사용합니다. 주로, 메뉴, 목차 등에 사용 -->
       <router-link to="/">Home</router-link> |
       <router-link to="/test">Test</router-link>   |      <!-- /test 추가해주며 router/index.js 에도 반영 필요 -->
-      <router-link to="/homework">homework</router-link>
+      <router-link to="/homework">homework</router-link>  |
+      <router-link to="/components-test">Component Test</router-link> |
+      <router-link to="/concave-board-game">오목 게임</router-link> |
+      <router-link to="/vue2spring">Vue 2 스프링 통신 테스트</router-link>  |
+      <router-link to="/rpg-game">rpg 게임</router-link> |
+      <router-link to="/test-button">버튼테스트</router-link>|
+      <router-link to="/vue2spring-data-send-test">Vue 2 Spring 데이터 전송 테스트</router-link>
     </nav>
     <router-view/>
   </div>
@@ -24,13 +30,15 @@
 
 <scopedstyle>
 nav {
-  padding: 30px;
+padding: 30px;
 }
+
 nav a {
-  font-weight: bold;
-  color: #2c3e50;
+font-weight: bold;
+color: #2c3e50;
 }
+
 nav a.router-link-exact-active {
-  color: #42b983;
+color: #42b983;
 }
 </scopedstyle>
