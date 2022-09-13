@@ -1,18 +1,26 @@
 <template>
   <div>
-    {{ this.monsterBooks[randomNumber] }}
-  </div>
 
+    <button @click="getRandomMonsters">초보사냥터 몬스터 추가</button><br/>
+    <button @click="addManyRandomMonster">쥐굴 몬스터 추가</button><br/>
+    <button @click="psionicStorm">사이오닉 스톰</button><br/>
+
+    <ul>
+      <li v-for="(monster, index) in monsterLists" :key="index">
+        몬스터 이름: {{ monster.name }}, HP: {{ monster.hp }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-  name: "RandomMonsterComponent",
-  props: {
-    randomNumber: Number,
-  },
-  data() {
-    return{
+  name: "MonsterManager",
+  data () {
+    return {
+      /*
       monsterBooks: [
         { monsterId: 1, name: '슬라임', hp: 50, exp: 10, dropMoney: 5 },
         { monsterId: 2, name: '고블린', hp: 100, exp: 20, dropMoney: 10 },
@@ -35,12 +43,50 @@ export default {
         { monsterId: 19, name: '미노타우루스', hp: 10000, exp: 1500, dropMoney: 1000 },
         { monsterId: 20, name: '드레이크', hp: 20000, exp: 5000, dropMoney: 50000 },
         { monsterId: 21, name: '죽음의 군주', hp: 1000000, exp: 200000, dropMoney: 1000000 },
-      ],
+        { monsterId: 9999, name: '하이퍼 메탈 슬라임', hp: 1000, exp: 5000000, dropMoney: 10000000 }
+      ],*/
+      monsterLists: [],
     }
   },
+  methods: {
+    ...mapActions(['requestMonsterLists']),
+    async getRandomMonsters({commit}) {
+      await this.requestMonsterLists({commit});
+      this.monsterLists = this.$store.state.monsterLists
+    },
+
+    findCurrentMonsterListMax () {
+      return this.monsterLists.reduce(
+          (a, b) => { console.log("a: " + a + ", b.id: " + b.id); return a > b.id ? a : b.id },
+          0)
+    },
+
+    psionicStorm(){
+      console.log("사이오닉 스톰!")
+
+      for (let i = 0; i < this.monsterLists.length; i++) {
+        this.monsterLists[i].hp -= 30 * this.characterStatus.atk
+      }
+    },
+
+    addRandomMonster () {
+      let max = this.findCurrentMonsterListMax()
+      // ex) 20개라면 0 ~ 19.xxx 까지인데 floor 버림이니까 0 ~ 19까지
+      let randomMonsterBookIdx = Math.floor(Math.random() * this.monsterBooks.length)
+      this.monsterLists.push({
+        id: max + 1,
+        name: this.monsterBooks[randomMonsterBookIdx].name,
+        hp: this.monsterBooks[randomMonsterBookIdx].hp
+      })
+    },
+    addManyRandomMonster () {
+      for (let i = 0; i < 100; i++) {
+        this.addRandomMonster()
+      }
+    },
+  }
 }
 </script>
 
 <style scoped>
-
 </style>
