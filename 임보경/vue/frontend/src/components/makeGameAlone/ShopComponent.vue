@@ -43,13 +43,14 @@ export default {
       await this.requestStockData()
       this.shopList = this.$store.state.stockData
 
-      if (!this.show) {
-        document.querySelector('#shop').style.display = "block"
-        this.show = true
-      } else {
-        document.querySelector('#shop').style.display = "none"
-        this.show = false
-      }
+      // if (!this.show) {
+      //   document.querySelector('#shop').style.display = "block"
+      //   this.show = true
+      // } else {
+      //   document.querySelector('#shop').style.display = "none"
+      //   this.show = false
+      // }
+      this.shopListValue = []
     },
     async buyItems() {
       let shoppingCart = []

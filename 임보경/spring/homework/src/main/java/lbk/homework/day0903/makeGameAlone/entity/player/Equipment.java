@@ -11,7 +11,7 @@ import java.util.List;
 @ToString
 public class Equipment {
 
-    private List equipList;
+    private List<Item> equipList;
 
 
 

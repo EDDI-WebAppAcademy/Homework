@@ -66,5 +66,14 @@ export default {
                 alert(res.data + "전송 완료")
                 commit()
             })
-    }
+    },
+
+    requestRemoveEquipItem({ commit }, payload) {
+        return axios.post('http://localhost:7777/make-game-alone/start/remove-equipment',
+            { receiveRemoveEquipItem : payload })
+            .then((res) => {
+                alert(res.data + "전송 완료")
+                commit()
+            })
+    },
 }

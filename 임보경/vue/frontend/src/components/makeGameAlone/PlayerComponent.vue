@@ -40,6 +40,9 @@
         <span>
           {{ item.name }} | {{ item.description }}
         </span>
+        <span>
+          <button @click="removeEquipment(index)" :key="index">장착 해제</button>
+        </span>
       </li>
     </ul>
   </section>
@@ -65,6 +68,7 @@ export default {
         'requestInventoryData',
         'requestEquipmentData',
         'requestEquipItem',
+        'requestRemoveEquipItem',
     ]),
 
     update () {
@@ -95,6 +99,16 @@ export default {
       alert(payload)
       await this.requestEquipItem(payload)
     },
+    async removeEquipment(index) {
+      let payload = []
+      payload.push(this.equipments[index])
+
+      alert(payload)
+      await this.requestRemoveEquipItem(payload)
+    },
+
+
+
   },
 
 }

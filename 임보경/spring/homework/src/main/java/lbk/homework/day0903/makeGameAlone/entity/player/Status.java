@@ -14,7 +14,7 @@ public class Status {
     private int defaultAtk = 10;
     private int atkAdded = 0;
     // atk 하단처럼 하라면 장비 적용해도 변화없음.. 이유 아직 모름.
-    private int atk = defaultAtk + atkAdded;
+    private int atk;
     private Integer money = 500000000;
     private Integer currentExpBar = 0;
     private Integer totalExpBar = 0;
@@ -24,4 +24,8 @@ public class Status {
     private int dex = 10;
     private int def = 10;
     private int vit = 10;
+
+    Status () {
+        this.atk = atkAdded + defaultAtk;
+    }
 }
