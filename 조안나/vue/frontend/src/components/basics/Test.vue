@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <h1>{{ testMsg }}</h1>
     <li v-for="(item, index) in lists" :key=index>
       {{ item }}
@@ -18,6 +19,7 @@
     <p>{{ count }} 번 클릭했습니다.</p>
     <button v-on:click="increment">카운트 버튼</button><br/>
 
+    <item-manager/>
     <h3>상점</h3>
     <label>
       <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
@@ -32,7 +34,7 @@
         <th align="center" width="320">아이템 설명</th>
         <th align="center" width="40">구매</th>
       </tr>
-      <tr v-for="(item, index) in inventoryList" :key="index">
+      <tr v-for="(item, index) in shopList" :key="index">
         <th align="center" width="40">{{ index }}</th>
         <th align="center" width="120">{{ item.name }}</th>
         <th align="center" width="160">{{ item.price }}</th>
@@ -43,35 +45,66 @@
           </label>
         </th>
       </tr>
-    </table>
+    </table><br/><br/>
 
+    <inventory-manager/>
     <h3>인벤토리</h3>
     <label>
-      <input type="checkbox" v-model="inventoryView" v-on:click="shuffleShopList()">
-      물품 목록
+      <input type="checkbox" v-model="inventoryView">
+      소지품 목록
     </label>
     <button v-on:click="equipItem()"> 장착하기 </button>
     <table border="1" v-if="inventoryView">
       <tr>
         <th align="center" width="40">번호</th>
         <th align="center" width="120">아이템명</th>
-        <th align="center" width="160">가격</th>
         <th align="center" width="320">아이템 설명</th>
         <th align="center" width="40">장착</th>
       </tr>
       <!-- 구매 확정이 되면 인벤토리로 들어와지게 해야함-->
-      <tr v-for="(item, index) in inventoryList" :key="index">
-        <th align="center" width="40">{{ index }}</th>
-        <th align="center" width="120">{{ item.name }}</th>
-        <th align="center" width="160">{{ item.price }}</th>
-        <th align="center" width="320">{{ item.effect.description }}</th>
+      <tr v-for="(byeItem, idx) in inventoryList" :key="idx">
+        <th align="center" width="40">{{ idx + 1}}</th>
+        <th align="center" width="120">{{ byeItem.name }}</th>
+        <th align="center" width="320">{{ byeItem.effect.description }}</th>
         <th align="center" width="40">
           <label>
-            <input type="checkbox" v-model="inventoryList" :value="index">
+            <input type="checkbox" v-model="inventoryValue" :value="idx">
           </label>
         </th>
       </tr>
-    </table>
+    </table><br/><br/>
+
+    <!-- 경험치 교환 시스템 : 공격력 증가 (경험치 1000만당 공격력 5증가)
+    외에도 경험치 1000만당 스탯 5증가 , hp,mp는 1000만당 50 증가!-->
+    <exp-shop-manager/>
+    <h3>경험치 상점</h3>
+    <label>
+      <input type="checkbox" v-model="expShopView">
+      경험치 교환 목록
+    </label>
+    <button v-on:click="expSwap()"> 경험치 교환 </button>
+    <table border="1" v-if="expShopView">
+      <tr>
+        <th align="center" width="40">번호</th>
+        <th align="center" width="100">필요 경험치</th>
+        <th align="center" width="180">교환 스탯</th>
+        <th align="center" width="180">설명</th>
+        <th align="center" width="40">교환</th>
+      </tr>
+      <tr v-for="(swap, index) in expSwapList" :key="index">
+        <th align="center" width="40">{{ index + 1}}</th>
+        <th align="center" width="100">{{ swap.expValue }}</th>
+        <th align="center" width="180">{{ swap.name }}</th>
+        <th align="center" width="180">{{ swap.effect.description }}</th>
+        <th align="center" width="40">
+          <label>
+            <input type="checkbox" v-model="expSwapValue" :value="index">
+          </label>
+        </th>
+      </tr>
+    </table><br/><br/>
+
+    <character-status/>
 
     <p>캐릭터 상태 창</p>
     <p>HP: {{ characterStatus.hp }} MP: {{ characterStatus.mp }} ATK: {{ characterStatus.atk }} Lv: {{ characterStatus.level }} 직업: {{ characterStatus.currentJob }}</p>
@@ -83,18 +116,18 @@
     (고정)몬스터 이름: <input v-model="name">
     <button v-on:click="addFixedMonster">고정 몬스터 추가하기</button><br/>
 
-    <button v-on:click="addRandomMonster">랜덤 몬스터 추가하기</button><br/>
 
+    <skills-manager/>
+    <monster-manager/>
     <button v-on:click="addManyRandomMonster">랜덤 몬스터 100마리 추가하기</button><br/>
+
     <button v-on:click="bulletTime()">Bullet Time(광역기)</button><br/>
-
-
+    <button v-on:click="addRandomMonster">랜덤 몬스터 추가하기</button><br/>
     <ul>
       <li v-for="(monster, index) in monsterLists" :key="index">
         몬스터 이름: {{ monster.name }}, HP: {{ monster.hp }}
         <!-- 병맛 감성 스킬명 -->
         <button v-on:click="piltoverPeacemake(index)">Piltover Peacemaker</button>
-
         <button v-on:click="removeMonster(index)">맵에 끼어 있는 몬스터 삭제하기</button>
       </li>
     </ul>
@@ -102,23 +135,66 @@
 </template>
 
 <script>
+
+const HP = 0
+const MP = 1
+const ATK = 2
+const STR = 3
+const DEX = 4
+const INT = 5
+const DEF = 6
+const HP_MP_INCREMENT = 50
+const OTHER_STATS_INCREMENT = 5
+
+import SkillsManager from "@/components/basics/SkillsManager";
+import MonsterManager from "@/components/basics/MonsterManager";
+import CharacterStatus from "@/components/basics/CharacterManager";
+import ItemManager from "@/components/basics/ItemShopManager";
+import InventoryManager from "@/components/basics/InventoryManager";
+import ExpShopManager from "@/components/basics/ExpShopManager";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Test",
+  components: {
+    'monster-manager': MonsterManager,
+    'character-status' : CharacterStatus,
+    'skills-manager' : SkillsManager,
+    'item-manager' : ItemManager,
+    'inventory-manager' : InventoryManager,
+    'exp-shop-manager' : ExpShopManager,
+  },
   data() {
     return {
-      shopView: false,
+      expShopView: false,
+      expSwapList:[
+        {name: 'HP', expValue: 10000000, effect:{description: "체력 50 증가"}},
+        {name: 'MP', expValue: 10000000, effect:{description: "마나 50 증가"}},
+        {name: 'atk', expValue: 10000000, effect:{description: "공력력 5증가"}},
+        {name: 'str', expValue: 10000000, effect:{description: "마력 5증가"}},
+        {name: 'dex', expValue: 10000000, effect:{description: "dex 5증가"}},
+        {name: 'int', expValue: 10000000, effect:{description: "int 5증가"}},
+        {name: 'def', expValue: 10000000, effect:{description: "def 5증가"}},
+      ],
+      expSwapValue:[],
       inventoryView: false,
+      inventoryList:[],
+      inventoryValue:[],
+      shopView: false,
       shopList: [],
       shopListValue: [],
       itemBooks:[
         { name: 'HP 포션 I', price: 50, effect:{description: "hp 200 회복", amount:200}},
         { name: 'HP 포션 II', price: 200, effect:{description: "hp 600 회복", amount:600}},
-        { name: '낡은 검', price: 5000000, effect:{description: "무기 공격력 100", atk:100}},
+        { name: '낡은 검', price: 500000, effect:{description: "무기 공격력 100", atk:100}},
         { name: '검', price: 50000000, effect:{description: "무기 공격력 200", atk:200}},
         { name: '강철 검', price: 150000000, effect:{description: "무기 공격력 300", atk:300}},
+        { name: '화열검', price: 550000000, effect: { description: '무기 공격력 500', atk: 500 }},
+        { name: '군주의검', price: 1000000000, effect: { description: '무기 공격력 1000', atk: 1000 }},
+        { name: '아이스소드', price: 1500000000, effect: { description: '무기 공격력 2000', atk: 2000 }},
+        { name: '칠지도', price: 2000000000, effect: { description: '무기 공격력 2000', atk: 2000 }},
+        { name: '군주의휘장', price: 1000000000, effect: { description: '악세사리 공격력 1000', atk: 1000 }},
       ],
-      inventoryList:[],
       name: "키메라",
       testMsg: "My Message",
       lists: ['apple', 'banana', 'grape'],
@@ -148,12 +224,22 @@ export default {
         { monsterId: 19, name: '미노타우루스', hp: 10000, exp: 1500, dropMoney: 1000 },
         { monsterId: 20, name: '드레이크', hp: 20000, exp: 5000, dropMoney: 50000 },
         { monsterId: 21, name: '죽음의 군주', hp: 1000000, exp: 200000, dropMoney: 1000000 },
+        { monsterId: 9999, name: '하이퍼 메탈 슬라임', hp: 1000, exp:5000000, dropMoney: 1000000}
       ],
       monsterLists: [
         { id: 1, name: '슬라임', hp: 50 },
         { id: 2, name: '고블린', hp: 100 },
         { id: 3, name: '놀', hp: 200 },
       ],
+      exchangeStatus: {
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        str: 0,
+        dex: 0,
+        int: 0,
+        def: 0,
+      },
       characterStatus: {
         level: 1,
         hp: 50,
@@ -175,8 +261,86 @@ export default {
     }
   },
   methods: {
-    equipItem(){
+    expSwap(){
+      let expSum = 0;
 
+      for (let i = 0; i < this.expSwapValue.length; i++) {
+        for (let j = 0; j < this.expSwapList.length; j++) {
+          console.log("expValue[" + i + "] : " + this.expSwapValue )
+
+          if (this.expSwapValue[i] === HP) {
+            console.log("Select HP")
+            this.exchangeStatus.hp += HP_MP_INCREMENT
+            this.characterStatus.hp = this.characterStatus.hp + this.exchangeStatus.hp
+            expSum += this.expSwapList[j].expValue
+          }
+
+          if (this.expSwapValue[i] === MP) {
+            console.log("Select MP")
+            this.exchangeStatus.mp += HP_MP_INCREMENT
+            this.characterStatus.mp = this.characterStatus.mp + this.exchangeStatus.mp
+            expSum += this.expSwapList[j].expValue
+          }
+
+          if (this.expSwapValue[i] === ATK) {
+            console.log("Select ATK")
+            this.exchangeStatus.atk += OTHER_STATS_INCREMENT
+            this.characterStatus.atk = this.characterStatus.defaultAtk + this.characterStatus.itemAtk + this.exchangeStatus.atk
+            expSum += this.expSwapList[j].expValue
+          }
+
+          if (this.expSwapValue[i] === STR) {
+            console.log("Select STR")
+            this.exchangeStatus.str += OTHER_STATS_INCREMENT
+            this.characterStatus.str = this.characterStatus.str + this.exchangeStatus.str
+            expSum += this.expSwapList[j].expValue
+          }
+
+          if (this.expSwapValue[i] === DEX) {
+            console.log("Select DEX")
+            this.exchangeStatus.dex += OTHER_STATS_INCREMENT
+            this.characterStatus.dex = this.characterStatus.dex + this.exchangeStatus.dex
+            expSum += this.expSwapList[j].expValue
+          }
+
+          if (this.expSwapValue[i] === INT) {
+            console.log("Select INT")
+            this.exchangeStatus.int += OTHER_STATS_INCREMENT
+            this.characterStatus.int = this.characterStatus.int + this.exchangeStatus.int
+            expSum += this.expSwapList[j].expValue
+          }
+
+          if (this.expSwapValue[i] === DEF) {
+            console.log("Select DEF")
+            this.exchangeStatus.def += OTHER_STATS_INCREMENT
+            this.characterStatus.def = this.characterStatus.def + this.exchangeStatus.def
+            expSum += this.expSwapList[j].expValue
+          }
+          break
+        }
+      }
+
+      if(this.characterStatus.currentLevelBar > expSum){
+        this.characterStatus.currentLevelBar = this.characterStatus.currentLevelBar - expSum
+        alert("경험치 교환이 완료되었습니다.")
+      }else {
+        alert("경험치가 부족합니다.")
+      }
+
+    },
+    equipItem(){
+      let tmpSum = 0;
+
+      for (let i = 0; i < this.inventoryValue.length; i++) {
+        for (let j = 0; j < this.inventoryList.length; j++) {
+          if (this.inventoryValue[i] === j){
+            tmpSum += this.inventoryList[j].effect.atk
+            break
+          }
+        }
+      }
+      this.characterStatus.itemAtk = tmpSum
+      this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum + this.exchangeStatus.atk
     },
     shuffleShopList(){
       if(!this.shopView){
@@ -200,6 +364,13 @@ export default {
       }
       if(this.characterStatus.money - tmpSum >= 0){
         this.characterStatus.money -= tmpSum
+
+        for (let i = 0; i < this.shopListValue.length; i++) {
+          this.inventoryList.push({
+            name: this.shopList[this.shopListValue[i]].name,
+            effect: this.shopList[this.shopListValue[i]].effect
+          })
+        }
 
         alert("물품 구매 완료!")
       }else{alert("돈이 부족합니다.")}
@@ -264,7 +435,7 @@ export default {
     },
     bulletTime(){
       console.log("쌍권총 난사")
-      for (let i = 0 ; this.monsterLists.length; i++){
+      for (let i = 0 ; i < this.monsterLists.length; i++){
         this.monsterLists[i].hp -= 30 * this.characterStatus.atk
       }
 
@@ -277,8 +448,8 @@ export default {
         if (this.monsterLists[i].hp <= 0) {
           for (let j = 0; j < this.monsterBooks.length; j++) {
             if (this.monsterLists[i].name === this.monsterBooks[j].name) {
-              this.characterStatus.currentLevelBar += this.monsterBooks[j].exp
-              this.characterStatus.money += this.monsterBooks[j].dropMoney
+              this.characterStatus.currentLevelBar += this.monsterBooks[j].exp * 20
+              this.characterStatus.money += this.monsterBooks[j].dropMoney * 5
             }
           }
           this.monsterLists.splice(i, 1)
@@ -286,37 +457,38 @@ export default {
       }
 
       while(this.characterStatus.currentLevelBar >= this.characterStatus.totalLevelBar){
+        if (this.characterStatus.level === 99) { return }
+
         this.characterStatus.currentLevelBar =
             parseInt(this.characterStatus.currentLevelBar - this.characterStatus.totalLevelBar)
 
         this.characterStatus.level += 1
-        this.characterStatus.hp = parseInt(this.characterStatus.hp * 1.05)
-        this.characterStatus.mp = parseInt(this.characterStatus.mp * 1.02)
+        this.characterStatus.hp = parseInt(this.characterStatus.hp * 1.05) + this.exchangeStatus.hp
+        this.characterStatus.mp = parseInt(this.characterStatus.mp * 1.05) + this.exchangeStatus.mp
         this.characterStatus.defaultAtk += 4
-        this.characterStatus.def += 1
-        this.characterStatus.str += 3
-        this.characterStatus.intelligence += 1
-        this.characterStatus.dex += 2
+        this.characterStatus.atk = this.characterStatus.defaultAtk + this.exchangeStatus.atk
+        this.characterStatus.def += 1 + this.exchangeStatus.def
+        this.characterStatus.str += 3 + this.exchangeStatus.str
+        this.characterStatus.intelligence += 1 + this.exchangeStatus.int
+        this.characterStatus.dex += 2 + this.exchangeStatus.dex
         this.characterStatus.vit += 3
         this.characterStatus.men += 1
 
         // 레벨에 따른 렙업 경험치 통 증가하도록 관리하기
-        if(this.characterStatus.level < 10 ){
-          this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.1)
-        }else if(this.characterStatus.level < 30 ){
+        if (this.characterStatus.level < 10) {
           this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.2)
-        }else if(this.characterStatus.level < 50){
+        } else if (this.characterStatus.level < 30) {
           this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.3)
-        }else if(this.characterStatus.level < 70){
-          this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.4)
-        }else if(this.characterStatus.level < 80){
-          this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.7)
-        }else if(this.characterStatus.level < 100){
-          this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.8)
-        }
+        } else if (this.characterStatus.level < 50) {
+          this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.1)
+        } else if (this.characterStatus.level < 70) {
+          this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.3)
+        } else if (this.characterStatus.level < 100) {
+          this.characterStatus.totalLevelBar = parseInt(this.characterStatus.totalLevelBar * 1.1)
       }
     }
-  }
+  },
+}
 </script>
 
 <style scoped>
