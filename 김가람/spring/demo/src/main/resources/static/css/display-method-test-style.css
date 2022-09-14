@@ -1,0 +1,26 @@
+span.intest {
+    display: inline;
+    width: 300px;
+    height: 300px;
+    padding: 5px;
+    border: 1px solid blue;
+    background-color: cadetblue;
+}
+
+span.inblock {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    padding: 5px;
+    border: 1px solid blue;
+    background-color: aquamarine;
+}
+
+span.b {
+    display: block;
+    width: 300px;
+    height: 300px;
+    padding: 5px;
+    border: 1px solid blue;
+    background-color: darkcyan;
+}

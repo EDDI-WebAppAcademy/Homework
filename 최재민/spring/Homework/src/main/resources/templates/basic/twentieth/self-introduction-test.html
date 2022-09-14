@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table, th ,td{
+            border: 1px solid  #ccc;
+        }
+        td{
+            padding: 15px;
+        }
+        tr > td:nth-child(odd){
+            width:  125px;/* 홀수번째 열의 너비: 120px */
+        }
+        tr > td:nth-child(even){
+            width:310px;/* 짝수번째 열의 너비: 300px */
+        }
+    </style>
+</head>
+<body>
+<table>
+
+    <caption>
+        <h2>이력서</h2>
+        <p>애자일 프로세스 기반 프로그래밍공부중인 예비 풀스택 개발자</p>
+    </caption>
+    <tr>
+        <th>이름</th>
+        <td>최재민</td>
+        <th>나이</th>
+        <td>25</td>
+    </tr>
+    <tr>
+        <th>주소</th>
+        <td colspan="3">서울 특별시 oo구 oo동</td>
+    </tr>
+    <tr>
+        <th>지원 분야</th>
+        <td colspan="3">신입 풀스택 개발자</td>
+    </tr>
+    <tr>
+        <th>자기 소개</th>
+        <td colspan="3">
+            <div>변경에 유연하고 일관성있는 프로그램을 작성하기 위해 애자일 프로세스 기반으로<br>
+                프로그램을 작성하는 방법을 중접으로 학습 중에있으며 코드를 작성할때 SRP 규칙을 지키면서 작성하기 위해
+                노력 하고있습니다.<br>
+                또한 가장 대중적으로 사용중이며 재사용과 확장이 가능한 개발 스킬을 향상 시킬수있고<br>
+                Java 기반에 웹 어플리케이션을 개발하기에 표준과도 같은 Spring Framework 를 학습중입니다.<br>
+                나아가 단일 컴포넌트 기반으로 러닝 커브가 비교적 쉬운 Vue 를 활용해 기존서비스에 점진적인
+                개선을 할수있도록 학습중에 있습니다.<br>
+                때문에 저는 가까운 미래에 보다 나은 성능과 서비스의 안전성이 필요한 복잡한<br>
+                기업용 엔터프라이즈 시스템을 제대로 구축하고 사용할수있는 개발자가 될것입니다.
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th>프로젝트 활동</th>
+        <td colspan="3">프로젝트 경험 x</td>
+    </tr>
+</table>
+</body>
+</html>

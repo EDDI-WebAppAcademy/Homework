@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+
+.brown {
+    font-size: 36px;
+    font-weight: bold;
+    color: brown;
+
+}
+
+.b{
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    background-color: orange;
+}
+
+.title-box{
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: default;
+}
+
+.text{
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+
+.text-h4{
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+    font-family: 'Jeju Gothic', sans-serif;
+    font-size: 2em;
+    text-align: justify;
+    color: white;
+    z-index: 3;
+    mix-blend-mode: overlay;
+}
+
+.li {
+    line-height:70%
+}

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;600&display=swap');
+
+body {
+    font-family: 'Hahmlet', serif;
+    font-weight: 300;
+}
+
+
+th {
+    font-weight: 600;
+}
+
+table.myinfo {
+    margin-bottom: 25px;
+}
+
+tr.bottomMargin {
+    margin: 0 0 25px;
+}
+
+th, td {
+    padding: 18px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+}
+
+table {
+    margin: 0 auto;
+    width: 520px;
+    border: 1px solid #555;
+}
+
+td > span {
+    display: block;
+    width: 12px;
+    height: 7px;
+}
+
+caption {
+    font-size: 24px;
+    margin: 24px 0 12px;
+}
+
+caption > p {
+    font-size: 15px;
+    margin: 3px 0 18px;
+}

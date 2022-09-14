@@ -1,0 +1,12 @@
+caption {
+    font-size: 20px;
+    font-style: italic;
+}
+
+table, th, td {
+    border: 1px solid #aaa;
+    font-style: normal;
+}
+th, td {
+    padding: 10px;
+}

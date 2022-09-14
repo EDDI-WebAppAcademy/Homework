@@ -1,0 +1,6 @@
+ul {
+    list-style: none;
+}
+li {
+    margin: 10px; /* margin은 li  사이의 간격인듯 ? */
+}
