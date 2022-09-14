@@ -1,10 +1,9 @@
 package kr.eddi.demo.entity.vue.thirthyoneth;
 
 
+import kr.eddi.demo.entity.vue.thirthyoneth.rpgDb.KnightStatus;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigInteger;
 
 @Getter
 @Setter

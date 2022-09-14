@@ -23,7 +23,7 @@ export default {
     requestRandomMonsterData ({ commit }) {
         console.log("requestRandomMonsterData")
 
-        return axios.get('http://localhost:7776/31th/rpg-game-controller/monster-list')
+        return axios.get('http://localhost:7776/31th/monster-controller/monster-list')
             .then((res) => {
                 commit(REQUEST_RANDOM_MONSTER, res.data)
             })
@@ -32,7 +32,7 @@ export default {
     requestShopItemData({ commit }) {
         console.log("requestShopItemData()")
 
-        return axios.get('http://localhost:7776/31th/rpg-game-controller/random-shop-item-lists')
+        return axios.get('http://localhost:7776/31th/market-controller/random-shop-item-lists')
             .then((res) => {
                 commit(REQUEST_RANDOM_SHOP_ITEM, res.data)
             })
@@ -41,7 +41,7 @@ export default {
     requestCharacterStatus({ commit }) {
         console.log("requestCharacterStatus()")
 
-        return axios.get('http://localhost:7776/31th/rpg-game-controller/character-status')
+        return axios.get('http://localhost:7776/31th/character-controller/character-status')
             .then((res) => {
                 commit(REQUEST_CHARACTER_STATUS, res.data)
             })
@@ -50,7 +50,7 @@ export default {
     requestBuyItem({ commit }, payload) {
         console.log("requestBuyItem()")
 
-        return axios.post('http://localhost:7776/31th/rpg-game-controller/buy_item',
+        return axios.post('http://localhost:7776/31th/character-controller/buy_item',
             { itemList: payload })
             .then((res) => {
                 alert(res.data)
@@ -61,7 +61,7 @@ export default {
     requestCharacterInventory({ commit }) {
         console.log("requestCharacterInventory()")
 
-        return axios.get('http://localhost:7776/31th/rpg-game-controller/character-inventory')
+        return axios.get('http://localhost:7776/31th/character-controller/character-inventory')
             .then((res) => {
                 commit(REQUEST_CHARACTER_INVENTORY, res.data)
             })
@@ -70,10 +70,21 @@ export default {
     requestExpExchangeStatusList({ commit }) {
         console.log("requestExpExchangeStatusList()")
 
-        return axios.get('http://localhost:7776/31th/rpg-game-controller/exp-change-to-status')
+        return axios.get('http://localhost:7776/31th/exp-change-status-view-controller/exp-change-to-status-list')
             .then((res) => {
                 commit(REQUEST_EXP_EXCHANGE_STATUS_LIST, res.data)
             })
+    },
+
+    requestExchangingExpToStatus({ commit }, payload ) {
+        console.log("requestExpExchangeStatusList()")
+
+        return axios.post('http://localhost:7776/31th/character-controller/character-exp-to-status',
+            {changingExpStatusList: payload})
+            .then((res) => {
+                alert(res.data)
+            commit()
+        })
     },
 
 }
