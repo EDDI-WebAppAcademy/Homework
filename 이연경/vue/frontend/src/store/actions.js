@@ -1,7 +1,7 @@
 import {
-    REQUEST_DATA_FROM_SPRING,
+    REQUEST_DATA_FROM_SPRING, REQUEST_MY_INVENTORY, REQUEST_RANDOM_MONSTER,
     REQUEST_RANDOM_SHOP_ITEM,
-    MONSTER_LIST,
+
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -37,14 +37,23 @@ export default {
             })
     },
 
-    requestAddMonsterLists({commit}) {
-        return axios.get('http://localhost:7777/rpg/game/create-monster')
+    requestMyInventory ({ commit }) {
+        console.log("requestMyInventory()")
+
+        return axios.post('http://localhost:7777/31th/rpg-game/my-inventory')
             .then((res) => {
-                commit(MONSTER_LIST, res.data)
-            });
+                commit(REQUEST_MY_INVENTORY, res.data)
+            })
     },
 
+    requestRandomGameMonster ({ commit }) {
+        console.log("requestRandomGameMonster()")
 
+        return axios.get('http://localhost:7777/31th/rpg-game/random-monster-list')
+            .then((res) => {
+                commit(REQUEST_RANDOM_MONSTER, res.data)
+            })
+    },
 
 
 

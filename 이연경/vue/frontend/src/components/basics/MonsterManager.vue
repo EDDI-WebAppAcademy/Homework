@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <button @click="callAddManyRandomMonster">(Local Component)랜덤 몬스터 100마리 추가</button><br/>
+    <button @click="createRandomMonster">(Local Component)랜덤 몬스터 100마리 추가</button><br/>
 
     <ul>
       <li v-for="(monster, index) in monsterLists" :key="index">
@@ -25,10 +25,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['requestAddMonsterLists']),
-    async callAddManyRandomMonster({commit}) {
-      await this.requestAddMonsterLists({commit});
-      this.monsterLists = this.$store.state.monsterLists
+    ...mapActions(['requestRandomGameMonster']),
+    async createRandomMonster() {
+      await this.requestRandomGameMonster()
+      this.monsterLists = this.$store.state.randomMonster
     }
   }
 
