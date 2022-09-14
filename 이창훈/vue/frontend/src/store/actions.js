@@ -47,7 +47,7 @@ export default {
     requestAddMonster ({ commit }) {
         console.log("requestAddMonster()")
 
-        return axios.post('http://localhost:8888/31th/rpg-game/add-hundred-monster')
+        return axios.get('http://localhost:8888/31th/rpg-game/add-hundred-monster')
             .then((res) => {
                 commit(REQUEST_ADD_MONSTER, res.data)
             })

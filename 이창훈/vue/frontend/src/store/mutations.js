@@ -15,6 +15,7 @@ export default {
         state.myInventory = passingData
     },
     [REQUEST_ADD_MONSTER] (state, passingData) {
-        state.monsterList = passingData
+        state.addMonsterLists = passingData
     },
+    //
 }
