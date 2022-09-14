@@ -32,8 +32,6 @@ export default {
     }
   }
 
-
-  //
    /* findCurrentMonsterListMax () {
       return this.monsterLists.reduce(
           (a, b) => { console.log("a: " + a + ", b.id: " + b.id); return a > b.id ? a : b.id },
