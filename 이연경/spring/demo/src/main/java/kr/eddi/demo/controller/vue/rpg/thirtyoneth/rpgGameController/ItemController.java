@@ -16,8 +16,6 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class ItemController {
 
-    //
-
     private List<ShopItems> allShopLists = new ArrayList<>();
     private List<ShopItems> userInventoryList = new ArrayList<>();
 

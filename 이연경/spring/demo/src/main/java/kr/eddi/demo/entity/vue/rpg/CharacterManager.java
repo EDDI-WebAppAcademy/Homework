@@ -7,7 +7,6 @@ import lombok.Getter;
 
 public class CharacterManager {
 
-    //
     private Integer hp;
     private Integer mp;
     private Integer atk;

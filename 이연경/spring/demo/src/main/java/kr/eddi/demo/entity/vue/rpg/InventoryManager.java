@@ -8,7 +8,6 @@ import lombok.Getter;
 
 public class InventoryManager {
 
-    //
 
     String itemName;
     String itemDescription;

@@ -6,7 +6,6 @@ import lombok.Getter;
 
 public class Monster {
 
-    //
     private String name;
     private int hp;
     private int exp;
