@@ -2,10 +2,10 @@
   <div>
     <h3>(Local)캐릭터 상태 창</h3>
     <p>HP: {{ this.characterStatus.hp }} MP: {{ this.characterStatus.mp }} ATK: {{ this.characterStatus.atk }}
-      Lv: {{ this.characterStatus.level }} 직업: {{this.characterStatus.currentJob }}</p>
+      Lv: {{ this.characterStatus.level }} 직업: {{this.characterStatus.currentjob }}</p>
     <p>STR: {{ this.characterStatus.str }} INT: {{ this.characterStatus.intelligence }} DEX: {{ this.characterStatus.dex }}
       VIT: {{ this.characterStatus.vit }} DEF: {{ this.characterStatus.def }} MEN: {{ this.characterStatus.men }}</p>
-    <p>경험치: {{ this.characterStatus.currentLevelBar }} / {{ this.characterStatus.totalLevelBar }}</p>
+    <p>경험치: {{ this.characterStatus.currentlevelbar }} / {{ this.characterStatus.totallevelbar }}</p>
     <p>소지금: {{ this.characterStatus.money }}</p>
   </div>
 </template>
