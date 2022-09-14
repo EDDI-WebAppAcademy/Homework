@@ -4,6 +4,7 @@ import {
     REQUEST_RANDOM_MONSTER,
     REQUEST_CHARACTER_STATUS,
     REQUEST_INVENTORY_ITEM,
+    REQUEST_MONSTER_LIST, REQUEST_EXP_EXCHANGE_FROM_SPRING,
 
 } from './mutation-types'
 
@@ -40,10 +41,18 @@ export default {
                 commit(REQUEST_RANDOM_SHOP_ITEM, res.data)
             })
     },
+    requestMonsterList ({commit}) {
+      console.log("requestMonsterList")
+
+      return axios.get('http://localhost:7777/31st/rpg-game/view-monster-list')
+          .then((res) => {
+              commit(REQUEST_MONSTER_LIST, res.data)
+          })
+    },
     requestRandomMonster ({commit}) {
         console.log("requestRandomMonster")
 
-        return axios.get('http://localhost:7777/31st/rpg-game/random-monster')
+        return axios.get('http://localhost:7777/31st/rpg-game/add-random-monster')
             .then((res) => {
                 commit(REQUEST_RANDOM_MONSTER, res.data)
             })
@@ -78,9 +87,17 @@ export default {
         console.log("requestEquippedItems")
 
         return axios.post('http://localhost:7777/31st/rpg-game/equip-inventory-item',
-            { EquippedInventoryItem: payload.selectedInventoryItem})
+            { EquippedInventoryItem: payload.selectedInventoryItem })
             .then(() => {
                 alert('전송 요청 완료')
+            })
+    },
+    requestExpExchangeFromSpring ({ commit }) {
+        console.log("requestExpExchangeFromSpring")
+
+        return axios.get('http://localhost:7777/31st/rpg-game/view-exp-exchange')
+            .then((res) => {
+                commit(REQUEST_EXP_EXCHANGE_FROM_SPRING, res.data)
             })
     }
 
