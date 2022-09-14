@@ -24,4 +24,9 @@ export default {
         state.randomMonster = passingData
 
     }
+
+
+
+
+
 }
