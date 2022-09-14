@@ -18,35 +18,28 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class CharacterController {
 
-    private List<CharacterManager> characterStatusList = new ArrayList<CharacterManager>();
-
-
-    public List settingCharacterStatus() {
-        if (characterStatusList.size() == 0) {
-            characterStatusList.add(new CharacterManager(CharacterStatus.HP.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.MP.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.ATK.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.INTELLIGENCE.getCHARACTER_ABILITY_VALUE(),
-                    CharacterJob.BASIC.getCHARACTER_JOB_NAME(),
-                    CharacterStatus.STR.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.INTELLIGENCE.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.DEX.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.VIT.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.DEF.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.MEN.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.CURRENT_LEVEL_BAR.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.TOTAL_LEVEL_BAR.getCHARACTER_ABILITY_VALUE(),
-                    CharacterStatus.MONEY.getCHARACTER_ABILITY_VALUE()));
-
-        }
-        return characterStatusList;
-    }
+    private CharacterManager characterManager;
 
     @GetMapping("/setting-character-status")
-    public List requestSettingCharacterStatus() {
+    public CharacterManager requestSettingCharacterStatus() {
         log.info("requestSettingCharacterStatus()");
 
+        characterManager = new CharacterManager(CharacterStatus.HP.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.MP.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.ATK.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.INTELLIGENCE.getCHARACTER_ABILITY_VALUE(),
+                CharacterJob.BASIC.getCHARACTER_JOB_NAME(),
+                CharacterStatus.STR.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.INTELLIGENCE.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.DEX.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.VIT.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.DEF.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.MEN.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.CURRENT_LEVEL_BAR.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.TOTAL_LEVEL_BAR.getCHARACTER_ABILITY_VALUE(),
+                CharacterStatus.MONEY.getCHARACTER_ABILITY_VALUE());
 
-        return settingCharacterStatus();
+        System.out.println(characterManager);
+        return characterManager;
     }
 }

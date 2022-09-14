@@ -2,7 +2,7 @@ export default {
     springFromVueTestValue: null,
     shopItemLists: [],
     monsterLists: [],
-    characterStatus: [],
+    characterStatusValues: {},
     inventoryItemList: [],
     expKindList:[]
 }
