@@ -1,9 +1,12 @@
-package com.example.homework.nineth.entity;
+package com.example.homework.pokergames.try2.entity;
 
 import com.example.homework.utility.CustomRandom;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+@Getter
 
 public class Trump {
     private List<String> cardDeck;
@@ -42,9 +45,6 @@ public class Trump {
                 } while(verifyDuplicateCard(card, cardDeck));
                 cardDeck.add(card);
             }
-        }
-        for (int i = 0; i < cardDeck.size(); i++) {
-            System.out.println(cardDeck.get(i));
         }
     }
 

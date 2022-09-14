@@ -19,6 +19,7 @@ public class DiceGame {
             dice.rollDice();
             players[i].getScore().gainScore(dice.getDiceNum());
 
+            // 역시 여기를 메서드화 시켜야했다....
             if (dice.getDiceNum() % 2 != 0) {
                 dice.rollDice();
                 if (dice.getDiceNum() == 4) {
