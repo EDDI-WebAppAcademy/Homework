@@ -4,7 +4,6 @@ import {
     MONSTER_LIST,
     CHARACTER_STATUS,
     INVENTORY_LIST,
-    BUY_ITEM_ADD_INVENTORY,
     EXPERIENCE_KIND,
 } from './mutation-types'
 
@@ -19,13 +18,10 @@ export default {
         state.monsterLists = passingData
     },
     [CHARACTER_STATUS](state, passingData) {
-        state.characterStatus = passingData
+        state.characterStatusValues = passingData
     },
     [INVENTORY_LIST](state, passingData) {
         state.inventoryItemList = passingData
-    },
-    [BUY_ITEM_ADD_INVENTORY](state) {
-        state.inventoryItemList
     },
     [EXPERIENCE_KIND](state, passingData) {
         state.expKindList = passingData
