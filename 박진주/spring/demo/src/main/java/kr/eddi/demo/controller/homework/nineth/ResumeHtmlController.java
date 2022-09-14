@@ -11,10 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/html")
 public class ResumeHtmlController {
 
-   @GetMapping("/resume")
-   public String ResumeTable(){
-       log.info("resume table");
+    @GetMapping("/resume")
+    public String ResumeTable() {
+        log.info("resume table");
 
-       return "/homework/nineth/resume";
-   }
+        return "/homework/nineth/resume";
+    }
+
+    @GetMapping("/test1-javascript1")
+    public String test1() {
+        log.info("test1-javascript1");
+
+        return "/homework/test_contents/test_javascript1";
+    }
 }
