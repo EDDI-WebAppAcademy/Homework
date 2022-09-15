@@ -1,11 +1,13 @@
-package kr.eddi.demo.controller.vue.rpg.thirtyoneth.rpgGameController;
+package kr.eddi.demo.controller.vue.rpg.thirtyoneth;
 
 
 import kr.eddi.demo.entity.vue.rpg.Monster;
 
 import kr.eddi.demo.utilty.basic.third.CustomRandom;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,15 +16,15 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/31th/rpg-game-controller")
+@RequestMapping("/31th/rpg-game")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+@ToString
 
-
-public class MonsterController {
+public class RpgMonsterController {
 
     private List<Monster> monsterBook = new ArrayList<>();
 
-    public void MonsterList() {
+    public void buildDefaultMonsterList() {
         monsterBook.add(new Monster("슬라임", 50, 10, 5));
         monsterBook.add(new Monster("고블린", 100, 20, 10));
         monsterBook.add(new Monster("놀", 200, 40, 20));
@@ -47,26 +49,25 @@ public class MonsterController {
         monsterBook.add(new Monster("하이퍼 메탈 슬라임", 1000, 5000000, 10000000));
     }
 
-    public void randomMonsterList(List<Monster> randomMonsterList) {
+    public void buildRandomMonsterList(List<Monster> randomMonsterList) {
         int everyMonsterSize = monsterBook.size();
 
         for (int i = 0; i < 100; i++) {
-            Monster list = monsterBook.get(CustomRandom.makeIntCustomRandom(0, everyMonsterSize-1));
-            randomMonsterList.add(list);
+            Monster oneThing = monsterBook.get(CustomRandom.makeIntCustomRandom(0, everyMonsterSize-1));
+            randomMonsterList.add(oneThing);
         }
     }
 
+    @GetMapping("/random-monster-lists")
     public List<Monster> createRandomMonster() {
         log.info("createRandomMonster()");
 
-        MonsterList();
+        buildDefaultMonsterList();
         List<Monster> randomMonsterList = new ArrayList<>();
-        randomMonsterList(randomMonsterList);
+        buildRandomMonsterList(randomMonsterList);
 
         return randomMonsterList;
     }
-
-
 
 
 

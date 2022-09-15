@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/31th/rpg-game")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+
 public class RpgItemController {
     private List<ShopItems> allShopLists = new ArrayList<>();
 

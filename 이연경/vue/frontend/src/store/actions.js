@@ -1,6 +1,6 @@
 import {
     REQUEST_DATA_FROM_SPRING, REQUEST_MY_INVENTORY, REQUEST_RANDOM_MONSTER,
-    REQUEST_RANDOM_SHOP_ITEM,
+    REQUEST_RANDOM_SHOP_ITEM,REQUEST_CHARACTER_STATUS_FROM_SPRING,
 
 } from './mutation-types'
 
@@ -37,7 +37,7 @@ export default {
             })
     },
 
-    requestMyInventory ({ commit }) {
+    requestMyInventory({commit}) {
         console.log("requestMyInventory()")
 
         return axios.post('http://localhost:7777/31th/rpg-game/my-inventory')
@@ -49,13 +49,31 @@ export default {
     requestRandomGameMonster ({ commit }) {
         console.log("requestRandomGameMonster()")
 
-        return axios.get('http://localhost:7777/31th/rpg-game/random-monster-list')
+        return axios.get('http://localhost:7777/31th/rpg-game/random-monster-lists')
             .then((res) => {
                 commit(REQUEST_RANDOM_MONSTER, res.data)
             })
     },
 
+    requestCharacterStatusFromSpring({commit}) {
+        console.log("requestCharacterStatusFromSpring()")
+
+        return axios.post('http://localhost:7777/37th/rpg-game/get-character-status')
+            .then((res) => {
+                commit(REQUEST_CHARACTER_STATUS_FROM_SPRING, res.data)
+            })
+    },
+    requestExperienceExchangeFromSpring({commit}, payload) {
+        console.log("requestExperienceExchangeFromSpring()")
+
+        return axios.post('http://localhost:7777/37th/rpg-game/experience/exchange', payload)
+            .then(() => {
+                axios.post('http://localhost:7777/37th/rpg-game/get-character-status')
+                    .then((res) => {
+                        commit(REQUEST_CHARACTER_STATUS_FROM_SPRING, res.data)
+                    })
+            })
 
 
-
+    }
 }
