@@ -49,16 +49,16 @@ export default {
 
 
 
-    requestBuyItem({ commit }, payload) {
+    requestBuyItem({ dispatch }, payload) {
         console.log("requestBuyItem()")
 
         return axios.post('http://localhost:7776/31th/character-controller/buy_item',
             { itemList: payload })
-            .then(() => {
-                axios.get('http://localhost:7776/31th/character-controller/character-inventory')
-                    .then((res) => {
-                        commit(REQUEST_CHARACTER_INVENTORY, res.data)
-                    })
+            .then((res)=> {
+                if(res.data == true) {
+                    dispatch('requestCharacterInventory')
+                    console.log('requestCharacterInventory' + 'requestCharacterStatus')
+                }
             })
     },
 

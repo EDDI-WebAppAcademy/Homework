@@ -26,7 +26,7 @@ public class Character {
     private int men;
 
     private int totalLevelBar = 10;
-    private int currentLeverBar = 0 ;
+    private int currentLeverBar = 1000000000;
     private Integer money = 1000000000;
     private String currentJob;
 

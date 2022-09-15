@@ -2,7 +2,7 @@ export default {
     springFromVueTestValue: null,
     randomMonster: [],
     randomShopItem: [],
-    characterStatus: null,
+    characterStatus: {},
     characterInventory: [],
     updateCharacterInventoryFlag: false,
     expChangeStatusList: [],
