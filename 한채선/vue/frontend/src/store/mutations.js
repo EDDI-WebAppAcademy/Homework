@@ -4,7 +4,7 @@ import {
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_CHARACTER_STATUS,
     REQUEST_CHARACTER_INVENTORY,
-    REQUEST_EXP_EXCHANGE_STATUS_LIST,
+    REQUEST_UPDATED_CHARACTER_INVENTORY,
 } from './mutation-types'
 
 export default {
@@ -23,7 +23,7 @@ export default {
     [REQUEST_CHARACTER_INVENTORY] (state, passingData) {
         state.characterInventory = passingData
     },
-    [REQUEST_EXP_EXCHANGE_STATUS_LIST] (state, passingData) {
-        state.expChangeStatusList = passingData
-    },
+    [REQUEST_UPDATED_CHARACTER_INVENTORY] (state, passingData) {
+        state.updateCharacterInventoryFlag = passingData
+    }
 }

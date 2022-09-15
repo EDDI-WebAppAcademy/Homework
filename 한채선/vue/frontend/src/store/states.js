@@ -4,5 +4,6 @@ export default {
     randomShopItem: [],
     characterStatus: null,
     characterInventory: [],
+    updateCharacterInventoryFlag: false,
     expChangeStatusList: [],
 }

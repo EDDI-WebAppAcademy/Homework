@@ -4,7 +4,7 @@ import {
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_CHARACTER_STATUS,
     REQUEST_CHARACTER_INVENTORY,
-    REQUEST_EXP_EXCHANGE_STATUS_LIST
+  /*  REQUEST_UPDATED_CHARACTER_INVENTORY,*/
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -47,16 +47,21 @@ export default {
             })
     },
 
+
+
     requestBuyItem({ commit }, payload) {
         console.log("requestBuyItem()")
 
         return axios.post('http://localhost:7776/31th/character-controller/buy_item',
             { itemList: payload })
-            .then((res) => {
-                alert(res.data)
-                commit()
+            .then(() => {
+                axios.get('http://localhost:7776/31th/character-controller/character-inventory')
+                    .then((res) => {
+                        commit(REQUEST_CHARACTER_INVENTORY, res.data)
+                    })
             })
     },
+
 
     requestCharacterInventory({ commit }) {
         console.log("requestCharacterInventory()")
@@ -67,20 +72,12 @@ export default {
             })
     },
 
-    requestExpExchangeStatusList({ commit }) {
-        console.log("requestExpExchangeStatusList()")
-
-        return axios.get('http://localhost:7776/31th/exp-change-status-view-controller/exp-change-to-status-list')
-            .then((res) => {
-                commit(REQUEST_EXP_EXCHANGE_STATUS_LIST, res.data)
-            })
-    },
 
     requestExchangingExpToStatus({ commit }, payload ) {
         console.log("requestExpExchangeStatusList()")
 
         return axios.post('http://localhost:7776/31th/character-controller/character-exp-to-status',
-            {changingExpStatusList: payload})
+            payload)
             .then((res) => {
                 alert(res.data)
             commit()

@@ -4,23 +4,21 @@
     <legend><h3>경험치 교환소 (lv99~ Open) </h3></legend>
     <p>누적된 경험치를 추가 스테이터스 수치로 교환 가능합니다.</p>
     <p>1회당 소모 경험치: 100000000
-      <button v-on:click="exchangeExpToStatus()">교환</button>
     </p>
     <label>
       <input type="checkbox" v-model="exchangeStatusListView">
       경험치 목록
+      <button v-on:click="exchangeExpToStatus()">교환</button>
     </label>
     <table border="1" v-if="exchangeStatusListView">
       <tr>
         <th align="center" width="40">번호</th>
         <th align="center" width="120">스테이터스</th>
-        <th align="center" width="60">수치</th>
         <th align="center" width="40">교환</th>
       </tr>
       <tr v-for="(exchangeStatus, idx) in exchangeStatusList" :key="idx">
         <th align="center" width="40">{{ idx + 1 }}</th>
-        <th align="center" width="120">{{ exchangeStatus.statusName }}</th>
-        <th align="center" width="120">{{ exchangeStatus.value }}</th>
+        <th align="center" width="120">{{ exchangeStatus }}</th>
         <th align="center" width="40">
           <label>
             <input type="checkbox" v-model="exchangeStatusValue" :value="idx">
@@ -38,51 +36,22 @@ export default {
   name: "ExpManager",
   data() {
     return {
+      exchangeStatusList : ["hp","mp", "atk", "str", "dex", "int", "def"],
       exchangeStatusListView: true,
       exchangeStatusValue: [],
-      exchangeStatusList: [],
     }
   },
   mounted() {
-    this.viewExpExchangeStatusList();
+
   },
   methods: {
 
-    ...mapActions(['requestExpExchangeStatusList', 'requestExchangingExpToStatus']),
-
-    async viewExpExchangeStatusList() {
-      console.log('viewExpExchangeStatusList()')
-      await this.requestExpExchangeStatusList()
-      this.exchangeStatusList = this.$store.state.expChangeStatusList
-    },
+    ...mapActions(['requestExchangingExpToStatus']),
 
    async exchangeExpToStatus() {
       console.log('exchangeExpToStatus()')
-      let changingStatusList = this.requestChangingStatusList()
-      let payload = changingStatusList
-      await this.requestExchangingExpToStatus( payload )
+      await this.requestExchangingExpToStatus( this.exchangeStatusValue )
     },
-
-    requestChangingStatusList() {
-
-      let checkedStatus = []
-
-      for (let i = 0; i < this.exchangeStatusValue.length; i++) {
-        for (let j = 0; j < this.exchangeStatusList.length; j++) {
-          if(this.exchangeStatusValue[i] === j){
-            checkedStatus.push(this.exchangeStatusList[j])
-            break
-          }
-        }
-      }
-
-      console.log('requestChangingStatusList')
-      return checkedStatus
-    },
-
-
-
-
 
 
     /*   exchangingStatus(){
