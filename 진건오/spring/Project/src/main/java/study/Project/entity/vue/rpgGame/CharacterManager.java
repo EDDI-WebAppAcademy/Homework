@@ -1,15 +1,18 @@
 package study.Project.entity.vue.rpgGame;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import study.Project.controller.vue.thirtytwoth.request.RequestBuyItem;
 
 @Getter
 @ToString
+@Setter
 public class CharacterManager {
     private Integer hp;
     private Integer mp;
     private Integer atk;
+    private Integer defaultAtk;
     private Integer level;
     private String currentJob;
     private Integer str;
@@ -20,6 +23,7 @@ public class CharacterManager {
     private Integer men;
     private Integer currentLevelBar;
     private Integer totalLevelBar;
+    private Integer itemAtk;
     private Integer money;
 
     public CharacterManager() {
@@ -37,6 +41,27 @@ public class CharacterManager {
         this.currentLevelBar = CharacterStatus.CURRENT_LEVEL_BAR.getCHARACTER_ABILITY_VALUE();
         this.totalLevelBar = CharacterStatus.TOTAL_LEVEL_BAR.getCHARACTER_ABILITY_VALUE();
         this.money = CharacterStatus.MONEY.getCHARACTER_ABILITY_VALUE();
+        this.itemAtk = CharacterStatus.ITEM_AKT.getCHARACTER_ABILITY_VALUE();
+        this.defaultAtk = CharacterStatus.DEFAULT_ATK.getCHARACTER_ABILITY_VALUE();
+    }
+
+    public CharacterManager(CharacterManager characterManager) {
+        hp = characterManager.hp;
+        mp = characterManager.mp;
+        level = characterManager.level;
+        itemAtk = characterManager.itemAtk;
+        atk = characterManager.atk;
+        defaultAtk = characterManager.defaultAtk;
+        str = characterManager.str;
+        intelligence = characterManager.intelligence;
+        dex = characterManager.dex;
+        vit = characterManager.vit;
+        def = characterManager.def;
+        men = characterManager.men;
+        totalLevelBar = characterManager.totalLevelBar;
+        currentLevelBar = characterManager.currentLevelBar;
+        money = characterManager.money;
+        currentJob = characterManager.currentJob;
     }
 
     public void calcCharacterMoney() {
