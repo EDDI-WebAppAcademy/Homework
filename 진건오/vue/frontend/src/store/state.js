@@ -4,5 +4,5 @@ export default {
     monsterLists: [],
     characterStatusValues: {},
     inventoryItemList: [],
-    expKindList:[]
+    expKindList:[],
 }

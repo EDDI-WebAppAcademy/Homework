@@ -4,7 +4,6 @@ import {
     MONSTER_LIST,
     CHARACTER_STATUS,
     INVENTORY_LIST,
-    BUY_ITEM_ADD_INVENTORY,
     EXPERIENCE_KIND
 } from './mutation-types'
 
@@ -31,7 +30,7 @@ export default {
             });
     },
     requestCharacterStatusFromSpring({commit}) {
-        return axios.get('http://localhost:7777/character/setting-character-status')
+        return axios.post('http://localhost:7777/character/setting-character-status')
             .then((res) =>{
                 commit(CHARACTER_STATUS, res.data)
             });
@@ -48,26 +47,25 @@ export default {
         return axios.post('http://localhost:7777/shop/buy-item',
             { totalPrice: payload.calculatedPrice, itemLists: payload.selectedItems })
             .then((res) => {
-                alert("구매완료")
-                commit(BUY_ITEM_ADD_INVENTORY,res.data)
+                alert(res.data)
+                commit(SHOP_ITEM_LIST)
             })
     },
     requestExperienceKindFromSpring({commit}) {
-        return axios.get('http://localhost:7777/changeExp/experience-change')
+        return axios.get('http://localhost:7777/experience/setting-value')
             .then((res) => {
                 commit(EXPERIENCE_KIND, res.data)
             });
 
     },
-    requestSelectedExpTypeToSpring({commit}, payload) {
-        console.log('requestSelectedExpType')
-
-        return axios.post('http://localhost:7777/changeExp/receive-change-Exp-Types',
-            {experienceType: payload.selectedExpTypes})
+    requestCharacterStatusChangeFromSpring({dispatch}, payload){
+        return axios.post('http://localhost:7777/experience/change',payload)
             .then((res) => {
-                alert("선택완료")
-                commit(EXPERIENCE_KIND, res.data)
+                if (res.data == true) {
+                    dispatch('requestCharacterStatusFromSpring')
+                }
             });
-    },
+    }
+
 
 }
