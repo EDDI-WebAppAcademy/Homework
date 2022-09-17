@@ -14,6 +14,20 @@
       </li>
     </ul>
 
+
+    <div>
+      <h3> 교환소 </h3>
+      <p> 경험치 1000만당 HP.MP는 50, 그외는 5 포인트 교환 가능합니다.</p>
+      <button @click="exchangeStatusPoint">교환하기</button>
+      <ul>
+        <li v-for="(status, i) in exchangeStatusList" :key="i">
+          <input type="checkbox" name="checkedStatus" id="checkedStatus" v-model="exchangeStatusListValue" :value="i">
+          <span>{{ status }}</span>
+        </li>
+      </ul>
+    </div>
+
+
   </section>
 </template>
 
@@ -31,6 +45,8 @@ export default {
       shopList : [],
       shopListValue : [],
       show : false,
+      exchangeStatusList: [ 'HP', 'MP', 'ATK', 'INTELLINGENCE', 'DEX', 'DEF', 'MEN' ],
+      exchangeStatusListValue: [],
     }
   },
   methods: {
@@ -59,6 +75,10 @@ export default {
       }
 
       let payload = shoppingCart
+      await this.requestBuyItem(payload)
+    },
+    async exchangeStatusPoint() {
+      let payload = this.exchangeStatusListValue
       await this.requestBuyItem(payload)
     },
 

@@ -6,12 +6,16 @@
       <h3>스테이지 {{ stageNumber }}</h3>
       <div class="buttons">
         <button @click="callRequestMonsterData">몬스터 소환</button>
+        <button @click="test">테스트</button>
       </div>
 
       <ul class="monstersOnStage">
-        <li v-for="(monster, index) in monsters" :key="index">
-          <span>{{ monster.name }} ----------- HP : {{ monster.hp }}</span>
-          <button>나중에 스킬 구현</button>
+        <li v-for="(monster, idx) in receiveMonstersData" :key="idx">
+          여긴 받은 그룹 : {{ monster }}
+        </li>
+
+        <li v-for="mob in monsters" :key="mob.name">
+          여긴 몬스터 : {{ mob }}
         </li>
       </ul>
     </div>
@@ -27,9 +31,8 @@ export default {
   data() {
     return {
       stageNumber: 1,
-      monsters: [
-
-      ],
+      receiveMonstersData: [],
+      monsters: [],
     }
   },
   methods : {
@@ -37,9 +40,18 @@ export default {
 
       async callRequestMonsterData() {
         await this.requestMonsterData()
-        this.monsters = this.$store.state.monstersData
+        this.receiveMonstersData = this.$store.state.monstersData
       },
 
+      test() {
+        let i = 0;
+        let size = this.receiveMonstersData.length
+        let monsterSize = this.monsters.length
+        for ( i ; i < size ; i++) {
+          this.monsters[monsterSize + i] = this.receiveMonstersData[i]
+        }
+        alert(monsterSize + " " + this.monsters[0].name)
+      }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 export default {
     characterStatusData: null,
-    monstersData : null,
+    monstersData : [],
     stockData : null,
     inventoryData : null,
     equipmentData : null,

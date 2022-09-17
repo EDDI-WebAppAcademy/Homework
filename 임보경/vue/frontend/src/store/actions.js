@@ -22,7 +22,7 @@ export default {
     },
 
     requestMonsterData ({ commit }) {
-        return axios.get('http://localhost:7777/make-game-alone/start/playing')
+        return axios.get('http://localhost:7777/make-game-alone/start/summon')
             .then((res) => {
                 commit(REQUEST_MONSTER_DATA, res.data)
             })
