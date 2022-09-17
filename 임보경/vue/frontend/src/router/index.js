@@ -6,7 +6,6 @@ import MakeGame from "@/components/MakeGame";
 import ComponentsTestView from "@/views/basics/ComponentsTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
 import VueToSpringView from "@/views/axiosTest/VueToSpringView";
-import MakeGameAloneView from "@/views/makeGameAlone/GameView";
 import DataSendTestView from "@/views/axiosTest/DataSendTestView";
 
 Vue.use(VueRouter)
