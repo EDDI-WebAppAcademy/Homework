@@ -8,6 +8,8 @@ import VueToSpringView from "@/views/axoisTest/VueToSpringView";
 import RpgGameView from "@/views/rpg/RpgGameView";
 import DataSendTestView from "@/views/basic/DataSendTestView";
 
+import JpaBoardListView from "@/views/boards/JpaBoardListView";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -45,6 +47,12 @@ const routes = [
     path: '/data-send-test-view',
     name: 'DataSendTestView',
     component: DataSendTestView
+  },
+
+  {
+    path: '/board-list',
+    name: 'JpaBoardListView',
+    component: JpaBoardListView
   }
 ]
 

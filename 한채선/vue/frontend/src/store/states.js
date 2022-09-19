@@ -6,4 +6,7 @@ export default {
     characterInventory: [],
     updateCharacterInventoryFlag: false,
     expChangeStatusList: [],
+
+    boards:[],
+    board: {},
 }

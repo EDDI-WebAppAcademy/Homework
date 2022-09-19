@@ -4,7 +4,8 @@ import {
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_CHARACTER_STATUS,
     REQUEST_CHARACTER_INVENTORY,
-  /*  REQUEST_UPDATED_CHARACTER_INVENTORY,*/
+    REQUEST_BOARD_LIST_FROM_SPRING,
+
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -83,5 +84,13 @@ export default {
             commit()
         })
     },
+
+    requestBoardListFromSpring({commit}) {
+        console.log("requestBoardListFromSpring()")
+        return axios.get('http://localhost:7776/39th/jpa/board/list')
+            .then((res) => {
+                commit(REQUEST_BOARD_LIST_FROM_SPRING, res.data)
+        })
+    }
 
 }

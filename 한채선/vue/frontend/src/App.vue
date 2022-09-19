@@ -8,6 +8,7 @@
       <router-link to="/vue2spring"> Vue To Spring</router-link> |
       <router-link to="/rpg-game"> RPG Game</router-link> |
       <router-link to="/data-send-test-view">Data Send Test View</router-link>
+      <router-link to="/board-list">게시판</router-link>
     </nav>
     <router-view/>
   </div>
