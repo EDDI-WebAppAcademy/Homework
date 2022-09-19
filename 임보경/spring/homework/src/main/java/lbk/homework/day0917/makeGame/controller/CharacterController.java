@@ -2,6 +2,7 @@ package lbk.homework.day0917.makeGame.controller;
 
 import lbk.homework.day0917.makeGame.entity.Character;
 import lbk.homework.day0917.makeGame.entity.CharacterStatus;
+import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
+@Getter
 @ToString
 @RestController
 @RequestMapping("/2nd")

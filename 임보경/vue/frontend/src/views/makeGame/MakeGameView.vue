@@ -4,6 +4,7 @@
 
     <div class="wrap">
     <game-character-manager />
+    <shop-component />
     </div>
 
   </div>
@@ -11,10 +12,13 @@
 
 <script>
 import GameCharacterManager from "@/components/makeGame/GameCharacterManager";
+import ShopComponent from "@/components/makeGame/ShopComponent";
+
 export default {
   name: "MakeGameView",
   components : {
     'game-character-manager' : GameCharacterManager,
+    'shop-component' : ShopComponent,
   }
 }
 </script>
