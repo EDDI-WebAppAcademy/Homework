@@ -58,7 +58,12 @@ export default {
             .then((res)=> {
                 if(res.data == true) {
                     dispatch('requestCharacterInventory')
-                    console.log('requestCharacterInventory' + 'requestCharacterStatus')
+                    dispatch('requestCharacterStatus')
+                    console.log('requestBuyItem() : requestCharacterInventory() & requestCharacterStatus()')
+                    alert('구매 완료!')
+                }
+                else {
+                    alert('소지금이 부족합니다')
                 }
             })
     },
