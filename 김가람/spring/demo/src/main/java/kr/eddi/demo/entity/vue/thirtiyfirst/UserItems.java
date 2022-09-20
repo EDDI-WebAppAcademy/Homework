@@ -1,15 +1,14 @@
-package kr.eddi.demo.controller.vue.thirtysecond.request;
+package kr.eddi.demo.entity.vue.thirtiyfirst;
 
 import lombok.Getter;
 import lombok.ToString;
 
 @ToString
 @Getter
-public class Items {
-    private Integer atk;
-    private String description;
+public class UserItems {
     private String name;
     private Integer price;
+    private String description;
+    private Integer atk;
     private String recover;
-
 }

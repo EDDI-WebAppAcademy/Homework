@@ -5,7 +5,6 @@
     <experience-manager/>
     <character-manager/>
     <monster-manager/>
-    <skill-manager/>
   </div>
 </template>
 

@@ -66,6 +66,7 @@ public class RpgMonsterController {
 
         return monsterList;
     }
+
     @GetMapping("/view-monster-list")
     public List<MonsterBooks> viewMonsterList() {
         log.info("viewMonsterList()");
