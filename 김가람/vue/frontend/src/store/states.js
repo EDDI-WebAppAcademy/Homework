@@ -4,7 +4,11 @@ export default {
     monsterList: [],
     randomMonster: [],
     characterStatus: {},
+    characterStatusUpdateFlag: false,
     myInventory: [],
-    expExchangeLists: [],
+    viewExpExchangeLists: [],
+
+    boards: [],
+    borad: {}
 
 }
