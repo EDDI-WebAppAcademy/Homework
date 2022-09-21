@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller.basic.twelveth;
+package kr.eddi.demo.controller.basic.seventh.twelveth;
 
 import kr.eddi.demo.entity.basic.twelveth.PockerCard;
 import kr.eddi.demo.entity.basic.twelveth.PockerGameManager;

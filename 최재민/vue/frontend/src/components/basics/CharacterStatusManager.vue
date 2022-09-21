@@ -1,37 +1,43 @@
 <template>
   <div>
     <p>캐릭터 상태창</p>
-    <p>HP: {{ characterStatus[0].hp }} MP: {{ characterStatus[0].mp }} ATK: {{ characterStatus[0].atk }} Lv: {{ characterStatus[0].level }} 직업: {{ characterStatus[0].currentJob }}</p>
-    <p>STR: {{ characterStatus[0].str }} INT: {{ characterStatus[0].intelligence }} DEX: {{ characterStatus[0].dex }} VIT: {{ characterStatus[0].vit }} DEF: {{ characterStatus[0].def }} MEN: {{ characterStatus[0].men }}</p>
-    <p>경험치: {{ characterStatus[0].currentLevelBar }} / {{ characterStatus[0].totalLevelBar }}</p>
-    <p>소지금: {{ characterStatus[0].money }}</p>
+    <p>HP: {{ CharacterStatus.hp }} MP: {{ CharacterStatus.mp }} ATK: {{ CharacterStatus.atk }} Lv: {{ CharacterStatus.level }} 직업: {{ CharacterStatus.currentJob }}</p>
+    <p>STR: {{ CharacterStatus.str }} INT: {{ CharacterStatus.intelligence }} DEX: {{ CharacterStatus.dex }} VIT: {{ CharacterStatus.vit }} DEF: {{ CharacterStatus.def }} MEN: {{ CharacterStatus.men }}</p>
+    <p>경험치: {{ CharacterStatus.currentLevelBar }} / {{ CharacterStatus.totalLevelBar }}</p>
+    <p>소지금: {{ CharacterStatus.money }}</p>
   </div>
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "CharacterStatusManager",
   data(){
     return{
-      characterStatus: [],
     }
+  },
+  computed:{
+    ...mapState([
+      'CharacterStatus'
+    ])
   },
   methods:{
     ...mapActions([
         'requestCharacterDefaultStatus',
-        'requestEquipItemsSize'
     ])
     },
   async mounted() {
     await this.requestCharacterDefaultStatus()
-    this.characterStatus = this.$store.state.CharacterStatus
   },
-  Update() {
-    this.requestCharacterDefaultStatus()
-    this.characterStatus = this.$store.state.CharacterStatus
-    }
+  // async beforeUpdate() {
+  //
+  //   await this.requestCharacterDefaultStatus()
+  //   this.characterStatus = this.$store.state.CharacterStatus
+  //
+  //   if (this.characterStatus.level == 99) { return }
+  //
+  // }
   }
 </script>
 

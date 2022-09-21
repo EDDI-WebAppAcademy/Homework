@@ -8,7 +8,7 @@ package kr.eddi.demo.utility.basic.seventh;
 // 이렇게 규칙이 바뀌는 상황에서도 일관된 처리를 유지하고자 하는 경우
 // 사용하는 방식이 바로 interface(인터페이스)에 해당한다.
 
-import kr.eddi.demo.entity.basic.seventh.Player;
+import kr.eddi.demo.utility.basic.twelveth.seventh.Player;
 
 import java.util.List;
 

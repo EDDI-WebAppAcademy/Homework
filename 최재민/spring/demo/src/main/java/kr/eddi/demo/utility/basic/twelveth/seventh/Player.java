@@ -1,5 +1,5 @@
 
-package kr.eddi.demo.entity.basic.seventh;
+package kr.eddi.demo.utility.basic.twelveth.seventh;
 import kr.eddi.demo.utility.basic.seventh.Dice;
 import lombok.Getter;
 import lombok.ToString;

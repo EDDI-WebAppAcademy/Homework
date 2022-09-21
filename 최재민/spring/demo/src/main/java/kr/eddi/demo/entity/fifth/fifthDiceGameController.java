@@ -1,4 +1,4 @@
-package kr.eddi.demo.controller.basic.fifth;
+package kr.eddi.demo.entity.fifth;
 
 import kr.eddi.demo.entity.basic.fifth.DiceGame;
 import lombok.extern.slf4j.Slf4j;

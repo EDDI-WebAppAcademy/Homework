@@ -60,6 +60,7 @@ public class MonsterManager {
             Monsters RanOneMonster = allMonstersList.get(CustomRandom.makeIntCustomRandom(0, allMonsterSize));
             randomMonsterList.add(RanOneMonster);
         }
+
     }
 
     public List<Monsters> addHundredMonsters(){
