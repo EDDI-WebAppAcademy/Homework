@@ -6,6 +6,8 @@ export default {
     myInventory: [],
     randomMonster: [],
     characterStatus: {},
-    characterStatusUpdateFlag: false
+    characterStatusUpdateFlag: false,
 
+    boards: [],
+    board: {}
 }

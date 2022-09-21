@@ -3,7 +3,11 @@ import {
     REQUEST_RANDOM_SHOP_ITEM,
 
     REQUEST_MY_INVENTORY,
-    REQUEST_RANDOM_MONSTER, REQUEST_CHARACTER_STATUS_FROM_SPRING, REQUEST_CHARACTER_STATUS_UPDATE_FROM_SPRING,
+    REQUEST_RANDOM_MONSTER,
+    REQUEST_CHARACTER_STATUS_FROM_SPRING,
+    REQUEST_CHARACTER_STATUS_UPDATE_FROM_SPRING,
+    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_FROM_SPRING,
 
 
 } from './mutation-types'
@@ -25,11 +29,17 @@ export default {
 
     },
 
-    [REQUEST_CHARACTER_STATUS_FROM_SPRING] (state, passingData) {
+    [REQUEST_CHARACTER_STATUS_FROM_SPRING](state, passingData) {
         state.characterStatus = passingData
     },
-    [REQUEST_CHARACTER_STATUS_UPDATE_FROM_SPRING] (state, passingData) {
+    [REQUEST_CHARACTER_STATUS_UPDATE_FROM_SPRING](state, passingData) {
         state.characterStatusUpdateFlag = passingData
-    }
+    },
 
+    [REQUEST_BOARD_LIST_FROM_SPRING](state, passingData) {
+        state.boards = passingData
+    },
+    [REQUEST_BOARD_FROM_SPRING] (state, passingData) {
+        state.board = passingData
+    },
 }
