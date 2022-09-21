@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductsBoardListView from "@/views/productsBoard/ProductsBoardListView";
+import ProductRegisterView from "@/views/productsBoard/ProductRegisterView";
 
 
 Vue.use(VueRouter)
@@ -16,6 +17,11 @@ const routes = [
     path: '/board-list',
     name: 'ProductsBoardListView',
     component: ProductsBoardListView
+  },
+  {
+    path: '/product-register',
+    name: 'ProductRegisterView',
+    component: ProductRegisterView
   },
 
 ]
