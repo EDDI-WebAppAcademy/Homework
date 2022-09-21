@@ -2,6 +2,7 @@ package kr.eddi.demo.service.jpa.board;
 
 import kr.eddi.demo.entity.jpa.boards.Board;
 import kr.eddi.demo.repository.board.BoardRepository;
+import kr.eddi.demo.service.jpa.board.requested.BoardRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -18,7 +19,11 @@ public class BoardServiceImpl implements BoardService{
     BoardRepository repository;
 
     @Override
-    public void register(Board board) {
+    public void register(BoardRequest boardRequest) {
+        Board board = new Board();
+        board.setTitle(boardRequest.getTitle());
+        board.setWriter(boardRequest.getWriter());
+        board.setContent(boardRequest.getContent());
         repository.save(board);
     }
 
@@ -28,9 +33,9 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public Board read(Integer boardNo) {
+    public Board read(Long boardNo) {
 
-        Optional<Board> maybeBoard = repository.findById(Long.valueOf(boardNo));
+        Optional<Board> maybeBoard = repository.findById(boardNo);
 
         if(maybeBoard.equals(Optional.empty())) {
             log.info("Can't read board!");
@@ -46,8 +51,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void remove(Integer boardNo) {
-        repository.deleteById(Long.valueOf(boardNo));
+    public void remove(Long boardNo) {
+        repository.deleteById(boardNo);
     }
 
 }

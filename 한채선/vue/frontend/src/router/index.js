@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import Test from '@/components/basic/Test.vue'
 import ComponentTestView from "@/views/basic/ComponentTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
@@ -9,15 +8,14 @@ import RpgGameView from "@/views/rpg/RpgGameView";
 import DataSendTestView from "@/views/basic/DataSendTestView";
 
 import JpaBoardListView from "@/views/boards/JpaBoardListView";
+import JpaBoardRegisterView from "@/views/boards/JpaBoardRegisterView";
+import JpaBoardModifyView from "@/views/boards/JpaBoardModifyView";
+import JpaBoardReadView from "@/views/boards/JpaBoardReadView";
+import ProductBoardMainView from "@/views/productBoard/ProductBoardMainView";
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
   {
     path: '/test',
     name: 'test',
@@ -49,11 +47,51 @@ const routes = [
     component: DataSendTestView
   },
 
+
+    /* --- JpaBoard --- */
+
+
   {
     path: '/board-list',
     name: 'JpaBoardListView',
     component: JpaBoardListView
-  }
+  },
+  {
+    path: '/board-register',
+    name: 'JpaBoardRegisterView',
+    component: JpaBoardRegisterView
+  },
+  {
+    path: '/board-read/:boardNo',
+    name: 'JpaBoardReadView',
+    components: {
+      default: JpaBoardReadView
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/board-modify/:boardNo',
+    name: 'JpaBoardModifyView',
+    components: {
+      default: JpaBoardModifyView
+    },
+    props: {
+      default: true
+    }
+  },
+
+
+    /* --- product board --- */
+  {
+    path: '/product-board-main',
+    name: 'ProductBoardMainView',
+    component: ProductBoardMainView
+  },
+
+
+
 ]
 
 const router = new VueRouter({

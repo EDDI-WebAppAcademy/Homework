@@ -25,7 +25,7 @@ public class Board {
     private String content;
 
     @CreationTimestamp
-    private Date regData;
+    private Date regDate;
 
     @UpdateTimestamp
     private Date updDate;

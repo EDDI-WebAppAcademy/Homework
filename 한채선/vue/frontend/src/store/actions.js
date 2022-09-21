@@ -4,7 +4,7 @@ import {
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_CHARACTER_STATUS,
     REQUEST_CHARACTER_INVENTORY,
-    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_BOARD_FROM_SPRING,
 
 } from './mutation-types'
 
@@ -96,6 +96,50 @@ export default {
             .then((res) => {
                 commit(REQUEST_BOARD_LIST_FROM_SPRING, res.data)
         })
-    }
+    },
 
+    requestBoardFromSpring({ commit }, boardNo) {
+
+        console.log("requestBoardFromSpring()")
+
+        return axios.get(`http://localhost:7776/39th/jpa/board/${boardNo}`)
+            .then((res) => {
+                commit(REQUEST_BOARD_FROM_SPRING, res.data)
+            })
+    },
+
+
+    // eslint-disable-next-line no-empty-pattern
+    requestCreatBoardContentsToSpring({ }, payload) {
+        console.log("requestCreatBoardContentsToSpring()")
+
+        const { title, content, writer } = payload
+        return axios.post('http://localhost:7776/39th/jpa/board/register',
+            {title, content, writer})
+            .then(() => {
+                alert('게시물 등록 성공')
+            })
+    },
+
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteBoardToSpring({ }, boardNo) {
+        console.log("requestDeleteBoardToSpring()")
+
+        return axios.delete(`http://localhost:7776/39th/jpa/board/${boardNo}`)
+            .then(() => {
+                alert('삭제 성공')
+            })
+    },
+
+    // eslint-disable-next-line no-empty-pattern
+    requestBoardModifyToSpring({ }, payload) {
+        console.log("requestBoardModifyToSpring()")
+
+        const {  boardNo, title, writer, content, regDate } = payload
+
+        return axios.put(`http://localhost:7776/39th/jpa/board/${boardNo}`, { title, content, writer, regDate })
+            .then(()=> {
+                alert('수정 성공')
+            })
+    }
 }
