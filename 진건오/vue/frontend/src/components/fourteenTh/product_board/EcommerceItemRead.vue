@@ -38,6 +38,14 @@
         </td>
       </tr>
     </table>
+<!--    <div align="center">-->
+<!--      <router-link :to="{name: 'EcommerceBuyItemView', params: { itemId }}">-->
+<!--        구매-->
+<!--      </router-link> | -->
+<!--      <router-link :to="{name: 'EcommerceConsumerListView'}">-->
+<!--        취소-->
+<!--      </router-link>-->
+<!--    </div>-->
   </div>
 </template>
 

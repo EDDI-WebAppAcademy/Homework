@@ -8,7 +8,7 @@ import {
     REQUEST_BOARD_LIST_FROM_SPRING,
     REQUEST_BOARD_FROM_SPRING,
     REQUEST_SELECTED_ITEM_FROM_SPRING,
-    REQUEST_ECOMMERCE_ITEM_FROM_SPRING
+    REQUEST_ECOMMERCE_ITEM_FROM_SPRING,
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -136,4 +136,26 @@ export default {
                 commit(REQUEST_SELECTED_ITEM_FROM_SPRING, res.data)
             });
     },
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateSellItemToSpring({ }, payload) {
+        console.log("requestCreateSellItemToSpring")
+
+        const { itemName, seller, itemPrice, itemInformation } = payload
+        return axios.post('http://localhost:7777/ecommerce/register/item',
+            { itemName, seller, itemPrice, itemInformation })
+            .then(() => {
+                alert("상품 등록 완료")
+            });
+    },
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateUserToSpring({ }, payload){
+        console.log("requestCreateUserToSpring")
+
+        const { userName, userId, userPassword } = payload
+        return axios.post('http://localhost:7777/ecommerce/sign-up/user',
+            {userName, userId, userPassword})
+            .then(() => {
+                alert("회원가입 완료")
+            });
+    }
 }

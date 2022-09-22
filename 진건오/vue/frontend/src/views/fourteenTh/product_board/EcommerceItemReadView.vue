@@ -1,13 +1,6 @@
 <template>
   <div align="center">
     <ecommerce-item-read v-if="item" :item="item"/>
-    <router-link :to="{name: 'EcommerceBuyItemView', params: { itemId }}">
-      구매
-    </router-link>
-    <router-link :to="{name: 'EcommerceConsumerListView'}">
-      취소
-    </router-link>
-
   </div>
 </template>
 
@@ -21,7 +14,7 @@ export default {
     EcommerceItemRead
   },
   props:{
-    ItemId:{
+    itemId:{
       type: String,
       required: true,
     }
