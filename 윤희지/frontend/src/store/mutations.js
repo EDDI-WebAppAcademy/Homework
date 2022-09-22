@@ -31,6 +31,6 @@ export default {
         state.boards = passingData
     },
     [REQUEST_GOODS_BOARD_LIST_FROM_SPRING] (state, passingData) {
-        state.goodsBoards = passingData
+        state.goodsBoardList = passingData
     }
 }
