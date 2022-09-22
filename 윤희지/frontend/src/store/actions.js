@@ -110,13 +110,22 @@ export default {
             })
     },
     requestGoodsBoardListFromSpring({ commit }) {
-        console.log('requestGoodsBoardListFromSpring')
+        console.log('requestGoodsBoardListFromSpring()')
 
-        return axios.get('http://localhost:5959/goods-board/list')
+        return axios.get('http://localhost:7778/goods-board/list')
             .then((res)=> {
                 commit(REQUEST_GOODS_BOARD_LIST_FROM_SPRING, res.data)
             })
-
+    },
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateGoodsBoardContentsToSpring({ }, payload) {
+        console.log('requestCreateGoodsBoardContentsToSpring()')
+        const { goodsName, price, seller, content } = payload
+        return axios.post('http://localhost:7778/goods-board/register',
+            { goodsName, price, seller, content })
+            .then(() => {
+                alert('상품 게시글 등록 완료')
+            })
     },
 
 }

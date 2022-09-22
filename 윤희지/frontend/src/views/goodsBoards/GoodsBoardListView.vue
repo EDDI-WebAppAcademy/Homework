@@ -4,7 +4,7 @@
     <router-link :to="{ name: 'GoodsBoardRegisterView'}">
       상품 등록하기
     </router-link>
-    <goods-board-list :goodsBoards="goodsBoards"/>
+    <goods-board-list :goodsBoards="goodsBoardList"/>
     <br>
     <button> 로그인하기 </button>
   </div>
@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     ...mapState([
-        'goodsBoards'
+        'goodsBoardList'
     ]),
   },
   mounted() {

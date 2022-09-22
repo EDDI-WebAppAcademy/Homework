@@ -7,6 +7,6 @@ export default {
     monsterListChangeFlag: false,
     boards: [],
     board: {},
-    goodsBoards: [],
+    goodsBoardList: [],
     goodsBoard: {}
 }
