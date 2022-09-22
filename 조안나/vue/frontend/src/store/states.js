@@ -5,4 +5,8 @@ export default {
     characterStatus:[],
     inventoryList:[],
     damagedMonstersList:[],
+    characterStatusUpdateFlag: false,
+    boards: [],
+    board: {},
+    productBoards: [],
 }
