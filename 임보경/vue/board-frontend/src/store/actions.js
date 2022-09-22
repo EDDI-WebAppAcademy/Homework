@@ -1,5 +1,6 @@
 import {
     REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_READ_FROM_SPRING,
 } from './mutation-types'
 
 import axios from "axios";
@@ -23,6 +24,15 @@ export default {
             { productName, price, numberInStock, details })
             .then(() => {
                 alert('상품 등록 성공')
+            })
+    },
+
+    requestBoardReadFromSpring ({ commit }, boardNo) {
+        console.log('BoardReadFromSpring()'+ boardNo)
+
+        return axios.get(`http://localhost:5555/products-board/${ boardNo }`)
+            .then((res) => {
+                commit(REQUEST_BOARD_READ_FROM_SPRING, res.data)
             })
     },
 }

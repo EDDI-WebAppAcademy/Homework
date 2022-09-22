@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductsBoardListView from "@/views/productsBoard/ProductsBoardListView";
 import ProductRegisterView from "@/views/productsBoard/ProductRegisterView";
+import ProductsBoardReadView from "@/views/productsBoard/ProductsBoardReadView";
 
 
 Vue.use(VueRouter)
@@ -23,7 +24,16 @@ const routes = [
     name: 'ProductRegisterView',
     component: ProductRegisterView
   },
-
+  {
+    path: '/board-read/:boardNo',
+    name: 'ProductsBoardReadView',
+    components: {
+      default: ProductsBoardReadView
+    },
+    props: {
+      default: true
+    }
+  },
 ]
 
 const router = new VueRouter({

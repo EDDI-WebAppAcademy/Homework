@@ -12,7 +12,7 @@
       </tr>
 
       <tr v-if="!boards || (Array.isArray(boards) && boards.length === 0)">
-        <td colspan="5">
+        <td class="colspan5" colspan="5">
           현재 등록된 게시물이 없습니다!
         </td>
       </tr>
@@ -20,7 +20,12 @@
       <tr v-else v-for="board in boards" :key="board.boardNo">
         <td>{{ board.boardNo }}</td>
         <td><span class="noImageTmp">no Image</span></td>
-        <td>{{ board.productName }}</td>
+        <td>
+          <router-link :to="{ name: 'ProductsBoardReadView',
+                              params: { boardNo: board.boardNo }}">
+            {{ board.productName }}
+          </router-link>
+        </td>
         <td>{{ board.price }}</td>
       </tr>
 
@@ -110,5 +115,9 @@ table tr td:nth-child(3) {
 }
 table tr td:nth-child(4) {
   width: 180px;
+}
+
+.colspan5 {
+  width: 880px;
 }
 </style>
