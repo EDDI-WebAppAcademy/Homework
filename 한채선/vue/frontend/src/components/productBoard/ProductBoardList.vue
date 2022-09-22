@@ -22,7 +22,7 @@
         <td align="center">
           {{ productBoard.price }}
         </td>
-        <td>
+        <td align="center">
           <button @click="inShoppingBasket(productBoard.productNo)">
             장바구니
           </button>

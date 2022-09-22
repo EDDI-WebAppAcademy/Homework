@@ -153,4 +153,15 @@ export default {
             })
     },
 
+    // eslint-disable-next-line no-empty-pattern
+    requestProductBoardRegisterToSpring({ }, payload ){
+        console.log("requestProductBoardRegisterToSpring()")
+
+        const { productName, price, content } = payload
+        return axios.post('http://localhost:7776/41th/jpa/prudoct-board/board-register', { productName, price, content })
+            .then(() => {
+                alert("등록 완료!")
+            })
+    }
+
 }
