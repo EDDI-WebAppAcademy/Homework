@@ -38,7 +38,16 @@ public class ProductBoardServiceImpl implements ProductBoardService{
 
     @Override
     public ProductBoard read(Long productNo) {
-        return null;
+
+        Optional<ProductBoard> maybePB = pbRepository.findById(productNo);
+
+        if(maybePB.isEmpty()) {
+            log.info("Can't read this product!");
+            return null;
+        }
+        else {
+            return maybePB.get();
+        }
     }
 
     @Override

@@ -33,4 +33,11 @@ public class ProductBoardController {
         service.register(productBoardRequest);
     }
 
+    @GetMapping("/board-read/{productNo}")
+    public ProductBoard boardRead(@PathVariable("productNo") Long productNo) {
+        log.info("boardRead");
+
+        return service.read(productNo);
+    }
+
 }
