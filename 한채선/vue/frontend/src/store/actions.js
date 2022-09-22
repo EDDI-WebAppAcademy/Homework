@@ -4,7 +4,10 @@ import {
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_CHARACTER_STATUS,
     REQUEST_CHARACTER_INVENTORY,
-    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_BOARD_FROM_SPRING, REQUEST_PRODUCT_BOARD_LIST,
+    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_FROM_SPRING,
+    REQUEST_PRODUCT_BOARD_LIST,
+    REQUEST_PRODUCT_BOARD_READ_FROM_SPRING,
 
 } from './mutation-types'
 
@@ -161,6 +164,15 @@ export default {
         return axios.post('http://localhost:7776/41th/jpa/prudoct-board/board-register', { productName, price, content })
             .then(() => {
                 alert("등록 완료!")
+            })
+    },
+
+    requestProductBoardRead({ commit }, productNo ) {
+        console.log("requestProductBoardRead()")
+
+        return axios.get(`http://localhost:7776/41th/jpa/prudoct-board/board-read/${productNo}`)
+            .then((res) => {
+                commit(REQUEST_PRODUCT_BOARD_READ_FROM_SPRING, res.data)
             })
     }
 

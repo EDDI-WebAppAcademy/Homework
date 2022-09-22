@@ -7,7 +7,7 @@ import {
     REQUEST_UPDATED_CHARACTER_INVENTORY,
     REQUEST_BOARD_LIST_FROM_SPRING,
     REQUEST_BOARD_FROM_SPRING,
-    REQUEST_PRODUCT_BOARD_LIST,
+    REQUEST_PRODUCT_BOARD_LIST, REQUEST_PRODUCT_BOARD_READ_FROM_SPRING,
 } from './mutation-types'
 
 export default {
@@ -38,8 +38,13 @@ export default {
         state.board = passingData
     },
 
+
+    /* --- product board --- */
     [REQUEST_PRODUCT_BOARD_LIST] (state, passingData) {
         state.productBoardList = passingData
-    }
+    },
+    [REQUEST_PRODUCT_BOARD_READ_FROM_SPRING] (state, passingData) {
+        state.productBoard = passingData
+    },
 
 }
