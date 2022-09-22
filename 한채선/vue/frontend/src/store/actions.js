@@ -174,6 +174,17 @@ export default {
             .then((res) => {
                 commit(REQUEST_PRODUCT_BOARD_READ_FROM_SPRING, res.data)
             })
+    },
+
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteThisProductBoardToSpring( { }, productNo ) {
+        console.log("requestDeleteThisProductBoardToSpring()")
+
+        return axios.delete(`http://localhost:7776/41th/jpa/prudoct-board/board-delete/${productNo}`)
+            .then(() => {
+                alert("삭제 완료!")
+            })
     }
+
 
 }
