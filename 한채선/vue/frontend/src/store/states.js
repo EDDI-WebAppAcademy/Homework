@@ -10,6 +10,7 @@ export default {
     boards:[],
     board: {},
 
+    isAdmin: false,
     productBoardList:[],
     productBoard: {},
 }
