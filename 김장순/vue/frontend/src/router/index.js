@@ -12,6 +12,7 @@ import JpaBoardRegisterView from "@/views/boards/JpaBoardRegisterView";
 import JpaBoardReadView from "@/views/boards/JpaBoardReadView";
 import JpaBoardModifyView from "@/views/boards/JpaBoardModifyView";
 import GoodsSaleListView from "@/views/goodsSale/GoodsSaleListView";
+import ProductRegisterView from "@/views/goodsSale/ProductRegisterView";
 
 
 Vue.use(VueRouter)
@@ -86,6 +87,11 @@ const routes = [
         path: '/goods-sale-list',
         name: 'GoodsSaleListView',
         component: GoodsSaleListView
+    },
+    {
+        path: '/product-register',
+        name: 'ProductRegisterView',
+        component: ProductRegisterView
     },
 ]
 
