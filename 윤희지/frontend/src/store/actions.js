@@ -126,6 +126,7 @@ export default {
             .then(() => {
                 alert('상품 게시글 등록 완료')
             })
+
     },
 
 }
