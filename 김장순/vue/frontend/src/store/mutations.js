@@ -11,7 +11,6 @@ import {
     REQUEST_BOARD_FROM_SPRING,
 
     REQUEST_GOODS_SALE_BOARD_LIST_FROM_SPRING,
-    REQUEST_GOODS_SALE_BOARD_FROM_SPRING
 } from './mutation-types'
 
 export default {
@@ -42,6 +41,8 @@ export default {
     [REQUEST_BOARD_FROM_SPRING] (state, passingData) {
         state.board = passingData
     },
-
+    [REQUEST_GOODS_SALE_BOARD_LIST_FROM_SPRING] (state, passingData) {
+        state.goodsSaleBoards = passingData
+    },
 
 }

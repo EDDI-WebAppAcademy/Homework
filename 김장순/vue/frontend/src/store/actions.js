@@ -11,7 +11,6 @@ import {
     REQUEST_BOARD_FROM_SPRING,
 
     REQUEST_GOODS_SALE_BOARD_LIST_FROM_SPRING,
-    REQUEST_GOODS_SALE_BOARD_FROM_SPRING
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -137,6 +136,13 @@ export default {
                 alert('수정 성공')
             })
     },
+    requestGoodsSaleBoardListFromSpring({commit}) {
+        console.log('requestGoodsSaleBoardListFromSpring()')
 
+        return axios.get('http://localhost:7777/goods/sale/list')
+            .then((res) => {
+                commit(REQUEST_GOODS_SALE_BOARD_LIST_FROM_SPRING, res.data)
+            })
+    },
 
 }

@@ -11,9 +11,6 @@ import JpaBoardListView from "@/views/boards/JpaBoardListView";
 import JpaBoardRegisterView from "@/views/boards/JpaBoardRegisterView";
 import JpaBoardReadView from "@/views/boards/JpaBoardReadView";
 import JpaBoardModifyView from "@/views/boards/JpaBoardModifyView";
-import GuestJoinView from "@/views/goodsSale/GuestJoinView";
-import GuestLoginView from "@/views/goodsSale/GuestLoginView";
-import ProductRegisterView from "@/views/goodsSale/ProductRegisterView";
 import GoodsSaleListView from "@/views/goodsSale/GoodsSaleListView";
 
 
@@ -85,7 +82,11 @@ const routes = [
             default: true
         }
     },
-
+    {
+        path: '/goods-sale-list',
+        name: 'GoodsSaleListView',
+        component: GoodsSaleListView
+    },
 ]
 
 const router = new VueRouter({
