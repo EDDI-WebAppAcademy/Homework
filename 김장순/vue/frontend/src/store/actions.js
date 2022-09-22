@@ -155,6 +155,17 @@ export default {
                 alert('상품 등록 성공')
             })
     },
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateGuestInformationToSpring({}, payload) {
+        console.log('requestCreateGuestInformationToSpring()')
+
+        const {id, password, email} = payload
+        return axios.post('http://localhost:7777/goods/guest/join',
+            {id, password, email})
+            .then(() => {
+                alert('회원가입 성공')
+            })
+    }
 
 
 }
