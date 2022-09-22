@@ -1,13 +1,11 @@
 package lbk.homework.day0921.jpa.productsBoard.controller;
 
+import lbk.homework.day0921.jpa.productsBoard.controller.request.BoardRequest;
 import lbk.homework.day0921.jpa.productsBoard.entity.Board;
 import lbk.homework.day0921.jpa.productsBoard.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,10 @@ public class BoardController {
         return service.list();
     }
 
+    @PostMapping("/register")
+    public void productRegister (@RequestBody BoardRequest boardRequest) {
+        log.info("boardRegister()" + boardRequest.toString());
+        service.register(boardRequest);
+    }
 
 }

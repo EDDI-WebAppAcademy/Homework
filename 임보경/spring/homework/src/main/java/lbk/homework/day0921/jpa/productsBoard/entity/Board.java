@@ -20,10 +20,10 @@ public class Board {
     private String productName;
 
     @Column(length = 32, nullable = false)
-    private Integer productPrice;
+    private Long price;
 
     @Lob
-    private String productDetails;
+    private String details;
 
     @CreationTimestamp
     private Date regDate;
@@ -32,5 +32,5 @@ public class Board {
     private Date updDate;
 
     @Column(length = 32, nullable = false)
-    private Integer NumberInStock;
+    private Long NumberInStock;
 }
