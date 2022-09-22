@@ -2,8 +2,11 @@ import {
     REQUEST_DATA_FROM_SPRING,
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_MY_INVENTORY,
-    CHARACTER_STATUS,
-    MONSTER_LIST
+    REQUEST_CHARACTER_STATUS_FROM_SPRING,
+    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_FROM_SPRING,
+    REQUEST_BOARD_LIST_FROM_SPRING2,
+    REQUEST_BOARD_FROM_SPRING2,
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -45,16 +48,87 @@ export default {
                 commit(REQUEST_MY_INVENTORY, res.data)
             })
     },
-    requestCharacterStatus({commit}) {
-        return axios.get('http://localhost:7777/32th/vue2spring/get-character-status')
-            .then((res) =>{
-                commit(CHARACTER_STATUS, res.data)
+    requestCharacterStatusFromSpring ({ commit }) {
+        console.log("requestCharacterStatusFromSpring()")
+
+        return axios.post('http://localhost:7777/37th/rpg-game/get-character-status')
+            .then((res) => {
+                commit(REQUEST_CHARACTER_STATUS_FROM_SPRING, res.data)
             })
     },
-    requestMonsterLists({commit}) {
-        return axios.get('http://localhost:7777/rpg/game/create-monster')
+    requestExperienceExchangeFromSpring ({ dispatch }, payload) {
+        console.log("requestExperienceExchangeFromSpring()")
+
+        return axios.post('http://localhost:7777/37th/rpg-game/experience/exchange', payload)
             .then((res) => {
-                commit(MONSTER_LIST, res.data)
-            });
+                if (res.data == true) {
+                    dispatch('requestCharacterStatusFromSpring')
+                }
+            })
     },
+    requestBoardListFromSpring ({ commit }) {
+        console.log('requestBoardListFromSpring()')
+
+        return axios.get('http://localhost:7777/39th/jpa/board/list')
+            .then((res) => {
+                commit(REQUEST_BOARD_LIST_FROM_SPRING, res.data)
+            })
+    },
+    requestBoardListFromSpring2 ({ commit }) {
+        console.log('requestBoardListFromSpring2()')
+
+        return axios.get('http://localhost:7777/39th/jpa/board/list2')
+            .then((res) => {
+                commit(REQUEST_BOARD_LIST_FROM_SPRING2, res.data)
+            })
+    },
+    requestBoardFromSpring ({ commit }, boardNo) {
+        console.log('requestBoardFromSpring()')
+
+        return axios.get(`http://localhost:7777/39th/jpa/board/${boardNo}`)
+            .then((res) => {
+                commit(REQUEST_BOARD_FROM_SPRING, res.data)
+            })
+    },
+    requestBoardFromSpring2 ({ commit }, boardNo) {
+        console.log('requestBoardFromSpring2()')
+
+        return axios.get(`http://localhost:7777/39th/jpa/board/${boardNo}/list2`)
+            .then((res) => {
+                commit(REQUEST_BOARD_FROM_SPRING2, res.data)
+            })
+    },
+
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateBoardContentsToSpring ({ }, payload) {
+        console.log('requestCreateBoardContentsToSpring()')
+
+        const { title, content, writer } = payload
+        return axios.post('http://localhost:7777/39th/jpa/board/register',
+            { title, content, writer })
+            .then(() => {
+                alert('게시물 등록 성공')
+            })
+    },
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteBoardToSpring ({ }, boardNo) {
+        console.log('requestDeleteBoardToSpring()')
+
+        return axios.delete(`http://localhost:7777/39th/jpa/board/${boardNo}`)
+            .then(() => {
+                alert('삭제 성공')
+            })
+    },
+    // eslint-disable-next-line no-empty-pattern
+    requestBoardModifyToSpring ({ }, payload) {
+        console.log('requestBoardModifyToSpring()')
+
+        const { title, content, boardNo, writer, regDate } = payload
+
+        return axios.put(`http://localhost:7777/39th/jpa/board/${boardNo}`,
+            { title, content, writer, regDate })
+            .then(() => {
+                alert('수정 성공')
+            })
+    }
 }
