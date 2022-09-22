@@ -24,6 +24,13 @@ public class JpaGoodsSaleController {
 
         return service.list();
     }
+    @PostMapping("/register")
+    public void productRegister(@RequestBody ProductRequest productRequest){
+        log.info("productRegister(): " + productRequest);
+
+        service.register(productRequest);
+    }
+
 
 
 }

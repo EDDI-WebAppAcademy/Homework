@@ -144,6 +144,17 @@ export default {
                 commit(REQUEST_GOODS_SALE_BOARD_LIST_FROM_SPRING, res.data)
             })
     },
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateGoodsBoardContentsToSpring({}, payload) {
+        console.log('requestCreateGoodsBoardContentsToSpring()')
+
+        const {title, content, seller, price} = payload
+        return axios.post('http://localhost:7777/goods/sale/register',
+            {title, content, seller, price})
+            .then(() => {
+                alert('상품 등록 성공')
+            })
+    },
 
 
 }
