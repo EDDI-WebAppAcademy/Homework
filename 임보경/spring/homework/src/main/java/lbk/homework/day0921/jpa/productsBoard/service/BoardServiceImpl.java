@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -31,5 +32,16 @@ public class BoardServiceImpl implements BoardService{
        board.setNumberInStock(boardRequest.getNumberInStock());
 
        repository.save(board);
+    }
+
+    @Override
+    public Board read(Long boardNo) {
+        Optional<Board> maybeBoard = repository.findById(boardNo);
+
+        if (maybeBoard.equals(Optional.empty())) {
+            log.info("Can't read board!!!");
+            return null;
+        }
+        return maybeBoard.get();
     }
 }

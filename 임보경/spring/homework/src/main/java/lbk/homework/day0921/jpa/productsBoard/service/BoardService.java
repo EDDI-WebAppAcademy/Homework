@@ -10,4 +10,5 @@ public interface BoardService {
     public List<Board> list();
 
     public void register(BoardRequest boardRequest);
+    public Board read(Long boardNo);
 }

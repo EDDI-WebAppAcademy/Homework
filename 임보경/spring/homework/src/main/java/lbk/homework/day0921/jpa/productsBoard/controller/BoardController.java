@@ -24,6 +24,12 @@ public class BoardController {
         return service.list();
     }
 
+    @GetMapping("/{boardNo}")
+    public Board boardRead (@PathVariable("boardNo") Long boardNo) {
+        log.info("boardRead()");
+        return service.read(boardNo);
+    }
+
     @PostMapping("/register")
     public void productRegister (@RequestBody BoardRequest boardRequest) {
         log.info("boardRegister()" + boardRequest.toString());
