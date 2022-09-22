@@ -21,7 +21,7 @@
         <td align="left">
           <router-link :to="{ name: 'GoodsBoardReadView',
                               params: { boardNo : goodsBoard.boardNo.toString() }}">
-            {{ goodsBoards.name }}
+            {{ goodsBoard.goodsName }}
           </router-link>
         </td>
         <td align="right">

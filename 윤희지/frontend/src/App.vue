@@ -9,7 +9,7 @@
       <router-link to="/rpg-game">RPG 게임</router-link>|
       <router-link to="/vue2spring-data-send-test">Vue 2 Spring 데이터 테스트</router-link><br>
       <router-link to="/board-list">게시판</router-link> |
-      <router-link to="/goods-board-list">중고 거래 게시판</router-link> |
+      <router-link to="/goods-board-list">상품 게시판</router-link> |
     </nav>
     <router-view/>
   </div>
