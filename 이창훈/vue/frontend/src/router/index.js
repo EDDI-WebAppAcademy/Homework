@@ -2,13 +2,17 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Test from '@/components/basics/Test.vue'
-import RpgGame from "@/components/basics/RpgGame";
-import RpgGame2 from "@/components/basics/RpgGame2"
+
 import ComponentTestView from "@/views/basics/ComponentTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
 import VueToSpringView from "@/views/axiosTest/VueToSpringView";
 import RpgGameView from "@/views/rpg/RpgGameView";
 import DataSendTestView from "@/views/basics/DataSendTestView";
+
+import JpaBoardListView from "@/views/boards/JpaBoardListView";
+import JpaBoardRegisterView from "@/views/boards/JpaBoardRegisterView";
+import JpaBoardReadView from "@/views/boards/JpaBoardReadView";
+import JpaBoardModifyView from "@/views/boards/JpaBoardModifyView";
 
 Vue.use(VueRouter)
 
@@ -24,16 +28,6 @@ const routes = [
     component: Test
   },
   {
-    path: '/rpggame',
-    name: 'rpggame',
-    component: RpgGame
-  },
-  {
-    path: '/rpggame2',
-    name: 'rpggame2',
-    component: RpgGame2
-  },
-  {
     path: '/components-test',
     name: 'ComponentTestView',
     component: ComponentTestView
@@ -44,7 +38,7 @@ const routes = [
     component: ConcaveBoardView
   },
   {
-    path: '/vue2Spring',
+    path: '/vue2spring',
     name: 'VueToSpringView',
     component: VueToSpringView
   },
@@ -57,7 +51,38 @@ const routes = [
     path: '/vue2spring-data-send-test',
     name: 'DataSendTestView',
     component: DataSendTestView
+  },
+  {
+    path: '/board-list',
+    name: 'JpaBoardListView',
+    component: JpaBoardListView
+  },
+  {
+    path: '/board-register',
+    name: 'JpaBoardRegisterView',
+    component: JpaBoardRegisterView
+  },
+  {
+    path: '/board-read/:boardNo',
+    name: 'JpaBoardReadView',
+    components: {
+      default: JpaBoardReadView
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/board-modify/:boardNo',
+    name: 'JpaBoardModifyView',
+    components: {
+      default: JpaBoardModifyView
+    },
+    props: {
+      default: true
+    }
   }
+
 ]
 
 const router = new VueRouter({
