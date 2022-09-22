@@ -17,6 +17,13 @@
         </td>
       </tr>
 
+      <tr v-else v-for="board in boards" :key="board.boardNo">
+        <td>{{ board.boardNo }}</td>
+        <td><span class="noImageTmp">no Image</span></td>
+        <td>{{ board.productName }}</td>
+        <td>{{ board.price }}</td>
+      </tr>
+
 
 
     </table>
@@ -36,6 +43,16 @@ export default {
 
 <style scoped>
 
+.noImageTmp {
+  background-color: #aaaaaa;
+  color: #fff;
+  font-size: 11px;
+  text-align: center;
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+}
+
 table {
   width: 900px;
   margin: 0 auto;
@@ -50,10 +67,12 @@ tr, th, td {
 
 table tr {
   border-bottom: 1px solid #111;
+  display: flex;
+  align-content: center;
+  align-items: center;
 }
 
 table tr.divide {
-  display: flex;
 
   padding: 10px;
   border-radius: 10px;
@@ -63,6 +82,7 @@ table tr.divide {
 
 table tr td {
   padding: 8px 0;
+  margin: 0 0 0 4px;
 }
 
 
@@ -70,12 +90,25 @@ table tr th:nth-child(1) {
   width: 120px;
 }
 table tr th:nth-child(2) {
-  width: 120px;
+  width: 140px;
 }
 table tr th:nth-child(3) {
   width: 360px;
 }
 table tr th:nth-child(4) {
+  width: 180px;
+}
+
+table tr td:nth-child(1) {
+  width: 120px;
+}
+table tr td:nth-child(2) {
+  width: 140px;
+}
+table tr td:nth-child(3) {
+  width: 360px;
+}
+table tr td:nth-child(4) {
   width: 180px;
 }
 </style>

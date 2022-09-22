@@ -20,13 +20,12 @@ export default {
   },
   methods: {
     ...mapActions([
-      ''
+      'requestRegisterProductToSpring'
     ]),
     async onSubmit (payload) {
-      await this.methodname(payload)
-
+      await this.requestRegisterProductToSpring(payload)
       await this.$router.push({
-        name: 'ProductBoardListView'
+        name: 'ProductsBoardListView'
       })
     }
   }
