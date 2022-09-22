@@ -4,7 +4,6 @@ export default {
     myInventory: [],
     characterStatus: {},
     characterStatusUpdateFlag: false,
-
     boards: [],
     board: {},
     boards2: [],

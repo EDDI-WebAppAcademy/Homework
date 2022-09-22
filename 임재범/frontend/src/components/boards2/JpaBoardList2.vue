@@ -13,21 +13,21 @@
           현재 등록된 게시물이 없습니다!
         </td>
       </tr>
-      <tr v-else v-for="board in boards2" :key="board.boardNo">
+      <tr v-else v-for="board2 in boards2" :key="board2.boardNo">
         <td align="center">
-          {{ board.boardNo }}
+          {{ board2.boardNo }}
         </td>
         <td align="left">
-          <router-link :to="{ name: 'JpaBoardReadView',
-                              params: { boardNo: board.boardNo.toString() }}">
-            {{ board.title }}
+          <router-link :to="{ name: 'JpaBoardReadView2',
+                              params: { boardNo: board2.boardNo.toString() }}">
+            {{ board2.title }}
           </router-link>
         </td>
         <td align="right">
-          {{ board.writer }}
+          {{ board2.writer }}
         </td>
         <td align="center">
-          {{ board.regDate }}
+          {{ board2.regDate }}
         </td>
       </tr>
     </table>

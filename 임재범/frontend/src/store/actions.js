@@ -111,6 +111,18 @@ export default {
             })
     },
     // eslint-disable-next-line no-empty-pattern
+    requestCreateBoardContentsToSpring2 ({ }, payload) {
+        console.log('requestCreateBoardContentsToSpring2()')
+
+        const { title, content, writer } = payload
+        return axios.post('http://localhost:7777/39th/jpa/board/register2',
+            { title, content, writer })
+            .then(() => {
+                alert('게시물 등록 성공')
+            })
+    },
+
+    // eslint-disable-next-line no-empty-pattern
     requestDeleteBoardToSpring ({ }, boardNo) {
         console.log('requestDeleteBoardToSpring()')
 

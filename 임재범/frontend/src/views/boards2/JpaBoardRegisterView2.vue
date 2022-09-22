@@ -1,6 +1,6 @@
 <template>
   <div align="center">
-    <h2>상품리스트</h2>
+    <h2>Aespa 굿즈 상품 등록</h2>
     <jpa-board-register-form2 @submit="onSubmit"/>
   </div>
 </template>
@@ -17,13 +17,13 @@ export default {
   },
   methods: {
     ...mapActions([
-      'requestCreateBoardContentsToSpring'
+      'requestCreateBoardContentsToSpring2'
     ]),
     async onSubmit (payload) {
-      await this.requestCreateBoardContentsToSpring(payload)
+      await this.requestCreateBoardContentsToSpring2(payload)
 
       await this.$router.push({
-        name: 'JpaBoardListView'
+        name: 'JpaBoardListView2'
       })
     }
   }

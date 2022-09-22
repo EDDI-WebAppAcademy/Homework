@@ -16,6 +16,8 @@ import JpaBoardModifyView from "@/views/boards/JpaBoardModifyView";
 import JpaBoardListView2 from "@/views/boards2/JpaBoardListView2";
 
 import JpaAespaListView from "@/views/boards2/JpaAespaListView";
+import JpaBoardRegisterView2 from "@/views/boards2/JpaBoardRegisterView2";
+import JpaBoardReadView2 from "@/views/boards2/JpaBoardReadView2";
 
 Vue.use(VueRouter)
 
@@ -76,10 +78,25 @@ const routes = [
     component: JpaBoardRegisterView
   },
   {
+    path: '/aespa-goods-register',
+    name: 'JpaBoardRegisterView2',
+    component: JpaBoardRegisterView2
+  },
+  {
     path: '/board-read/:boardNo',
     name: 'JpaBoardReadView',
     components: {
       default: JpaBoardReadView
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/board-read2/:boardNo',
+    name: 'JpaBoardReadView2',
+    components: {
+      default: JpaBoardReadView2
     },
     props: {
       default: true

@@ -52,6 +52,13 @@ public class JpaBoardController {
         service.register(boardRequest);
     }
 
+    @PostMapping("/register2")
+    public void boardRegister2 (@RequestBody BoardRequest boardRequest) {
+        log.info("boardRegister2()");
+
+        service2.register(boardRequest);
+    }
+
     @GetMapping("/{boardNo}")
     public Board boardRead (@PathVariable("boardNo") Long boardNo) {
         log.info("boardRead()");
