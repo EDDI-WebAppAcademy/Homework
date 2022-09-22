@@ -8,6 +8,7 @@
 <script>
 import JpaBoardRegisterForm from "@/components/boards/JpaBoardRegisterForm";
 import {mapActions} from "vuex";
+
 export default {
   name: "JpaBoardRegisterView",
   components: {

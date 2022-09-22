@@ -5,6 +5,7 @@ import {
     REQUEST_CHARACTER_STATUS_FROM_SPRING,
     REQUEST_BOARD_LIST_FROM_SPRING,
     REQUEST_BOARD_FROM_SPRING,
+    REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -111,5 +112,24 @@ export default {
             .then(() => {
                 alert('수정 성공')
             })
-    }
+    },
+    requestProductBoardListFromSpring ({ commit }) {
+        console.log('requestProductBoardListFromSpring()')
+
+        return axios.get('http://localhost:7777/40th/jpa/product-board/list')
+            .then((res) => {
+                commit(REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING, res.data)
+            })
+    },
+    //eslint-disable-next-line no-empty-pattern
+    requestCreateProductBoardContentsToSpring ({ }, payload) {
+        console.log('requestCreateProductBoardContentsToSpring()')
+
+        const { productName, seller, content, price } = payload
+        return axios.post('http://localhost:7777/40th/jpa/product-board/register',
+            { productName, seller, price, content })
+            .then(() => {
+                alert('상품 등록 성공')
+            })
+    },
 }
