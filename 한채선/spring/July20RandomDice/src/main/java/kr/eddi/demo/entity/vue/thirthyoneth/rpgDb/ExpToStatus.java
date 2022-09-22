@@ -4,21 +4,24 @@ import lombok.Getter;
 
 @Getter
 public enum ExpToStatus {
-    EXP_TO_HP("HP", 50),
-    EXP_TO_MP("MP", 50),
-    EXP_TO_ATK("ATK", 5),
-    EXP_TO_DEF("DEF", 5),
-    EXP_TO_STR("STR", 5),
-    EXP_TO_INTELLIGENCE("INT", 5),
-    EXP_TO_DEX("DEX", 5),
-    EXP_TO_VIT("VIT", 5),
-    EXP_TO_MEN("MEN", 5);
+    HP(0, "HP", 50),
+    MP(1, "MP", 50),
+    ATK(2, "ATK", 5),
+    STR(3, "STR", 5),
+    DEX(4, "DEX", 5),
+    INTELLIGENCE(5, "INT", 5),
+    DEF(6, "DEF", 5),
+    VIT(7, "VIT", 5),
+    MEN(8,"MEN", 5);
 
 
+
+    private int statusId;
     private String statusName;
     private int value;
 
-    private ExpToStatus(String statusName, int value) {
+    private ExpToStatus(int statusId, String statusName, int value) {
+        this.statusId = statusId;
         this.statusName = statusName;
         this.value = value;
     }

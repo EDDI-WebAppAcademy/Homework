@@ -1,5 +1,6 @@
 package kr.eddi.demo.vo;
 
+
 import kr.eddi.demo.controller.dto.TotalAverage;
 import lombok.extern.slf4j.Slf4j;
 

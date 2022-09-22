@@ -18,9 +18,11 @@ public class CharacterController {
 
     private CharacterManager characterManager = new CharacterManager();
 
+
     public CharacterController() {
             characterManager.makeCharacter("모험가 1", "기사");
     }
+
 
     @GetMapping("/character-status")
     public Character characterStatus() {
@@ -50,14 +52,14 @@ public class CharacterController {
         return characterManager.getCharacter().getCharacterInventory().getInventoryItems();
     }
 
+
+    /* boolean 값으로 true/ false 를 보낼 것 + 캐릭터 스테이터스 및 소비 exp 수정 기능 구현 */
+
     @PostMapping("/character-exp-to-status")
     public String characterExpToStatus(@RequestBody ArrayList<Integer> exchangingStatusList) {
         log.info("characterExpToStatus() - 요청 받은 교환 스테이터스 확인: " + exchangingStatusList);
 
+
         return "교환 완료";
     }
-
-
-
-
 }

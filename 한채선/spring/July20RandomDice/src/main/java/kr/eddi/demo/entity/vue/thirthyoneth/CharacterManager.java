@@ -3,6 +3,8 @@ package kr.eddi.demo.entity.vue.thirthyoneth;
 import kr.eddi.demo.controller.vue.rpg.thirthyoneth.requested.RequestedBuyItem;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class CharacterManager {
 
@@ -22,4 +24,12 @@ public class CharacterManager {
         characterMoney -= totalPrice;
         character.setMoney(characterMoney);
     }
+
+    public void calcExp(int totalExp) {
+        int characterExp = character.getCurrentLeverBar();
+        characterExp -= totalExp;
+        character.setCurrentLeverBar(characterExp);
+    }
+
+
 }

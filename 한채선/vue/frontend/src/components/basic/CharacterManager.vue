@@ -46,6 +46,7 @@ export default {
   name: "CharacterManager",
   mounted() {
     this.viewCharacterStatus()
+    this.viewCharacterInventory()
   },
   computed: {
     ...mapState([

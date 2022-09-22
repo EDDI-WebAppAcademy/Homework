@@ -1,60 +1,41 @@
 package kr.eddi.demo.entity.vue.thirthyoneth;
 
+
 import kr.eddi.demo.entity.vue.thirthyoneth.rpgDb.ExpToStatus;
-import lombok.Getter;
-import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Getter
-@ToString
 public class ExpChangeManager {
 
-    private List<ExpChangeStatus> exchangeExpList;
+    private final int HP_IDX = ExpToStatus.HP.getStatusId();
+    private final int MP_IDX = ExpToStatus.MP.getStatusId();
+    private final int ATK_IDX = ExpToStatus.ATK.getStatusId();
+    private final int STR_IDX = ExpToStatus.STR.getStatusId();
+    private final int DEX_IDX = ExpToStatus.DEX.getStatusId();
+    private final int INTELLIGENCE_IDX = ExpToStatus.INTELLIGENCE.getStatusId();
+    private final int DEF_IDX = ExpToStatus.DEF.getStatusId();
+    private final int VIT_IDX = ExpToStatus.VIT.getStatusId();
+    private final int MEN_IDX = ExpToStatus.MEN.getStatusId();
 
-    public ExpChangeManager() {
-        buildExpChangeListDB();
+
+
+
+    public void exchangeCharacterStatus(Character character) {
+
     }
 
-    public void buildExpChangeListDB () {
-        exchangeExpList = new ArrayList<>();
 
-        //hp
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_HP.getStatusName(),
-                ExpToStatus.EXP_TO_HP.getValue()));
-        //mp
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_MP.getStatusName(),
-                ExpToStatus.EXP_TO_MP.getValue()));
-        //atk
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_ATK.getStatusName(),
-                ExpToStatus.EXP_TO_ATK.getValue()));
-        //def
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_DEF.getStatusName(),
-                ExpToStatus.EXP_TO_DEF.getValue()));
-        //str
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_STR.getStatusName(),
-                ExpToStatus.EXP_TO_STR.getValue()));
-        //intelligence
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_INTELLIGENCE.getStatusName(),
-                ExpToStatus.EXP_TO_INTELLIGENCE.getValue()));
-        //dex
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_DEX.getStatusName(),
-                ExpToStatus.EXP_TO_DEX.getValue()));
-        //vit
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_VIT.getStatusName(),
-                ExpToStatus.EXP_TO_VIT.getValue()));
-        //men
-        exchangeExpList.add(new ExpChangeStatus(
-                ExpToStatus.EXP_TO_MEN.getStatusName(),
-                ExpToStatus.EXP_TO_MEN.getValue()));
-    }
+    /**
+     * 인덱스 번호에 맞는 스테이터스의 증가 값을 리턴
+     * @param idx
+     * @return
+     */
+    /*public int returnCalledStatus(int idx) {
+        switch (idx) {
+            case HP_IDX -> {
+                return ExpToStatus.HP.getValue();
+            }
+            case MP_IDX -> {
+                return ExpToStatus.MP.getValue();
+            }
+        }
+    }*/
 }

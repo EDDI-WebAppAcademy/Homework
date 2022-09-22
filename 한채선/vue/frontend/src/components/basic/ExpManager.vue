@@ -36,7 +36,7 @@ export default {
   name: "ExpManager",
   data() {
     return {
-      exchangeStatusList : ["hp","mp", "atk", "str", "dex", "int", "def"],
+      exchangeStatusList : ["HP", "MP", "ATK", "STR", "DEX", "INT", "DEF", "VIT", "MEN"],
       exchangeStatusListView: true,
       exchangeStatusValue: [],
     }
@@ -75,39 +75,6 @@ export default {
          }
        },*/
 
-    addExchangedStatus(statusName) {
-      switch (statusName) {
-        case 'HP':
-          this.characterStatus.addedStatus.hp += 50
-          break
-        case 'MP':
-          this.characterStatus.addedStatus.mp += 50
-          break
-        case 'ATK':
-          this.characterStatus.addedStatus.atk += 5
-          break
-        case 'DEF':
-          this.characterStatus.addedStatus.def += 5
-          break
-        case 'STR':
-          this.characterStatus.addedStatus.str += 5
-          break
-        case 'INT':
-          this.characterStatus.addedStatus.intelligence += 5
-          break
-        case 'DEX':
-          this.characterStatus.addedStatus.dex += 5
-          break
-        case 'VIT':
-          this.characterStatus.addedStatus.vit += 5
-          break
-        case 'MEN':
-          this.characterStatus.addedStatus.men += 5
-          break
-        default :
-          alert('알 수 없는 오류입니다!')
-      }
-    },
 
   }
 }
