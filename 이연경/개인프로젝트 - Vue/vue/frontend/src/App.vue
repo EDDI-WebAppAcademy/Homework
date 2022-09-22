@@ -3,7 +3,9 @@
     <nav>
      <!-- <router-link to="/">Home</router-link> | -->
 
-      <router-link to="/main-board">MainBoard</router-link>
+      <router-link to="/main-board-view">MainBoard</router-link> |
+
+      <router-link to="/Board-Product-View">ProductBoard</router-link>
 
 
     </nav>

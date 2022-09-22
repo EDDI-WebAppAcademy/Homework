@@ -2,7 +2,8 @@
 
 
   <div>
-    <h2>{{ maintext }}</h2> <br>
+  <!--
+   <h2>{{ maintext }}</h2> <br>
 
     <button @click="onClickRedirect()"> 상품 1</button> <br><br>
 
@@ -16,7 +17,8 @@
 
   </div>
 
-
+-->
+  </div>
 </template>
 
 <script>
