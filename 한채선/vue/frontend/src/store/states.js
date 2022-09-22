@@ -9,4 +9,7 @@ export default {
 
     boards:[],
     board: {},
+
+    productBoardList:[],
+    productBoard: {},
 }

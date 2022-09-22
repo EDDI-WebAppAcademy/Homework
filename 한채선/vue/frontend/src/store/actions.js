@@ -4,7 +4,7 @@ import {
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_CHARACTER_STATUS,
     REQUEST_CHARACTER_INVENTORY,
-    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_BOARD_FROM_SPRING,
+    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_BOARD_FROM_SPRING, REQUEST_PRODUCT_BOARD_LIST,
 
 } from './mutation-types'
 
@@ -141,5 +141,16 @@ export default {
             .then(()=> {
                 alert('수정 성공')
             })
-    }
+    },
+
+    /* ---productBoard--- */
+    requestProductBoardList({ commit }){
+        console.log("requestProductBoardList()")
+
+        return axios.get('http://localhost:7776/41th/jpa/prudoct-board/board-list')
+            .then((res) => {
+            commit(REQUEST_PRODUCT_BOARD_LIST, res.data)
+            })
+    },
+
 }
