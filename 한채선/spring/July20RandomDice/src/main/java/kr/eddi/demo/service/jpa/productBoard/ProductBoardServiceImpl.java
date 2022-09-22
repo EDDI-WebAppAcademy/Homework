@@ -21,6 +21,14 @@ public class ProductBoardServiceImpl implements ProductBoardService{
     @Override
     public void register(ProductBoardRequest productBoardRequest) {
 
+        ProductBoard productBoard = new ProductBoard();
+
+        productBoard.setProductName(productBoardRequest.getProductName());
+        productBoard.setPrice(productBoardRequest.getPrice());
+        productBoard.setContent(productBoardRequest.getContent());
+
+        pbRepository.save(productBoard);
+
     }
 
     @Override

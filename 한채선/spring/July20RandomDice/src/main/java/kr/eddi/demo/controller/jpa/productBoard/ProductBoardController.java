@@ -3,12 +3,10 @@ package kr.eddi.demo.controller.jpa.productBoard;
 
 import kr.eddi.demo.entity.jpa.productBoard.ProductBoard;
 import kr.eddi.demo.service.jpa.productBoard.ProductBoardService;
+import kr.eddi.demo.service.jpa.productBoard.requested.ProductBoardRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +25,12 @@ public class ProductBoardController {
 
         return service.list();
     }
+
+    @PostMapping("/board-register")
+    public void boardRegister(@RequestBody ProductBoardRequest productBoardRequest) {
+        log.info("boardRegister");
+
+        service.register(productBoardRequest);
+    }
+
 }
