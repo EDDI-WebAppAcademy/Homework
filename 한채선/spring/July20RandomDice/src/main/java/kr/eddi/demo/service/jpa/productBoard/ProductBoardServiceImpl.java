@@ -52,7 +52,7 @@ public class ProductBoardServiceImpl implements ProductBoardService{
 
     @Override
     public void Delete(Long productNo) {
-
+        pbRepository.deleteById(productNo);
     }
 
     @Override

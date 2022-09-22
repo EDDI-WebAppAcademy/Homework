@@ -40,4 +40,10 @@ public class ProductBoardController {
         return service.read(productNo);
     }
 
+    @DeleteMapping("board-delete/{productNo}")
+    public void boardDelete(@PathVariable("productNo") Long productNo){
+        log.info("boardDelete()");
+
+        service.Delete(productNo);
+    }
 }
