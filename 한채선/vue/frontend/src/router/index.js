@@ -15,6 +15,7 @@ import ProductBoardMainView from "@/views/productBoard/ProductBoardMainView";
 import ProductBoardAdminLoginView from "@/views/productBoard/ProductBoardAdminLoginView";
 import ProductBoardRegisterView from "@/views/productBoard/ProductBoardRegisterView";
 import ProductBoardReadView from "@/views/productBoard/ProductBoardReadView";
+import ProductBoardModifyView from "@/views/productBoard/ProductBoardModifyView";
 
 Vue.use(VueRouter)
 
@@ -103,7 +104,7 @@ const routes = [
     component: ProductBoardRegisterView
   },
   {
-    path: 'product-board-read/:productNo',
+    path: '/product-board-read/:productNo',
     name: 'ProductBoardReadView',
     components:{
       default: ProductBoardReadView
@@ -112,6 +113,17 @@ const routes = [
       default: true
     }
   },
+  {
+    path: '/product-board-modify/:productNo',
+    name: 'ProductBoardModifyView',
+    components:{
+      default: ProductBoardModifyView
+    },
+    props: {
+      default: true
+    }
+  },
+
 
 
 ]

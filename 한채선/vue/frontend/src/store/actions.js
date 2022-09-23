@@ -170,7 +170,7 @@ export default {
     requestProductBoardRead({ commit }, productNo ) {
         console.log("requestProductBoardRead()")
 
-        return axios.get(`http://localhost:7776/41th/jpa/prudoct-board/board-read/${productNo}`)
+        return axios.get(`http://localhost:7776/41th/jpa/prudoct-board/${productNo}`)
             .then((res) => {
                 commit(REQUEST_PRODUCT_BOARD_READ_FROM_SPRING, res.data)
             })
@@ -180,9 +180,19 @@ export default {
     requestDeleteThisProductBoardToSpring( { }, productNo ) {
         console.log("requestDeleteThisProductBoardToSpring()")
 
-        return axios.delete(`http://localhost:7776/41th/jpa/prudoct-board/board-delete/${productNo}`)
+        return axios.delete(`http://localhost:7776/41th/jpa/prudoct-board/${productNo}`)
             .then(() => {
                 alert("삭제 완료!")
+            })
+    },
+
+    // eslint-disable-next-line no-empty-pattern
+    requestModifyProductBoardToSpring({ }, payload ) {
+        const { productNo, regDate, productName, price, content } = payload
+
+        return axios.put(`http://localhost:7776/41th/jpa/prudoct-board/${productNo}`, { regDate, productName, price, content })
+            .then(() => {
+                alert('수정 성공!')
             })
     }
 
