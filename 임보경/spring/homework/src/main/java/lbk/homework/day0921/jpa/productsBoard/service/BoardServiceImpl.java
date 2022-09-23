@@ -44,4 +44,9 @@ public class BoardServiceImpl implements BoardService{
         }
         return maybeBoard.get();
     }
+
+    @Override
+    public void modify(Board board) {
+        repository.save(board);
+    }
 }

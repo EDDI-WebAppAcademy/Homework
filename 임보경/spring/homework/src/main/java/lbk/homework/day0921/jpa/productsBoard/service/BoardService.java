@@ -11,4 +11,5 @@ public interface BoardService {
 
     public void register(BoardRequest boardRequest);
     public Board read(Long boardNo);
+    public void modify(Board board);
 }

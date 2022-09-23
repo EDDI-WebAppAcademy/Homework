@@ -36,4 +36,14 @@ public class BoardController {
         service.register(boardRequest);
     }
 
+    @PutMapping("/{boardNo}")
+    public Board boardModify (@PathVariable("boardNo") Long boardNo, @RequestBody Board board) {
+        log.info("boardModify()");
+
+        board.setBoardNo(boardNo);
+        service.modify(board);
+
+        return board;
+    }
+
 }
