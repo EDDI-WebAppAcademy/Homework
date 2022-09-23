@@ -35,4 +35,19 @@ export default {
                 commit(REQUEST_BOARD_READ_FROM_SPRING, res.data)
             })
     },
+
+    // eslint-disable-next-line no-empty-pattern
+    requestProductsBoardModifyToSpring ({ } , payload) {
+        console.log('상품 수정')
+
+        const { boardNo, productName, price, numberInStock, details } = payload
+
+        return axios.put(`http://localhost:5555/products-board/${boardNo}`,
+            { productName, price, numberInStock, details })
+            .then(() => {
+                alert('수정 성공')
+            })
+    },
+
+
 }

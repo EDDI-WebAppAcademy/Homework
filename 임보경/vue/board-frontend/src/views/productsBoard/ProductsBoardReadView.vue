@@ -6,6 +6,10 @@
     <products-board-read v-if="board" :board="board"/>
     <p v-else>Loading .......</p>
 
+
+    <router-link class = "mainButton" :to="{ name: 'ProductsBoardModifyView', params: { boardNo } }">
+      게시물 수정
+    </router-link>
     <router-link class = "subButton" :to="{ name: 'ProductsBoardListView' }">
       돌아가기
     </router-link>
@@ -45,6 +49,20 @@ export default {
 </script>
 
 <style scoped>
+
+
+.mainButton {
+  text-decoration: none;
+  margin: 0 6px;
+  padding: 11px 15px;
+  border-radius: 8px;
+  border: 0;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: #42b983;
+  color: #fff;
+}
+
 .subButton {
   font-size: 12px;
   margin: 0 6px;

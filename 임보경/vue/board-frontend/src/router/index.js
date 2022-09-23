@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import ProductsBoardListView from "@/views/productsBoard/ProductsBoardListView";
 import ProductRegisterView from "@/views/productsBoard/ProductRegisterView";
 import ProductsBoardReadView from "@/views/productsBoard/ProductsBoardReadView";
+import ProductsBoardModifyView from "@/views/productsBoard/ProductsBoardModifyView";
 
 
 Vue.use(VueRouter)
@@ -34,6 +35,16 @@ const routes = [
       default: true
     }
   },
+  {
+    path: '/board-modify/:boardNo',
+    name: 'ProductsBoardModifyView',
+    components: {
+      default: ProductsBoardModifyView
+    },
+    props: {
+      default: true
+    }
+  }
 ]
 
 const router = new VueRouter({

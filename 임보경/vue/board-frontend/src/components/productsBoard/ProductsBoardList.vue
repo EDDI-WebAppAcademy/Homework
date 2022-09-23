@@ -22,7 +22,7 @@
         <td><span class="noImageTmp">no Image</span></td>
         <td>
           <router-link :to="{ name: 'ProductsBoardReadView',
-                              params: { boardNo: board.boardNo }}">
+                              params: { boardNo:  board.boardNo.toString()  }}">
             {{ board.productName }}
           </router-link>
         </td>
