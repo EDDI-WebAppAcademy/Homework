@@ -15,9 +15,9 @@
           현재 등록된 상품이 없습니다! 상품을 등록해주세요.
         </td>
       </tr>
-      <tr v-else v-for="product in productBoards" :key="product.boardNo">
+      <tr v-else v-for="product in productBoards" :key="product.productNo">
         <td align="center">
-          {{ product.boardNo }}
+          {{ product.productNo }}
         </td>
         <!--이미지 클릭하면 링크 들어가지도록 설정-->
         <td align="center">
