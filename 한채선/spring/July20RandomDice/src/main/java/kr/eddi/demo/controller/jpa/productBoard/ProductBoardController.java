@@ -20,30 +20,38 @@ public class ProductBoardController {
     private ProductBoardService service;
 
     @GetMapping("/board-list")
-    public List<ProductBoard> boardList() {
+    public List<ProductBoard> productList() {
         log.info("boardList()");
 
         return service.list();
     }
 
     @PostMapping("/board-register")
-    public void boardRegister(@RequestBody ProductBoardRequest productBoardRequest) {
+    public void productRegister(@RequestBody ProductBoardRequest productBoardRequest) {
         log.info("boardRegister");
 
         service.register(productBoardRequest);
     }
 
-    @GetMapping("/board-read/{productNo}")
-    public ProductBoard boardRead(@PathVariable("productNo") Long productNo) {
+    @GetMapping("/{productNo}")
+    public ProductBoard productRead(@PathVariable("productNo") Long productNo) {
         log.info("boardRead");
 
         return service.read(productNo);
     }
 
-    @DeleteMapping("board-delete/{productNo}")
-    public void boardDelete(@PathVariable("productNo") Long productNo){
+    @DeleteMapping("/{productNo}")
+    public void productDelete(@PathVariable("productNo") Long productNo){
         log.info("boardDelete()");
 
         service.Delete(productNo);
+    }
+
+    @PutMapping("/{productNo}")
+    public void productModify(@PathVariable("productNo") Long productNo, @RequestBody ProductBoard productBoard) {
+        log.info("boardModify()");
+
+        productBoard.setProductNo(productNo);
+        service.modify(productBoard);
     }
 }

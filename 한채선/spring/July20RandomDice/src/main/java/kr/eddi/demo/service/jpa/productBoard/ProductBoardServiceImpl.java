@@ -57,6 +57,6 @@ public class ProductBoardServiceImpl implements ProductBoardService{
 
     @Override
     public void modify(ProductBoard productBoard) {
-
+        pbRepository.save(productBoard);
     }
 }
