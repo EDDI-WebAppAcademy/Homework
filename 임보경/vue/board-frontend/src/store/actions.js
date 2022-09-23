@@ -49,5 +49,15 @@ export default {
             })
     },
 
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteProductToSpring ({ }, boardNo) {
+        console.log('requestDeleteBoardToSpring()')
+
+        return axios.delete(`http://localhost:5555/products-board/${boardNo}`)
+            .then(() => {
+                alert('삭제 성공')
+            })
+    },
+
 
 }

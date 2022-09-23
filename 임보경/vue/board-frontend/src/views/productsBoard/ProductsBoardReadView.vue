@@ -10,6 +10,7 @@
     <router-link class = "mainButton" :to="{ name: 'ProductsBoardModifyView', params: { boardNo } }">
       게시물 수정
     </router-link>
+    <button @click="onDelete" class="mainButton">삭제</button>
     <router-link class = "subButton" :to="{ name: 'ProductsBoardListView' }">
       돌아가기
     </router-link>
@@ -39,8 +40,13 @@ export default {
   },
   methods: {
     ...mapActions([
-      'requestBoardReadFromSpring'
+      'requestBoardReadFromSpring',
+      'requestDeleteProductToSpring'
     ]),
+    async onDelete() {
+      await this.requestDeleteProductToSpring(this.boardNo);
+      await this.$router.push({ name: 'ProductsBoardListView' })
+    }
   },
   created() {
     this.requestBoardReadFromSpring(this.boardNo)
