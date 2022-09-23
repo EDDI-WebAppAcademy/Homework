@@ -10,6 +10,7 @@ import {
     REQUEST_BOARD_LIST_FROM_SPRING,
     REQUEST_BOARD_FROM_SPRING,
     REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING,
+    REQUEST_PRODUCT_BOARD_FROM_SPRING,
 
 } from './mutation-types'
 
@@ -47,5 +48,7 @@ export default {
     [REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING] (state, passingData){
         state.productBoards = passingData
     },
-
+    [REQUEST_PRODUCT_BOARD_FROM_SPRING] (state, passingData) {
+        state.product = passingData
+    }
 }

@@ -6,7 +6,10 @@ export default {
     inventoryList:[],
     damagedMonstersList:[],
     characterStatusUpdateFlag: false,
+
     boards: [],
     board: {},
+
     productBoards: [],
+    product: {},
 }
