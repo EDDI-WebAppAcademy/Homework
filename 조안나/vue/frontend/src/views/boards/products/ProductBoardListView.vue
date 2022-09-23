@@ -2,7 +2,9 @@
   <div id="product">
     <h2>Vue + Spring + JPA Product Boards</h2>
     <router-link :to="{ name: 'ProductBoardRegisterView' }">
+      <button>
       상품 등록
+      </button>
     </router-link>
     <product-board-list :productBoards ="productBoards"/>
   </div>
@@ -14,7 +16,7 @@ import {mapActions, mapState} from "vuex";
 import ProductBoardList from "@/components/boards/products/ProductBoardList";
 
 export default {
-  name: "ProductBoardReadView",
+  name: "ProductBoardListView",
   components: {
     ProductBoardList,
   },
