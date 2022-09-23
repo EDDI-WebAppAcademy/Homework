@@ -134,9 +134,21 @@ export default {
     // 상품 게시판 상품 리스트 요청
     requestProductBoardListFromSpring({commit}) {
         console.log('requestBoardListFromSpring()')
-        return axios.get('http://localhost:8888/board/product-list')
+        return axios.get('http://localhost:8888/product-board/list')
             .then((res) => {
                 commit(REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING, res.data)
             })
     },
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateProductBoardContentsToSpring({}, payload) {
+    console.log('requestCreateProductBoardContentsToSpring()')
+
+    const {title, image, category, price, writer, content} = payload
+    return axios.post('http://localhost:8888/product-board/register',
+        {title, image, category, price, writer, content})
+        .then(() => {
+            alert('상품 등록 성공!')
+        })
+    },
+
 }
