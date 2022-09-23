@@ -9,6 +9,10 @@ export default {
     viewExpExchangeLists: [],
 
     boards: [],
-    borad: {}
+    board: {},
+
+    products: [],
+    product: {},
+
 
 }

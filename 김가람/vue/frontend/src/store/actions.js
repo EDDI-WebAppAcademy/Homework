@@ -5,7 +5,7 @@ import {
     REQUEST_CHARACTER_STATUS_FROM_SPRING,
     REQUEST_INVENTORY_ITEM,
     REQUEST_MONSTER_LIST,
-    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_BOARD_FROM_SPRING
+    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_BOARD_FROM_SPRING, REQUEST_PRODUCT_LIST_FROM_SPRING
 
 } from './mutation-types'
 
@@ -143,12 +143,32 @@ export default {
     requestBoardModifyToSpring ({ }, payload) {
         console.log('requestBoardModifyToSpring()')
 
-        const {title, content, boardNo, writer, regDate} = payload
+        const { title, content, boardNo, writer, regDate } = payload
 
         return axios.put(`http://localhost:7777/39th/jpa/board/${boardNo}`,
-            {title, content, writer, regDate})
+            { title, content, writer, regDate })
             .then(() => {
                 alert('수정 성공')
             })
     },
+    requestProductListFromSpring ( { commit }) {
+        console.log('requestProductBoardListFromSpring()')
+
+        return axios.post('http://localhost:7777/40th/jpa/product-board/list')
+            .then((res) => {
+                commit(REQUEST_PRODUCT_LIST_FROM_SPRING, res.data)
+            })
+    },
+    // eslint-disable-next-line no-empty-pattern
+    requestRegisterProductToSpring ({ }, payload) {
+        console.log('requestRegisterProductToSpring()')
+
+        const { name, price, stock, description } = payload
+
+        return axios.post('http://localhost:7777/40th/jpa/product-board/register',
+            { name, price, stock, description })
+            .then(() => {
+                alert('상품 등록 완료')
+        })
+    }
 }
