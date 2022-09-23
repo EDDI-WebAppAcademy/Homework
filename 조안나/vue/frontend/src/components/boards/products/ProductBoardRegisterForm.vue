@@ -18,7 +18,7 @@
       <tr>
           <label for="category">카테고리</label>
         <td>
-          <select id="category">
+          <select v-model="category" onchange="this.form.category=this.value">
             <option value="Outer">Outer</option>
             <option value="T-shirt">T-shirt</option>
             <option value="Pants">Pants</option>
@@ -64,10 +64,11 @@ export default {
     return {
       title: '상품명을 입력하세요',
       image: '상품 이미지를 등록하세요',
-      category:  ,
+      category: ' ',
       price: 9999999,
       writer: '판매자 상호를 입력하세요',
       content: '상품 상세 정보를 작성하세요',
+
     }
   },
   methods: {
