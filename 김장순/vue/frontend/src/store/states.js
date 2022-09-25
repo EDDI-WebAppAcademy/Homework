@@ -5,5 +5,12 @@ export default {
     manyMonsters: [],
     defaultMonsters: [],
     characterStatus: {},
-    expTradeSystem: []
+    expTradeSystem: [],
+
+    boards: [],
+    board: {},
+
+    goodsSaleBoards: [],
+
+
 }

@@ -7,51 +7,104 @@ import ConcaveBoardView from "@/views/game/ConcaveBoardView";
 import VueToSpringView from "@/views/axiosTest/VueToSpringView";
 import RpgGameView from "@/views/rpg/RpgGameView";
 import DataSendTestView from "@/views/basics/DataSendTestView";
+import JpaBoardListView from "@/views/boards/JpaBoardListView";
+import JpaBoardRegisterView from "@/views/boards/JpaBoardRegisterView";
+import JpaBoardReadView from "@/views/boards/JpaBoardReadView";
+import JpaBoardModifyView from "@/views/boards/JpaBoardModifyView";
+import GoodsSaleListView from "@/views/goodsSale/GoodsSaleListView";
+import ProductRegisterView from "@/views/goodsSale/ProductRegisterView";
+import GuestJoinView from "@/views/goodsSale/GuestJoinView";
+
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/test',
-    name: 'test',
-    component: Test
-  },
-  {
-    path: '/component-test',
-    name: 'ComponentTestView',
-    component: ComponentTestView
-  },
-  {
-    path: '/concave-board-game',
-    name: 'concaveBoardView',
-    component: ConcaveBoardView
-  },
-  {
-    path: '/vue2spring',
-    name: 'vue2spring',
-    component: VueToSpringView
-  },
-  {
-    path: '/rpg-game',
-    name: 'RpgGameView',
-    component: RpgGameView
-  },
-  {
-    path: '/data-send-test',
-    name: 'DataSendTestView',
-    component: DataSendTestView
-  }
+    {
+        path: '/',
+        name: 'home',
+        component: HomeView
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: Test
+    },
+    {
+        path: '/component-test',
+        name: 'ComponentTestView',
+        component: ComponentTestView
+    },
+    {
+        path: '/concave-board-game',
+        name: 'concaveBoardView',
+        component: ConcaveBoardView
+    },
+    {
+        path: '/vue2spring',
+        name: 'vue2spring',
+        component: VueToSpringView
+    },
+    {
+        path: '/rpg-game',
+        name: 'RpgGameView',
+        component: RpgGameView
+    },
+    {
+        path: '/data-send-test',
+        name: 'DataSendTestView',
+        component: DataSendTestView
+    },
+    {
+        path: '/board-list',
+        name: 'JpaBoardListView',
+        component: JpaBoardListView
+    },
+    {
+        path: '/board-register',
+        name: 'JpaBoardRegisterView',
+        component: JpaBoardRegisterView
+    },
+    {
+        path: '/board-read/:boardNo',
+        name: 'JpaBoardReadView',
+        components: {
+            default: JpaBoardReadView
+        },
+        props: {             //복합컴포넌트이기때문에
+            default: true
+        }
+    },
+    {
+        path: '/board-modify/:boardNo', //가변인자 처리
+        name: 'JpaBoardModifyView',
+        components: {
+            default: JpaBoardModifyView
+        },
+        props: {
+            default: true
+        }
+    },
+    {
+        path: '/goods-sale-list',
+        name: 'GoodsSaleListView',
+        component: GoodsSaleListView
+    },
+    {
+        path: '/product-register',
+        name: 'ProductRegisterView',
+        component: ProductRegisterView
+    },
+    {
+        path: '/guest-join',
+        name: 'GuestJoinView',
+        component: GuestJoinView
+    },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 
 export default router
