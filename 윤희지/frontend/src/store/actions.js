@@ -5,7 +5,7 @@ import {
     REQUEST_CHARACTER_STATUS_DATA,
     REQUEST_CHARACTER_INVENTORY,
     REQUEST_CURRENT_MONSTER,
-    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_GOODS_BOARD_LIST_FROM_SPRING
+    REQUEST_BOARD_LIST_FROM_SPRING, REQUEST_GOODS_BOARD_LIST_FROM_SPRING, REQUEST_GOODS_BOARD_FROM_SPRING
 } from './mutation-types'
 
 import axios from 'axios'
@@ -117,6 +117,14 @@ export default {
                 commit(REQUEST_GOODS_BOARD_LIST_FROM_SPRING, res.data)
             })
     },
+    requestGoodsBoardFromSpring ({ commit }, boardNo) {
+        console.log('requestGoodsBoardFromSpring()')
+
+        return axios.get(`http://localhost:7778/goods-board/${boardNo}`)
+            .then((res) => {
+                commit(REQUEST_GOODS_BOARD_FROM_SPRING, res.data)
+            })
+    },
     // eslint-disable-next-line no-empty-pattern
     requestCreateGoodsBoardContentsToSpring({ }, payload) {
         console.log('requestCreateGoodsBoardContentsToSpring()')
@@ -126,7 +134,14 @@ export default {
             .then(() => {
                 alert('상품 게시글 등록 완료')
             })
-
     },
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteGoodsBoardToSpring ({ }, boardNo) {
+        console.log('requestDeleteGoodsBoardToSpring()')
 
+        return axios.delete(`http://localhost:7778/goods-board/${boardNo}`)
+            .then(() => {
+                alert('삭제 성공')
+            })
+    },
 }

@@ -5,7 +5,7 @@ import {
     REQUEST_CHARACTER_STATUS_DATA,
     REQUEST_CHARACTER_INVENTORY, REQUEST_RANDOM_MONSTER,
     REQUEST_BOARD_LIST_FROM_SPRING,
-    REQUEST_GOODS_BOARD_LIST_FROM_SPRING
+    REQUEST_GOODS_BOARD_LIST_FROM_SPRING, REQUEST_GOODS_BOARD_FROM_SPRING
 } from './mutation-types'
 
 export default {
@@ -32,5 +32,9 @@ export default {
     },
     [REQUEST_GOODS_BOARD_LIST_FROM_SPRING] (state, passingData) {
         state.goodsBoardList = passingData
+    },
+    [REQUEST_GOODS_BOARD_FROM_SPRING] (state, passingData) {
+        state.goodsBoard = passingData
     }
+
 }
