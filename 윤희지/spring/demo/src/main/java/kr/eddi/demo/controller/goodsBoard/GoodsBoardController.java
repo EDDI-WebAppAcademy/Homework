@@ -26,11 +26,35 @@ public class GoodsBoardController {
         return goodsBoardService.list();
     }
 
+    @GetMapping("/{boardNo}")
+    public GoodsBoard goodsBoardRead (@PathVariable("boardNo") Long boardNo) {
+        log.info("goodsBoardRead()");
+
+        return goodsBoardService.read(boardNo);
+    }
+
     @PostMapping("/register")
     public void goodsBoardRegister (@RequestBody GoodsBoardRequest goodsBoardRequest ) {
         log.info("goodsBoardRegister()");
 
         goodsBoardService.register(goodsBoardRequest);
+    }
+
+    @DeleteMapping("/{boardNo}")
+    public void goodsBoardRemove (@PathVariable("boardNo") Long boardNo) {
+        log.info("boardRemove()");
+
+        goodsBoardService.remove(boardNo);
+    }
+
+    @PutMapping("/{boardNo}")
+    public GoodsBoard goodsBoardModify (@PathVariable("boardNo") Long boardNo, @RequestBody GoodsBoard goodsBoard) {
+        log.info("goodsBoardModify()");
+
+        goodsBoard.setBoardNo(boardNo);
+        goodsBoardService.modify(goodsBoard);
+
+        return goodsBoard;
     }
 
 }
