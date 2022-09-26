@@ -144,4 +144,14 @@ export default {
                 alert('삭제 성공')
             })
     },
+    // eslint-disable-next-line no-empty-pattern
+    requestModifyGoodsBoardContentsToSpring({ }, payload) {
+        console.log('requestModifyGoodsBoardContentsToSpring()')
+        const { boardNo, goodsName, price, seller, content, regDate } = payload
+        return axios.put(`http://localhost:7778/goods-board/${boardNo}`,
+            { goodsName, price, seller, content, regDate })
+            .then(() => {
+                alert('상품 게시글 수정 완료')
+            })
+    },
 }
