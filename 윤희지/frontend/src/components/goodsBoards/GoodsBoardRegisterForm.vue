@@ -30,7 +30,7 @@
 
     <div>
       <button type="submit">상품 게시물 등록</button>
-      <router-link to="{ name: 'GoodsBoardListView' }">
+      <router-link :to="{ name: 'GoodsBoardListView' }">
         상품 게시물 등록 취소
       </router-link>
     </div>
