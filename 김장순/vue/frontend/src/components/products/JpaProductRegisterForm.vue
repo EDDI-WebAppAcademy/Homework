@@ -58,9 +58,9 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
-      const { title, seller, price, content } = this
-      this.$emit('submit', { title, seller, price, content })
+    onSubmit() {
+      const {title, seller, price, content} = this
+      this.$emit('submit', {title, seller, price, content})
     }
   }
 }
@@ -70,10 +70,12 @@ export default {
 .form {
   margin-top: 100px;
 }
+
 .banner {
   margin-top: 100px;
   margin-bottom: 100px;
 }
+
 .input {
   box-sizing: border-box;
   width: 20%;

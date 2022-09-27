@@ -1,0 +1,6 @@
+export default {
+    goodsList: [],
+    goods: {},
+
+
+}
