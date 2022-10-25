@@ -6,7 +6,11 @@
     </li>
     <button v-on:click="clickHandler">클릭해봐!</button>
     <input v-model="initMsg">
+
     <p>{{ initMsg }}</p><br/>
+    <button style="background-color: red">
+      Do it
+    </button>
       <button v-on:click="show=!show">쇼타임!</button>
     <p v-if="show">보였다 안보였다</p><br/>
     <p>{{ lists[1] }}</p><br/>
@@ -15,6 +19,11 @@
     <p>{{ lists[num] }}</p><br/>
     <p>{{ count }} 번 클릭했습니다.</p>
     <button v-on:click="increment">카운트 버튼</button><br/>
+
+    <h2>{{msg}}</h2>
+
+    <button v-on:click="history.back()">이전 페이지</button>
+    <button v-on:click="Location.href='<%= request.getContextPath %>'">홈으로 돌아가기</button>
 
     <market-manager/>
 
@@ -156,6 +165,7 @@ export default {
   },
   data() {
     return {
+      test: 'blue',
       expExchangeLists: ["hp", "mp", "atk", "str", "dex", "int", "def"],
       exchangeListValue: [],
       inventoryView: false,
@@ -181,6 +191,7 @@ export default {
       lists: ['apple', 'banana', 'grape'],
       initMsg: "양방향으로 맵핑이 가능함",
       show: true,
+      msg: '로그인 실패',
       num: 1,
       count: 0,
       monsterBooks: [

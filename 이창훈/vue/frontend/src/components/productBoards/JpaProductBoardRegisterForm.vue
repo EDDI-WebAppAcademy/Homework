@@ -44,7 +44,7 @@ export default {
     return {
       productName: '상품 이름',
       seller: '판매자',
-      price: '가격',
+      price: 0,
       content: '상품'
     }
   },

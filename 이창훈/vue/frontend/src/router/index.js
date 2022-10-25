@@ -15,6 +15,19 @@ import JpaBoardReadView from "@/views/boards/JpaBoardReadView";
 import JpaBoardModifyView from "@/views/boards/JpaBoardModifyView";
 import JpaProductBoardListView from "@/views/productBoards/JpaProductBoardListView";
 import JpaProductBoardRegisterView from "@/views/productBoards/JpaProductBoardRegisterView";
+import JpaProductBoardReadView from "@/views/productBoards/JpaProductBoardReadView";
+import JpaProductBoardModifyView from "@/views/productBoards/JpaProductBoardModifyView";
+
+import VuetifyTasteView from "@/views/vuetify/VuetifyTasteView";
+import SwiperTestView from "@/views/vuetify/SwiperTestView";
+import CalendarTestView from "@/views/vuetify/CalendarTestView";
+import ImageGalleryTestView from "@/views/vuetify/ImageGalleryTestView";
+
+import FileUploadView from "@/views/file/FileUploadView";
+
+import SignUpView from "@/views/account/SignUpView";
+import SignInView from "@/views/account/SignInView";
+
 
 Vue.use(VueRouter)
 
@@ -94,6 +107,62 @@ const routes = [
     name: 'JpaProductBoardRegisterView',
     component: JpaProductBoardRegisterView
   },
+  {
+    path: '/product-board-read/:productNo',
+    name: 'JpaProductBoardReadView',
+    components: {
+      default: JpaProductBoardReadView
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/product-board-modify/:productNo',
+    name: 'JpaProductBoardModifyView',
+    components: {
+      default: JpaProductBoardModifyView
+    },
+    props: {
+      default: true
+    }
+  },
+  {
+    path: '/vuetify-taste',
+    name: 'VuetifyTasteView',
+    component: VuetifyTasteView
+  },
+  {
+    path: '/swiper-test',
+    name: 'SwiperTestView',
+    component: SwiperTestView
+  },
+  {
+    path: '/calendar-test',
+    name: 'CalendarTestView',
+    component: CalendarTestView
+  },
+  {
+    path: '/image-gallery-test',
+    name: 'ImageGalleryTestView',
+    component: ImageGalleryTestView
+  },
+  {
+    path: '/file-upload-test',
+    name: 'FileUploadView',
+    component: FileUploadView
+  },
+  {
+    path: '/sign-up',
+    name: 'SignUpView',
+    component: SignUpView
+  },
+  {
+    path: '/sign-in',
+    name: 'SignInView',
+    component: SignInView
+  },
+
 
 ]
 

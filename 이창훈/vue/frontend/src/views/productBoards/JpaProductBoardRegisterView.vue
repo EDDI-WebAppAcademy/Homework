@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     ...mapActions([
-        'requestCreateProductBoardContentsToSpring'
+      'requestCreateProductBoardContentsToSpring'
     ]),
     async onSubmit (payload) {
       await this.requestCreateProductBoardContentsToSpring(payload)

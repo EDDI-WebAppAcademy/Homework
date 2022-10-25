@@ -19,10 +19,14 @@
           {{ productBoard.productNo }}
         </td>
         <td align="left">
-          {{ productBoard.productName }}
+          <router-link :to="{ name: 'JpaProductBoardReadView',
+                              params: { productNo: productBoard.productNo.toString() }}">
+            {{ productBoard.productName }}
+          </router-link>
         </td>
         <td align="center">
           {{ productBoard.price }}
+
         </td>
         <td align="center">
           {{ productBoard.regDate }}

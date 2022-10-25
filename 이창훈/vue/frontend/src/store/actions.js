@@ -5,7 +5,8 @@ import {
     REQUEST_CHARACTER_STATUS_FROM_SPRING,
     REQUEST_BOARD_LIST_FROM_SPRING,
     REQUEST_BOARD_FROM_SPRING,
-    REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING
+    REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING,
+    REQUEST_PRODUCT_BOARD_FROM_SPRING
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -18,7 +19,7 @@ export default {
 
         return axios.get('http://localhost:7777/30th/vue2spring/test')
             .then((res) => {
-                commit(REQUEST_DATA_FROM_SPRING, res.data.randomNumber)
+                commit(REQUEST_DATA_FROM_SPRING,     res.data.randomNumber)
             })
     },
     requestRandomGameItem ({ commit }) {
@@ -81,7 +82,7 @@ export default {
                 commit(REQUEST_BOARD_FROM_SPRING, res.data)
             })
     },
-    // eslint-disable-next-line no-empty-pattern
+    //eslint-disable-next-line no-empty-pattern
     requestCreateBoardContentsToSpring ({ }, payload) {
         console.log('requestCreateBoardContentsToSpring()')
 
@@ -121,15 +122,46 @@ export default {
                 commit(REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING, res.data)
             })
     },
+    requestProductBoardFromSpring ({ commit }, productNo) {
+        console.log('requestProductBoardFromSpring()')
+
+        return axios.get(`http://localhost:7777/40th/jpa/product-board/${productNo}`)
+            .then((res) => {
+                commit(REQUEST_PRODUCT_BOARD_FROM_SPRING, res.data)
+            })
+    },
     //eslint-disable-next-line no-empty-pattern
     requestCreateProductBoardContentsToSpring ({ }, payload) {
         console.log('requestCreateProductBoardContentsToSpring()')
 
-        const { productName, seller, content, price } = payload
+        const { productName, seller, price, content } = payload
         return axios.post('http://localhost:7777/40th/jpa/product-board/register',
             { productName, seller, price, content })
             .then(() => {
                 alert('상품 등록 성공')
             })
     },
+    // eslint-disable-next-line no-empty-pattern
+    requestModifyProductBoardToSpring ({ }, payload) {
+        console.log('requestProductBoardModifyToSpring()')
+
+        const { productNo, productName, seller, price, regDate, content } = payload
+
+        return axios.put(`http://localhost:7777/40th/jpa/product-board/${productNo}`,
+            { productName, seller, price, regDate, content })
+            .then(() => {
+                alert('수정 성공')
+            })
+    },
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteProductBoardToSpring ({ }, boardNo) {
+        console.log('requestDeleteProductBoardToSpring()')
+
+        return axios.delete(`http://localhost:7777/40th/jpa/product-board/${boardNo}`)
+            .then(() => {
+                alert('삭제 성공')
+            })
+    },
+
+
 }

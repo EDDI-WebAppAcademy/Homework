@@ -11,6 +11,6 @@ export default {
     productBoards: [],
     productBoard: {},
 
-
+    isAuthenticated: false,
 
 }

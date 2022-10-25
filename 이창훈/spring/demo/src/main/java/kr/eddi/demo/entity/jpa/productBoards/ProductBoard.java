@@ -17,10 +17,10 @@ public class ProductBoard {
     @Column(length = 128, nullable = false)
     private String productName;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 32, nullable = false)
     private Integer price;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 32, nullable = false)
     private String seller;
 
     @Lob

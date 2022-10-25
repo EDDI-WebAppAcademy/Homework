@@ -26,9 +26,33 @@ public class JpaProductBoardController {
     }
 
     @PostMapping("/register")
-    public void boardRegister (@RequestBody ProductBoardRequest productBoardRequest) {
-        log.info("boardRegister()");
+    public void productBoardRegister (@RequestBody ProductBoardRequest productBoardRequest) {
+        log.info("productBoardRegister()");
 
         productBoardService.register(productBoardRequest);
+    }
+
+    @GetMapping("/{productNo}")
+    public ProductBoard productBoardRead (@PathVariable("productNo") Long productNo) {
+        log.info("productBoardRead()");
+
+        return productBoardService.read(productNo);
+    }
+
+    @PutMapping("/{productNo}")
+    public ProductBoard productBoardModify (@PathVariable("productNo") Long productNo, @RequestBody ProductBoard productBoard) {
+        log.info("productBoardModify()");
+
+        productBoard.setProductNo(productNo);
+        productBoardService.modify(productBoard);
+
+        return productBoard;
+    }
+
+    @DeleteMapping("/{productNo}")
+    public void productRemove (@PathVariable("productNo") Long productNo) {
+        log.info("productRemove()");
+
+        productBoardService.remove(productNo);
     }
 }
