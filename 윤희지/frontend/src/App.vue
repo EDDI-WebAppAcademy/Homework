@@ -7,7 +7,9 @@
       <router-link to="/concave-board-game">오목게임</router-link> |
       <router-link to="/vue2spring">Vue 2 Spring 통신 테스트</router-link>|
       <router-link to="/rpg-game">RPG 게임</router-link>|
-      <router-link to="/vue2spring-data-send-test">Vue 2 Spring 데이터 테스트</router-link>
+      <router-link to="/vue2spring-data-send-test">Vue 2 Spring 데이터 테스트</router-link><br>
+      <router-link to="/board-list">게시판</router-link> |
+      <router-link to="/goods-board-list">상품 게시판</router-link> |
     </nav>
     <router-view/>
   </div>
