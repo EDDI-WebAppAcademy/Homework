@@ -7,7 +7,6 @@ import kr.eddi.demo.controller.vue.requset.RequestEquipItem;
 import kr.eddi.demo.entity.vue.thirtyoneth.MonsterManager;
 import kr.eddi.demo.entity.vue.thirtyoneth.Monsters;
 import kr.eddi.demo.entity.vue.thirtyoneth.ShopItems;
-import kr.eddi.demo.entity.vue.thirtyoneth.characterStatus;
 import kr.eddi.demo.utility.basic.third.CustomRandom;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,6 @@ public class RpgItemController {
 
     private List<ShopItems> allShopLists = new ArrayList<>();
     private List<ShopItems> userInventoryList = new ArrayList<>();
-    private List<characterStatus> CharacterStatus = new ArrayList<>();
     private List<ShopItems> equipItems = new ArrayList<>();
     public void buildDefaultItemList() {
         if (allShopLists.size() == 0) {
@@ -93,28 +91,6 @@ public class RpgItemController {
         return userInventoryList;
     }
 
-    @PostMapping("/character-status")
-    public List<characterStatus> defaultStatus(){
-        log.info("defaultStatus()");
-
-        int equipItemsSize = equipItems.size();
-        Integer totalItemAtk = 0;
-
-        if(equipItemsSize != 0 ){
-            for (int i = 0; i < equipItemsSize; i++) {
-                totalItemAtk += equipItems.get(i).getAtk();
-            }
-        }
-
-
-        CharacterStatus.add(new characterStatus(
-                1,50,30,totalItemAtk,10
-                ,10,10,10,10,10,0,
-                10,0,0,"모험가"));
-
-        return CharacterStatus;
-    }
-
     @PostMapping("/defaultMnsters-List")
     public List<Monsters> defaultMonsters(){
         log.info("defaultMonsters()");
@@ -125,7 +101,7 @@ public class RpgItemController {
     @PostMapping("/hundredMonsters-List")
     public List<Monsters> hundredMonsters(){
         log.info("hundredMonsters()");
-
+        log.info("hundredMonsters - " + monsterManager.addHundredMonsters()+"\n");
         return monsterManager.addHundredMonsters();
     }
 }

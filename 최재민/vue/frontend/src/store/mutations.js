@@ -5,6 +5,9 @@ import {
     REQUEST_DEFAULT_CHARACTER_STATUS,
     REQUEST_DEFAULT_MONSTER_LIST,
     REQUEST_HUNDRED_MONSTER_LIST,
+    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_FROM_SPRING,
+    REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING
 } from './mutation-types'
 
 
@@ -26,6 +29,15 @@ export default {
     },
     [REQUEST_HUNDRED_MONSTER_LIST] (state, passingData) {
         state.hundredMonsterLIst = passingData
+    },
+    [REQUEST_BOARD_LIST_FROM_SPRING] (state, passingData) {
+        state.boards = passingData
+    },
+    [REQUEST_BOARD_FROM_SPRING] (state, passingData) {
+        state.board = passingData
+    },
+    [REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING] (state, passingData) {
+        state.productBoards = passingData
     },
 
 }

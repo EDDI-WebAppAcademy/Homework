@@ -2,7 +2,13 @@ export default {
     springFromVueTestValue: null,
     randomShopItem: [],
     addBuyItemsToInventory: [],
-    CharacterStatus :[],
+    CharacterStatus :{},
     defaultMonsterList :[],
     hundredMonsterLIst :[],
+
+    boards: [],
+    board: {},
+
+    productBoards:[],
+    productBoard :{},
 }

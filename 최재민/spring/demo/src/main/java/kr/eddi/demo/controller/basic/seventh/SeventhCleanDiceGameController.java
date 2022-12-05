@@ -1,5 +1,5 @@
 package kr.eddi.demo.controller.basic.seventh;
-import kr.eddi.demo.entity.basic.seventh.Player;
+import kr.eddi.demo.utility.basic.twelveth.seventh.Player;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

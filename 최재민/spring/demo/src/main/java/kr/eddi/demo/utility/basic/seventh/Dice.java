@@ -1,6 +1,6 @@
 package kr.eddi.demo.utility.basic.seventh;
 
-import kr.eddi.demo.entity.basic.seventh.Player;
+import kr.eddi.demo.utility.basic.twelveth.seventh.Player;
 import kr.eddi.demo.utility.basic.third.CustomRandom;
 
 import java.util.List;
