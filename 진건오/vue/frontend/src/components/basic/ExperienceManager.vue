@@ -37,25 +37,16 @@ export default {
   },
   methods: {
     ...mapActions([
-        'requestExperienceKind',
-        'requestSelectedExpType'
+        'requestCharacterStatusChangeFromSpring',
+        'requestExperienceKindFromSpring'
     ]),
     async expKind() {
-      await this.requestExperienceKind();
+      await this.requestExperienceKindFromSpring();
       this.expChangeLists = this.$store.state.expKindList;
     },
     async doExpExchange() {
-      let selectedExpTypes = this.checkSelectedExpTypesList();
-      let payload = {selectedExpTypes}
-      await this.requestSelectedExpType(payload)
-    },
-    checkSelectedExpTypesList() {
-      let anotherExpTypeList = [];
-      for (let i = 0; i < this.exchangeListValue.length; i++) {
-        anotherExpTypeList.push(this.expChangeLists[this.exchangeListValue[i]])
-      }
-      return anotherExpTypeList;
-    },
+      await this.requestCharacterStatusChangeFromSpring(this.exchangeListValue)
+    }
     // doExpExchange() {
     //   /*
     //   if (this.characterStatus.currentLevelBar < 10000000) { return }

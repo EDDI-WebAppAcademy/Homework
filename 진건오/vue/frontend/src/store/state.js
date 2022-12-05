@@ -4,5 +4,12 @@ export default {
     monsterLists: [],
     characterStatusValues: {},
     inventoryItemList: [],
-    expKindList:[]
+    expKindList:[],
+
+    boards: [],
+    board: {},
+
+    //상품페이지
+    items: [],
+    item: {}
 }
