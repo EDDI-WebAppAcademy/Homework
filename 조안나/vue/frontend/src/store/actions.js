@@ -4,7 +4,12 @@ import {
     REQUEST_RANDOM_MONSTERS_LIST,
     REQUEST_CHARACTER_STATUS_LIST,
     REQUEST_MY_INVENTORY,
-    DAMAGED_MONSTERS_LIST,
+    REQUEST_DAMAGED_MONSTERS_LIST,
+    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_FROM_SPRING,
+    REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING,
+    REQUEST_PRODUCT_BOARD_FROM_SPRING,
+
 } from './mutation-types'
 
 // npm install axios --save-dev
@@ -35,7 +40,7 @@ export default {
                 commit(REQUEST_RANDOM_MONSTERS_LIST, res.data)
             })
     },
-    requestCharacterStatus({commit}){
+    requestCharacterStatusFromSpring({commit}) {
         console.log("requestCharacterStatus()")
 
         return axios.get('http://localhost:8888/rpg/character-status')
@@ -53,7 +58,7 @@ export default {
                 commit()
             })
     },
-    requestMyInventory({commit}){
+    requestMyInventory({commit}) {
         console.log("viewMyInventory()")
 
         return axios.get('http://localhost:8888/rpg/my-inventory')
@@ -61,13 +66,133 @@ export default {
                 commit(REQUEST_MY_INVENTORY, res.data)
             })
     },
-    bulletTimeDamage({commit}){
+    requestBulletTimeDamage({commit}) {
         console.log("bulletTime()")
 
         return axios.get('http://localhost:8888/rpg/skill-atk')
             .then((res) => {
-                commit(DAMAGED_MONSTERS_LIST, res.data)
+                commit(REQUEST_DAMAGED_MONSTERS_LIST, res.data)
+            })
+    },
+    requestExpExchangeFromSpring({dispatch}, payload) {
+        console.log("requestExpExchangeFromSpring()")
+
+        return axios.post('http://localhost:8888/rpg/exchange', payload)
+            .then((res) => {
+                if (res.data === true) {
+                    dispatch('requestCharacterStatusFromSpring')
+                }
             })
     },
 
+
+
+    // 게시판 리스트 요청
+    requestBoardListFromSpring({commit}) {
+        console.log('requestBoardListFromSpring()')
+        return axios.get('http://localhost:8888/board/list')
+            .then((res) => {
+                commit(REQUEST_BOARD_LIST_FROM_SPRING, res.data)
+            })
+    },
+    // 게시글 등록 요청
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateBoardContentsToSpring({}, payload) {
+        console.log('requestCreateBoardContentsToSpring()')
+
+        const {title, content, writer} = payload
+        return axios.post('http://localhost:8888/board/register',
+            {title, content, writer})
+            .then(() => {
+                alert('게시물 등록 성공')
+            })
+    },
+    // 게시글 정보 요청
+    requestBoardFromSpring ({ commit }, boardNo) {
+        console.log('requestBoardFromSpring()')
+
+        return axios.get(`http://localhost:8888/board/${boardNo}`)
+            .then((res) => {
+                commit(REQUEST_BOARD_FROM_SPRING, res.data)
+            })
+    },
+    // 게시글 삭제 요청
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteBoardToSpring ({ }, boardNo) {
+        console.log('requestDeleteBoardToSpring()')
+
+        return axios.delete(`http://localhost:8888/board/${boardNo}`)
+            .then(() => {
+                alert('삭제 성공')
+            })
+    },
+    // 게시글 수정 요청
+    // eslint-disable-next-line no-empty-pattern
+    requestBoardModifyToSpring ({ },payload) {
+        console.log('requestBoardModifyToSpring()')
+
+        const {title, content, boardNo, writer, regDate} = payload
+
+        return axios.put(`http://localhost:8888/board/${boardNo}`,
+            {title, content, writer, regDate})
+            .then(() => {
+                alert('수정 성공')
+            })
+    },
+
+
+
+
+    // 상품 리스트 요청
+    requestProductBoardListFromSpring({commit}) {
+        console.log('requestBoardListFromSpring()')
+        return axios.get('http://localhost:8888/product-board/list')
+            .then((res) => {
+                commit(REQUEST_PRODUCT_BOARD_LIST_FROM_SPRING, res.data)
+            })
+    },
+    // 상품 등록 요청
+    // eslint-disable-next-line no-empty-pattern
+    requestCreateProductBoardContentsToSpring({}, payload) {
+    console.log('requestCreateProductBoardContentsToSpring()')
+
+    const {title, image, category, price, writer, content} = payload
+    return axios.post('http://localhost:8888/product-board/register',
+        {title, image, category, price, writer, content})
+        .then(() => {
+            alert('상품 등록 성공!')
+        })
+    },
+    // 상품 정보 요청
+    requestProductBoardFromSpring ({ commit }, productNo) {
+        console.log('requestProductBoardFromSpring()')
+
+        return axios.get(`http://localhost:8888/product-board/${productNo}`)
+            .then((res) => {
+                commit(REQUEST_PRODUCT_BOARD_FROM_SPRING, res.data)
+            })
+    },
+    // 상품 삭제 요청
+    // eslint-disable-next-line no-empty-pattern
+    requestDeleteProductBoardToSpring ({ }, productNo) {
+        console.log('requestDeleteProductBoardToSpring()')
+
+        return axios.delete(`http://localhost:8888/product-board/${productNo}`)
+            .then(() => {
+                alert('삭제 성공!')
+            })
+    },
+    // 상품 수정 요청
+    // eslint-disable-next-line no-empty-pattern
+    requestProductBoardModifyToSpring ({ }, payload) {
+        console.log('requestProductBoardModifyToSpring()')
+
+        const {productNo, regDate, title, image, category, price, writer, content} = payload
+
+        return axios.put(`http://localhost:8888/product-board/${productNo}`,
+            {regDate, title, image, category, price, writer, content})
+            .then(() => {
+                alert('수정 성공!')
+            })
+    },
 }
