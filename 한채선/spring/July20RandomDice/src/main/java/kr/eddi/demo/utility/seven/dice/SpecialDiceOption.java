@@ -1,6 +1,6 @@
 package kr.eddi.demo.utility.seven.dice;
 
-import kr.eddi.demo.entity.six.dicegame.Player;
+import kr.eddi.demo.entity.basic.six.dicegame.Player;
 
 import java.util.ArrayList;
 

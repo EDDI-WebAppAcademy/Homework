@@ -1,9 +1,8 @@
 package kr.eddi.demo.entity.vue.thirthyoneth;
 
-import kr.eddi.demo.entity.vue.thirthyoneth.Monster.Monster;
+import kr.eddi.demo.entity.vue.thirthyoneth.rpgDb.ItemBook;
 import kr.eddi.demo.utility.fourth.CustomRandomNumber;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class MarketManager {
 
     public MarketManager() {
         shopItemsDataBase = new ArrayList<>();
-        randomShopList = new ArrayList<>();
         buildShopItemDataBase();
     }
 
@@ -37,13 +35,22 @@ public class MarketManager {
         totalShopItemDBSize = shopItemsDataBase.size();
     }
 
+
+    /**
+     * db에서 랜덤한 아이템을 불러와 randomShopList에 추가
+     */
     public void buildRandomShopItem() {
         int randomItemIndex = CustomRandomNumber.randomNum(0, totalShopItemDBSize -1);
         ShopItem oneThing = shopItemsDataBase.get(randomItemIndex);
         randomShopList.add(oneThing);
     }
 
+    /**
+     * buildRandomShopItem 메소드를 받은 파라미터수만큼 반복함
+     * 파라미터 수만큼의 랜덤한 아이템들이 들어간 리스트를 생성
+     */
     public void buildRandomShopItemsList(int itemNums) {
+        randomShopList = new ArrayList<>();
         for (int i = 0; i < itemNums; i++) {
             buildRandomShopItem();
         }

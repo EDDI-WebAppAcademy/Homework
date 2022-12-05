@@ -25,9 +25,6 @@ export default {
   },
   methods: {
   },
-  beforeUpdate() {
-    CharacterManager.methods.viewCharacterInventory()
-  }
 }
 </script>
 

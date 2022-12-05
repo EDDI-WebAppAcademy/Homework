@@ -24,8 +24,8 @@ export default {
   },
   methods: {
     ...mapActions(['requestDataFromSpring']),
-    async callRequestDataFromSpring({commit}) {
-      await this.requestDataFromSpring({commit})
+    async callRequestDataFromSpring({ commit }) {
+      await this.requestDataFromSpring({ commit })
       this.returnValue = this.$store.state.springFromVueTestValue
     }
   }

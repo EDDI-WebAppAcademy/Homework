@@ -6,7 +6,7 @@
         <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">
         판매 목록
       </label>
-      <button type="submit" v-on:click="buyItems">구매확정</button>
+      <button v-on:click="buyItems">구매확정</button>
       <table border="1" v-if="shopView">
         <tr>
           <th align="center" width="40">번호</th>
@@ -45,6 +45,10 @@ export default {
       totalPrice: 0,
     }
   },
+  async mounted() {
+    await this.requestShopItemData()
+    this.shopList = this.$store.state.randomShopItem
+  },
   methods: {
 
     ...mapActions([
@@ -62,7 +66,7 @@ export default {
     async buyItems() {
       let buyItemsList = this.requestBuyList()
       let payload = buyItemsList
-      await this.requestBuyItem(payload)
+      await this.requestBuyItem( payload )
       console.log('buyItems()')
     },
 
