@@ -5,7 +5,12 @@ import {
     REQUEST_MANY_MONSTERS,
     REQUEST_DEFAULT_MONSTERS,
     REQUEST_CHARACTER_STATUS,
-    REQUEST_EXP_TRADE_SYSTEM
+    REQUEST_EXP_TRADE_SYSTEM,
+
+    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_FROM_SPRING,
+
+    REQUEST_GOODS_SALE_BOARD_LIST_FROM_SPRING,
 } from './mutation-types'
 
 export default {
@@ -29,6 +34,15 @@ export default {
     },
     [REQUEST_EXP_TRADE_SYSTEM] (state, passingData) {
         state.expTradeSystem = passingData
+    },
+    [REQUEST_BOARD_LIST_FROM_SPRING] (state, passingData) {
+        state.boards = passingData
+    },
+    [REQUEST_BOARD_FROM_SPRING] (state, passingData) {
+        state.board = passingData
+    },
+    [REQUEST_GOODS_SALE_BOARD_LIST_FROM_SPRING] (state, passingData) {
+        state.goodsSaleBoards = passingData
     },
 
 }
