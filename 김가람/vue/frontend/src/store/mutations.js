@@ -2,8 +2,13 @@ import {
     REQUEST_DATA_FROM_SPRING,
     REQUEST_RANDOM_SHOP_ITEM,
     REQUEST_RANDOM_MONSTER,
-    REQUEST_CHARACTER_STATUS,
+    REQUEST_CHARACTER_STATUS_FROM_SPRING,
     REQUEST_INVENTORY_ITEM,
+    REQUEST_MONSTER_LIST,
+    REQUEST_CHARACTER_STATUS_UPDATE_FROM_SPRING,
+    REQUEST_BOARD_LIST_FROM_SPRING,
+    REQUEST_BOARD_FROM_SPRING,
+    REQUEST_PRODUCT_LIST_FROM_SPRING,
 
 } from './mutation-types'
 export default {
@@ -17,15 +22,32 @@ export default {
     [REQUEST_RANDOM_SHOP_ITEM] (state, passingData) {
         state.randomShopItem = passingData
     },
+    [REQUEST_MONSTER_LIST] (state, passingData) {
+        state.monsterList = passingData
+    },
     [REQUEST_RANDOM_MONSTER] (state, passingData) {
         state.randomMonster = passingData
     },
-    [REQUEST_CHARACTER_STATUS] (state, passingData) {
+    [REQUEST_CHARACTER_STATUS_FROM_SPRING] (state, passingData) {
         state.characterStatus = passingData
+    },
+    [REQUEST_CHARACTER_STATUS_UPDATE_FROM_SPRING] (state, passingData) {
+        state.characterStatusUpdateFlag = passingData
     },
     [REQUEST_INVENTORY_ITEM] (state, passingData) {
         state.myInventory = passingData
     },
+    [REQUEST_BOARD_LIST_FROM_SPRING] (state, passingData) {
+        state.boards = passingData
+    },
+    [REQUEST_BOARD_FROM_SPRING] (state, passingData) {
+        state.board = passingData
+    },
+    [REQUEST_PRODUCT_LIST_FROM_SPRING] (state, passingDate) {
+        state.products = passingDate
+    }
+
+
 
 
 }

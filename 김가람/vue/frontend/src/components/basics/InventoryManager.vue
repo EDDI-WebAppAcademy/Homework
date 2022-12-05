@@ -43,15 +43,8 @@ export default {
   methods: {
     ...mapActions([
         'requestInventoryItems',
-        'requestEquippedItems'
+        'requestEquipItemFromSpring'
     ]),
-    // equipItem() {
-    //   if (!this.inventoryView) {
-    //     this.myInventoryValue = []
-    //   }
-    //   this.requestInventoryItems()
-    //   this.myInventory = this.$store.state.inventoryItem
-    // },
     async viewInventoryLists () {
       if (!this.inventoryView) {
         this.myInventoryValue = []
@@ -59,19 +52,34 @@ export default {
         this.myInventory = this.$store.state.myInventory
       }
     },
+
     async equipItem() {
-      let selectedInventoryItem = this.checkedSelectedInventoryList()
-      let payload = { selectedInventoryItem }
-      await this.requestEquippedItems(payload)
+      let equippedItemList = this.checkedEquippedItemList()
+      await this.requestEquipItemFromSpring(equippedItemList)
     },
-    checkedSelectedInventoryList () {
+
+    checkedEquippedItemList () {
       let tmpList = []
       for (let i = 0; i < this.myInventoryValue.length; i++) {
         tmpList.push(this.myInventory[this.myInventoryValue[i]])
       }
-      console.log('expTmpList')
+      console.log('EquippedList')
+      console.log(tmpList)
       return tmpList
-    }
+    },
+    // equipItem () {
+    //   let tmpSum = 0
+    //   for (let i = 0; i < this.myInventoryValue.length; i++) {
+    //     for (let j = 0; j < this.myInventory.length; j++) {
+    //       if (this.myInventoryValue[i] === j) {
+    //         tmpSum += this.myInventory[j].effect.atk
+    //         break
+    //       }
+    //     }
+    //   }
+    //   this.characterStatus.itemAtk = tmpSum
+    //   this.characterStatus.atk = this.characterStatus.defaultAtk + tmpSum + this.exchangeStatus.atk
+    // },
 
   }
 }

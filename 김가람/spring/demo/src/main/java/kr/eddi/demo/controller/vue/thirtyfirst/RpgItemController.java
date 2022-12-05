@@ -1,12 +1,13 @@
 package kr.eddi.demo.controller.vue.thirtyfirst;
 
-import kr.eddi.demo.controller.vue.thirtysecond.request.Items;
-import kr.eddi.demo.controller.vue.thirtysecond.request.RequestBuyItem;
-import kr.eddi.demo.controller.vue.thirtysecond.request.RequestInventoryItem;
+import kr.eddi.demo.controller.vue.thirtysecond.request.RequestEquipItem;
 import kr.eddi.demo.entity.vue.thirtiyfirst.CharacterStatus;
+import kr.eddi.demo.entity.vue.thirtiyfirst.UserItems;
+import kr.eddi.demo.controller.vue.thirtysecond.request.RequestBuyItem;
 import kr.eddi.demo.entity.vue.thirtiyfirst.ShopItems;
 import kr.eddi.demo.utility.basic.third.CustomRandom;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.List;
 public class RpgItemController {
     private List<ShopItems> allShopList = new ArrayList<>();
     private List<ShopItems> userInventoryList = new ArrayList<>();
+
+    private List<ShopItems> userEquippedItemList = new ArrayList<>();
 
     public void buildDefaultItemList () {
         if (allShopList.size() == 0) {
@@ -58,13 +61,13 @@ public class RpgItemController {
     public String buyItems (@RequestBody RequestBuyItem requestBuyItem) {
         log.info("buyItems() - requestBuyItem: " + requestBuyItem);
 
-        List<Items> tmpItemList = requestBuyItem.getItemLists();
+            List<UserItems> tmpItemList = requestBuyItem.getItemLists();
 
-        for (int i = 0; i < requestBuyItem.getItemLists().size(); i++) {
-            ShopItems tmpItem = new ShopItems(tmpItemList.get(i).getName(), tmpItemList.get(i).getPrice(),
-                    tmpItemList.get(i).getDescription(), tmpItemList.get(i).getAtk());
-            userInventoryList.add(tmpItem);
-        }
+            for (int i = 0; i < requestBuyItem.getItemLists().size(); i++) {
+                ShopItems tmpItem = new ShopItems(tmpItemList.get(i).getName(), tmpItemList.get(i).getPrice(),
+                        tmpItemList.get(i).getDescription(), tmpItemList.get(i).getAtk());
+                userInventoryList.add(tmpItem);
+            }
         return "아이템 구매 성공!";
     }
 
@@ -75,11 +78,24 @@ public class RpgItemController {
         return userInventoryList;
     }
 
-    @PostMapping("/equip-inventory-item")
-    public String equipInventoryItem (@RequestBody RequestInventoryItem requestInventoryItem) {
-        log.info("equipInventoryItem() - inventoryList " +  requestInventoryItem);
+    @PostMapping("/equip-item")
+    public String equipItem (@RequestBody RequestEquipItem requestEquipItem) {
+        log.info("equipItem() - RequestEquipItem " + requestEquipItem);
 
-        return "아이템 장착 완료";
+//        List<UserItems> tmpItemList = requestBuyItem.getItemLists();
+//
+//        for (int i = 0; i < requestBuyItem.getItemLists().size(); i++) {
+//            ShopItems tmpItem = new ShopItems(tmpItemList.get(i).getName(), tmpItemList.get(i).getPrice(),
+//                    tmpItemList.get(i).getDescription(), tmpItemList.get(i).getAtk());
+//            userInventoryList.add(tmpItem);
+//        }
+        List<UserItems> tmpEquippedItemList = requestEquipItem.getEquippedItems();
+        for (int i = 0; i < requestEquipItem.getEquippedItems().size(); i++) {
+            ShopItems tmpItem = new ShopItems(tmpEquippedItemList.get(i).getName(), tmpEquippedItemList.get(i).getPrice(),
+                    tmpEquippedItemList.get(i).getDescription(), tmpEquippedItemList.get(i).getAtk());
+            userEquippedItemList.add(tmpItem);
+        }
 
+        return "아이템 장착 성공";
     }
 }

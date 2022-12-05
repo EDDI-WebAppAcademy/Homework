@@ -1,8 +1,12 @@
 package kr.eddi.demo.entity.vue.thirtiyfirst;
 
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
+@Setter
+@ToString
 public class CharacterStatus {
     private Integer level;
     private Integer hp;
@@ -21,25 +25,59 @@ public class CharacterStatus {
     private Integer money;
     private String currentJob;
 
-    public CharacterStatus (Integer level, Integer hp, Integer mp, Integer itemAtk, Integer defaultAtk, Integer atk,
-                            Integer str, Integer intelligence, Integer dex, Integer vit, Integer def, Integer men,
-                            Integer totalLevelBar, Integer currentLevelBar, Integer money, String currentJob) {
-        this.level = level;
-        this.hp = hp;
-        this.mp = mp;
-        this.itemAtk = itemAtk;
-        this.defaultAtk = defaultAtk;
-        this.atk = atk;
-        this.str = str;
-        this.intelligence = intelligence;
-        this.dex = dex;
-        this.vit = vit;
-        this.def = def;
-        this.men = men;
-        this.totalLevelBar = totalLevelBar;
-        this.currentLevelBar = currentLevelBar;
-        this.money = money;
-        this.currentJob = currentJob;
+    final Integer INIT_LEVEL = 1;
+    final Integer INIT_HP = 50;
+    final Integer INIT_MP = 30;
+    final Integer INIT_ITEM_ATK = 0;
+    final Integer INIT_DEFAULT_ATK = 10;
+    final Integer INIT_ATK = 10;
+    final Integer INIT_STR = 10;
+    final Integer INIT_INT = 10;
+    final Integer INIT_DEX = 10;
+    final Integer INIT_VIT = 10;
+    final Integer INIT_DEF = 10;
+    final Integer INIT_MEN = 0;
+    final Integer INIT_TOTAL_LEVEL_BAR = 10;
+    final Integer INIT_CURRENT_LEVEL_BAR = 0;
+    final Integer INIT_MONEY = 0;
+    final String INIT_CURRENT_JOB = "모험가";
 
+    public CharacterStatus () {
+        level = INIT_LEVEL;
+        hp = INIT_HP;
+        mp = INIT_MP;
+        itemAtk = INIT_ITEM_ATK;
+        defaultAtk = INIT_DEFAULT_ATK;
+        atk = INIT_ATK;
+        str = INIT_STR;
+        intelligence = INIT_INT;
+        dex = INIT_DEX;
+        vit = INIT_VIT;
+        def = INIT_DEF;
+        men = INIT_MEN;
+        totalLevelBar = INIT_TOTAL_LEVEL_BAR;
+        currentLevelBar = INIT_CURRENT_LEVEL_BAR;
+        money = INIT_MONEY;
+        currentJob = INIT_CURRENT_JOB;
     }
+
+    public CharacterStatus (CharacterStatus characterStatus) {
+        level = characterStatus.level;
+        hp = characterStatus.hp;
+        mp = characterStatus.mp;
+        itemAtk = characterStatus.itemAtk;
+        defaultAtk = characterStatus.defaultAtk;
+        atk = characterStatus.atk;
+        str = characterStatus.str;
+        intelligence = characterStatus.intelligence;
+        dex = characterStatus.dex;
+        vit = characterStatus.vit;
+        def = characterStatus.def;
+        men = characterStatus.men;
+        totalLevelBar = characterStatus.totalLevelBar;
+        currentLevelBar = characterStatus.currentLevelBar;
+        money = characterStatus.money;
+        currentJob = characterStatus.currentJob;
+    }
+
 }

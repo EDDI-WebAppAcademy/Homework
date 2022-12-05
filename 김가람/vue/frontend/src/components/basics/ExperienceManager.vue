@@ -24,8 +24,21 @@
 
 <script>
 
+// const HP = 0
+// const MP = 1
+// const ATK = 2
+// const STR = 3
+// const DEX = 4
+// const INT = 5
+// const DEF = 6
+// const HP_MP_INCREMENT = 50
+// const OTHER_STATS_INCREMENT = 5
+
+
+import {mapActions} from "vuex";
 
 export default {
+
   name: "ExperienceManager",
   data () {
     return {
@@ -34,6 +47,38 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['requestExpExchangeFromSpring']),
+    async doExpExchange () {
+      await this.requestExpExchangeFromSpring(this.exchangeListValue)
+    }
+
+    // doExpExchange () {
+    //   if (this.characterStatus.currentLevelBar < 10000000) {
+    //     alert("exp 부족!")
+    //     return
+    //   }
+    //   console.log("expValue[0]: " + this.exchangeListValue[0] + ", ATK = " + ATK)
+    //   if (this.exchangeListValue[0] === HP) {
+    //     this.exchangeStatus.hp += HP_MP_INCREMENT
+    //   } else if (this.exchangeListValue[0] === MP) {
+    //     this.exchangeStatus.mp += HP_MP_INCREMENT
+    //   } else if (this.exchangeListValue[0] === ATK) {
+    //     console.log("Select ATK")
+    //     this.exchangeStatus.atk += OTHER_STATS_INCREMENT
+    //     this.characterStatus.atk = this.characterStatus.defaultAtk + this.characterStatus.itemAtk + this.exchangeStatus.atk
+    //   } else if (this.exchangeListValue[0] === STR) {
+    //     this.exchangeStatus.str += OTHER_STATS_INCREMENT
+    //   } else if (this.exchangeListValue[0] === DEX) {
+    //     this.exchangeStatus.dex += OTHER_STATS_INCREMENT
+    //   } else if (this.exchangeListValue[0] === INT) {
+    //     this.exchangeStatus.int += OTHER_STATS_INCREMENT
+    //   } else if (this.exchangeListValue[0] === DEF) {
+    //     this.exchangeStatus.def += OTHER_STATS_INCREMENT
+    //   }
+    //
+    //   this.characterStatus.currentLevelBar -= 10000000
+    //
+    // },
 
   }
 }

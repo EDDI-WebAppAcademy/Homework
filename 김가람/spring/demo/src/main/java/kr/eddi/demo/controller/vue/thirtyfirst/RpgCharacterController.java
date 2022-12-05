@@ -2,10 +2,7 @@ package kr.eddi.demo.controller.vue.thirtyfirst;
 
 import kr.eddi.demo.entity.vue.thirtiyfirst.CharacterStatus;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -13,13 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class RpgCharacterController {
 
-    @GetMapping("/character-status")
-    public CharacterStatus characterStatus () {
-        log.info("characterStatus ()");
+    public static CharacterStatus characterStatus = new CharacterStatus();
 
-        CharacterStatus characterStatus = new CharacterStatus(1, 50, 30, 0, 10, 10, 10, 10,
-                10, 10, 10, 0, 10, 0, 0,  "모험가");
+    @PostMapping("/character-status")
+    public CharacterStatus requestCharacterStatus () {
+        log.info("requestCharacterStatus()");
 
         return characterStatus;
     }
+
+
 }

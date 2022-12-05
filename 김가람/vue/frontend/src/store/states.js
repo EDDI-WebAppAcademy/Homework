@@ -1,8 +1,18 @@
 export default {
     springFromVueTestValue: null,
     randomShopItem: [],
-    randomManyMonster: [],
+    monsterList: [],
+    randomMonster: [],
     characterStatus: {},
+    characterStatusUpdateFlag: false,
     myInventory: [],
+    viewExpExchangeLists: [],
+
+    boards: [],
+    board: {},
+
+    products: [],
+    product: {},
+
 
 }

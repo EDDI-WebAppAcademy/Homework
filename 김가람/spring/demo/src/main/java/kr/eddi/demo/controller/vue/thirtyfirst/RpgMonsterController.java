@@ -18,6 +18,7 @@ import java.util.List;
 public class RpgMonsterController {
     private List<MonsterBooks> allMonsterBooks = new ArrayList<>();
     private List<MonsterBooks> randomMonsterList = new ArrayList<>();
+    private List<MonsterBooks> monsterList = new ArrayList<>();
 
     public void buildDefaultMonsterBooks () {
         allMonsterBooks.add(new MonsterBooks(1, "슬라임", 50, 10, 5));
@@ -44,21 +45,38 @@ public class RpgMonsterController {
         allMonsterBooks.add(new MonsterBooks(9999, "하이퍼 메탈 슬라임", 1000, 5000000, 10000000));
     }
 
-    public void addRandomMonsterList (List<MonsterBooks> randomMonsterLists) {
+    public void addRandomMonsterList () {
         int everyMonsterSize = allMonsterBooks.size();
 
             MonsterBooks oneMonster = allMonsterBooks.get(CustomRandom.makeIntCustomRandom(0, everyMonsterSize - 1));
-            randomMonsterLists.add(oneMonster);
+//            randomMonsterLists.add(oneMonster);
+        monsterList.add(oneMonster);
+    }
+    public void buildDefaultMonsterList () {
+        for (int i = 0; i < 3; i++) {
+            monsterList.add(allMonsterBooks.get(i));
+        }
     }
 
-    @GetMapping("/random-monster")
+    @GetMapping("/add-random-monster")
     public List<MonsterBooks> addRandomMonster() {
         log.info("addRandomMonster()");
 
-        buildDefaultMonsterBooks();
-        addRandomMonsterList(randomMonsterList);
+        addRandomMonsterList();
 
-        return randomMonsterList;
+        return monsterList;
+    }
+
+    @GetMapping("/view-monster-list")
+    public List<MonsterBooks> viewMonsterList() {
+        log.info("viewMonsterList()");
+
+        buildDefaultMonsterBooks();
+        if (monsterList.size() == 0) {
+            buildDefaultMonsterList();
+        }
+
+        return monsterList;
     }
 
 
