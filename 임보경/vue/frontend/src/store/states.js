@@ -1,8 +1,7 @@
 export default {
-    characterStatusData: null,
-    monstersData : null,
-    stockData : null,
-    inventoryData : null,
-    equipmentData : null,
+    characterStatus: {},
+    shopItemList : {},
+    availabilityOfPurchase : false,
+    ItemsbeforePayment: [],
 }
 

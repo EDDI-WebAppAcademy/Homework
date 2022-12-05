@@ -112,7 +112,7 @@ public class GameController {
         return itemManager.stockController();
     }
 
-    @GetMapping("/start/playing")
+    @GetMapping("/start/summon")
     public List summonsMonster() {
         monsterManager = new MonsterManager();
         return monsterManager.createNewMonster();

@@ -1,9 +1,8 @@
 import {
-    REQUEST_CHARACTER_STATUS_DATA,
-    REQUEST_EQUIPMENT_DATA,
-    REQUEST_INVENTORY_DATA,
-    REQUEST_MONSTER_DATA,
-    REQUEST_STOCK_DATA,
+    REQUEST_CHARACTER_DATA_FROM_SPRING,
+    REQUEST_SHOP_ITEMS_DATA_FROM_SPRING,
+    REQUEST_AVAILABILITY_OF_PURCHASE_FROM_SPRING,
+    POST_ITEMS_BEFORE_PAYMENT,
 } from './mutation-types'
 
 
@@ -12,68 +11,36 @@ import {
 import axios from 'axios'
 
 export default {
-    //Critical Section 관련 정리가 필요함(월요일)
-    //Critical Section때문에 mutation에 저장해야 하는 이유가 있음
-    requestCharacterStatusData ({ commit }) {
-        return axios.get('http://localhost:7777/make-game-alone/start/status')
+
+    requestCharacterDataFromSpring ({ commit }) {
+        return axios.get('http://localhost:7777/2nd/response-character-status')
             .then((res) => {
-                commit(REQUEST_CHARACTER_STATUS_DATA, res.data)
+                commit(REQUEST_CHARACTER_DATA_FROM_SPRING, res.data)
             })
     },
 
-    requestMonsterData ({ commit }) {
-        return axios.get('http://localhost:7777/make-game-alone/start/playing')
+    requestShopItemsDataFromSpring ({ commit }) {
+        return axios.get('http://localhost:7777/2nd/response-shop-items')
             .then((res) => {
-                commit(REQUEST_MONSTER_DATA, res.data)
+                commit(REQUEST_SHOP_ITEMS_DATA_FROM_SPRING, res.data)
             })
     },
 
-    requestStockData ({ commit }) {
-        return axios.get('http://localhost:7777/make-game-alone/start/stock-up')
+    requestAvailabilityOfPurchaseFromSpring ({ commit }) {
+        return axios.get('http://localhost:7777/2nd/response-availability-of-purchase')
             .then((res) => {
-                commit(REQUEST_STOCK_DATA, res.data)
+                commit(REQUEST_AVAILABILITY_OF_PURCHASE_FROM_SPRING, res.data)
             })
     },
 
-    requestInventoryData ({ commit }) {
-        return axios.get('http://localhost:7777/make-game-alone/start/show-my-inven')
-            .then((res) => {
-                commit(REQUEST_INVENTORY_DATA, res.data)
-            })
-    },
-
-    requestEquipmentData ({ commit }) {
-        return axios.get('http://localhost:7777/make-game-alone/start/current-equip')
-            .then((res) => {
-                commit(REQUEST_EQUIPMENT_DATA, res.data)
-            })
-    },
-
-    //데이터 보내기
-    requestBuyItem ({ commit }, payload) {
-        return axios.post('http://localhost:7777/make-game-alone/start/buy-items',
+    purchaseRequest ({ commit }, payload) {
+        return axios.post('http://localhost:7777/2nd/receive-invoice',
             { shoppingCart: payload })
             .then((res) => {
-                alert(res.data)
-                commit()
+                console.log(res.data.name + "를 구매 요청합니다.")
+                commit(POST_ITEMS_BEFORE_PAYMENT, res.data.name)
             })
     },
 
-    requestEquipItem({ commit }, payload) {
-        return axios.post('http://localhost:7777/make-game-alone/start/equipment',
-            { receiveEquipItem : payload })
-            .then((res) => {
-                alert(res.data + "전송 완료")
-                commit()
-            })
-    },
 
-    requestRemoveEquipItem({ commit }, payload) {
-        return axios.post('http://localhost:7777/make-game-alone/start/remove-equipment',
-            { receiveRemoveEquipItem : payload })
-            .then((res) => {
-                alert(res.data + "전송 완료")
-                commit()
-            })
-    },
 }

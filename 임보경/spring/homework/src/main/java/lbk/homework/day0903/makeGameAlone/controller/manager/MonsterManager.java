@@ -19,7 +19,7 @@ public class MonsterManager {
     }
 
     public List createNewMonster() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             monsterList.add(acquireRandomMonster());
         }
         return monsterList;

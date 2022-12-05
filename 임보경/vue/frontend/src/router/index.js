@@ -2,12 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Test from "@/components/Test";
-import MakeGame from "@/components/MakeGame";
 import ComponentsTestView from "@/views/basics/ComponentsTestView";
 import ConcaveBoardView from "@/views/game/ConcaveBoardView";
 import VueToSpringView from "@/views/axiosTest/VueToSpringView";
-import MakeGameAloneView from "@/views/makeGameAlone/GameView";
 import DataSendTestView from "@/views/axiosTest/DataSendTestView";
+import MakeGameView from "@/views/makeGame/MakeGameView";
 
 Vue.use(VueRouter)
 
@@ -23,9 +22,9 @@ const routes = [
     component: Test
   },
   {
-    path: '/MakeGame',
-    name: 'MakeGame',
-    component: MakeGame
+    path: '/make-game-view',
+    name: 'MakeGameView',
+    component: MakeGameView
   },
   {
     path: '/components-test-view',
@@ -41,11 +40,6 @@ const routes = [
     path: '/vue2spring',
     name: 'VueToSpringView',
     component: VueToSpringView
-  },
-  {
-    path: '/make-game-alone',
-    name: 'MakeGameAloneView',
-    component: MakeGameAloneView
   },
   {
     path: '/data-send-test',

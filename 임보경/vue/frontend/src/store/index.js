@@ -8,8 +8,8 @@ import getters from "@/store/getters"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state,
-  actions,
-  mutations,
-  getters,
+    state,
+    actions,
+    mutations,
+    getters,
 })

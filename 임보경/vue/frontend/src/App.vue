@@ -7,10 +7,8 @@
       <router-link to="/concave-board-game">tic tak toe</router-link>  |
       <router-link to="/practiceView">임시 테스트용</router-link>  |
       <router-link to="/vue2spring">Vue 2 Spring 통신 테스트</router-link> |
+      <router-link to="/make-game-view">게임 만들기 테스트</router-link> |
       <router-link to="/data-send-test">Vue 2 Spring 데이터 전송 테스트</router-link> |
-      <router-link to="/make-game-alone">시도중</router-link>
-
-
     </nav>
     <router-view/>
   </div>
