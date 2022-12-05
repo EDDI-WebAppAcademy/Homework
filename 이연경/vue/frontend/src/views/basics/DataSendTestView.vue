@@ -16,7 +16,7 @@ export default {
     DataSendTestForm
   },
   methods: {
-    onSubmit (payload) {
+    onSubmit (payload) { // vue->spring axios 요청,{ memberName, major } 형태로 객체화하여 Spring으로 전달
       const { memberName, major } = payload
       axios.post('http://localhost:7777/32th/vue2spring/receive-test',
           { memberName, major })

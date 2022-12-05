@@ -17,4 +17,6 @@ public class Monster {
         this.exp = exp;
         this.dropMoney = dropMoney;
     }
+
+
 }

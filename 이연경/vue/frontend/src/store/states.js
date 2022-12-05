@@ -5,5 +5,9 @@ export default {
     randomShopItem: [],
     myInventory: [],
     randomMonster: [],
+    characterStatus: {},
+    characterStatusUpdateFlag: false,
 
+    boards: [],
+    board: {}
 }
